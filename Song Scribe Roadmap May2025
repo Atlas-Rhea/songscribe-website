@@ -1,0 +1,98 @@
+# SongScribe – Development Roadmap & Engineering Directives
+
+*Version 0.1 – May 19 2025*
+
+---
+
+## 0 • Legend
+
+| Tag       | Meaning                            |
+| --------- | ---------------------------------- |
+| **NOW**   | Sprint‑blocking, start immediately |
+| **NEXT**  | Start as soon as NOW items merge   |
+| **LATER** | Nice‑to‑have / v1.x stretch        |
+| **?**     | Decision required                  |
+
+Each task lists *pointer files* and *Cursor IDE actions* so our coding assistant can jump straight to implementation.
+
+---
+
+## 1 • Schema & Rendering Refactor
+
+| Priority | Task                                                                                                               | Pointer Files                                | Cursor Directives                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NOW**  | **Introduce `ChordNode`** – zero‑width inline, `atom: true`, attrs `{label, altShapes?, tuning?, capo?}`.          | `tiptap/ChordNode.ts` (NEW)<br>`schema.ts`   | 1. Add node spec.<br>2. Export in root schema.<br>3. Update starters.                                                                                             |
+| **NOW**  | **Remove word‑grid & word‑index system**. Deprecate `WordDecorations` grid logic except optional lyric grid lines. | `tiptap/WordDecorations.ts`                  | 1. Strip index rebuild code.<br>2. Keep optional lyric grid toggle, gated behind `showGrid`.                                                                      |
+| **NOW**  | **Create `ChordOverlayPlugin`** – builds widget decorations positioned above first glyph of anchor word.           | `tiptap/plugins/ChordOverlayPlugin.ts` (NEW) | 1. Walk doc to find `ChordNode`s.<br>2. For each node, insert `Decoration.widget` with `side:-1`.<br>3. Use `view.domAtPos` + `clientRect()` to compute x‑offset. |
+| **NOW**  | **BarNode for instrumental beats** – inline atom labelled `{bars: number}` representing `/` fillers.               | `tiptap/BarNode.ts` (NEW)                    | Implement parser + serializer to `/` lines and `{bars}` export.                                                                                                   |
+| **NOW**  | **Legacy migration script** converting word‑index chords to new node model.                                        | `scripts/migrateChordPositions.ts` (NEW)     | Iterate paragraphs, insert chord node before target word, delete index field.                                                                                     |
+
+---
+
+## 2 • Editor UX / Controls
+
+| Priority | Task                                                                                                      | Pointer Files                                    | Cursor Directives                                                 |
+| -------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------- |
+| **NOW**  | **Toolbar Redesign v2** – icon‑only (lucide), 44 px hit‑area, Tailwind ghost buttons.                     | `components/toolbar/*`                           | Update JSX, remove label text, add `sr-only` labels.              |
+| **NOW**  | **Tap‑Tempo Button** – metronome icon, captures last 4 taps ➜ sets `bpm` metadata, syncs with autoscroll. | `components/toolbar/TapTempo.tsx` (NEW)          | 1. Use `performance.now()` diff.<br>2. Dispatch `updateSong` bpm. |
+| **NOW**  | **Mobile Back Button** (<640 px).                                                                         | `layout/Header.tsx`                              | Show chevron, call `router.back()`.                               |
+| **NEXT** | **Toolbar Record Button 🎙** – add record icon to main toolbar; opens Recording Pane.                     | `components/toolbar/RecordButton.tsx` (NEW)      | Place icon beside TapTempo; triggers `RecordingPane.open()`.      |
+| **NEXT** | **Capo Handling** – metadata `capo`, auto‑transpose display.                                              | `utils/transposition.ts`                         | Use tonal.js, show grey original on hover.                        |
+| **NEXT** | **Alternate Tuning Support** – metadata + chord picker filter.                                            | `services/chords.ts`                             | Add shape tables keyed by tuning.                                 |
+| **NEXT** | **Chord Alternate Carousel** – click chord ➜ bottom sheet of voicings.                                    | `components/ChordPicker.tsx`                     | Implement swipe / arrows navigation.                              |
+| **NEXT** | **Section Spacing & Instrumental Slash Styling**.                                                         | `tiptap/plugins/SectionStyler.ts` (NEW)          | Collapse `/ / / /` lines, mute grey.                              |
+| **NEXT** | **Settings Overhaul** – UG‑style groups *Editor • Playback • Appearance • Data*.                          | `components/SettingsPanel/*`                     | Figma reference attached.                                         |
+| **NEXT** | **Theme System** – Bear palettes JSON + live preview.                                                     | `theme/theme.ts`, `components/ThemeSwitcher.tsx` | Implement prefers‑color‑scheme auto.                              |
+| **NEXT** | **Folder Delete Behaviour** – “Delete ➜ move songs to ‘Unfiled’ unless folder empty”                      | `services/db.ts`, `components/Sidebar.tsx`       | Update Dexie transaction & UI prompts.                            |
+
+## 3 • Audio & AI
+
+| Priority  | Task                                                                                                                            | Pointer Files                      | Cursor Directives                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **NEXT**  | **Audio Recording Module** – offline mic capture, waveform, save to Dexie `recordings` store.                                   | `components/recorder/*` (NEW)      | Use MediaRecorder API, limit to 5 min WAV; integrates with RecordingPane.                                  |
+| **NEXT**  | **Recording Pane & Clip Manager** – slide-up pane within song for managing recordings, waveforms, tags, A–B loop, clip mashups. | `components/RecordingPane/*` (NEW) | Implement bottom sheet via Radix; allow tagging sections, loop playback, clip cropping & sequence reorder. |
+| **NEXT**  | **Auto‑Parse Recording** (offline) – key + bpm + chord map (TensorFlow\.js).                                                    | `services/audioAnalysis.ts` (NEW)  | Debounce; store results in recording metadata; feed clip display.                                          |
+| **LATER** | On‑device lyric suggestion (ML).                                                                                                | —                                  | Placeholder.                                                                                               |
+
+## 4 • Data & Sync • Data & Sync
+
+| Priority  | Task                                                             | Pointer Files                     | Cursor Directives                                   |
+| --------- | ---------------------------------------------------------------- | --------------------------------- | --------------------------------------------------- |
+| **NOW**   | **Dexie Schema v1** – songs, snapshots, recordings, settings.    | `services/db.ts`                  | Add `schemaVersion`, migration plan.                |
+| **NEXT**  | **Export / Import**: JSON ⇄ ChordPro round‑trip helpers.         | `utils/chordpro.ts` (NEW)         | Serialize overlay chords to chord line; parse back. |
+| **NEXT**  | **Snapshot / Versioning UI** – linear history with diff preview. | `components/SnapshotTimeline.tsx` | Use ProseMirror steps CRDT later.                   |
+| **LATER** | Cloud sync (CRDT)                                                | —                                 | TBD.                                                |
+
+---
+
+## 5 • Testing & Performance
+
+1. **Unit tests**: chord node mapping, overlay positions at different font sizes.
+2. **Cypress e2e**: insert/delete words, ensure chords don’t drift.
+3. **Perf budget**: <50 ms toggle chord mode on 200‑line doc (Moto G7).
+
+---
+
+## 6 • Mobile Features & PWA
+
+| Priority | Deliverable                                                                 | Status       | Notes                                                                 |
+| -------- | --------------------------------------------------------------------------- | ------------ | --------------------------------------------------------------------- |
+| **DONE** | **Mobile Chord Builder** – responsive chord creation with rotatable fretboard | ✅ Complete  | Touch-optimized interface with 90° rotation for portrait screens.     |
+| **0**    | Audit PWA – service‑worker, offline install prompt.                         | 🚧 Pending  | Foundation for mobile app distribution.                               |
+| **1**    | Capacitor shell (`cap add ios`).                                            | 🚧 Pending  | Native iOS wrapper for web app.                                      |
+| **2**    | Native bridges for mic + FS.                                                | 🚧 Pending  | Access to device microphone and file system.                         |
+| **3**    | App‑Store assets + privacy strings.                                         | 🚧 Pending  | Prepare for App Store submission.                                    |
+| **4**    | Optional Swift bridge for Core ML chord detection if JS perf suffers.       | 🚧 Pending  | Enhanced chord recognition using device ML capabilities.              |
+
+---
+
+## 7 • Deferred / Stretch
+
+* MIDI export after quantised note model lands.
+* Real‑time collaboration (WebRTC/CRDT).
+
+---
+
+### End of Roadmap 0.1
+
+> **CTO note**: Merge *Schema Refactor* branch into `develop` before starting any NEXT items.

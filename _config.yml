@@ -1,0 +1,185 @@
+# SongScribe Website - Jekyll Configuration
+# https://jekyllrb.com/docs/configuration/options/
+
+title: "SongScribe"
+description: "The ultimate offline-first songwriting companion for musicians. Create, record, and organize your songs with powerful chord tools and audio recording."
+url: "https://songscribe.app"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Includes
+include:
+  - _pages
+
+# Excludes
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+
+# SEO
+social:
+  name: SongScribe
+  links:
+    - https://github.com/songscribe-offline-muse
+
+# Analytics
+analytics:
+  google: "G-XXXXXXXXXX"
+
+# Performance
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: [development]
+
+# Assets
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Custom variables
+brand:
+  name: "SongScribe"
+  tagline: "Your music. Your way. Offline, always."
+  primary_color: "#FBBF24"
+  secondary_color: "#5F8484"
+
+# Author information
+author:
+  name: "SongScribe Team"
+  email: "hello@songscribe.app"
+
+# Social media
+social:
+  github: "https://github.com/songscribe-offline-muse"
+  twitter: "https://twitter.com/songscribeapp"
+
+# Site settings
+locale: "en-US"
+timezone: "America/New_York"
+
+# Collections settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "SongScribe Team"
+      permalink: "/blog/:year/:month/:day/:title/"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Pagination (if using jekyll-paginate)
+# paginate: 5
+# paginate_path: "/blog/page:num/"
+
+# Build settings for GitHub Pages
+repository: songscribe-offline-muse/songscribe-offline-muse
+github_username: songscribe-offline-muse
+
+# Custom collections for features, testimonials, etc.
+# features:
+#   output: true
+#   permalink: "/features/:name/"
+
+# RSS feed settings
+feed:
+  posts_limit: 20
+
+# SEO settings
+seo:
+  title_modifier: " - SongScribe"
+  description: "The ultimate offline-first songwriting companion for musicians"
+  keywords: "songwriting, music composition, chord editor, offline music, recording, lyrics"
+  image: "/assets/images/hero-og.png"
+  twitter:
+    username: "@songscribeapp"
+    card: "summary_large_image"
+  facebook:
+    app_id: ""
+    publisher: ""
+    authors: ""
+  google:
+    verification: ""
+  bing:
+    verification: ""
+
+# Development settings
+development:
+  host: "localhost"
+  port: 4000
+  livereload: true
+  incremental: true
+
+# Production settings
+production:
+  url: "https://songscribe.app"
+  cdn_url: "https://cdn.songscribe.app"
+  compress_html: true
+  minify_js: true
+  minify_css: true
+
+# Error pages
+errors:
+  404:
+    title: "Page Not Found"
+    description: "The page you're looking for doesn't exist."
+  500:
+    title: "Server Error"
+    description: "Something went wrong on our end. Please try again later."
+
+# Feature flags
+features:
+  blog: true
+  newsletter: true
+  analytics: true
+  social_sharing: true
+  search: false
+  dark_mode: false
+
+# Content settings
+content:
+  excerpt_separator: "<!--more-->"
+  excerpt_length: 160
+  read_more: "Read more"
+  date_format: "%B %d, %Y"
+
+# Image settings
+images:
+  default_quality: 85
+  formats: ["webp", "jpg", "png"]
+  sizes: [320, 640, 1024, 1920]
+  lazy_loading: true
+
+# Cache busting
+cache_bust: true
+
+# Custom variables for templates
+current_year: 2025
+version: "1.0.0"

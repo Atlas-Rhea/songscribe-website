@@ -1,0 +1,66 @@
+# SongScribe Product Requirements Document (PRD)
+
+## Vision
+Empower musicians and songwriters to create, edit, and organize lyrics and chords with ease, using a modern, collaborative, and AI-augmented editor that works offline and online.
+
+## Goals
+- Provide a seamless lyrics and chord editing experience, optimized for musicians.
+- Support chord mode with accurate, position-based chord attachment and editing.
+- Preserve formatting (bold, italic) and ensure chords remain visually and functionally attached to words.
+- Enable offline-first usage with robust local storage and sync.
+- Offer powerful search, organization, and export features.
+- Support future AI features for auto-chording, lyric suggestions, and more.
+
+## Features
+
+### Core Editor
+- Rich text editing for lyrics (bold, italic, underline, etc.)
+- Chord mode: toggle to show/hide and edit chords above words
+- Chord picker and removal UI
+- Drag-and-drop chord reordering (future)
+- Section/verse/chorus structure support
+
+### Chord Management
+- Chords are attached by absolute document position (not word index)
+- Chord insertion/removal is always position-based
+- Chord flags are visually aligned above the first letter of the word
+- Chord decorations do not interfere with lyric formatting
+- Robust metadata extraction for imports
+
+### Mobile Chord Builder
+- Mobile-optimized chord creation interface
+- Responsive design for portrait and landscape orientations
+- Touch-friendly chord construction with root, accidental, quality, extension, and alteration selection
+- Fullscreen rotatable fretboard diagrams for chord visualization
+- Real-time chord name display during construction
+- Integration with fretboard.js for accurate chord position rendering
+
+### Collaboration & Organization
+- Song list and folder/tag organization
+- Song metadata: key, tempo, time signature, etc.
+- Export to PDF, text, or other formats
+
+### Offline & Sync
+- Full offline support (local storage)
+- Sync with cloud (future)
+
+### AI/Automation (Future)
+- Auto-chord suggestion from lyrics or audio
+- Lyric suggestion/completion
+- Smart search and filtering
+
+### Import/Export
+- Import supports text, PDF, images, and HTML/tab files
+- Robust metadata extraction
+- Clean title bar display
+
+## User Stories
+- As a songwriter, I want to quickly add chords above lyrics so I can capture musical ideas as they come.
+- As a musician, I want to see chords and lyrics clearly aligned, so I can play and sing without confusion.
+- As a collaborator, I want to organize songs by folder/tag and share them with others.
+- As a user, I want to work offline and have my changes sync when I'm back online.
+
+## Technical Requirements
+- Modern browser support (desktop and mobile)
+- Offline-first architecture
+- Privacy-respecting AI features (opt-in)

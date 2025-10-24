@@ -1,0 +1,150 @@
+# 🎶 SongScribe Product Requirements Document (PRD)
+
+## Overview
+**SongScribe** is a songwriting tool designed for intuitive, zero-friction lyric writing with embedded chord support. It empowers creators—especially guitarists and vocalists—to compose, structure, and refine songs using an elegant, drag-and-drop interface without needing deep theory knowledge.
+
+**Target Users:**
+- Singer-songwriters
+- Hobbyists and professionals
+- Creators working intuitively (e.g., by humming, jamming)
+
+**Problem Solved:**
+Traditional DAWs and notation software are overkill for early composition stages. SongScribe provides an in-between layer—a structured scratchpad that understands music.
+
+---
+
+## Core Features
+
+### 1. Lyrics Editor with Inline Chords
+- **What it does:** Rich-text editor with invisible `[chord:XXX]` tokens and draggable visual flags.
+- **Why it's important:** Keeps lyrics readable while encoding harmonic structure.
+- **How it works:** Every word is a span; flags overlay via absolute positioning. Tokens store the underlying data.
+
+### 2. Chord Flag Interaction
+- **What it does:** Drag flags to reposition, tap words to assign new chords.
+- **Why it's important:** Reflects real creative workflows—writing first, then aligning chords later.
+- **How it works:** Flags snap to spans; visual feedback highlights valid targets.
+
+### 3. Key Detection + Transposition
+- **What it does:** Detect key, shift entire progression up/down semitones.
+- **Why it's important:** Facilitates voice range tuning and jam session compatibility.
+- **How it works:** Simple chord frequency analysis + lookup table for enharmonics.
+
+### 4. Toolbar Controls
+- **What it does:** Sticky top bar for song metadata and chord display toggles.
+- **Why it's important:** Keeps common actions accessible without cluttering the editor.
+- **How it works:** Flex row with Tailwind + shadcn-ui components (Popover, Switch, Input).
+
+### 5. Chord Charts Panel
+- **What it does:** Slide-down panel showing all chords used in the song.
+- **Why it's important:** Helps users visualize unfamiliar chords quickly.
+- **How it works:** Generates chord list from inline tokens; renders as SVG or baked components.
+
+### 6. Demo Jam File Onboarding
+- **What it does:** Loads a sample song on first install.
+- **Why it's important:** Demonstrates key features and shows the app "working" out of the box.
+- **How it works:** Loads a markdown-style file with title, tempo, key, and lyrics + chords.
+
+---
+
+## User Experience
+
+### User Personas
+- **The Jammer** — Writes intuitively from feeling, often without theory knowledge.
+- **The Songwriter** — Wants to organize scattered voice notes and lyrics into structured drafts.
+- **The Performer** — Needs chord reference for quick transposition and on-stage readability.
+
+### Key User Flows
+1. Open app → Starter file loads → User edits lyrics → Adds/adjusts chords.
+2. Writes original lyrics → Inserts chords with tap or drag → Opens charts to preview shapes.
+3. Pastes in old song → Uses key detection → Hits ⬆ to transpose for voice.
+
+### UI/UX Considerations
+- Editor: `whitespace-pre-wrap`, `max-w-prose`, smooth drag snapping
+- Toolbar: Sticky with backdrop blur and subtle shadow
+- Chord flags: Positioned just above each word; subtle visual style
+- Mobile: Hamburger menu for overflow; collapsible chart panel
+
+---
+
+## Technical Architecture
+
+### System Components
+- **Frontend:** Vite + TypeScript + React + Tailwind + shadcn-ui + React DND
+- **Testing:** Playwright end-to-end suite
+- **State:** React context + lightweight client store for lyrics + chord tokens
+
+### Data Models
+```ts
+type Song = {
+  title: string;
+  tempo: number;
+  key: string;
+  lyrics: string; // includes [chord:XXX] inline tokens
+}
+```
+
+### APIs & Integrations
+- None for MVP
+- Optional future: audio recording, file export (PDF/ChordPro), sync
+
+### Infrastructure
+- Offline-first PWA
+- No backend required for MVP
+
+---
+
+## Development Roadmap
+
+### MVP Requirements
+1. Lyrics Editor with Inline Chords
+2. Chord Flag Drag-and-Drop
+3. Key Detection + Transposition
+4. Toolbar Implementation
+5. Chord Charts Panel
+6. Demo File Onboarding
+7. E2E Tests via Playwright
+
+### Future Enhancements
+- Audio scratchpad (record ideas)
+- Smart suggestions (next chord prediction)
+- Export formats: PDF, .txt, ChordPro
+- Cloud sync + device linking
+- AI lyric assists (rhyme, structure, syllable count)
+
+---
+
+## Logical Dependency Chain
+1. **Editor Canvas** → must exist to place anything
+2. **Token Parsing & Flag Rendering** → enables drag, visibility toggle
+3. **Toolbar Controls** → needs reactive song metadata
+4. **Key Detection & Transposition** → depends on token parsing
+5. **Chord Charts** → depends on parsed chord list
+6. **Playwright E2E Tests** → lock in expected behaviors
+
+---
+
+## Risks and Mitigations
+| Risk | Mitigation |
+|------|------------|
+| Accurate flag placement is tricky | Use `getBoundingClientRect` with offset tolerance |
+| Drag-and-drop might fail on mobile | Add long-press + fallback tap picker |
+| Key detection isn't always accurate | Start simple; expand heuristics later |
+| Feature creep before MVP | Lock MVP scope and stub future features |
+
+---
+
+## Appendix
+
+### Research Findings
+- DAWs are overkill for early song sketches
+- Copy/paste is essential, but should preserve `[chord:XXX]` structure
+- Guitarists rely heavily on chord diagrams; visual feedback is crucial
+
+### QA Checklist (via Playwright)
+- Insert and drag chord flag
+- Toggle hide chords
+- Copy/paste with token preservation
+- Open chart panel, verify alignment
+- Run mobile test at 375px width
+

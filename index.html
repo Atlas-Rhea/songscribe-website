@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SongScribe - Your Music. Your Way. Offline.</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="preload" href="assets/images/screenshots/features/capture/editor-main.png" as="image">
+    <link rel="preload" href="assets/images/screenshots/features/capture/recording-pane.png" as="image">
+    <link rel="preload" href="assets/images/screenshots/features/shape/song-settings.png" as="image">
+    <link rel="preload" href="assets/images/screenshots/features/organize/sidebar-library.png" as="image">
+</head>
+<body class="bg-surface-0 text-text-primary font-sans antialiased">
+    <header class="sticky top-0 z-50 bg-white border-b border-border-subtle">
+        <nav class="container mx-auto flex items-center justify-between py-4 px-4">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="assets/images/logo-full.svg" alt="SongScribe Logo" class="h-8">
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="text-text-primary hover:text-accent-primary transition-colors">Features</a>
+                <a href="#how-it-works" class="text-text-primary hover:text-accent-primary transition-colors">How It Works</a>
+                <a href="#pricing" class="text-text-primary hover:text-accent-primary transition-colors">Pricing</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#download" class="btn btn-primary">Download Free</a>
+                <button class="md:hidden mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero bg-gradient-to-br from-surface-1 to-surface-0 py-16 md:py-24">
+            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
+                <div class="hero-content">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
+                        Your Music. Your Way. Offline.
+                    </h1>
+                    <p class="text-lg md:text-xl text-text-primary mb-8">
+                        SongScribe is the ultimate songwriting companion for musicians who want simplicity, power, and complete offline control.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#download" class="btn btn-primary">Download Free</a>
+                        <a href="#features" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image hidden md:block">
+                    <picture>
+                        <source srcset="assets/images/screenshots/features/capture/editor-main.webp" type="image/webp">
+                        <img 
+                            src="assets/images/screenshots/features/capture/editor-main.png" 
+                            alt="SongScribe chord editor showing lyrics with perfectly aligned chords" 
+                            class="rounded-lg shadow-lg max-w-full"
+                            loading="lazy"
+                        >
+                    </picture>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features bg-white py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">
+                        Everything You Need to Create Music
+                    </h2>
+                    <p class="text-lg text-text-primary opacity-80">
+                        SongScribe combines powerful features with an intuitive, distraction-free interface.
+                    </p>
+                </div>
+
+                <div class="feature-grid grid md:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/capture/editor-main.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/capture/editor-main.png" 
+                                    alt="SongScribe chord editor showing lyrics with perfectly aligned chords" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">🎵 Capture</h3>
+                        <p class="text-text-primary opacity-80">
+                            Rich lyric editor with chord alignment. Record practice sessions with waveform visualization.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/shape/song-settings.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/shape/song-settings.png" 
+                                    alt="SongScribe song settings panel with BPM, key, and time signature controls" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">🎸 Shape</h3>
+                        <p class="text-text-primary opacity-80">
+                            Tap Tempo, metronome, and professional song settings. Customize your musical canvas.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/organize/sidebar-library.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/organize/sidebar-library.png" 
+                                    alt="SongScribe song library with folders and recent songs" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">📂 Organize</h3>
+                        <p class="text-text-primary opacity-80">
+                            Folders, tags, and a searchable song library. Keep your musical ideas perfectly organized.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/capture/recording-pane.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/capture/recording-pane.png" 
+                                    alt="SongScribe audio recording interface with waveform visualization" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">📤 Share</h3>
+                        <p class="text-text-primary opacity-80">
+                            Export to ChordPro, PDF, and more. Share your music across any platform.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/capture/recording-pane.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/capture/recording-pane.png" 
+                                    alt="SongScribe recording interface demonstrating offline capabilities" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">🕸️ Archive</h3>
+                        <p class="text-text-primary opacity-80">
+                            Save and edit web tabs for offline reference. No internet? No problem.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white border border-border-subtle rounded-lg p-6 text-center hover:border-accent-primary transition-all">
+                        <div class="feature-image mb-6">
+                            <picture>
+                                <source srcset="assets/images/screenshots/features/capture/recording-pane.webp" type="image/webp">
+                                <img 
+                                    src="assets/images/screenshots/features/capture/recording-pane.png" 
+                                    alt="SongScribe mobile interface showing offline-first design" 
+                                    class="rounded-lg shadow-sm mx-auto max-w-full"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">🔋 Offline</h3>
+                        <p class="text-text-primary opacity-80">
+                            No accounts, no subscriptions. Just pure, uninterrupted creativity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="how-it-works bg-surface-1 py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="section-header text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">How SongScribe Works</h2>
+                    <p class="text-lg text-text-primary opacity-80">Three simple steps to musical freedom</p>
+                </div>
+
+                <div class="steps-grid grid md:grid-cols-3 gap-8">
+                    <div class="step bg-white border border-border-subtle rounded-lg p-6 text-center">
+                        <div class="step-number text-4xl font-bold mb-4 text-accent-primary">1</div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">Capture</h3>
+                        <p class="text-text-primary opacity-80">Write lyrics with perfectly aligned chords. Our position-based system ensures chords stay exactly where they belong.</p>
+                        <div class="step-visual mt-6">
+                            <img src="assets/images/step-1.png" alt="Chord and lyric editing interface" loading="lazy" class="rounded-lg shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                    <div class="step bg-white border border-border-subtle rounded-lg p-6 text-center">
+                        <div class="step-number text-4xl font-bold mb-4 text-accent-primary">2</div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">Record</h3>
+                        <p class="text-text-primary opacity-80">Capture your musical ideas with high-quality audio recording. Zoom, loop, and edit with professional tools.</p>
+                        <div class="step-visual mt-6">
+                            <img src="assets/images/step-2.png" alt="Audio recording and waveform interface" loading="lazy" class="rounded-lg shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                    <div class="step bg-white border border-border-subtle rounded-lg p-6 text-center">
+                        <div class="step-number text-4xl font-bold mb-4 text-accent-primary">3</div>
+                        <h3 class="text-xl font-semibold mb-4 text-text-primary">Share</h3>
+                        <p class="text-text-primary opacity-80">Export to standard formats and share your music anywhere. Works with every music app and platform.</p>
+                        <div class="step-visual mt-6">
+                            <img src="assets/images/step-3.png" alt="Export and sharing interface" loading="lazy" class="rounded-lg shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials bg-surface-0 py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="section-header text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">Loved by Musicians Worldwide</h2>
+                    <p class="text-lg text-text-primary opacity-80">Join thousands of songwriters who have discovered the freedom of offline music creation</p>
+                </div>
+
+                <div class="testimonials-grid grid md:grid-cols-2 gap-8">
+                    <div class="testimonial-card bg-white border border-border-subtle rounded-lg p-6">
+                        <blockquote class="text-lg text-text-primary opacity-90">
+                            "SongScribe saved me hours of organizing chord charts. Finally a tool that doesn't get in the way of my creativity."
+                        </blockquote>
+                        <cite class="flex items-center mt-6">
+                            <img src="assets/images/avatar-sarah.jpg" alt="Sarah M. profile photo" loading="lazy" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <strong class="text-text-primary">Sarah M.</strong>
+                                <span class="text-text-primary opacity-80">Nashville-based songwriter</span>
+                            </div>
+                        </cite>
+                    </div>
+
+                    <div class="testimonial-card bg-white border border-border-subtle rounded-lg p-6">
+                        <blockquote class="text-lg text-text-primary opacity-90">
+                            "The offline-first design is perfect for touring musicians. No internet required, just pure musical freedom."
+                        </blockquote>
+                        <cite class="flex items-center mt-6">
+                            <img src="assets/images/avatar-james.jpg" alt="James K. profile photo" loading="lazy" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <strong class="text-text-primary">James K.</strong>
+                                <span class="text-text-primary opacity-80">Independent producer</span>
+                            </div>
+                        </cite>
+                    </div>
+
+                    <div class="testimonial-card bg-white border border-border-subtle rounded-lg p-6">
+                        <blockquote class="text-lg text-text-primary opacity-90">
+                            "As a music teacher, I love how SongScribe makes chord theory accessible. The inverse chord search is brilliant."
+                        </blockquote>
+                        <cite class="flex items-center mt-6">
+                            <img src="assets/images/avatar-maria.jpg" alt="Maria L. profile photo" loading="lazy" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <strong class="text-text-primary">Maria L.</strong>
+                                <span class="text-text-primary opacity-80">Music educator</span>
+                            </div>
+                        </cite>
+                    </div>
+
+                    <div class="testimonial-card bg-white border border-border-subtle rounded-lg p-6">
+                        <blockquote class="text-lg text-text-primary opacity-90">
+                            "Finally, a music app that respects my privacy. No accounts, no tracking—just my music, my way."
+                        </blockquote>
+                        <cite class="flex items-center mt-6">
+                            <img src="assets/images/avatar-alex.jpg" alt="Alex R. profile photo" loading="lazy" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <strong class="text-text-primary">Alex R.</strong>
+                                <span class="text-text-primary opacity-80">Indie musician</span>
+                            </div>
+                        </cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter bg-surface-1 py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="newsletter-content text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">Stay in the Loop</h2>
+                    <p class="text-lg text-text-primary opacity-80 mb-6">Get the latest updates, new features, and music tips delivered to your inbox.</p>
+                    <form class="newsletter-form flex flex-col sm:flex-row gap-4 justify-center" action="#" method="post">
+                        <div class="form-group flex-1">
+                            <label for="email" class="sr-only">Email address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                                aria-describedby="email-help"
+                                class="w-full sm:w-auto px-4 py-3 rounded-lg border border-border-subtle focus:outline-none focus:ring-2 focus:ring-accent-primary focus:border-transparent"
+                            >
+                            <span id="email-help" class="sr-only">We'll send you updates about SongScribe features and music tips.</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full sm:w-auto">Subscribe</button>
+                    </form>
+                    <p class="text-text-primary opacity-80 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="pricing" class="final-cta bg-gradient-to-br from-surface-1 to-surface-0 py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="cta-content text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">Ready to Create Music Your Way?</h2>
+                    <p class="text-lg text-text-primary opacity-80 mb-6">Join thousands of musicians who have discovered the freedom of offline music creation.</p>
+                    <div class="cta-actions flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#download" class="btn btn-primary btn-large w-full sm:w-auto">
+                            Download SongScribe Free
+                            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="ml-2 inline-block h-5 w-5">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <p class="cta-secondary text-lg text-text-primary opacity-80">
+                            <a href="#features" class="btn-tertiary">Explore all features</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-surface-2 py-12">
+        <div class="container mx-auto px-4">
+            <div class="footer-grid grid md:grid-cols-5 gap-8">
+                <div class="footer-column">
+                    <a href="/" class="footer-logo flex items-center space-x-2">
+                        <img src="assets/images/logo-full.svg" alt="SongScribe Logo" class="h-8">
+                        <span class="text-text-primary">SongScribe</span>
+                    </a>
+                    <p class="text-text-primary opacity-80 mt-4">Your music. Your way. Offline, always.</p>
+                    <div class="social-links mt-6 flex space-x-4">
+                        <a href="https://github.com/songscribe-offline-muse" aria-label="GitHub" target="_blank" rel="noopener" class="text-text-primary hover:text-accent-primary transition-colors">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/songscribeapp" aria-label="Twitter" target="_blank" rel="noopener" class="text-text-primary hover:text-accent-primary transition-colors">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="font-semibold mb-4 text-text-primary">Product</h4>
+                    <a href="#features" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Features</a>
+                    <a href="#how-it-works" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">How It Works</a>
+                    <a href="#pricing" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Pricing</a>
+                    <a href="#download" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Download</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="font-semibold mb-4 text-text-primary">Company</h4>
+                    <a href="/about" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">About</a>
+                    <a href="/blog" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Blog</a>
+                    <a href="/careers" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Careers</a>
+                    <a href="/press" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Press</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="font-semibold mb-4 text-text-primary">Support</h4>
+                    <a href="/support" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Help Center</a>
+                    <a href="/contact" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Contact Us</a>
+                    <a href="/status" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">System Status</a>
+                    <a href="/feedback" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Feedback</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="font-semibold mb-4 text-text-primary">Legal</h4>
+                    <a href="/privacy" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Privacy Policy</a>
+                    <a href="/terms" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Terms of Service</a>
+                    <a href="/cookies" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Cookie Policy</a>
+                    <a href="/security" class="block mb-2 text-text-primary opacity-80 hover:opacity-100">Security</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom text-center text-text-primary opacity-80 mt-12">
+                <p>&copy; 2025 SongScribe. All rights reserved.</p>
+                <p>Made with ❤️ for musicians worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/analytics.js" defer></script>
+
+    <!-- Schema.org JSON-LD for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SongScribe",
+      "url": "https://songscribe.app",
+      "description": "The ultimate offline-first songwriting companion for musicians",
+      "foundingDate": "2024",
+      "logo": "https://songscribe.app/assets/images/logo-full.svg",
+      "sameAs": [
+        "https://github.com/songscribe-offline-muse",
+        "https://twitter.com/songscribeapp"
+      ]
+    }
+    </script>
+</body>
+</html>

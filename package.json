@@ -1,0 +1,77 @@
+{
+  "name": "songscribe-website",
+  "version": "1.0.0",
+  "description": "Official SongScribe website - offline-first music composition app",
+  "main": "index.html",
+  "scripts": {
+    "dev": "jekyll serve --livereload --host 0.0.0.0",
+    "build": "jekyll build --trace",
+    "build:production": "JEKYLL_ENV=production jekyll build",
+    "serve": "jekyll serve",
+    "clean": "rm -rf _site .jekyll-cache",
+    "optimize": "npm run optimize:images && npm run optimize:css && npm run optimize:js",
+    "optimize:images": "imagemin 'assets/images/**/*.{jpg,png,gif,svg}' --out-dir=assets/images --plugins=mozjpeg,webp",
+    "optimize:css": "postcss assets/css/**/*.css --dir assets/css --use autoprefixer cssnano",
+    "optimize:js": "terser assets/js/**/*.js --compress --mangle --output assets/js/ --ext .js",
+    "test": "npm run test:html && npm run test:css && npm run test:js",
+    "test:html": "htmlhint '**/*.html' || true",
+    "test:css": "stylelint 'assets/css/**/*.css' || true",
+    "test:js": "eslint 'assets/js/**/*.js' || true",
+    "lighthouse": "lhci autorun --config=lighthouserc.json",
+    "deploy": "npm run build:production && npm run optimize",
+    "preview": "npm run build && npx serve _site"
+  },
+  "keywords": [
+    "songwriting",
+    "music",
+    "composition",
+    "chord-editor",
+    "offline-first",
+    "pwa"
+  ],
+  "author": "SongScribe Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/songscribe-offline-muse/songscribe-offline-muse",
+    "directory": "docs"
+  },
+  "bugs": {
+    "url": "https://github.com/songscribe-offline-muse/songscribe-offline-muse/issues"
+  },
+  "homepage": "https://songscribe.app",
+  "devDependencies": {
+    "@lhci/cli": "^0.11.0",
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "eslint": "^8.44.0",
+    "htmlhint": "^1.1.4",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-webp": "^8.0.1",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "stylelint": "^15.10.1",
+    "stylelint-config-standard": "^33.0.0",
+    "terser": "^5.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "Chrome >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "Edge >= 90"
+  ],
+  "jekyll": {
+    "gems": [
+      "jekyll-feed",
+      "jekyll-sitemap",
+      "jekyll-seo-tag"
+    ]
+  }
+}
