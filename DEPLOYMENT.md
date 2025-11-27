@@ -1,147 +1,271 @@
 # 🚀 SongScribe Website Deployment Guide
 
-## Quick Setup (5 minutes)
+## Current Deployment: Cloudflare Pages
 
-### 1. Create Public Repository
-1. Go to GitHub and create a new repository
-2. Name it: `songscribe-website`
-3. Make it **public** (required for GitHub Pages)
-4. Don't initialize with README (we already have files)
+This website is deployed to **Cloudflare Pages**, a modern edge hosting platform that automatically deploys from your `main` branch.
 
-### 2. Push Website Files
-```bash
-# Add the new repository as remote
-git remote add origin https://github.com/Atlas-Rhea/songscribe-website.git
+---
 
-# Push to GitHub
-git branch -M main
-git push -u origin main
+## Quick Start (5 minutes)
+
+### Prerequisites
+- Cloudflare account (free)
+- GitHub repository with this code
+- Domain (optional - Cloudflare provides `*.pages.dev` subdomain)
+
+### 1. Connect to Cloudflare Pages
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. Click **Pages** in the sidebar
+3. Click **Create a project** → **Connect to Git**
+4. Select the `songscribe-website` repository
+5. Configure build settings:
+   - **Framework**: Jekyll
+   - **Build command**: `bundle exec jekyll build`
+   - **Build output directory**: `_site`
+   - **Node.js version**: 18.x
+
+### 2. Set Environment Variables
+
+Add this environment variable:
+```
+JEKYLL_ENV = production
 ```
 
-### 3. Enable GitHub Pages
-1. Go to: https://github.com/Atlas-Rhea/songscribe-website/settings/pages
-2. Source: "Deploy from a branch"
-3. Branch: "main"
-4. Folder: "/ (root)" (not /docs)
-5. Click "Save"
+### 3. Deploy
 
-### 4. Wait for Deployment
-- GitHub Pages will build and deploy automatically
-- Takes 5-10 minutes for first deployment
-- Your site will be live at: `https://atlas-rhea.github.io/songscribe-website/`
+Click **Save and Deploy**. Your site goes live at:
+```
+https://songscribe-website.pages.dev
+```
 
-## 🔄 Updating the Website
+**Full setup guide**: See [CLOUDFLARE_PAGES_SETUP.md](./CLOUDFLARE_PAGES_SETUP.md)
 
-### Automatic Updates
-1. Make changes to website files
-2. Commit and push to `main` branch
-3. GitHub Pages automatically rebuilds
+---
 
-### Manual Updates
+## 🔄 Deploying Updates
+
+### Automatic Deployment (Recommended)
+
+Every push to `main` automatically deploys:
+
 ```bash
-# Make your changes
+# Make changes
 git add .
-git commit -m "Update website content"
+git commit -m "Update website"
 git push origin main
 ```
 
-## 🎯 Benefits of Separate Repository
+Cloudflare automatically:
+- ✅ Detects the push
+- ✅ Installs dependencies (Gemfile)
+- ✅ Builds Jekyll site
+- ✅ Deploys to global CDN
+- ✅ Deploy time: 1-3 minutes
 
-### ✅ **App Code Stays Private**
-- Your SongScribe app source code remains private
-- Only marketing website is public
-- Better security for your intellectual property
+### Manual Deployment via CLI
 
-### ✅ **Clean Separation**
-- Marketing website has its own version control
-- Independent deployment pipeline
-- Easier to manage marketing updates
+```bash
+# Build locally first
+npm run build:production && npm run optimize
 
-### ✅ **Public Collaboration**
-- Others can contribute to website improvements
-- Open source marketing materials
-- Community feedback on website design
+# Deploy to Cloudflare Pages
+npm run deploy:cf
+```
 
-## 📁 What's Included
+Or manually:
+```bash
+npx wrangler pages deploy _site --project-name=songscribe-website
+```
 
-This repository contains:
-- ✅ Complete marketing website
-- ✅ Real app screenshots
-- ✅ Responsive design
-- ✅ SEO optimization
-- ✅ Performance optimization
-- ✅ Accessibility compliance
+---
 
-## 🚫 What's NOT Included
+## 📊 Production Build Commands
 
-This repository does NOT contain:
-- ❌ SongScribe app source code
-- ❌ Development dependencies
-- ❌ Build tools or scripts
-- ❌ Private configuration files
+### Option 1: Deploy Script (Recommended)
+```bash
+npm run deploy
+```
+Then push to main branch.
 
-## 🔧 Customization
+### Option 2: Manual Steps
+```bash
+# Install dependencies
+bundle install && npm install
 
-### Adding New Pages
-1. Create new HTML files in root directory
-2. Follow existing design patterns
-3. Update navigation links
-4. Commit and push changes
+# Build for production
+JEKYLL_ENV=production bundle exec jekyll build
 
-### Updating Screenshots
-1. Run Playwright tests in main app repo
-2. Copy new screenshots to `assets/images/screenshots/`
-3. Update HTML to reference new images
-4. Commit and push changes
+# Optimize assets (optional)
+npm run optimize
 
-### Styling Changes
-1. Edit `assets/css/main.css`
-2. Follow design system guidelines
-3. Test on mobile and desktop
-4. Commit and push changes
+# Deploy (if using CLI)
+npm run deploy:cf
+```
 
-## 📊 Analytics & Monitoring
+---
 
-### GitHub Pages Analytics
-- Built-in GitHub Pages analytics
-- View traffic and popular pages
-- Monitor site performance
+## 🎯 Custom Domain Setup
 
-### External Analytics
-- Google Analytics 4 (already configured)
-- Search Console integration
-- Performance monitoring
+### Use Your Own Domain
+
+In Cloudflare Dashboard:
+
+1. Navigate to Pages → songscribe-website
+2. Click **Settings** → **Custom domain**
+3. Add your domain (e.g., `songscribe.app`)
+4. Follow DNS configuration
+
+### DNS Configuration
+
+If your domain is NOT on Cloudflare:
+
+```
+Type: CNAME
+Name: songscribe
+Value: songscribe-website.pages.dev
+TTL: Auto
+```
+
+---
+
+## 📱 Features of Cloudflare Pages
+
+✅ **Automatic HTTPS** - SSL/TLS included  
+✅ **Global CDN** - Fast content delivery worldwide  
+✅ **Smart Caching** - Automatic cache optimization  
+✅ **Zero-Config** - Automatic environment setup  
+✅ **Instant Rollbacks** - Revert bad deployments  
+✅ **Analytics** - View traffic and performance  
+✅ **Free Custom Domain** - With Cloudflare account  
+
+---
 
 ## 🛠️ Troubleshooting
 
-### Site Not Loading
-1. Check GitHub Pages status
-2. Verify repository is public
-3. Check for build errors in Actions tab
-4. Wait 10-15 minutes for propagation
+### Build Failing
 
-### Images Not Showing
-1. Verify image paths are correct
-2. Check file permissions
-3. Ensure images are committed to repository
+Check the build log in Cloudflare Dashboard:
+1. Pages → songscribe-website → Deployments
+2. Click the failed deployment
+3. View the **Build log**
+
+**Common issues**:
+- Ruby version mismatch
+- Missing Gemfile dependencies
+- Jekyll configuration errors
+
+### Images Not Loading
+
+1. Verify image paths use relative URLs (e.g., `/assets/images/...`)
+2. Ensure `baseurl` is empty in `_config.yml`
+3. Confirm images are committed to git
 4. Clear browser cache
 
-### Styling Issues
-1. Check CSS file is loading
-2. Verify file paths in HTML
-3. Test in different browsers
-4. Check for CSS syntax errors
+### Site Showing Old Version
 
-## 🎉 Success!
+Clear Cloudflare cache:
+1. Dashboard → Pages → songscribe-website
+2. Go to **Settings**
+3. Look for cache clear option (available in Pro plans)
 
-Once deployed, your marketing website will be live at:
-**https://atlas-rhea.github.io/songscribe-website/**
+For free tier, wait 30 minutes or check the deployment status.
 
-The website showcases your SongScribe app with:
-- Real app screenshots
-- Professional design
-- Mobile-responsive layout
-- Fast loading performance
-- SEO optimization
+---
 
-Your app code remains private while your marketing website is public and professional!
+## 📈 Monitoring
+
+### View Deployments
+- **Dashboard**: Pages → songscribe-website → Deployments
+- **GitHub**: Repository → Actions tab (if configured)
+
+### Check Performance
+- **Analytics**: Pages → songscribe-website → Analytics
+- **Real User Metrics**: Cloudflare Dashboard → Speed → Core Web Vitals
+
+---
+
+## 🔐 Security
+
+Cloudflare Pages provides:
+- ✅ Automatic HTTPS/TLS
+- ✅ DDoS protection
+- ✅ WAF (Web Application Firewall)
+- ✅ Bot Management
+- ✅ Access Control
+
+---
+
+## Cost
+
+**Cloudflare Pages Pricing**:
+- **Free tier**: Unlimited sites, builds, and bandwidth
+- **Pro/Business**: Advanced features and priority support
+
+This project uses the free tier, which includes everything needed.
+
+---
+
+## Development Workflow
+
+### Local Development
+```bash
+# Start local server with live reload
+npm run dev
+
+# Visit http://localhost:4000
+```
+
+### Before Pushing
+```bash
+# Build production version
+npm run build:production
+
+# Optimize assets
+npm run optimize
+
+# Preview output
+npm run preview
+```
+
+### Push to Deploy
+```bash
+git add .
+git commit -m "Update website"
+git push origin main
+# → Cloudflare automatically deploys
+```
+
+---
+
+## Previous Deployment (GitHub Pages)
+
+This project was previously deployed to GitHub Pages. To migrate:
+
+1. ✅ Update DNS (if using custom domain)
+2. ✅ Test Cloudflare Pages deployment
+3. ✅ Verify everything works
+4. ✅ Update documentation (this file)
+5. ⚠️ Keep GitHub repository as backup
+
+---
+
+## Resources
+
+- 📖 [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
+- 📖 [Jekyll Documentation](https://jekyllrb.com/docs/)
+- 🔗 [Full Setup Guide](./CLOUDFLARE_PAGES_SETUP.md)
+- 📧 Support: support@cloudflare.com
+
+---
+
+## Next Steps
+
+1. **Sign up** for Cloudflare (free)
+2. **Connect** GitHub repository to Pages
+3. **Configure** build settings (see Quick Start above)
+4. **Deploy** - automatic on every push to `main`
+5. **Monitor** via Cloudflare Dashboard
+6. **Optimize** with `npm run optimize`
+
+Your website is now deployed on a global edge network! 🚀

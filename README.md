@@ -4,7 +4,8 @@ This repository contains the marketing website for SongScribe - a powerful, offl
 
 ## 🌐 Live Website
 
-**URL**: https://atlas-rhea.github.io/songscribe-website/
+**URL**: https://songscribe.app (custom domain)  
+**Staging**: https://songscribe-website.pages.dev
 
 ## 📁 Repository Structure
 
@@ -21,12 +22,28 @@ This repository contains the marketing website for SongScribe - a powerful, offl
 
 ## 🚀 Deployment
 
-This website is automatically deployed to GitHub Pages from the `main` branch.
+This website is deployed to **Cloudflare Pages** and automatically deploys from the `main` branch.
 
-### Manual Deployment
+### Production Deploy Command
+```bash
+npm run deploy
+git add .
+git commit -m "Production build"
+git push origin main
+```
+
+### Automatic Deployment
 1. Make changes to the website files
 2. Commit and push to `main` branch
-3. GitHub Pages automatically rebuilds the site
+3. Cloudflare Pages automatically builds and deploys (1-3 minutes)
+
+### Setup Instructions
+See [CLOUDFLARE_PAGES_SETUP.md](./CLOUDFLARE_PAGES_SETUP.md) for complete setup guide.
+
+### Local Preview
+```bash
+npm run preview
+```
 
 ## 🎨 Design System
 

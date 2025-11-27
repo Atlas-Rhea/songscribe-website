@@ -10,7 +10,7 @@
     "serve": "jekyll serve",
     "clean": "rm -rf _site .jekyll-cache",
     "optimize": "npm run optimize:images && npm run optimize:css && npm run optimize:js",
-    "optimize:images": "imagemin 'assets/images/**/*.{jpg,png,gif,svg}' --out-dir=assets/images --plugins=mozjpeg,webp",
+    "optimize:images": "imagemin 'assets/images/**/*.{jpg,png,gif,svg}' --out-dir=assets/images --plugins=mozjpeg",
     "optimize:css": "postcss assets/css/**/*.css --dir assets/css --use autoprefixer cssnano",
     "optimize:js": "terser assets/js/**/*.js --compress --mangle --output assets/js/ --ext .js",
     "test": "npm run test:html && npm run test:css && npm run test:js",
@@ -19,6 +19,8 @@
     "test:js": "eslint 'assets/js/**/*.js' || true",
     "lighthouse": "lhci autorun --config=lighthouserc.json",
     "deploy": "npm run build:production && npm run optimize",
+    "deploy:cf": "npx wrangler pages deploy _site --project-name=songscribe-website",
+    "build:cf": "bundle exec jekyll build",
     "preview": "npm run build && npx serve _site"
   },
   "keywords": [
@@ -48,7 +50,6 @@
     "htmlhint": "^1.1.4",
     "imagemin": "^8.0.1",
     "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-webp": "^8.0.1",
     "postcss": "^8.4.24",
     "postcss-cli": "^10.1.0",
     "stylelint": "^15.10.1",

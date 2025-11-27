@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+vendor/
+.bundle/
+
+# Jekyll
+_site/
+.jekyll-cache/
+.sass-cache/
+*.gem
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+.jekyll-metadata
+.wrangler/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.bak
+
+# Node
+npm-debug.log
+yarn-error.log
+
