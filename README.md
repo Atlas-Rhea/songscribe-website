@@ -1,104 +1,63 @@
-# SongScribe Marketing Website
+# SongScribe - Coming Soon
 
-This repository contains the marketing website for SongScribe - a powerful, offline-first songwriting app.
+A minimal Coming Soon page for SongScribe at [songscribe.io](https://songscribe.io).
 
-## 🌐 Live Website
+## Setup
 
-**URL**: https://songscribe.app (custom domain)  
-**Staging**: https://songscribe-website.pages.dev
+This is a static HTML page with no build process required. Simply deploy to Cloudflare Pages.
 
-## 📁 Repository Structure
+## Cloudflare Pages Configuration
+
+### Initial Setup
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. Navigate to **Pages** → **Create a project**
+3. Click **Connect to Git**
+4. Select repository: `Atlas-Rhea/songscribe-website`
+5. Configure build settings:
+   - **Production branch**: `main`
+   - **Build command**: (leave empty - static HTML, no build needed)
+   - **Build output directory**: `/` (root)
+   - **Framework preset**: None
+
+### Custom Domain
+
+1. In your Pages project, go to **Settings** → **Custom domains**
+2. Click **Add custom domain**
+3. Enter: `songscribe.io`
+4. Follow DNS configuration prompts
+
+### Preview Deployments
+
+To enable preview deployments for the `songscribe-dev` branch:
+
+1. Go to **Settings** → **Builds & deployments**
+2. Enable **Preview deployments**
+3. The `songscribe-dev` branch will automatically create preview URLs
+
+## File Structure
 
 ```
-├── index.html              # Main homepage
+.
+├── index.html              # Coming Soon page
 ├── assets/
-│   ├── css/main.css        # Main stylesheet
-│   ├── js/                 # JavaScript files
-│   └── images/             # Images and screenshots
-├── _config.yml            # Jekyll configuration
+│   ├── css/
+│   │   └── main.css       # Minimal styles
+│   └── images/
+│       ├── logo-full.svg  # SongScribe logo
+│       └── favicon.svg    # Favicon
 ├── manifest.json          # PWA manifest
-└── robots.txt             # SEO robots file
+├── robots.txt             # SEO robots file
+├── _redirects             # Cloudflare redirects
+└── functions/
+    └── _headers           # Cloudflare headers
 ```
 
-## 🚀 Deployment
+## Development
 
-This website is deployed to **Cloudflare Pages** and automatically deploys from the `main` branch.
+The full marketing site is on the `songscribe-dev` branch. Switch to that branch to work on the complete site.
 
-### Production Deploy Command
 ```bash
-npm run deploy
-git add .
-git commit -m "Production build"
-git push origin main
+git checkout songscribe-dev
 ```
 
-### Automatic Deployment
-1. Make changes to the website files
-2. Commit and push to `main` branch
-3. Cloudflare Pages automatically builds and deploys (1-3 minutes)
-
-### Setup Instructions
-See [CLOUDFLARE_PAGES_SETUP.md](./CLOUDFLARE_PAGES_SETUP.md) for complete setup guide.
-
-### Local Preview
-```bash
-npm run preview
-```
-
-## 🎨 Design System
-
-The website follows a consistent design system with:
-- **Colors**: Orange (#FBBF24) and Muted Teal (#5F8484)
-- **Typography**: Inter font family
-- **Layout**: Mobile-first responsive design
-- **Components**: Consistent button and card styles
-
-## 📱 Features
-
-- **Responsive Design**: Works on all devices
-- **Fast Loading**: Optimized images and CSS
-- **Accessibility**: WCAG AA compliant
-- **SEO Optimized**: Meta tags and structured data
-- **PWA Ready**: Service worker and manifest
-
-## 🔧 Development
-
-### Local Development
-```bash
-# Serve locally (if you have Python)
-python -m http.server 8000
-
-# Or use any static file server
-npx serve .
-```
-
-### Adding New Pages
-1. Create new HTML files in the root directory
-2. Follow the existing design patterns
-3. Update navigation in `index.html`
-4. Commit and push changes
-
-## 📸 Screenshots
-
-The website includes real app screenshots captured using Playwright automation:
-- Desktop Chrome screenshots
-- Mobile Webkit screenshots  
-- Tablet screenshots
-- Organized by feature category
-
-## 🎯 Marketing Focus
-
-This website showcases:
-- **Offline-first messaging**: No internet required
-- **Musician-centric design**: Clean, distraction-free
-- **Feature highlights**: Capture, Shape, Organize, Share, Archive, Offline
-- **Real app screenshots**: Authentic user interface
-- **Performance**: Fast loading, mobile-optimized
-
-## 📄 License
-
-This marketing website is part of the SongScribe project. All rights reserved.
-
----
-
-**Note**: This repository contains only the marketing website. The actual SongScribe app code is in a separate private repository.

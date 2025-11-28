@@ -1,13 +1,12 @@
 {
-  "name": "SongScribe - Music Composition Made Simple",
+  "name": "SongScribe - Coming Soon",
   "short_name": "SongScribe",
-  "description": "The ultimate offline-first songwriting companion for musicians",
+  "description": "Something beautiful is coming. Your Music. Your Way. Offline.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
+  "background_color": "#FAF9F6",
   "theme_color": "#FBBF24",
   "orientation": "portrait-primary",
-  "categories": ["music", "productivity", "utilities"],
   "lang": "en-US",
   "dir": "ltr",
   "icons": [
@@ -28,20 +27,6 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/assets/images/screenshots/desktop/editor.png",
-      "sizes": "1280x800",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/assets/images/screenshots/mobile/chord-builder.png",
-      "sizes": "375x812",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ]
 }

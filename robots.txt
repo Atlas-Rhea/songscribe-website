@@ -1,21 +1,5 @@
 User-agent: *
 Allow: /
 
-# Allow all major search engines
-Allow: /blog/
-Allow: /features/
-Allow: /pricing/
-Allow: /download/
-Allow: /about/
-Allow: /support/
-
-# Disallow admin areas (if any)
-Disallow: /admin/
-Disallow: /_site/
-Disallow: /assets/source/
-
 # Sitemap
-Sitemap: https://songscribe.app/sitemap.xml
-
-# Crawl delay (optional)
-Crawl-delay: 1
+Sitemap: https://songscribe.io/sitemap.xml
