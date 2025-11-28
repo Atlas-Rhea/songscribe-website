@@ -43,7 +43,7 @@ Updated all Jekyll commands in `package.json` to use `bundle exec`:
 - ✅ No other changes needed
 
 ### Other Files
-- No changes to Gemfile, _config.yml, or other files
+- ✅ Added `csv` and `logger` gems to `Gemfile` so Ruby 3.4+ can load them as default gems
 
 ---
 

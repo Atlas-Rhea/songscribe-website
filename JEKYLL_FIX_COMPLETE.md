@@ -101,10 +101,9 @@ Retry/Push
 + "serve": "bundle exec jekyll serve",
 ```
 
-### No Changes To
-- ✅ Gemfile (Jekyll version still 4.3.4)
-- ✅ _config.yml
-- ✅ Any other files
+### Additional Files
+- ✅ `Gemfile` now declares `csv` and `logger` so Ruby 3.4+ finds those libs
+- ✅ `_config.yml` and other project files remain unchanged
 
 ---
 
@@ -137,6 +136,7 @@ All three issues are now fixed:
 
 **Updated:**
 - `package.json` - Added `bundle exec` to Jekyll commands
+- `Gemfile` - Added `csv` and `logger` gems so Ruby 3.4+ has those libs
 
 **Created:**
 - `JEKYLL_VERSION_FIX.md` - Detailed fix explanation
