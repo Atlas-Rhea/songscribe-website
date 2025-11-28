@@ -16,6 +16,7 @@ gem "minima", "~> 2.5"
 # Explicitly require standard libs that are no longer bundled by default in Ruby 3.4+
 gem "csv"
 gem "logger"
+gem "base64"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
