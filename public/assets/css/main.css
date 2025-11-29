@@ -117,6 +117,18 @@ body {
 
 .logo-container {
   margin-bottom: var(--space-xxl);
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo-container {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
