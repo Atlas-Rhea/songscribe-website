@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #000; /* Dark background to make glass pop */
+}
+
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+}
