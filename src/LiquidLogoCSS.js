@@ -9,18 +9,25 @@ export class LiquidLogoCSS {
     
     // Layer depth configuration (higher = more parallax)
     this.layerDepths = {
-      layer1: 35,  // Front layer - subtle parallax (feather highlight)
-      layer2: 15,  // Middle layer (music note)
+      layer1: 20,  // Front layer - subtle parallax (feather highlight)
+      layer2: 8,   // Middle layer (music note)
       layer3: 0,   // Back layer - base (feather shadow)
-      glow: 50     // Glow floats above
+      glow: 30     // Glow floats above
     };
   }
 
   init() {
     this.render();
-    this.cacheElements();
-    this.addEvents();
-    this.update(); // Initial position
+    // Wait for DOM to be ready before caching
+    requestAnimationFrame(() => {
+      this.cacheElements();
+      this.addEvents();
+      this.update(); // Initial position
+      // Force a reflow to ensure 3D context is established
+      if (this.logoEl) {
+        this.logoEl.offsetHeight; // Force reflow
+      }
+    });
   }
 
   render() {
@@ -94,26 +101,57 @@ export class LiquidLogoCSS {
     const rotateX = y * -15;
     const rotateY = x * 15;
 
-    // Apply transforms directly (Safari-compatible)
+    // Apply transforms with webkit prefixes for Safari compatibility
+    const transformValue = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    
     if (this.logoEl) {
-      this.logoEl.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      // Ensure transform-style is preserved
+      this.logoEl.style.webkitTransformStyle = 'preserve-3d';
+      this.logoEl.style.transformStyle = 'preserve-3d';
+      this.logoEl.style.webkitTransform = transformValue;
+      this.logoEl.style.transform = transformValue;
     }
 
     // Apply Z translation to each layer for parallax depth
+    // Chrome needs translate3d AND combined transform for both rotation + translation
+    const layer1Z = this.layerDepths.layer1;
+    const layer2Z = this.layerDepths.layer2;
+    const layer3Z = this.layerDepths.layer3;
+    const glowZ = this.layerDepths.glow;
+
+    // For Chrome compatibility, apply rotation to each layer as well
+    const rotationStr = `rotateX(${rotateX * 0.5}deg) rotateY(${rotateY * 0.5}deg)`;
+
     if (this.layer1) {
-      this.layer1.style.transform = `translateZ(${this.layerDepths.layer1}px)`;
+      this.layer1.style.webkitTransformStyle = 'preserve-3d';
+      this.layer1.style.transformStyle = 'preserve-3d';
+      const layer1Transform = `${rotationStr} translate3d(0, 0, ${layer1Z}px)`;
+      this.layer1.style.webkitTransform = layer1Transform;
+      this.layer1.style.transform = layer1Transform;
     }
     if (this.layer2) {
-      this.layer2.style.transform = `translateZ(${this.layerDepths.layer2}px)`;
+      this.layer2.style.webkitTransformStyle = 'preserve-3d';
+      this.layer2.style.transformStyle = 'preserve-3d';
+      const layer2Transform = `${rotationStr} translate3d(0, 0, ${layer2Z}px)`;
+      this.layer2.style.webkitTransform = layer2Transform;
+      this.layer2.style.transform = layer2Transform;
     }
     if (this.layer3) {
-      this.layer3.style.transform = `translateZ(${this.layerDepths.layer3}px)`;
+      this.layer3.style.webkitTransformStyle = 'preserve-3d';
+      this.layer3.style.transformStyle = 'preserve-3d';
+      const layer3Transform = `${rotationStr} translate3d(0, 0, ${layer3Z}px)`;
+      this.layer3.style.webkitTransform = layer3Transform;
+      this.layer3.style.transform = layer3Transform;
     }
     if (this.glowEl) {
       // Glow follows mouse position
       const glowX = 50 + x * 30;
       const glowY = 50 + y * 30;
-      this.glowEl.style.transform = `translateZ(${this.layerDepths.glow}px)`;
+      this.glowEl.style.webkitTransformStyle = 'preserve-3d';
+      this.glowEl.style.transformStyle = 'preserve-3d';
+      const glowTransform = `translate3d(0, 0, ${glowZ}px)`;
+      this.glowEl.style.webkitTransform = glowTransform;
+      this.glowEl.style.transform = glowTransform;
       this.glowEl.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)`;
     }
 
