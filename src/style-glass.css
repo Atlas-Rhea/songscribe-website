@@ -33,8 +33,8 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: transform;
-    /* Clip the glow to prevent overflow */
-    overflow: hidden;
+    /* Allow shadows to extend beyond container */
+    overflow: visible;
     /* Initial transform set by JS */
 }
 
