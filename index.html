@@ -4,16 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
     <title>SongScribe - Coming Soon</title>
+    <meta name="title" content="SongScribe - Coming Soon">
     <meta name="description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="canonical" href="https://songscribe.io/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://songscribe.io/">
+    <meta property="og:title" content="SongScribe - Coming Soon">
+    <meta property="og:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/">
+    <meta name="twitter:title" content="SongScribe - Coming Soon">
+    <meta name="twitter:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+    
+    <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SongScribe",
+      "url": "https://songscribe.io",
+      "logo": "https://songscribe.io/assets/images/logo-full.svg",
+      "description": "Something beautiful is coming. Your Music. Your Way. Offline.",
+      "sameAs": []
+    }
+    </script>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="coming-soon-container">
         <div class="coming-soon-content">
             <div class="logo-container">
@@ -45,9 +113,31 @@
 
         <footer class="coming-soon-footer">
             <p>songscribe.io</p>
+            <p><a href="/privacy.html" class="privacy-link">Privacy Policy</a></p>
         </footer>
     </div>
     <script type="module" src="/src/main.js"></script>
+    <script>
+        // Cookie Consent Handler
+        (function() {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+            
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                
+                document.getElementById('cookie-accept').addEventListener('click', function() {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.style.display = 'none';
+                });
+                
+                document.getElementById('cookie-decline').addEventListener('click', function() {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.style.display = 'none';
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>

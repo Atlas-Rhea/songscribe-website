@@ -1,0 +1,16 @@
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))o(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const r of s.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&o(r)}).observe(document,{childList:!0,subtree:!0});function i(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function o(t){if(t.ep)return;t.ep=!0;const s=i(t);fetch(t.href,s)}})();class n{constructor(e){this.container=e,this.ticking=!1,this.mouseX=0,this.mouseY=0,this.tiltX=0,this.tiltY=0,this.layerDepths={layer1:80,layer2:40,layer3:0,glow:120}}init(){this.render(),this.cacheElements(),this.addEvents(),this.update()}render(){this.container.innerHTML=`
+      <div class="glass-scene">
+        <div class="glass-logo" id="glass-logo">
+          <div class="glass-layer layer-1" id="layer-1">
+            <img src="/assets/images/Layer1.svg" alt="">
+          </div>
+          <div class="glass-layer layer-2" id="layer-2">
+            <img src="/assets/images/Layer2.svg" alt="">
+          </div>
+          <div class="glass-layer layer-3" id="layer-3">
+            <img src="/assets/images/Layer3.svg" alt="">
+          </div>
+          <div class="glass-glow" id="glass-glow"></div>
+        </div>
+      </div>
+    `}cacheElements(){this.logoEl=document.getElementById("glass-logo"),this.layer1=document.getElementById("layer-1"),this.layer2=document.getElementById("layer-2"),this.layer3=document.getElementById("layer-3"),this.glowEl=document.getElementById("glass-glow")}addEvents(){window.addEventListener("mousemove",this.onMouseMove.bind(this),{passive:!0}),window.addEventListener("touchmove",this.onTouchMove.bind(this),{passive:!0}),window.addEventListener("deviceorientation",this.onDeviceOrientation.bind(this),{passive:!0})}onMouseMove(e){this.mouseX=e.clientX/window.innerWidth*2-1,this.mouseY=e.clientY/window.innerHeight*2-1,this.requestUpdate()}onTouchMove(e){if(e.touches.length>0){const i=e.touches[0];this.mouseX=i.clientX/window.innerWidth*2-1,this.mouseY=i.clientY/window.innerHeight*2-1,this.requestUpdate()}}onDeviceOrientation(e){e.gamma!==null&&e.beta!==null&&(this.tiltX=Math.max(-1,Math.min(1,e.gamma/45)),this.tiltY=Math.max(-1,Math.min(1,(e.beta-45)/45)),this.requestUpdate())}requestUpdate(){this.ticking||(requestAnimationFrame(this.update.bind(this)),this.ticking=!0)}update(){const e=this.mouseX+this.tiltX,i=this.mouseY+this.tiltY,o=i*-15,t=e*15;if(this.logoEl&&(this.logoEl.style.transform=`rotateX(${o}deg) rotateY(${t}deg)`),this.layer1&&(this.layer1.style.transform=`translateZ(${this.layerDepths.layer1}px)`),this.layer2&&(this.layer2.style.transform=`translateZ(${this.layerDepths.layer2}px)`),this.layer3&&(this.layer3.style.transform=`translateZ(${this.layerDepths.layer3}px)`),this.glowEl){const s=50+e*30,r=50+i*30;this.glowEl.style.transform=`translateZ(${this.layerDepths.glow}px)`,this.glowEl.style.background=`radial-gradient(circle at ${s}% ${r}%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)`}this.ticking=!1}}const l=document.querySelector("#logo-container");l&&new n(l).init();

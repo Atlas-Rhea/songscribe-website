@@ -241,6 +241,104 @@ body {
   margin: 0;
 }
 
+.coming-soon-footer a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.coming-soon-footer a:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+.privacy-link {
+  margin-top: var(--space-sm);
+}
+
+/* =============================================================================
+   Cookie Consent Banner
+   ============================================================================= */
+
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface-0);
+  border-top: 2px solid var(--color-border-subtle);
+  padding: var(--space-lg);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.cookie-consent-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .cookie-consent-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.cookie-consent-content p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.cookie-button {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-family: var(--font-family);
+  border: 2px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.cookie-accept {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border-color: var(--color-primary);
+}
+
+.cookie-accept:hover {
+  background-color: #F9B910;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-orange);
+}
+
+.cookie-decline {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.cookie-decline:hover {
+  background-color: var(--color-surface-1);
+  border-color: var(--color-text-secondary);
+}
+
+.cookie-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+}
+
 /* =============================================================================
    Responsive Adjustments
    ============================================================================= */
