@@ -16,6 +16,9 @@
     transform-style: preserve-3d;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    /* Prevent horizontal scroll on iOS */
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
 }
 
 .glass-logo {
@@ -30,6 +33,8 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: transform;
+    /* Clip the glow to prevent overflow */
+    overflow: hidden;
     /* Initial transform set by JS */
 }
 
@@ -101,17 +106,17 @@
     filter: drop-shadow(0 20px 35px rgba(32, 67, 68, 0.5));
 }
 
-/* Dynamic Specular Highlight */
+/* Dynamic Specular Highlight - constrained to prevent overflow */
 .glass-glow {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     pointer-events: none;
     mix-blend-mode: overlay;
-    opacity: 0.8;
+    opacity: 0.6;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transition: transform 0.15s ease-out, background 0.15s ease-out;

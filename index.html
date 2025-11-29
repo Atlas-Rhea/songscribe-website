@@ -137,16 +137,26 @@
             
             if (!consent && banner) {
                 banner.style.display = 'block';
+                // Trigger animation after display is set
+                setTimeout(function() {
+                    banner.classList.add('show');
+                }, 10);
                 
                 document.getElementById('cookie-accept').addEventListener('click', function() {
                     localStorage.setItem('cookie-consent', 'accepted');
-                    banner.style.display = 'none';
+                    banner.classList.remove('show');
+                    setTimeout(function() {
+                        banner.style.display = 'none';
+                    }, 300);
                     loadGTM(); // Load GTM after acceptance
                 });
                 
                 document.getElementById('cookie-decline').addEventListener('click', function() {
                     localStorage.setItem('cookie-consent', 'declined');
-                    banner.style.display = 'none';
+                    banner.classList.remove('show');
+                    setTimeout(function() {
+                        banner.style.display = 'none';
+                    }, 300);
                     // Don't load GTM if declined
                 });
             }

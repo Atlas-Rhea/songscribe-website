@@ -6,6 +6,10 @@ export class LiquidLogoCSS {
     this.mouseY = 0;
     this.tiltX = 0;
     this.tiltY = 0;
+    this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    this.hasPermission = false;
+    this.idleTime = 0;
+    this.idleAnimationId = null;
     
     // Layer depth configuration (higher = more parallax)
     this.layerDepths = {
@@ -27,6 +31,8 @@ export class LiquidLogoCSS {
       if (this.logoEl) {
         this.logoEl.offsetHeight; // Force reflow
       }
+      // Start idle animation for subtle movement
+      this.startIdleAnimation();
     });
   }
 
@@ -55,18 +61,65 @@ export class LiquidLogoCSS {
     this.layer2 = document.getElementById('layer-2');
     this.layer3 = document.getElementById('layer-3');
     this.glowEl = document.getElementById('glass-glow');
+    this.sceneEl = this.container.querySelector('.glass-scene');
   }
 
   addEvents() {
+    // Desktop mouse
     window.addEventListener('mousemove', this.onMouseMove.bind(this), { passive: true });
+    
+    // Mobile touch - attach to scene element for better response
+    if (this.sceneEl) {
+      this.sceneEl.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
+      this.sceneEl.addEventListener('touchmove', this.onTouchMove.bind(this), { passive: true });
+      this.sceneEl.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: true });
+    }
+    
+    // Also listen globally for touch
     window.addEventListener('touchmove', this.onTouchMove.bind(this), { passive: true });
-    window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this), { passive: true });
+    
+    // Device orientation (gyroscope) - requires permission on iOS 13+
+    if (this.isMobile) {
+      this.requestMotionPermission();
+    }
+  }
+
+  // iOS 13+ requires explicit permission for device orientation
+  async requestMotionPermission() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && 
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS 13+ - need to request permission on user gesture
+      // Add a one-time listener for any touch to request permission
+      const requestOnTouch = async () => {
+        try {
+          const permission = await DeviceOrientationEvent.requestPermission();
+          if (permission === 'granted') {
+            this.hasPermission = true;
+            window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this), { passive: true });
+          }
+        } catch (err) {
+          console.log('Motion permission denied or unavailable');
+        }
+        // Remove the listener after first attempt
+        document.removeEventListener('touchstart', requestOnTouch);
+      };
+      document.addEventListener('touchstart', requestOnTouch, { once: true });
+    } else {
+      // Android or older iOS - just add the listener
+      this.hasPermission = true;
+      window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this), { passive: true });
+    }
   }
 
   onMouseMove(e) {
     this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
     this.mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    this.idleTime = 0; // Reset idle timer
     this.requestUpdate();
+  }
+
+  onTouchStart(e) {
+    this.idleTime = 0; // Reset idle timer
   }
 
   onTouchMove(e) {
@@ -74,16 +127,50 @@ export class LiquidLogoCSS {
       const touch = e.touches[0];
       this.mouseX = (touch.clientX / window.innerWidth) * 2 - 1;
       this.mouseY = (touch.clientY / window.innerHeight) * 2 - 1;
+      this.idleTime = 0; // Reset idle timer
       this.requestUpdate();
     }
   }
 
+  onTouchEnd(e) {
+    // Gentle return to center over time (handled by idle animation)
+  }
+
   onDeviceOrientation(e) {
     if (e.gamma !== null && e.beta !== null) {
-      this.tiltX = Math.max(-1, Math.min(1, e.gamma / 45));
-      this.tiltY = Math.max(-1, Math.min(1, (e.beta - 45) / 45));
+      // gamma: left-right tilt (-90 to 90)
+      // beta: front-back tilt (-180 to 180)
+      this.tiltX = Math.max(-1, Math.min(1, e.gamma / 30)); // More sensitive
+      this.tiltY = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); // More sensitive
+      this.idleTime = 0; // Reset idle timer
       this.requestUpdate();
     }
+  }
+
+  // Subtle idle animation when no interaction
+  startIdleAnimation() {
+    const animate = () => {
+      this.idleTime += 0.016; // ~60fps
+      
+      // Only apply idle animation if no recent interaction
+      if (this.idleTime > 2) { // Start after 2 seconds of no interaction
+        const idleFactor = Math.min((this.idleTime - 2) / 2, 1); // Fade in over 2 seconds
+        const time = Date.now() * 0.0005;
+        
+        // Gentle floating motion
+        const idleX = Math.sin(time) * 0.15 * idleFactor;
+        const idleY = Math.cos(time * 0.7) * 0.1 * idleFactor;
+        
+        // Blend with current position
+        this.mouseX = this.mouseX * (1 - idleFactor * 0.1) + idleX * idleFactor * 0.1;
+        this.mouseY = this.mouseY * (1 - idleFactor * 0.1) + idleY * idleFactor * 0.1;
+        
+        this.requestUpdate();
+      }
+      
+      this.idleAnimationId = requestAnimationFrame(animate);
+    };
+    animate();
   }
 
   requestUpdate() {
@@ -94,6 +181,7 @@ export class LiquidLogoCSS {
   }
 
   update() {
+    // Combine mouse/touch with tilt
     const x = this.mouseX + this.tiltX;
     const y = this.mouseY + this.tiltY;
 
@@ -113,7 +201,6 @@ export class LiquidLogoCSS {
     }
 
     // Apply Z translation to each layer for parallax depth
-    // Chrome needs translate3d AND combined transform for both rotation + translation
     const layer1Z = this.layerDepths.layer1;
     const layer2Z = this.layerDepths.layer2;
     const layer3Z = this.layerDepths.layer3;
@@ -144,7 +231,7 @@ export class LiquidLogoCSS {
       this.layer3.style.transform = layer3Transform;
     }
     if (this.glowEl) {
-      // Glow follows mouse position
+      // Glow follows interaction
       const glowX = 50 + x * 30;
       const glowY = 50 + y * 30;
       this.glowEl.style.webkitTransformStyle = 'preserve-3d';
