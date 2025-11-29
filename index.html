@@ -34,7 +34,6 @@
     <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -42,14 +41,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-    <!-- End Google Tag Manager -->
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -66,11 +57,6 @@
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
         <div class="cookie-consent-content">
@@ -118,10 +104,36 @@
     </div>
     <script type="module" src="/src/main.js"></script>
     <script>
-        // Cookie Consent Handler
+        // Cookie Consent Handler & Conditional GTM Loading
         (function() {
             const consent = localStorage.getItem('cookie-consent');
             const banner = document.getElementById('cookie-consent');
+            
+            // Load GTM only if user has previously accepted cookies
+            function loadGTM() {
+                // Only load if GTM ID is configured (not placeholder)
+                const gtmId = 'GTM-XXXXXXX';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+                    
+                    (function(w,d,s,l,i){
+                        w[l]=w[l]||[];
+                        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                        var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                        j.async=true;
+                        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                        f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer',gtmId);
+                }
+            }
+            
+            if (consent === 'accepted') {
+                loadGTM();
+            }
             
             if (!consent && banner) {
                 banner.style.display = 'block';
@@ -129,11 +141,13 @@
                 document.getElementById('cookie-accept').addEventListener('click', function() {
                     localStorage.setItem('cookie-consent', 'accepted');
                     banner.style.display = 'none';
+                    loadGTM(); // Load GTM after acceptance
                 });
                 
                 document.getElementById('cookie-decline').addEventListener('click', function() {
                     localStorage.setItem('cookie-consent', 'declined');
                     banner.style.display = 'none';
+                    // Don't load GTM if declined
                 });
             }
         })();

@@ -9,10 +9,10 @@ export class LiquidLogoCSS {
     
     // Layer depth configuration (higher = more parallax)
     this.layerDepths = {
-      layer1: 80,  // Front layer - most parallax (feather highlight)
-      layer2: 40,  // Middle layer (music note)
+      layer1: 35,  // Front layer - subtle parallax (feather highlight)
+      layer2: 15,  // Middle layer (music note)
       layer3: 0,   // Back layer - base (feather shadow)
-      glow: 120    // Glow floats above
+      glow: 50     // Glow floats above
     };
   }
 

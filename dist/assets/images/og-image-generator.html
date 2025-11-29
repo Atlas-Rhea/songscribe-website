@@ -14,7 +14,7 @@
         body {
             width: 1200px;
             height: 630px;
-            background: linear-gradient(135deg, #FBF6EF 0%, #FBF6EF 100%);
+            background: linear-gradient(135deg, #FFFBF7 0%, #FFFBF7 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -29,8 +29,11 @@
         }
         
         .logo-container img {
-            height: 200px;
+            max-height: 180px;
+            max-width: 600px;
             width: auto;
+            height: auto;
+            object-fit: contain;
         }
         
         .headline {
@@ -75,12 +78,12 @@
     <div class="accent-2"></div>
     
     <div class="logo-container">
-        <img src="/assets/images/logo-full.svg" alt="SongScribe Logo" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
+        <img src="logo-full.webp" alt="SongScribe Logo" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
         <div class="logo-fallback" style="display: none; font-size: 80px; font-weight: 700; color: #FBBF24;">SongScribe</div>
     </div>
     
     <h1 class="headline">Something Beautiful<br>is Coming</h1>
-    <p class="tagline">Your Music. Your Way. Offline.</p>
+    <p class="tagline">Your Songbook. Your Tools. Offline.</p>
 </body>
 </html>
 
