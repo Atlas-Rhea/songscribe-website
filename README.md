@@ -4,7 +4,7 @@ A minimal Coming Soon page for SongScribe at [songscribe.io](https://songscribe.
 
 ## Setup
 
-This is a static HTML page with no build process required. Simply deploy to Cloudflare Pages.
+This site uses Vite and requires a build step before deployment.
 
 ## Cloudflare Pages Configuration
 
@@ -16,9 +16,10 @@ This is a static HTML page with no build process required. Simply deploy to Clou
 4. Select repository: `Atlas-Rhea/songscribe-website`
 5. Configure build settings:
    - **Production branch**: `main`
-   - **Build command**: (leave empty - static HTML, no build needed)
-   - **Build output directory**: `/` (root)
-   - **Framework preset**: None
+   - **Build command**: `npm install && npm run build`
+   - **Build output directory**: `dist`
+   - **Framework preset**: Vite
+   - **Node version**: 18 or higher
 
 ### Custom Domain
 
@@ -39,15 +40,23 @@ To enable preview deployments for the `songscribe-dev` branch:
 
 ```
 .
-├── index.html              # Coming Soon page
-├── assets/
-│   ├── css/
-│   │   └── main.css       # Minimal styles
-│   └── images/
-│       ├── logo-full.svg  # SongScribe logo
-│       └── favicon.svg    # Favicon
-├── manifest.json          # PWA manifest
-├── robots.txt             # SEO robots file
+├── index.html              # Coming Soon page (source)
+├── src/
+│   ├── main.js            # Entry point with 3D logo initialization
+│   ├── LiquidLogoCSS.js   # 3D logo component
+│   └── style-glass.css    # 3D glass effect styles
+├── public/
+│   └── assets/
+│       ├── css/
+│       │   └── main.css   # Main stylesheet
+│       └── images/
+│           ├── Layer1.svg # 3D logo layer 1
+│           ├── Layer2.svg # 3D logo layer 2
+│           ├── Layer3.svg # 3D logo layer 3
+│           └── favicon.svg
+├── dist/                  # Build output (generated)
+├── vite.config.js         # Vite configuration
+├── package.json           # Dependencies and scripts
 ├── _redirects             # Cloudflare redirects
 └── functions/
     └── _headers           # Cloudflare headers

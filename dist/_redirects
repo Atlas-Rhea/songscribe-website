@@ -1,0 +1,12 @@
+# Cloudflare Pages redirects configuration
+# https://developers.cloudflare.com/pages/platform/redirects/
+
+# Redirect www to non-www (optional - configure based on your domain setup)
+# https://www.songscribe.app/* https://songscribe.app/:splat 301
+
+# Single Page App routing (if needed in future)
+# /*  /index.html   200
+
+# Legacy GitHub Pages redirect (if users have old links)
+# /index.html   /   301
+
