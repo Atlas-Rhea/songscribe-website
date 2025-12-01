@@ -1,0 +1,72 @@
+{
+  "subagents": {
+    "javascript-pro": {
+      "description": "JavaScript and modern web development specialist",
+      "capabilities": ["code-generation", "refactoring", "optimization", "modern-js"],
+      "trigger": "/js-expert",
+      "file": "javascript-pro.md"
+    },
+    "typescript-pro": {
+      "description": "TypeScript specialist for type-safe development",
+      "capabilities": ["type-safety", "interfaces", "generics", "advanced-types"],
+      "trigger": "/ts-expert",
+      "file": "typescript-pro.md"
+    },
+    "react-specialist": {
+      "description": "React development and component architecture specialist",
+      "capabilities": ["react-components", "hooks", "state-management", "performance"],
+      "trigger": "/react-expert",
+      "file": "react-specialist.md"
+    },
+    "performance-engineer": {
+      "description": "Performance optimization and Core Web Vitals specialist",
+      "capabilities": ["performance-analysis", "optimization", "core-web-vitals", "bundle-size"],
+      "trigger": "/perf-expert",
+      "file": "performance-engineer.md"
+    },
+    "security-auditor": {
+      "description": "Security auditing and vulnerability assessment specialist",
+      "capabilities": ["security-review", "vulnerability-assessment", "pwa-security", "privacy"],
+      "trigger": "/security-expert",
+      "file": "security-auditor.md"
+    },
+    "accessibility-tester": {
+      "description": "Accessibility and WCAG compliance specialist",
+      "capabilities": ["wcag-compliance", "accessibility-testing", "screen-readers", "inclusive-design"],
+      "trigger": "/a11y-expert",
+      "file": "accessibility-tester.md"
+    },
+    "documentation-engineer": {
+      "description": "Technical documentation and developer experience specialist",
+      "capabilities": ["technical-writing", "api-docs", "user-guides", "developer-experience"],
+      "trigger": "/docs-expert",
+      "file": "documentation-engineer.md"
+    },
+    "refactoring-specialist": {
+      "description": "Code refactoring and legacy modernization specialist",
+      "capabilities": ["code-refactoring", "legacy-modernization", "code-quality", "maintainability"],
+      "trigger": "/refactor-expert",
+      "file": "refactoring-specialist.md"
+    }
+  },
+  "project": {
+    "name": "SongScribe Website",
+    "type": "Marketing Website",
+    "tech_stack": ["HTML5", "CSS3", "JavaScript", "PWA", "Jekyll"],
+    "focus_areas": ["Performance", "Accessibility", "SEO", "Mobile-First"]
+  },
+  "workflows": {
+    "css_optimization": {
+      "steps": ["/perf-expert", "/a11y-expert", "/refactor-expert"],
+      "description": "Optimize CSS for performance and accessibility"
+    },
+    "security_review": {
+      "steps": ["/security-expert", "/perf-expert"],
+      "description": "Comprehensive security and performance review"
+    },
+    "documentation": {
+      "steps": ["/docs-expert", "/js-expert"],
+      "description": "Create comprehensive technical documentation"
+    }
+  }
+}
