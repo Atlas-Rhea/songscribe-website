@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { copyFileSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 export default defineConfig({
     server: {
@@ -9,6 +9,11 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+                terms: resolve(__dirname, 'terms.html'),
+                privacy: resolve(__dirname, 'privacy.html'),
+            },
             output: {
                 // Ensure consistent asset paths
                 assetFileNames: 'assets/[name].[ext]'

@@ -107,9 +107,11 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -161,6 +163,97 @@ body {
   font-weight: 400;
   color: var(--color-text-secondary);
   margin: 0 0 var(--space-xxxl) 0;
+}
+
+.feature-scroller {
+  margin-bottom: var(--space-xxxl);
+}
+
+.feature-window {
+  height: 6rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: var(--color-text-secondary);
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    font-size 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.feature-item--prev {
+  opacity: 0.4;
+  transform: translateY(-2.5rem);
+}
+
+.feature-item--active {
+  color: var(--color-text-primary);
+  opacity: 1;
+  font-weight: 600;
+  font-size: var(--text-lg);
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms,
+    transform 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    font-size 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms,
+    color 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+}
+
+.feature-item--next {
+  opacity: 0.4;
+  transform: translateY(2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-window {
+    height: auto;
+  }
+
+  .feature-list {
+    height: auto;
+    position: static;
+  }
+
+  .feature-item {
+    position: static;
+    opacity: 0.5;
+    transform: none;
+    transition: none;
+  }
+
+  .feature-item--active {
+    opacity: 1;
+  }
+
+  .feature-item,
+  .feature-item--active,
+  .feature-item--prev,
+  .feature-item--next {
+    opacity: 1;
+  }
 }
 
 .email-form {
@@ -238,6 +331,26 @@ body {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   margin: 0;
+}
+
+.platform-icons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.platform-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-text-secondary);
+  opacity: 0.3;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.platform-icon:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
 }
 
 .coming-soon-footer {
@@ -365,15 +478,59 @@ body {
   .headline {
     font-size: var(--text-3xl);
   }
-  
+
   .tagline {
     font-size: var(--text-lg);
   }
-  
+
+  .feature-scroller {
+    margin-bottom: var(--space-xxl);
+  }
+
+  /* Adjust feature scroller height and text for mobile to prevent overlap */
+  .feature-window {
+    height: 12rem;
+    /* Increased significantly to accommodate wrapped text */
+  }
+
+  .feature-list {
+    height: 12rem;
+    /* Match window height */
+  }
+
+  .feature-item {
+    font-size: 0.9rem;
+    /* Slightly smaller base font for mobile */
+    line-height: 1.4rem;
+    /* Better spacing for wrapped lines */
+    padding: 0 var(--space-sm);
+    /* Add horizontal padding for better text wrapping */
+  }
+
+  .feature-item--active {
+    font-size: 1rem;
+    /* Reduced from var(--text-lg) (1.125rem) for mobile */
+    line-height: 1.5rem;
+    /* Better spacing for wrapped lines */
+  }
+
+  /* Mobile-specific spacing between features */
+  .feature-item {
+    transform: translateY(3.5rem);
+  }
+
+  .feature-item--prev {
+    transform: translateY(-3.5rem);
+  }
+
+  .feature-item--next {
+    transform: translateY(3.5rem);
+  }
+
   .logo {
     height: 40px;
   }
-  
+
   .coming-soon-container {
     padding: var(--space-lg);
   }
