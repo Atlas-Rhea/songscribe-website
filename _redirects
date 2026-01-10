@@ -1,9 +1,8 @@
 # Cloudflare Pages redirects configuration
 # https://developers.cloudflare.com/pages/platform/redirects/
 
-# Clean URLs for legal pages (required for App Store)
-/terms     /terms.html     200
-/privacy   /privacy.html   200
+# Note: Cloudflare Pages automatically serves HTML files without .html extension
+# So /terms serves terms.html and /privacy serves privacy.html by default
 
 # Redirect www to non-www (optional - configure based on your domain setup)
 # https://www.songscribe.app/* https://songscribe.app/:splat 301
