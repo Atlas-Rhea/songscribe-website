@@ -7,62 +7,48 @@ if (container) {
   logo.init()
 }
 
-initFeatureScroller()
+initMobileNav()
+initSmoothScroll()
 
-function initFeatureScroller() {
-  const featureList = document.querySelector('.feature-list')
-  if (!featureList) return
+function initMobileNav() {
+  const toggle = document.getElementById('mobile-menu-toggle')
+  const navLinks = document.getElementById('nav-links')
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-  if (prefersReducedMotion.matches) return
+  if (!toggle || !navLinks) return
 
-  const items = Array.from(featureList.querySelectorAll('.feature-item'))
-  if (items.length === 0) return
-
-  const totalItems = items.length
-  let activeIndex = 0
-  let intervalId = null
-
-  const applyState = () => {
-    const prevIndex = (activeIndex - 1 + totalItems) % totalItems
-    const nextIndex = (activeIndex + 1) % totalItems
-
-    items.forEach((item, index) => {
-      item.classList.remove('feature-item--active', 'feature-item--prev', 'feature-item--next')
-      if (index === activeIndex) {
-        item.classList.add('feature-item--active')
-      } else if (index === prevIndex) {
-        item.classList.add('feature-item--prev')
-      } else if (index === nextIndex) {
-        item.classList.add('feature-item--next')
-      }
-    })
-  }
-
-  const advance = () => {
-    activeIndex = (activeIndex + 1) % totalItems
-    applyState()
-  }
-
-  const start = () => {
-    if (intervalId !== null || totalItems < 2) return
-    intervalId = window.setInterval(advance, 3000)
-  }
-
-  const stop = () => {
-    if (intervalId === null) return
-    window.clearInterval(intervalId)
-    intervalId = null
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stop()
-    } else {
-      start()
-    }
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active')
+    navLinks.classList.toggle('active')
   })
 
-  applyState()
-  start()
+  const links = navLinks.querySelectorAll('.nav-link')
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('active')
+      navLinks.classList.remove('active')
+    })
+  })
+}
+
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href')
+      if (targetId === '#') return
+
+      const target = document.querySelector(targetId)
+      if (!target) return
+
+      e.preventDefault()
+
+      const headerOffset = 80
+      const elementPosition = target.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    })
+  })
 }

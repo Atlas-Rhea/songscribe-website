@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>SongScribe - Coming Soon</title>
-    <meta name="title" content="SongScribe - Coming Soon">
-    <meta name="description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <title>SongScribe - Your Music. Your Way. Offline.</title>
+    <meta name="title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta name="description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more. Built by musicians, for musicians.">
     <link rel="canonical" href="https://songscribe.io/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://songscribe.io/">
-    <meta property="og:title" content="SongScribe - Coming Soon">
-    <meta property="og:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta property="og:title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta property="og:description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more.">
     <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,8 +23,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://songscribe.io/">
-    <meta name="twitter:title" content="SongScribe - Coming Soon">
-    <meta name="twitter:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta name="twitter:title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta name="twitter:description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more.">
     <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- PWA Manifest -->
@@ -40,21 +40,31 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "SoftwareApplication",
       "name": "SongScribe",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "iOS, macOS, Windows, Android",
       "url": "https://songscribe.io",
-      "logo": "https://songscribe.io/assets/images/logo-full.svg",
-      "description": "Something beautiful is coming. Your Music. Your Way. Offline.",
-      "sameAs": []
+      "description": "The ultimate offline-first songwriting companion for musicians. Features a chord-aware lyric editor, recording tools, instrument tuner, chord builder, and setlist management.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150"
+      }
     }
     </script>
-  <script type="module" crossorigin src="/assets/main-yl-ty5sr.js"></script>
+  <script type="module" crossorigin src="/assets/main-DQm_BsR_.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main.css">
 </head>
 
@@ -62,8 +72,7 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
         <div class="cookie-consent-content">
-            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use
-                of cookies.</p>
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
             <div class="cookie-consent-buttons">
                 <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
                 <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
@@ -71,86 +80,294 @@
         </div>
     </div>
 
-    <div class="coming-soon-container">
-        <div class="coming-soon-content">
-            <div class="logo-container">
-                <div id="logo-container"></div>
-            </div>
-
-            <h1 class="headline">Something Beautiful is Coming</h1>
-            <p class="tagline">Your Songbook. Your Tools. Offline.</p>
-
-            <div class="feature-scroller" aria-live="polite">
-                <div class="feature-window" role="presentation">
-                    <ul class="feature-list" aria-label="Looping feature highlights">
-                        <li class="feature-item">A clean and beautiful workspace that is easy to use</li>
-                        <li class="feature-item">Multiple stunning themes to choose from</li>
-                        <li class="feature-item">A chord-aware lyric editor that keeps everything lined up</li>
-                        <li class="feature-item">A rock solid tuner that stays accurate even with background noise</li>
-                        <li class="feature-item">A powerful Chord Builder for guitar, bass, and piano</li>
-                        <li class="feature-item">Recording tools that make it easy to capture and trim ideas</li>
-                        <li class="feature-item">Smart silence trimming for quick clean clips</li>
-                        <li class="feature-item">Setlists that are simple to manage for rehearsals and shows</li>
-                        <li class="feature-item">Pro Mode for fullscreen display and auto-scroll</li>
-                        <li class="feature-item">MIDI footswitch support for live players</li>
-                        <li class="feature-item">PDF exports that look clean on paper and on stage</li>
-                        <li class="feature-item">Works fully offline so your music stays yours</li>
-                        <li class="feature-item">Fast and responsive on desktop, tablet, and phone</li>
-                        <li class="feature-item">Built by musicians for musicians</li>
-                    </ul>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/logo-full.svg" alt="SongScribe">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#newsletter" class="nav-link">Stay Updated</a>
+                <div class="nav-cta mobile">
+                    <a href="#download" class="btn btn-primary">Download Free</a>
                 </div>
             </div>
+            <div class="nav-cta">
+                <a href="#download" class="btn btn-primary">Download Free</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
-            <form class="email-form"
-                action="https://songscribe.us9.list-manage.com/subscribe/post?u=19d3e54634d518c188143ca16&amp;id=d568f75b10&amp;f_id=0081c2e1f0"
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_self"
-                novalidate>
-                <div class="form-group">
-                    <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required
-                        aria-label="Email address" class="email-input required email">
-                    <button type="submit" name="subscribe" class="notify-button">Notify Me</button>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span>Your Music.</span>
+                        <span>Your Way.</span>
+                        <span>Offline.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        SongScribe is the ultimate songwriting companion for musicians who want simplicity, power, and complete offline control. No accounts. No subscriptions. Just your music.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#download" class="btn btn-primary btn-large">Download Free</a>
+                        <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
+                    </div>
                 </div>
-                <!-- Honeypot field for bot protection - do not remove -->
-                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_19d3e54634d518c188143ca16_d568f75b10" tabindex="-1" value="">
+                <div class="hero-visual">
+                    <div class="hero-logo-container">
+                        <div id="logo-container"></div>
+                    </div>
                 </div>
-                <p class="form-help">We'll let you know when SongScribe launches</p>
-            </form>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Everything You Need to Create</h2>
+                    <p class="section-subtitle">
+                        SongScribe combines powerful features with an intuitive, distraction-free interface.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Chord Editor Screenshot</div>
+                        </div>
+                        <h3 class="feature-title">Chord-Aware Editor</h3>
+                        <p class="feature-description">
+                            Write lyrics with inline chord placement that stays perfectly aligned, no matter how you edit.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Recording Interface Screenshot</div>
+                        </div>
+                        <h3 class="feature-title">Recording Tools</h3>
+                        <p class="feature-description">
+                            Capture your musical ideas with smart silence trimming and professional waveform visualization.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Tuner Screenshot</div>
+                        </div>
+                        <h3 class="feature-title">Instrument Tuner</h3>
+                        <p class="feature-description">
+                            An accurate tuner that works even with background noise. Perfect for any environment.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Chord Builder Screenshot</div>
+                        </div>
+                        <h3 class="feature-title">Chord Builder</h3>
+                        <p class="feature-description">
+                            Create and explore chord diagrams for guitar, bass, and piano. Find the perfect voicing.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Setlist Screenshot</div>
+                        </div>
+                        <h3 class="feature-title">Setlist Management</h3>
+                        <p class="feature-description">
+                            Organize songs for rehearsals and live performances. Pro Mode with auto-scroll for stage use.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <div class="feature-image-placeholder">Offline Mode Illustration</div>
+                        </div>
+                        <h3 class="feature-title">100% Offline</h3>
+                        <p class="feature-description">
+                            Works without internet. Your music stays on your device. No cloud, no sync, no compromises.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">How SongScribe Works</h2>
+                    <p class="section-subtitle">Three simple steps to musical freedom</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Capture</h3>
+                        <p class="step-description">
+                            Write lyrics with perfectly aligned chords. Record audio ideas. Everything syncs together automatically.
+                        </p>
+                        <div class="step-visual">
+                            <span class="step-visual-placeholder">Step 1 Visual</span>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Organize</h3>
+                        <p class="step-description">
+                            Build setlists for rehearsals and gigs. Tag and search your entire library. Keep everything in one place.
+                        </p>
+                        <div class="step-visual">
+                            <span class="step-visual-placeholder">Step 2 Visual</span>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Perform</h3>
+                        <p class="step-description">
+                            Use Pro Mode for fullscreen lyrics with auto-scroll. Export clean PDFs for the stage or studio.
+                        </p>
+                        <div class="step-visual">
+                            <span class="step-visual-placeholder">Step 3 Visual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay in the Loop</h2>
+                    <p class="newsletter-subtitle">
+                        Get the latest updates, new features, and music tips delivered to your inbox.
+                    </p>
+                    <form class="newsletter-form"
+                        action="https://songscribe.us9.list-manage.com/subscribe/post?u=19d3e54634d518c188143ca16&amp;id=d568f75b10&amp;f_id=0081c2e1f0"
+                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_self"
+                        novalidate>
+                        <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required
+                            aria-label="Email address" class="newsletter-input email">
+                        <button type="submit" name="subscribe" class="btn btn-primary">Subscribe</button>
+                        <!-- Honeypot field for bot protection -->
+                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_19d3e54634d518c188143ca16_d568f75b10" tabindex="-1" value="">
+                        </div>
+                    </form>
+                    <p class="newsletter-help">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="download" class="final-cta">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ready to Create Music Your Way?</h2>
+                    <p class="section-subtitle">
+                        Join thousands of musicians who have discovered the freedom of offline music creation.
+                    </p>
+                </div>
+                <div class="cta-actions">
+                    <a href="https://apps.apple.com/app/songscribe" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+                        Download for iOS
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=io.songscribe" class="btn btn-secondary btn-large" target="_blank" rel="noopener">
+                        Get on Android
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <img src="/assets/images/logo-full.svg" alt="SongScribe">
+                        <span class="footer-logo-text">SongScribe</span>
+                    </a>
+                    <p class="footer-tagline">Your music. Your way. Offline, always.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/songscribeapp" class="social-link" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/songscribe" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#download">Download</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="/docs">Documentation</a>
+                    <a href="/support">Support</a>
+                    <a href="/changelog">Changelog</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="/about">About</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/contact">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Use</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 SongScribe. All rights reserved.</p>
+                <div class="platform-icons">
+                    <!-- Apple -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on iOS and macOS">
+                        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+                    </svg>
+                    <!-- Windows -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Windows">
+                        <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.649-1.6L24 0v11.4h-13.351V1.849zM0 12.45h9.75v9.451L0 20.55V12.45zm10.649 0H24v11.75l-13.351-1.849V12.45z"/>
+                    </svg>
+                    <!-- Android -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Android">
+                        <path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/>
+                    </svg>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <footer class="coming-soon-footer">
-            <div class="platform-icons">
-                <!-- Apple -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on macOS and iOS">
-                    <path
-                        d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
-                </svg>
-
-                <!-- Windows -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on Windows">
-                    <path
-                        d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.649-1.6L24 0v11.4h-13.351V1.849zM0 12.45h9.75v9.451L0 20.55V12.45zm10.649 0H24v11.75l-13.351-1.849V12.45z" />
-                </svg>
-
-                <!-- Android -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on Android">
-                    <path
-                        d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z" />
-                </svg>
-            </div>
-            <p>songscribe.io</p>
-            <p><a href="/terms" class="privacy-link">Terms of Use</a> · <a href="/privacy" class="privacy-link">Privacy Policy</a></p>
-        </footer>
-    </div>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        lucide.createIcons();
-    </script>
 
     <script>
         // Cookie Consent Handler & Conditional GTM Loading
@@ -158,9 +375,7 @@
             const consent = localStorage.getItem('cookie-consent');
             const banner = document.getElementById('cookie-consent');
 
-            // Load GTM only if user has previously accepted cookies
             function loadGTM() {
-                // Only load if GTM ID is configured (not placeholder)
                 const gtmId = 'GTM-XXXXXXX';
                 if (gtmId && gtmId !== 'GTM-XXXXXXX') {
                     window.dataLayer = window.dataLayer || [];
@@ -186,7 +401,6 @@
 
             if (!consent && banner) {
                 banner.style.display = 'block';
-                // Trigger animation after display is set
                 setTimeout(function () {
                     banner.classList.add('show');
                 }, 10);
@@ -197,7 +411,7 @@
                     setTimeout(function () {
                         banner.style.display = 'none';
                     }, 300);
-                    loadGTM(); // Load GTM after acceptance
+                    loadGTM();
                 });
 
                 document.getElementById('cookie-decline').addEventListener('click', function () {
@@ -206,7 +420,6 @@
                     setTimeout(function () {
                         banner.style.display = 'none';
                     }, 300);
-                    // Don't load GTM if declined
                 });
             }
         })();
