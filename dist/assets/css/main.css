@@ -648,12 +648,17 @@ a:hover {
 
 /* Flow Features Section - Centered Cascade */
 .section-header--flow {
-  max-width: 640px;
+  max-width: 720px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
+  background: var(--color-surface-2);
+  padding: var(--space-xxl) var(--space-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  margin-bottom: var(--space-xxxl);
 }
 
 .section-header--flow .section-title {
@@ -957,24 +962,50 @@ a:hover {
   position: relative;
 }
 
-/* Individual Phone */
+/* =============================================================================
+   Phone Screenshots - Safari-Compatible Drop Shadow
+
+   Safari has a bug where drop-shadow on a parent element renders against
+   the bounding box instead of the alpha channel. The fix is to:
+   1. Apply drop-shadow to the img element directly
+   2. Remove hardware acceleration hints (translateZ, backface-visibility)
+      from the parent that interfere with alpha compositing
+   3. Use will-change: transform on the parent for smooth hover transitions
+   4. Add micro-animation to force recomposite on page load
+   ============================================================================= */
+
+@keyframes safariDropShadowFix {
+  from { transform: translateZ(0); }
+  to { transform: translateZ(0); }
+}
+
+/* Individual Phone Container */
 .phone {
   margin: 0;
   position: relative;
-  transition: transform var(--transition-base), filter var(--transition-base);
-  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.15));
+  transition: transform var(--transition-base);
+  will-change: transform;
 }
 
+/* Drop shadow on the image itself - respects PNG transparency in all browsers */
 .phone img {
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.18));
+  transition: filter var(--transition-base);
+  animation: safariDropShadowFix 0.001s linear 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .phone:hover {
   transform: translateY(-8px) scale(1.03);
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.25));
   z-index: 20;
+}
+
+.phone:hover img {
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
 }
 
 /* Phone Sizes */
@@ -1104,12 +1135,15 @@ a:hover {
   position: relative;
 }
 
-.showcase-phones--hero .phone--2xl {
+.showcase-phones--hero .phone--2xl img {
   filter: none;
 }
 
 .showcase-phones--hero .phone--2xl:hover {
   transform: translateY(-12px) scale(1.02);
+}
+
+.showcase-phones--hero .phone--2xl:hover img {
   filter: none;
 }
 
@@ -1278,8 +1312,17 @@ a:hover {
     transition: none;
   }
 
+  .phone img {
+    transition: none;
+    animation: none;
+  }
+
   .phone:hover {
     transform: none;
+  }
+
+  .phone:hover img {
+    filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.18));
   }
 
   .phone--tilt-left:hover,
