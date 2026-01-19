@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>SongScribe - Coming Soon</title>
-    <meta name="title" content="SongScribe - Coming Soon">
-    <meta name="description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <title>SongScribe - Your Music. Your Way. Offline.</title>
+    <meta name="title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta name="description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more. Built by musicians, for musicians.">
     <link rel="canonical" href="https://songscribe.io/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://songscribe.io/">
-    <meta property="og:title" content="SongScribe - Coming Soon">
-    <meta property="og:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta property="og:title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta property="og:description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more.">
     <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,13 +23,16 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://songscribe.io/">
-    <meta name="twitter:title" content="SongScribe - Coming Soon">
-    <meta name="twitter:description" content="Something beautiful is coming. Your Music. Your Way. Offline.">
+    <meta name="twitter:title" content="SongScribe - Your Music. Your Way. Offline.">
+    <meta name="twitter:description" content="The ultimate offline-first songwriting companion for musicians. Chord-aware editor, recording tools, instrument tuner, and more.">
     <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,18 +43,23 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "SoftwareApplication",
       "name": "SongScribe",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "iOS, macOS, Windows, Android",
       "url": "https://songscribe.io",
-      "logo": "https://songscribe.io/assets/images/logo-full.svg",
-      "description": "Something beautiful is coming. Your Music. Your Way. Offline.",
-      "sameAs": []
+      "description": "The ultimate offline-first songwriting companion for musicians. Features a chord-aware lyric editor, recording tools, instrument tuner, chord builder, and setlist management.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
     }
     </script>
 </head>
@@ -60,8 +68,7 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
         <div class="cookie-consent-content">
-            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use
-                of cookies.</p>
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
             <div class="cookie-consent-buttons">
                 <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
                 <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
@@ -69,86 +76,452 @@
         </div>
     </div>
 
-    <div class="coming-soon-container">
-        <div class="coming-soon-content">
-            <div class="logo-container">
-                <div id="logo-container"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#newsletter" class="nav-link">Stay Updated</a>
+                <div class="nav-cta mobile">
+                    <a href="#download" class="btn btn-primary">Download Free</a>
+                </div>
             </div>
+            <div class="nav-cta">
+                <a href="#download" class="btn btn-primary">Download Free</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
-            <h1 class="headline">Something Beautiful is Coming</h1>
-            <p class="tagline">Your Songbook. Your Tools. Offline.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-visual">
+                    <img src="/assets/images/hero-phone.png" alt="SongScribe app showing chord editor with lyrics" class="hero-phone">
+                </div>
+                <div class="hero-content">
+                    <div class="hero-logo-container">
+                        <div id="logo-container"></div>
+                    </div>
+                    <img src="/assets/images/Write%20songs%20the%20way%20you%20play.svg"
+                         alt="Write songs the way you play"
+                         class="hero-tagline-svg">
+                    <p class="hero-subtitle">
+                        SongScribe is the ultimate songwriting companion for musicians who want simplicity, power, and complete offline control. No accounts. No subscriptions. Just your music.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#download" class="btn btn-primary btn-large">Download Free</a>
+                        <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <div class="feature-scroller" aria-live="polite">
-                <div class="feature-window" role="presentation">
-                    <ul class="feature-list" aria-label="Looping feature highlights">
-                        <li class="feature-item">A clean and beautiful workspace that is easy to use</li>
-                        <li class="feature-item">Multiple stunning themes to choose from</li>
-                        <li class="feature-item">A chord-aware lyric editor that keeps everything lined up</li>
-                        <li class="feature-item">A rock solid tuner that stays accurate even with background noise</li>
-                        <li class="feature-item">A powerful Chord Builder for guitar, bass, and piano</li>
-                        <li class="feature-item">Recording tools that make it easy to capture and trim ideas</li>
-                        <li class="feature-item">Smart silence trimming for quick clean clips</li>
-                        <li class="feature-item">Setlists that are simple to manage for rehearsals and shows</li>
-                        <li class="feature-item">Pro Mode for fullscreen display and auto-scroll</li>
-                        <li class="feature-item">MIDI footswitch support for live players</li>
-                        <li class="feature-item">PDF exports that look clean on paper and on stage</li>
-                        <li class="feature-item">Works fully offline so your music stays yours</li>
-                        <li class="feature-item">Fast and responsive on desktop, tablet, and phone</li>
-                        <li class="feature-item">Built by musicians for musicians</li>
+        <!-- Features Section - Watercolor Cascade -->
+        <section id="features" class="feature-cascade">
+            <div class="container">
+                <div class="section-header section-header--flow">
+                    <h2 class="section-title">Songwriting that stays in flow</h2>
+                    <p class="section-tagline">Your song looks the way it sounds.</p>
+                    <div class="flow-divider"></div>
+                    <ul class="flow-features">
+                        <li>Natural chord placement</li>
+                        <li>Structured sections</li>
+                        <li>Key, tempo & tuning</li>
+                        <li>Clean, readable layouts</li>
                     </ul>
                 </div>
+
+                <!-- Feature Showcase - Dynamic Layout -->
+                <div class="feature-showcase">
+
+                    <!-- Row 1: All your songs -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/All%20your%20songs.%20Always%20re.svg" alt="All your songs. Always ready." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Searchable song library</li>
+                                <li>Folders, tags & smart filters</li>
+                                <li>Setlists for gigs & rehearsals</li>
+                                <li>Quick access to everything</li>
+                            </ul>
+                            <p class="showcase-tagline">Find any song in seconds.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--cluster">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Songlist-lg.png"
+                                     srcset="/assets/images/Songlist-sm.png 480w, /assets/images/Songlist-md.png 640w, /assets/images/Songlist-lg.png 800w, /assets/images/Songlist-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Song library" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--tilt-right phone--overlap">
+                                <img src="/assets/images/Setlist-md.png"
+                                     srcset="/assets/images/Setlist-sm.png 480w, /assets/images/Setlist-md.png 640w, /assets/images/Setlist-lg.png 800w, /assets/images/Setlist-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Setlist builder" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Built for live performance (Autoscroll only) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Built%20for%20live%20performanc.svg" alt="Built for live performance." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Fullscreen lyrics with auto-scroll</li>
+                                <li>Hands-free with tap or MIDI</li>
+                                <li>Large, readable text on any screen</li>
+                                <li>Stay focused on the music</li>
+                            </ul>
+                            <p class="showcase-tagline">Perform without distractions.</p>
+                        </div>
+                        <div class="showcase-phones">
+                            <figure class="phone phone--xl">
+                                <img src="/assets/images/Autoscroll-xl.png"
+                                     srcset="/assets/images/Autoscroll-sm.png 480w, /assets/images/Autoscroll-md.png 640w, /assets/images/Autoscroll-lg.png 800w, /assets/images/Autoscroll-xl.png 960w"
+                                     sizes="(max-width: 768px) 440px, 640px"
+                                     alt="Performance mode" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Capture ideas -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Capture%20ideas%20instantly..svg" alt="Capture ideas instantly." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Built-in multi-take recorder</li>
+                                <li>Waveform view with trim & playback</li>
+                                <li>Record without leaving your song</li>
+                                <li>Keep takes with the music they belong to</li>
+                            </ul>
+                            <p class="showcase-tagline">Never lose a song again.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--stack">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Record-lg.png"
+                                     srcset="/assets/images/Record-sm.png 480w, /assets/images/Record-md.png 640w, /assets/images/Record-lg.png 800w, /assets/images/Record-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Audio recording" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--offset">
+                                <img src="/assets/images/Studio-md.png"
+                                     srcset="/assets/images/Studio-sm.png 480w, /assets/images/Studio-md.png 640w, /assets/images/Studio-lg.png 800w, /assets/images/Studio-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Recording studio" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Chords (Guitar + Piano only) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Chords%20for%20every%20instrume.svg" alt="Chords for every instrument." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Voicings, inversions & variations</li>
+                                <li>Slash chords & extensions</li>
+                                <li>Guitar, bass, ukulele & more</li>
+                                <li>Designed for real instruments</li>
+                            </ul>
+                            <p class="showcase-tagline">Chords that feel right when you play them.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--pair">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Guitar-lg.png"
+                                     srcset="/assets/images/Guitar-sm.png 480w, /assets/images/Guitar-md.png 640w, /assets/images/Guitar-lg.png 800w, /assets/images/Guitar-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Guitar chords" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--tilt-right">
+                                <img src="/assets/images/Piano-lg.png"
+                                     srcset="/assets/images/Piano-sm.png 480w, /assets/images/Piano-md.png 640w, /assets/images/Piano-lg.png 800w, /assets/images/Piano-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Piano chords" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Practice with confidence (Harmony, Tuner, Tempo) -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Practice%20with%20confidence..svg" alt="Practice with confidence." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Chromatic tuner</li>
+                                <li>Metronome with tap tempo</li>
+                                <li>Simple tools that stay out of the way</li>
+                            </ul>
+                            <p class="showcase-tagline">Focus on the music, not the setup.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--triple">
+                            <figure class="phone phone--md phone--tilt-left phone--back">
+                                <img src="/assets/images/Harmony-md.png"
+                                     srcset="/assets/images/Harmony-sm.png 480w, /assets/images/Harmony-md.png 640w, /assets/images/Harmony-lg.png 800w, /assets/images/Harmony-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Harmony helper" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--front">
+                                <img src="/assets/images/Tuner-lg.png"
+                                     srcset="/assets/images/Tuner-sm.png 480w, /assets/images/Tuner-md.png 640w, /assets/images/Tuner-lg.png 800w, /assets/images/Tuner-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Chromatic tuner" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--tilt-right phone--back">
+                                <img src="/assets/images/Tempo-md.png"
+                                     srcset="/assets/images/Tempo-sm.png 480w, /assets/images/Tempo-md.png 640w, /assets/images/Tempo-lg.png 800w, /assets/images/Tempo-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Tap tempo" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Import/Export (PDF + Export Settings) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Import%20anything.%C2%B6Export%20e.svg" alt="Import anything. Export everything." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Import ChordPro, text, tabs & PDFs</li>
+                                <li>Optional OCR for scanned pages</li>
+                                <li>Export to PDF, ChordPro & plain text</li>
+                                <li>Layouts for rehearsal, sharing or print</li>
+                            </ul>
+                            <p class="showcase-tagline">Your songs, your formats.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--pair">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Export%20PDf-lg.png"
+                                     srcset="/assets/images/Export%20PDf-sm.png 480w, /assets/images/Export%20PDf-md.png 640w, /assets/images/Export%20PDf-lg.png 800w, /assets/images/Export%20PDf-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="PDF export" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--tilt-right">
+                                <img src="/assets/images/Export%20Settings-lg.png"
+                                     srcset="/assets/images/Export%20Settings-sm.png 480w, /assets/images/Export%20Settings-md.png 640w, /assets/images/Export%20Settings-lg.png 800w, /assets/images/Export%20Settings-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Export options" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 7: Full backup (Cloud only) -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Full%20backup%20to%20any%20cloud..svg" alt="Full backup to any cloud." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>No account required</li>
+                                <li>Songs live on your device</li>
+                                <li>Optional iCloud or WebDAV backup</li>
+                                <li>Full control over your music</li>
+                            </ul>
+                            <p class="showcase-tagline">Local-first, musician-first.</p>
+                        </div>
+                        <div class="showcase-phones">
+                            <figure class="phone phone--xl">
+                                <img src="/assets/images/Cloud-xl.png"
+                                     srcset="/assets/images/Cloud-sm.png 480w, /assets/images/Cloud-md.png 640w, /assets/images/Cloud-lg.png 800w, /assets/images/Cloud-xl.png 960w"
+                                     sizes="(max-width: 768px) 440px, 640px"
+                                     alt="Cloud sync" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 8: For musicians, by musicians -->
+                    <div class="showcase-row showcase-row--overlap">
+                        <div class="showcase-text showcase-text--overlap">
+                            <img src="/assets/images/For%C2%B6musicians.%20%C2%B6By%20%C2%B6music.svg" alt="For musicians. By musicians." class="showcase-svg showcase-svg--overlap">
+                            <p class="showcase-caption showcase-caption--simple">
+                                Built by musicians who write, practice, and perform.
+                            </p>
+                            <p class="showcase-tagline">No forced subscriptions. No clutter.<br>Just the tools your songs need.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--hero">
+                            <figure class="phone phone--2xl">
+                                <img src="/assets/images/lazy%20iphone-2xl.png"
+                                     srcset="/assets/images/lazy%20iphone-sm.png 480w, /assets/images/lazy%20iphone-md.png 640w, /assets/images/lazy%20iphone-lg.png 800w, /assets/images/lazy%20iphone-xl.png 960w"
+                                     sizes="(max-width: 768px) 560px, 960px"
+                                     alt="SongScribe app" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay in the Loop</h2>
+                    <p class="newsletter-subtitle">
+                        Get the latest updates, new features, and music tips delivered to your inbox.
+                    </p>
+                    <form class="newsletter-form"
+                        action="https://songscribe.us9.list-manage.com/subscribe/post?u=19d3e54634d518c188143ca16&amp;id=d568f75b10&amp;f_id=0081c2e1f0"
+                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_self"
+                        novalidate>
+                        <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required
+                            aria-label="Email address" class="newsletter-input email">
+                        <button type="submit" name="subscribe" class="btn btn-primary">Subscribe</button>
+                        <!-- Honeypot field for bot protection -->
+                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_19d3e54634d518c188143ca16_d568f75b10" tabindex="-1" value="">
+                        </div>
+                    </form>
+                    <p class="newsletter-help">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="download" class="final-cta">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ready to Create Music Your Way?</h2>
+                    <p class="section-subtitle">
+                        Join our growing community of musicians and discover the freedom of offline music creation.
+                    </p>
+                </div>
+                <div class="cta-actions">
+                    <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+                        Download for iOS
+                    </a>
+                    <span class="btn btn-secondary btn-large btn-disabled">
+                        Android Coming Soon
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
+                    </a>
+                    <p class="footer-tagline">Your music. Your way. Offline, always.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/songscribeapp" class="social-link" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/songscribe" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="mailto:support@songscribe.io">Contact Us</a>
+                    <a href="#newsletter">Stay Updated</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
             </div>
 
-            <form class="email-form"
-                action="https://songscribe.us9.list-manage.com/subscribe/post?u=19d3e54634d518c188143ca16&amp;id=d568f75b10&amp;f_id=0081c2e1f0"
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_self"
-                novalidate>
-                <div class="form-group">
-                    <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required
-                        aria-label="Email address" class="email-input required email">
-                    <button type="submit" name="subscribe" class="notify-button">Notify Me</button>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SongScribe. All rights reserved. Made with love for musicians worldwide.</p>
+                <div class="platform-icons">
+                    <!-- Apple -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on iOS and macOS">
+                        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+                    </svg>
+                    <!-- Windows -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Windows">
+                        <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.649-1.6L24 0v11.4h-13.351V1.849zM0 12.45h9.75v9.451L0 20.55V12.45zm10.649 0H24v11.75l-13.351-1.849V12.45z"/>
+                    </svg>
+                    <!-- Android -->
+                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Android">
+                        <path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/>
+                    </svg>
                 </div>
-                <!-- Honeypot field for bot protection - do not remove -->
-                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_19d3e54634d518c188143ca16_d568f75b10" tabindex="-1" value="">
-                </div>
-                <p class="form-help">We'll let you know when SongScribe launches</p>
-            </form>
+            </div>
         </div>
+    </footer>
 
-        <footer class="coming-soon-footer">
-            <div class="platform-icons">
-                <!-- Apple -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on macOS and iOS">
-                    <path
-                        d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
-                </svg>
-
-                <!-- Windows -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on Windows">
-                    <path
-                        d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.649-1.6L24 0v11.4h-13.351V1.849zM0 12.45h9.75v9.451L0 20.55V12.45zm10.649 0H24v11.75l-13.351-1.849V12.45z" />
-                </svg>
-
-                <!-- Android -->
-                <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Available on Android">
-                    <path
-                        d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z" />
-                </svg>
-            </div>
-            <p>songscribe.io</p>
-            <p><a href="/terms" class="privacy-link">Terms of Use</a> · <a href="/privacy" class="privacy-link">Privacy Policy</a></p>
-        </footer>
+    <!-- Screenshot Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" aria-label="Close"></button>
+        <img class="lightbox-image" id="lightbox-image" src="" alt="">
     </div>
+
     <script type="module" src="/src/main.js"></script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        lucide.createIcons();
+        // Screenshot Lightbox
+        (function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const phones = document.querySelectorAll('.phone');
+
+            phones.forEach(phone => {
+                phone.addEventListener('click', function(e) {
+                    const img = this.querySelector('img');
+                    if (img) {
+                        // Get the highest resolution image from srcset
+                        const srcset = img.getAttribute('srcset');
+                        let highResSrc = img.src;
+
+                        if (srcset) {
+                            const sources = srcset.split(',').map(s => s.trim());
+                            const lastSource = sources[sources.length - 1];
+                            highResSrc = lastSource.split(' ')[0];
+                        }
+
+                        // Also try to get the original full-res image
+                        const baseSrc = highResSrc.replace(/-(?:sm|md|lg|xl|2xl)\.png/, '.png');
+
+                        lightboxImg.src = baseSrc;
+                        lightboxImg.alt = img.alt;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Close on overlay click
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        })();
     </script>
 
     <script>
@@ -157,10 +530,8 @@
             const consent = localStorage.getItem('cookie-consent');
             const banner = document.getElementById('cookie-consent');
 
-            // Load GTM only if user has previously accepted cookies
             function loadGTM() {
-                // Only load if GTM ID is configured (not placeholder)
-                const gtmId = 'GTM-XXXXXXX';
+                const gtmId = 'GTM-M7G6MZ8K';
                 if (gtmId && gtmId !== 'GTM-XXXXXXX') {
                     window.dataLayer = window.dataLayer || [];
                     function gtag() { dataLayer.push(arguments); }
@@ -185,7 +556,6 @@
 
             if (!consent && banner) {
                 banner.style.display = 'block';
-                // Trigger animation after display is set
                 setTimeout(function () {
                     banner.classList.add('show');
                 }, 10);
@@ -196,7 +566,7 @@
                     setTimeout(function () {
                         banner.style.display = 'none';
                     }, 300);
-                    loadGTM(); // Load GTM after acceptance
+                    loadGTM();
                 });
 
                 document.getElementById('cookie-decline').addEventListener('click', function () {
@@ -205,7 +575,6 @@
                     setTimeout(function () {
                         banner.style.display = 'none';
                     }, 300);
-                    // Don't load GTM if declined
                 });
             }
         })();
