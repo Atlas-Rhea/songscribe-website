@@ -15,8 +15,7 @@ export class LiquidLogoCSS {
     this.layerDepths = {
       layer1: 20,  // Front layer - subtle parallax (feather highlight)
       layer2: 8,   // Middle layer (music note)
-      layer3: 0,   // Back layer - base (feather shadow)
-      glow: 30     // Glow floats above
+      layer3: 0    // Back layer - base (feather shadow)
     };
   }
 
@@ -49,7 +48,6 @@ export class LiquidLogoCSS {
           <div class="glass-layer layer-3" id="layer-3">
             <img src="/assets/images/Layer3.svg" alt="">
           </div>
-          <div class="glass-glow" id="glass-glow"></div>
         </div>
       </div>
     `;
@@ -60,7 +58,6 @@ export class LiquidLogoCSS {
     this.layer1 = document.getElementById('layer-1');
     this.layer2 = document.getElementById('layer-2');
     this.layer3 = document.getElementById('layer-3');
-    this.glowEl = document.getElementById('glass-glow');
     this.sceneEl = this.container.querySelector('.glass-scene');
   }
 
@@ -204,7 +201,6 @@ export class LiquidLogoCSS {
     const layer1Z = this.layerDepths.layer1;
     const layer2Z = this.layerDepths.layer2;
     const layer3Z = this.layerDepths.layer3;
-    const glowZ = this.layerDepths.glow;
 
     // For Chrome compatibility, apply rotation to each layer as well
     const rotationStr = `rotateX(${rotateX * 0.5}deg) rotateY(${rotateY * 0.5}deg)`;
@@ -229,17 +225,6 @@ export class LiquidLogoCSS {
       const layer3Transform = `${rotationStr} translate3d(0, 0, ${layer3Z}px)`;
       this.layer3.style.webkitTransform = layer3Transform;
       this.layer3.style.transform = layer3Transform;
-    }
-    if (this.glowEl) {
-      // Glow follows interaction
-      const glowX = 50 + x * 30;
-      const glowY = 50 + y * 30;
-      this.glowEl.style.webkitTransformStyle = 'preserve-3d';
-      this.glowEl.style.transformStyle = 'preserve-3d';
-      const glowTransform = `translate3d(0, 0, ${glowZ}px)`;
-      this.glowEl.style.webkitTransform = glowTransform;
-      this.glowEl.style.transform = glowTransform;
-      this.glowEl.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)`;
     }
 
     this.ticking = false;

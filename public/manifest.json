@@ -1,0 +1,16 @@
+{
+  "name": "SongScribe",
+  "short_name": "SongScribe",
+  "description": "The ultimate offline-first songwriting companion for musicians.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF9F6",
+  "theme_color": "#FBBF24",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
