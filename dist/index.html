@@ -28,8 +28,11 @@
     <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/assets/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,15 +59,10 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "150"
       }
     }
     </script>
-  <script type="module" crossorigin src="/assets/main-DQm_BsR_.js"></script>
+  <script type="module" crossorigin src="/assets/main-CyT40NkH.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main.css">
 </head>
 
@@ -84,11 +82,10 @@
     <header class="header">
         <nav class="nav-container">
             <a href="/" class="logo">
-                <img src="/assets/images/logo-full.svg" alt="SongScribe">
+                <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
             </a>
             <div class="nav-links" id="nav-links">
                 <a href="#features" class="nav-link">Features</a>
-                <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#newsletter" class="nav-link">Stay Updated</a>
                 <div class="nav-cta mobile">
                     <a href="#download" class="btn btn-primary">Download Free</a>
@@ -116,11 +113,9 @@
                     <div class="hero-logo-container">
                         <div id="logo-container"></div>
                     </div>
-                    <h1 class="hero-title">
-                        <span>Your Music.</span>
-                        <span>Your Way.</span>
-                        <span>Offline.</span>
-                    </h1>
+                    <img src="/assets/images/Write songs the way you play.svg"
+                         alt="Write songs the way you play"
+                         class="hero-tagline-svg">
                     <p class="hero-subtitle">
                         SongScribe is the ultimate songwriting companion for musicians who want simplicity, power, and complete offline control. No accounts. No subscriptions. Just your music.
                     </p>
@@ -132,121 +127,232 @@
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section id="features" class="features">
+        <!-- Features Section - Watercolor Cascade -->
+        <section id="features" class="feature-cascade">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Everything You Need to Create</h2>
-                    <p class="section-subtitle">
-                        SongScribe combines powerful features with an intuitive, distraction-free interface.
-                    </p>
+                <div class="section-header section-header--flow">
+                    <h2 class="section-title">Songwriting that stays in flow</h2>
+                    <p class="section-tagline">Your song looks the way it sounds.</p>
+                    <div class="flow-divider"></div>
+                    <ul class="flow-features">
+                        <li>Natural chord placement</li>
+                        <li>Structured sections</li>
+                        <li>Key, tempo & tuning</li>
+                        <li>Clean, readable layouts</li>
+                    </ul>
                 </div>
 
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Lyric Editor Screenshot</div>
+                <!-- Feature Showcase - Dynamic Layout -->
+                <div class="feature-showcase">
+
+                    <!-- Row 1: All your songs -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/All your songs. Always re.svg" alt="All your songs. Always ready." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Searchable song library</li>
+                                <li>Folders, tags & smart filters</li>
+                                <li>Setlists for gigs & rehearsals</li>
+                                <li>Quick access to everything</li>
+                            </ul>
+                            <p class="showcase-tagline">Find any song in seconds.</p>
                         </div>
-                        <h3 class="feature-title">Capture</h3>
-                        <p class="feature-description">
-                            Rich lyric editor with chord alignment. Record practice sessions with waveform visualization and smart silence trimming.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Song Settings Screenshot</div>
-                        </div>
-                        <h3 class="feature-title">Shape</h3>
-                        <p class="feature-description">
-                            Tap Tempo, metronome, and professional song settings. Tuner that works even with background noise.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Library Screenshot</div>
-                        </div>
-                        <h3 class="feature-title">Organize</h3>
-                        <p class="feature-description">
-                            Folders, tags, and a searchable song library. Build setlists for rehearsals and live performances.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Export Screenshot</div>
-                        </div>
-                        <h3 class="feature-title">Share</h3>
-                        <p class="feature-description">
-                            Export to ChordPro, PDF, and more. Pro Mode with auto-scroll and MIDI footswitch support for stage use.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Web Tabs Screenshot</div>
-                        </div>
-                        <h3 class="feature-title">Archive</h3>
-                        <p class="feature-description">
-                            Save and edit web tabs for offline reference. Build your own chord library with the Chord Builder.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image">
-                            <div class="feature-image-placeholder">Offline Illustration</div>
-                        </div>
-                        <h3 class="feature-title">Offline</h3>
-                        <p class="feature-description">
-                            No accounts, no subscriptions. Works without internet. Your music stays on your device, always.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works Section -->
-        <section id="how-it-works" class="how-it-works">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">How SongScribe Works</h2>
-                    <p class="section-subtitle">Three simple steps to musical freedom</p>
-                </div>
-
-                <div class="steps-grid">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3 class="step-title">Capture</h3>
-                        <p class="step-description">
-                            Write lyrics with perfectly aligned chords. Record audio ideas. Everything syncs together automatically.
-                        </p>
-                        <div class="step-visual">
-                            <span class="step-visual-placeholder">Step 1 Visual</span>
+                        <div class="showcase-phones showcase-phones--cluster">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Songlist-lg.png"
+                                     srcset="/assets/images/Songlist-sm.png 480w, /assets/images/Songlist-md.png 640w, /assets/images/Songlist-lg.png 800w, /assets/images/Songlist-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Song library" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--tilt-right phone--overlap">
+                                <img src="/assets/images/Setlist-md.png"
+                                     srcset="/assets/images/Setlist-sm.png 480w, /assets/images/Setlist-md.png 640w, /assets/images/Setlist-lg.png 800w, /assets/images/Setlist-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Setlist builder" loading="lazy">
+                            </figure>
                         </div>
                     </div>
 
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3 class="step-title">Organize</h3>
-                        <p class="step-description">
-                            Build setlists for rehearsals and gigs. Tag and search your entire library. Keep everything in one place.
-                        </p>
-                        <div class="step-visual">
-                            <span class="step-visual-placeholder">Step 2 Visual</span>
+                    <!-- Row 2: Built for live performance (Autoscroll only) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Built for live performanc.svg" alt="Built for live performance." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Fullscreen lyrics with auto-scroll</li>
+                                <li>Hands-free with tap or MIDI</li>
+                                <li>Large, readable text on any screen</li>
+                                <li>Stay focused on the music</li>
+                            </ul>
+                            <p class="showcase-tagline">Perform without distractions.</p>
+                        </div>
+                        <div class="showcase-phones">
+                            <figure class="phone phone--xl">
+                                <img src="/assets/images/Autoscroll-xl.png"
+                                     srcset="/assets/images/Autoscroll-sm.png 480w, /assets/images/Autoscroll-md.png 640w, /assets/images/Autoscroll-lg.png 800w, /assets/images/Autoscroll-xl.png 960w"
+                                     sizes="(max-width: 768px) 440px, 640px"
+                                     alt="Performance mode" loading="lazy">
+                            </figure>
                         </div>
                     </div>
 
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3 class="step-title">Perform</h3>
-                        <p class="step-description">
-                            Use Pro Mode for fullscreen lyrics with auto-scroll. Export clean PDFs for the stage or studio.
-                        </p>
-                        <div class="step-visual">
-                            <span class="step-visual-placeholder">Step 3 Visual</span>
+                    <!-- Row 3: Capture ideas -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Capture ideas instantly..svg" alt="Capture ideas instantly." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Built-in multi-take recorder</li>
+                                <li>Waveform view with trim & playback</li>
+                                <li>Record without leaving your song</li>
+                                <li>Keep takes with the music they belong to</li>
+                            </ul>
+                            <p class="showcase-tagline">Never lose a song again.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--stack">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Record-lg.png"
+                                     srcset="/assets/images/Record-sm.png 480w, /assets/images/Record-md.png 640w, /assets/images/Record-lg.png 800w, /assets/images/Record-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Audio recording" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--offset">
+                                <img src="/assets/images/Studio-md.png"
+                                     srcset="/assets/images/Studio-sm.png 480w, /assets/images/Studio-md.png 640w, /assets/images/Studio-lg.png 800w, /assets/images/Studio-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Recording studio" loading="lazy">
+                            </figure>
                         </div>
                     </div>
+
+                    <!-- Row 4: Chords (Guitar + Piano only) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Chords for every instrume.svg" alt="Chords for every instrument." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Voicings, inversions & variations</li>
+                                <li>Slash chords & extensions</li>
+                                <li>Guitar, bass, ukulele & more</li>
+                                <li>Designed for real instruments</li>
+                            </ul>
+                            <p class="showcase-tagline">Chords that feel right when you play them.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--pair">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Guitar-lg.png"
+                                     srcset="/assets/images/Guitar-sm.png 480w, /assets/images/Guitar-md.png 640w, /assets/images/Guitar-lg.png 800w, /assets/images/Guitar-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Guitar chords" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--tilt-right">
+                                <img src="/assets/images/Piano-lg.png"
+                                     srcset="/assets/images/Piano-sm.png 480w, /assets/images/Piano-md.png 640w, /assets/images/Piano-lg.png 800w, /assets/images/Piano-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Piano chords" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Practice with confidence (Harmony, Tuner, Tempo) -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Practice with confidence..svg" alt="Practice with confidence." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Chromatic tuner</li>
+                                <li>Metronome with tap tempo</li>
+                                <li>Simple tools that stay out of the way</li>
+                            </ul>
+                            <p class="showcase-tagline">Focus on the music, not the setup.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--triple">
+                            <figure class="phone phone--md phone--tilt-left phone--back">
+                                <img src="/assets/images/Harmony-md.png"
+                                     srcset="/assets/images/Harmony-sm.png 480w, /assets/images/Harmony-md.png 640w, /assets/images/Harmony-lg.png 800w, /assets/images/Harmony-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Harmony helper" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--front">
+                                <img src="/assets/images/Tuner-lg.png"
+                                     srcset="/assets/images/Tuner-sm.png 480w, /assets/images/Tuner-md.png 640w, /assets/images/Tuner-lg.png 800w, /assets/images/Tuner-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Chromatic tuner" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--md phone--tilt-right phone--back">
+                                <img src="/assets/images/Tempo-md.png"
+                                     srcset="/assets/images/Tempo-sm.png 480w, /assets/images/Tempo-md.png 640w, /assets/images/Tempo-lg.png 800w, /assets/images/Tempo-xl.png 960w"
+                                     sizes="(max-width: 768px) 280px, 400px"
+                                     alt="Tap tempo" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Import/Export (PDF + Export Settings) -->
+                    <div class="showcase-row showcase-row--reverse">
+                        <div class="showcase-text showcase-text--right">
+                            <img src="/assets/images/Import anything.¶Export e.svg" alt="Import anything. Export everything." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>Import ChordPro, text, tabs & PDFs</li>
+                                <li>Optional OCR for scanned pages</li>
+                                <li>Export to PDF, ChordPro & plain text</li>
+                                <li>Layouts for rehearsal, sharing or print</li>
+                            </ul>
+                            <p class="showcase-tagline">Your songs, your formats.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--pair">
+                            <figure class="phone phone--lg phone--tilt-left">
+                                <img src="/assets/images/Export PDf-lg.png"
+                                     srcset="/assets/images/Export%2520PDf-sm.png 480w, /assets/images/Export%2520PDf-md.png 640w, /assets/images/Export%2520PDf-lg.png 800w, /assets/images/Export%2520PDf-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="PDF export" loading="lazy">
+                            </figure>
+                            <figure class="phone phone--lg phone--tilt-right">
+                                <img src="/assets/images/Export Settings-lg.png"
+                                     srcset="/assets/images/Export%2520Settings-sm.png 480w, /assets/images/Export%2520Settings-md.png 640w, /assets/images/Export%2520Settings-lg.png 800w, /assets/images/Export%2520Settings-xl.png 960w"
+                                     sizes="(max-width: 768px) 360px, 520px"
+                                     alt="Export options" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 7: Full backup (Cloud only) -->
+                    <div class="showcase-row">
+                        <div class="showcase-text showcase-text--left">
+                            <img src="/assets/images/Full backup to any cloud..svg" alt="Full backup to any cloud." class="showcase-svg">
+                            <ul class="showcase-caption">
+                                <li>No account required</li>
+                                <li>Songs live on your device</li>
+                                <li>Optional iCloud or WebDAV backup</li>
+                                <li>Full control over your music</li>
+                            </ul>
+                            <p class="showcase-tagline">Local-first, musician-first.</p>
+                        </div>
+                        <div class="showcase-phones">
+                            <figure class="phone phone--xl">
+                                <img src="/assets/images/Cloud-xl.png"
+                                     srcset="/assets/images/Cloud-sm.png 480w, /assets/images/Cloud-md.png 640w, /assets/images/Cloud-lg.png 800w, /assets/images/Cloud-xl.png 960w"
+                                     sizes="(max-width: 768px) 440px, 640px"
+                                     alt="Cloud sync" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Row 8: For musicians, by musicians -->
+                    <div class="showcase-row showcase-row--overlap">
+                        <div class="showcase-text showcase-text--overlap">
+                            <img src="/assets/images/For¶musicians. ¶By ¶music.svg" alt="For musicians. By musicians." class="showcase-svg showcase-svg--overlap">
+                            <p class="showcase-caption showcase-caption--simple">
+                                Built by musicians who write, practice, and perform.
+                            </p>
+                            <p class="showcase-tagline">No forced subscriptions. No clutter.<br>Just the tools your songs need.</p>
+                        </div>
+                        <div class="showcase-phones showcase-phones--hero">
+                            <figure class="phone phone--2xl">
+                                <img src="/assets/images/lazy iphone-2xl.png"
+                                     srcset="/assets/images/lazy%2520iphone-sm.png 480w, /assets/images/lazy%2520iphone-md.png 640w, /assets/images/lazy%2520iphone-lg.png 800w, /assets/images/lazy%2520iphone-xl.png 960w"
+                                     sizes="(max-width: 768px) 560px, 960px"
+                                     alt="SongScribe app" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -282,11 +388,11 @@
                 <div class="section-header">
                     <h2 class="section-title">Ready to Create Music Your Way?</h2>
                     <p class="section-subtitle">
-                        Join thousands of musicians who have discovered the freedom of offline music creation.
+                        Join our growing community of musicians and discover the freedom of offline music creation.
                     </p>
                 </div>
                 <div class="cta-actions">
-                    <a href="https://apps.apple.com/app/songscribe" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+                    <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary btn-large" target="_blank" rel="noopener">
                         Download for iOS
                     </a>
                     <span class="btn btn-secondary btn-large btn-disabled">
@@ -303,8 +409,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/" class="footer-logo">
-                        <img src="/assets/images/logo-full.svg" alt="SongScribe">
-                        <span class="footer-logo-text">SongScribe</span>
+                        <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
                     </a>
                     <p class="footer-tagline">Your music. Your way. Offline, always.</p>
                     <div class="social-links">
@@ -324,30 +429,19 @@
                 <div class="footer-column">
                     <h4>Product</h4>
                     <a href="#features">Features</a>
-                    <a href="#how-it-works">How It Works</a>
                     <a href="#download">Download</a>
-                    <a href="/changelog">Changelog</a>
                 </div>
 
                 <div class="footer-column">
                     <h4>Support</h4>
-                    <a href="/support">Help Center</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="/feedback">Feedback</a>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <a href="/about">About</a>
-                    <a href="/blog">Blog</a>
-                    <a href="/press">Press</a>
+                    <a href="mailto:support@songscribe.io">Contact Us</a>
+                    <a href="#newsletter">Stay Updated</a>
                 </div>
 
                 <div class="footer-column">
                     <h4>Legal</h4>
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/terms">Terms of Service</a>
-                    <a href="/cookies">Cookie Policy</a>
                 </div>
             </div>
 
@@ -371,6 +465,65 @@
         </div>
     </footer>
 
+    <!-- Screenshot Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" aria-label="Close"></button>
+        <img class="lightbox-image" id="lightbox-image" src="" alt="">
+    </div>
+
+
+    <script>
+        // Screenshot Lightbox
+        (function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const phones = document.querySelectorAll('.phone');
+
+            phones.forEach(phone => {
+                phone.addEventListener('click', function(e) {
+                    const img = this.querySelector('img');
+                    if (img) {
+                        // Get the highest resolution image from srcset
+                        const srcset = img.getAttribute('srcset');
+                        let highResSrc = img.src;
+
+                        if (srcset) {
+                            const sources = srcset.split(',').map(s => s.trim());
+                            const lastSource = sources[sources.length - 1];
+                            highResSrc = lastSource.split(' ')[0];
+                        }
+
+                        // Also try to get the original full-res image
+                        const baseSrc = highResSrc.replace(/-(?:sm|md|lg|xl|2xl)\.png/, '.png');
+
+                        lightboxImg.src = baseSrc;
+                        lightboxImg.alt = img.alt;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Close on overlay click
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        })();
+    </script>
 
     <script>
         // Cookie Consent Handler & Conditional GTM Loading
@@ -379,7 +532,7 @@
             const banner = document.getElementById('cookie-consent');
 
             function loadGTM() {
-                const gtmId = 'GTM-XXXXXXX';
+                const gtmId = 'GTM-M7G6MZ8K';
                 if (gtmId && gtmId !== 'GTM-XXXXXXX') {
                     window.dataLayer = window.dataLayer || [];
                     function gtag() { dataLayer.push(arguments); }
