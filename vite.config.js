@@ -13,6 +13,10 @@ export default defineConfig({
                 main: resolve(__dirname, 'index.html'),
                 terms: resolve(__dirname, 'terms.html'),
                 privacy: resolve(__dirname, 'privacy.html'),
+                tunerIndex: resolve(__dirname, 'tuner/index.html'),
+                tunerPrivacy: resolve(__dirname, 'tuner/privacy.html'),
+                tunerTerms: resolve(__dirname, 'tuner/terms.html'),
+                tunerSupport: resolve(__dirname, 'tuner/support.html'),
             },
             output: {
                 // Ensure consistent asset paths

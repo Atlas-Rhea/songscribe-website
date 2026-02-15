@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SongScribe Tuner - Professional Instrument Tuner for Musicians</title>
+    <meta name="description" content="Free professional tuner for guitar, bass, ukulele, violin, and chromatic tuning. Real-time pitch detection with ±1 cent accuracy. Works offline.">
+    <link rel="canonical" href="https://tuner.songscribe.io">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tuner.songscribe.io">
+    <meta property="og:title" content="SongScribe Tuner - Professional Instrument Tuner">
+    <meta property="og:description" content="Free professional tuner for guitar, bass, ukulele, violin, and chromatic tuning. Real-time pitch detection with ±1 cent accuracy.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tuner.songscribe.io">
+    <meta name="twitter:title" content="SongScribe Tuner - Professional Instrument Tuner">
+    <meta name="twitter:description" content="Free professional tuner for guitar, bass, ukulele, violin, and chromatic tuning. Real-time pitch detection with ±1 cent accuracy.">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .tuner-hero {
+            text-align: center;
+            padding: var(--space-xxl) var(--space-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tuner-hero h1 {
+            font-size: var(--text-5xl);
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+            line-height: 1.2;
+        }
+
+        .tuner-hero .tagline {
+            font-size: var(--text-xl);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xxl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tuner-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xxl);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: left;
+        }
+
+        .feature-card h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-primary);
+        }
+
+        .feature-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .app-store-section {
+            text-align: center;
+            padding: var(--space-xxl) var(--space-xl);
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            margin-top: var(--space-lg);
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .tuner-footer {
+            text-align: center;
+            padding: var(--space-xxl) var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tuner-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+
+        .tuner-footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+        }
+
+        .tuner-footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .from-makers {
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .from-makers a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .from-makers a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .tuner-hero h1 {
+                font-size: var(--text-4xl);
+            }
+
+            .tuner-hero .tagline {
+                font-size: var(--text-lg);
+            }
+
+            .tuner-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="coming-soon-container">
+        <div class="tuner-hero">
+            <h1>SongScribe Tuner</h1>
+            <p class="tagline">Professional instrument tuner with real-time pitch detection. Free, accurate, and works offline.</p>
+
+            <div class="app-store-section">
+                <p class="app-store-badge">Coming Soon to the App Store</p>
+            </div>
+        </div>
+
+        <div class="tuner-features">
+            <div class="feature-card">
+                <div class="feature-icon">🎸</div>
+                <h3>All Instruments</h3>
+                <p>Chromatic tuning for any instrument, plus optimized presets for guitar, bass, ukulele, and violin.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Professional Accuracy</h3>
+                <p>±1 cent precision using advanced pitch detection algorithms. As accurate as hardware tuners.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Real-Time Detection</h3>
+                <p>Instant pitch feedback with visual needle indicator and cent deviation display.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Customizable Settings</h3>
+                <p>Adjustable reference pitch (430-450Hz), sharps/flats notation, and dark mode support.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✈️</div>
+                <h3>Works Offline</h3>
+                <p>No internet required. Tune anywhere, anytime - perfect for rehearsals and gigs.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Clean Interface</h3>
+                <p>Distraction-free design focused on tuning. Optional ad removal for $1.99 (one-time purchase).</p>
+            </div>
+        </div>
+
+        <div class="tuner-features">
+            <div class="feature-card">
+                <h3>Free with Ads</h3>
+                <p>Full tuning functionality with banner ads on non-tuning screens. No ads during active tuning to avoid distraction.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Remove Ads ($1.99)</h3>
+                <p>One-time purchase removes all ads permanently. No subscription required. Restore on all your devices.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Privacy First</h3>
+                <p>Your microphone audio is processed in real-time and <strong>never recorded or stored</strong>. All settings stay on your device.</p>
+            </div>
+        </div>
+
+        <div class="tuner-footer">
+            <div class="tuner-footer-links">
+                <a href="/tuner/privacy">Privacy Policy</a>
+                <a href="/tuner/terms">Terms of Use</a>
+                <a href="/tuner/support">Support & FAQ</a>
+            </div>
+            <p class="from-makers">From the makers of <a href="https://songscribe.io">SongScribe</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
