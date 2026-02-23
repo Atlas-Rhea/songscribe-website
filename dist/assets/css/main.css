@@ -106,6 +106,8 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* iOS Safari safe area support */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
@@ -184,6 +186,9 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--color-border-subtle);
   padding: var(--space-md) var(--space-lg);
+  padding-top: max(var(--space-md), env(safe-area-inset-top));
+  padding-left: max(var(--space-lg), env(safe-area-inset-left));
+  padding-right: max(var(--space-lg), env(safe-area-inset-right));
   z-index: var(--z-sticky);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -1635,6 +1640,7 @@ a:hover {
 
 .footer {
   padding: var(--space-xxl) 0 var(--space-xl);
+  padding-bottom: max(var(--space-xl), env(safe-area-inset-bottom));
   background-color: var(--color-surface-2);
 }
 
@@ -1789,6 +1795,9 @@ a:hover {
   background-color: var(--color-surface-0);
   border-top: 1px solid var(--color-border-subtle);
   padding: var(--space-lg);
+  padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
+  padding-left: max(var(--space-lg), env(safe-area-inset-left));
+  padding-right: max(var(--space-lg), env(safe-area-inset-right));
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
   z-index: var(--z-cookie);
   transform: translateY(100%);
