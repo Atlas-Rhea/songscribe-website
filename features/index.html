@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Features in Depth - SongScribe</title>
+    <meta name="description" content="A detailed look at everything SongScribe can do — physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <link rel="canonical" href="https://songscribe.io/features">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://songscribe.io/features">
+    <meta property="og:title" content="Features in Depth - SongScribe">
+    <meta property="og:description" content="A detailed look at everything SongScribe can do — physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/features">
+    <meta name="twitter:title" content="Features in Depth - SongScribe">
+    <meta name="twitter:description" content="A detailed look at everything SongScribe can do — physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* -----------------------------------------------
+           Features Page — Specific Styles
+           ----------------------------------------------- */
+
+        .features-page {
+            background-color: var(--color-surface-1);
+            color: var(--color-text-primary);
+        }
+
+        /* Page header */
+        .features-masthead {
+            padding: var(--space-xxxl) var(--space-xl) var(--space-xxl);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-masthead-eyebrow {
+            display: inline-block;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .features-masthead h1 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .features-masthead-intro {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* Feature sections */
+        .features-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-xxxl);
+        }
+
+        .feature-section {
+            margin-bottom: var(--space-xxxl);
+            padding-bottom: var(--space-xxxl);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .feature-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .feature-section-number {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-section h2 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.2;
+        }
+
+        .feature-section p {
+            font-size: var(--text-lg);
+            line-height: 1.85;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .feature-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Detail callout blocks */
+        .detail-block {
+            background-color: rgba(251, 191, 36, 0.07);
+            border-left: 3px solid var(--color-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: var(--space-lg) var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .detail-block p {
+            font-size: var(--text-base);
+            line-height: 1.75;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .detail-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-block strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        /* Teal callout variant */
+        .detail-block--teal {
+            background-color: rgba(45, 158, 158, 0.06);
+            border-left-color: var(--color-secondary);
+        }
+
+        /* Spec list */
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-lg) 0;
+        }
+
+        .spec-list li {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border-subtle);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+        }
+
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 0.45em;
+        }
+
+        /* Roadmap section */
+        .roadmap-section {
+            background-color: var(--color-surface-2);
+            border: 1px solid var(--color-border-medium);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xxl) var(--space-xl);
+            margin-top: var(--space-xxl);
+        }
+
+        .roadmap-section h2 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(1.25rem, 3vw, 1.875rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .roadmap-section .roadmap-caveat {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-bottom: var(--space-xl);
+            line-height: 1.7;
+        }
+
+        .roadmap-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .roadmap-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .roadmap-item-title {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .roadmap-item-desc {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+        }
+
+        /* Download CTA */
+        .features-cta {
+            text-align: center;
+            padding: var(--space-xxl) var(--space-xl);
+            border-top: 1px solid var(--color-border-subtle);
+            margin-top: var(--space-xxl);
+        }
+
+        .features-cta p {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Footer */
+        .features-footer {
+            background-color: var(--color-surface-0);
+            border-top: 1px solid var(--color-border-subtle);
+            padding: var(--space-xxl) var(--space-xl);
+        }
+
+        .features-footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+        }
+
+        .features-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+        }
+
+        .features-footer-links a {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+        }
+
+        .features-footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .features-footer-copy {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .tuner-crosslink {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--color-secondary-strong);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .tuner-crosslink:hover {
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 600px) {
+            .features-masthead,
+            .features-body {
+                padding-left: var(--space-lg);
+                padding-right: var(--space-lg);
+            }
+
+            .features-footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body class="features-page">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/changelog" class="nav-link">Changelog</a>
+                <a href="https://tuner.songscribe.io" class="nav-link nav-link--tuner" target="_blank" rel="noopener">Tuner <span class="nav-badge">Free App</span></a>
+                <div class="nav-cta mobile">
+                    <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary" target="_blank" rel="noopener">Download Free</a>
+                </div>
+            </div>
+            <div class="nav-cta">
+                <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary" target="_blank" rel="noopener">Download Free</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <div class="features-masthead">
+            <span class="features-masthead-eyebrow">Under the Hood</span>
+            <h1>Every feature, explained properly</h1>
+            <p class="features-masthead-intro">
+                The homepage skims past a lot. This page goes deep. It is written for musicians who have already
+                downloaded SongScribe and want to understand exactly what it does and why it was built the way it was.
+            </p>
+        </div>
+
+        <div class="features-body">
+
+            <!-- 1. Sound Engine -->
+            <div class="feature-section">
+                <div class="feature-section-number">01</div>
+                <h2>Sound Engine — Karplus-Strong Guitar Synthesis</h2>
+
+                <p>
+                    The guitar sound in SongScribe is not a sample. There is no recording of a guitar string that
+                    gets triggered when you tap a chord. Instead, the sound is generated in real time from a physical
+                    model of how a string actually behaves when plucked.
+                </p>
+
+                <p>
+                    The synthesis method is called Karplus-Strong, named for the researchers who formalized it. The
+                    core idea is that a plucked string can be modeled as a burst of noise — representing the pick
+                    attack — that circulates through a short delay line with a carefully tuned feedback loop.
+                    The delay length determines pitch. The feedback shaping determines timbre and decay.
+                </p>
+
+                <div class="detail-block">
+                    <p>
+                        <strong>Why this matters:</strong> Sample-based playback loops the same recording every time
+                        you play the same note. Physical modeling never repeats. Strum velocity changes the attack
+                        character. Sympathetic resonance between strings is simulated, so open strings ring against
+                        fretted ones. Body resonance adds low-mid warmth that changes based on the chord voicing.
+                        No two strums are identical.
+                    </p>
+                </div>
+
+                <p>
+                    The result is not a perfect imitation of a real guitar. It is not trying to be. What it gives
+                    you is something that responds and breathes when you interact with it — which is far more useful
+                    for songwriting practice than a static audio file.
+                </p>
+            </div>
+
+            <!-- 2. Drum Machine -->
+            <div class="feature-section">
+                <div class="feature-section-number">02</div>
+                <h2>The Drum Machine — Humanized, Not Programmed</h2>
+
+                <p>
+                    Most app drum machines give you a grid and ask you to place hits. SongScribe does not.
+                    The patterns are crafted, not assembled.
+                </p>
+
+                <p>
+                    There are 13 patterns across rock, hip-hop and trap, breakbeat, ballad, reggae, and click.
+                    Each one was designed as a complete groove, not a series of individual hits. The humanization
+                    is baked directly into the pattern data.
+                </p>
+
+                <div class="detail-block">
+                    <p><strong>Per-instrument swing variation:</strong> Hi-hats push slightly ahead of the beat with
+                    1.2x timing variation. Kick stays locked with 0.3x variation. The snare sits in between.
+                    This replicates the way real drummers subdivide differently on different limbs.</p>
+                    <p><strong>Ghost notes:</strong> Ghost notes are explicitly coded at 0.25–0.3 velocity inside
+                    each pattern. They are not randomized — they are placed where a drummer would naturally play
+                    them, based on the feel of each groove.</p>
+                    <p><strong>4-bar fills:</strong> Every pattern has a fill baked into bar 4. The groove runs
+                    for three bars, then breaks on the fourth. It loops back into the downbeat of bar 1 cleanly.</p>
+                    <p><strong>Real-time micro-timing:</strong> At playback, each instrument gets ±6ms of timing
+                    humanization applied per hit. The offsets vary by instrument class and are recalculated on
+                    every pass. This prevents the mechanical snapping that makes programmed drums sound robotic.</p>
+                </div>
+
+                <p>
+                    The patterns are not user-programmable. That is a deliberate decision. A programmer's drum
+                    machine is a tool for producers. SongScribe's drum machine is for songwriters who need
+                    a rhythm section that sits in the background and feels right, so they can focus on the song.
+                </p>
+
+                <div class="detail-block--teal detail-block">
+                    <p><strong>On the roadmap:</strong> Custom MIDI loop import is planned. The goal is to
+                    let you bring your own grooves into SongScribe without losing the humanized playback
+                    infrastructure. No timeline for this yet.</p>
+                </div>
+            </div>
+
+            <!-- 3. Alternate Tunings -->
+            <div class="feature-section">
+                <div class="feature-section-number">03</div>
+                <h2>25+ Alternate Tunings — Full System Recalculation</h2>
+
+                <p>
+                    Alternate tunings in SongScribe are not a cosmetic feature. When you switch from standard
+                    tuning to DADGAD, the entire app recalculates.
+                </p>
+
+                <ul class="spec-list">
+                    <li>Every chord diagram redraws with correct fingering for that tuning</li>
+                    <li>Note names update to reflect the actual pitches being played</li>
+                    <li>The synthesized audio matches the tuning — this is not transposed standard tuning</li>
+                    <li>The CAGED system visualization recalculates for the new open string configuration</li>
+                    <li>You can switch tunings mid-song without leaving the editor</li>
+                </ul>
+
+                <p>
+                    The library includes DADGAD, Open G, Open D, Open C, Open E, Drop D, Double Drop D,
+                    Nashville tuning, half-step down, whole-step down, and more than twenty additional
+                    configurations. Standard tuning for each instrument is always available as the baseline.
+                </p>
+
+                <p>
+                    For slide players, open tunings, and anyone who writes in a non-standard configuration,
+                    this means the app is actually useful rather than requiring you to mentally transpose
+                    everything.
+                </p>
+            </div>
+
+            <!-- 4. Six Instruments -->
+            <div class="feature-section">
+                <div class="feature-section-number">04</div>
+                <h2>Six Instruments — Built from Their Actual Physics</h2>
+
+                <p>
+                    Each instrument in SongScribe has its own physical model and its own set of constraints.
+                    They are not guitar with different tuning presets.
+                </p>
+
+                <div class="detail-block">
+                    <p><strong>Guitar:</strong> Six strings, standard E-A-D-G-B-e. Full Karplus-Strong model
+                    with string-to-body coupling. All alternate tunings supported.</p>
+                    <p><strong>Ukulele:</strong> Four strings with re-entrant G — the g string is tuned a
+                    fourth higher than you would expect from pitch order, giving ukulele its characteristic
+                    open jangle. The model accounts for this correctly.</p>
+                    <p><strong>Banjo:</strong> The 5th string drone is part of the instrument. It rings
+                    through every pattern, as it does on a real banjo. Open G tuning is the default.</p>
+                    <p><strong>Bass:</strong> Four-string, one octave below guitar. Low-frequency string
+                    physics with appropriate decay.</p>
+                    <p><strong>Mandolin:</strong> Eight strings in four pairs, tuned G-D-A-E. The doubled
+                    strings create the mandolin's characteristic shimmer.</p>
+                    <p><strong>Piano:</strong> Steinway samples with proper velocity sensitivity and sustain
+                    response. The piano does not use the Karplus-Strong model — it uses sampled audio because
+                    piano acoustics are substantially more complex and sample playback is the right tool.</p>
+                </div>
+
+                <p>
+                    Chord voicings, CAGED positions, and the chord library all operate correctly for each
+                    instrument. The app knows which voicings are physically playable and surfaces those first.
+                </p>
+            </div>
+
+            <!-- 5. CAGED System -->
+            <div class="feature-section">
+                <div class="feature-section-number">05</div>
+                <h2>CAGED System — Every Voicing on the Neck</h2>
+
+                <p>
+                    The CAGED system is a framework for understanding chord shapes across the entire guitar
+                    neck. Every chord can be played in five positions, each derived from the shape of an open
+                    C, A, G, E, or D chord. Knowing all five positions means you can play any chord anywhere
+                    on the neck without shifting hand position drastically.
+                </p>
+
+                <p>
+                    SongScribe shows all five CAGED positions for every chord in its library, for every
+                    instrument that has a fretboard. Tap any position to hear it voiced at that position
+                    in the active tuning. The diagrams are accurate to the current instrument and tuning —
+                    switching to Open G recalculates every position.
+                </p>
+
+                <p>
+                    This is particularly useful for worship musicians and gigging guitarists who need to
+                    lock in with a capo position, or for anyone working through the neck systematically.
+                    The piano view shows the equivalent voicing across the keyboard rather than fretboard
+                    positions.
+                </p>
+            </div>
+
+            <!-- 6. MIDI Footswitch -->
+            <div class="feature-section">
+                <div class="feature-section-number">06</div>
+                <h2>MIDI Footswitch — Hands-Free Live Performance</h2>
+
+                <p>
+                    During a live performance, reaching for your phone to turn a page is conspicuous and
+                    interrupts the connection with the audience. MIDI footswitch support exists to solve
+                    exactly that problem.
+                </p>
+
+                <p>
+                    Any MIDI footswitch that communicates over Bluetooth MIDI or USB MIDI will work.
+                    Devices tested include the AirTurn BT500, PageFlip Cicada, and iRig BlueTurn, though
+                    any class-compliant MIDI controller sending standard note or CC messages is compatible.
+                    No special configuration is required for supported devices.
+                </p>
+
+                <ul class="spec-list">
+                    <li>Map footswitch buttons to page turn forward and backward</li>
+                    <li>Jump to a specific section within a song</li>
+                    <li>Navigate between songs in a setlist</li>
+                    <li>No need to touch the phone during a performance</li>
+                </ul>
+
+                <p>
+                    The mapping is done once in settings. Once configured, the footswitch connects automatically
+                    when it is in range and the app is open.
+                </p>
+            </div>
+
+            <!-- 7. Multi-Track Recording -->
+            <div class="feature-section">
+                <div class="feature-section-number">07</div>
+                <h2>Multi-Track Recording — Built Into the Song</h2>
+
+                <p>
+                    The recorder in SongScribe is not a separate tool you open and then have to correlate
+                    with your song afterward. It lives inside the song editor. When you record, the take
+                    is attached to that song and stays with it.
+                </p>
+
+                <p>
+                    You can record directly while playing the SongScribe drum machine or metronome in the
+                    background, then layer overdubs on top of existing takes. Each take gets a waveform
+                    view. You can trim the start and end points and play back from any position.
+                </p>
+
+                <div class="detail-block">
+                    <p><strong>On privacy:</strong> The microphone is only active when you explicitly start
+                    a recording. Audio is stored only on your device, inside the app container, associated
+                    with the song. No audio is ever uploaded, processed on a server, or shared with any
+                    third party. The microphone permission is used for recording; it is not used for anything
+                    else.</p>
+                </div>
+
+                <p>
+                    The goal is to capture ideas before they disappear, in the context where they belong.
+                    A rough demo of the verse melody stays attached to the verse of that song, not in a
+                    separate folder somewhere you will not find it again.
+                </p>
+            </div>
+
+            <!-- 8. Chord Library -->
+            <div class="feature-section">
+                <div class="feature-section-number">08</div>
+                <h2>Chord Library — Every Shape, Every Instrument</h2>
+
+                <p>
+                    Tap any chord in a song and you get every fingering option for that chord, for the
+                    active instrument, in the active tuning. The library covers voicings, inversions, slash
+                    chords, and extensions.
+                </p>
+
+                <p>
+                    Voicings are sorted by playability — the most common fingerings for your instrument
+                    and hand position are shown first. Less common extensions and altered voicings are
+                    available further in the list. Every voicing is playable: you can tap any shape to
+                    hear it.
+                </p>
+
+                <p>
+                    The chord library adjusts correctly when you switch instruments. A G chord on guitar,
+                    ukulele, and banjo have completely different fingerings because the string configuration
+                    is different. The app knows this.
+                </p>
+            </div>
+
+            <!-- 9. Harmony Engine -->
+            <div class="feature-section">
+                <div class="feature-section-number">09</div>
+                <h2>Harmony Engine and Key Detection</h2>
+
+                <p>
+                    As you write a chord progression in SongScribe, the harmony engine reads it in real time
+                    and identifies the key. It then surfaces chord suggestions based on what it finds.
+                </p>
+
+                <p>
+                    The suggestions are organized by relationship to the key: diatonic chords (chords that
+                    naturally belong to the key), borrowed chords from parallel modes, and common passing
+                    chords. Scale degrees are shown beneath each chord so you can see its function in the
+                    progression — I, IV, V, ii, vi, and so on.
+                </p>
+
+                <p>
+                    This is not AI-generated music. It is music theory applied to what you have already
+                    written. The suggestions are starting points, not prescriptions. The engine is most
+                    useful when you are stuck on a bridge, looking for a chord that resolves somewhere
+                    unexpected.
+                </p>
+            </div>
+
+            <!-- 10. Import & Export -->
+            <div class="feature-section">
+                <div class="feature-section-number">10</div>
+                <h2>Import and Export</h2>
+
+                <p>
+                    SongScribe is not a closed system. Songs can come in from multiple formats and go out
+                    in multiple formats, because musicians use multiple tools and not everyone you perform
+                    with will use the same app.
+                </p>
+
+                <div class="detail-block">
+                    <p><strong>Import:</strong> ChordPro files, plain text with bracket-style chord notation
+                    (e.g. [G] before each chord), PDF files, and direct paste-and-parse from the clipboard.
+                    PDF import includes optional OCR for scanned or image-based pages — useful for converting
+                    a physical sheet or a photographed chord chart.</p>
+                    <p><strong>Export:</strong> PDF in two layouts — a rehearsal layout with large font and
+                    wide margins, and a print layout designed for reading from paper. ChordPro export produces
+                    a file that any other ChordPro-compatible app can open. Plain text export produces a
+                    clean, readable file that anyone can open without special software.</p>
+                </div>
+
+                <p>
+                    The export system is designed specifically for situations where you need to share a song
+                    with bandmates who do not use SongScribe. The PDF output is formatted to be immediately
+                    readable — not a raw data dump.
+                </p>
+            </div>
+
+            <!-- 11. Performance Mode -->
+            <div class="feature-section">
+                <div class="feature-section-number">11</div>
+                <h2>Performance Mode</h2>
+
+                <p>
+                    Performance mode removes everything except the song. No toolbar. No editing controls.
+                    No notifications. Just lyrics and chords in large, readable text against a clean background.
+                </p>
+
+                <p>
+                    Auto-scroll moves the song at a speed you control. You can set it once and let it run,
+                    or adjust it mid-song. Font size scales automatically based on how far away from the
+                    screen you are likely to be — a setting designed for musicians who place their phone on
+                    a music stand or lectern.
+                </p>
+
+                <p>
+                    Performance mode works entirely offline. There is no login screen, no connectivity check,
+                    no banner asking you to rate the app. It opens your song and gets out of the way.
+                </p>
+            </div>
+
+            <!-- 12. Offline-First + Privacy -->
+            <div class="feature-section">
+                <div class="feature-section-number">12</div>
+                <h2>Offline-First and Privacy</h2>
+
+                <p>
+                    Everything in SongScribe lives on your device. Your songs, your recordings, your setlists,
+                    your chord edits. None of it requires a network connection to function.
+                </p>
+
+                <ul class="spec-list">
+                    <li>No account required. No email address. No password.</li>
+                    <li>The app functions fully on first launch with no sign-in step.</li>
+                    <li>iCloud backup is available and opt-in — not mandatory, not on by default.</li>
+                    <li>WebDAV backup is available for users who prefer self-hosted or non-Apple cloud storage.</li>
+                    <li>There is no analytics on your songwriting activity. The app does not track which songs you open, how long you spend editing, or what chords you use.</li>
+                    <li>Microphone audio is processed locally in real time during recording. It is never uploaded, never analyzed remotely, and never stored outside your device's local storage.</li>
+                </ul>
+
+                <p>
+                    The offline-first architecture is not a marketing position. It started as a practical
+                    necessity — the app was built by a busker who lost his set because of a cellular dead zone.
+                    It stayed offline-first because it is the right design for an instrument.
+                </p>
+            </div>
+
+            <!-- Roadmap -->
+            <div class="roadmap-section">
+                <h2>On the Roadmap</h2>
+                <p class="roadmap-caveat">
+                    These are things we are genuinely thinking about building. No dates. No promises.
+                    "On the roadmap" means it has been seriously considered and is likely to happen,
+                    not that it has been scheduled or committed to.
+                </p>
+                <div class="roadmap-items">
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-title">Custom MIDI loop import for drum patterns</div>
+                        <div class="roadmap-item-desc">
+                            Bring your own grooves into SongScribe. The goal is to support standard MIDI
+                            files so you can use a loop from any source and still get the humanized
+                            playback that makes the built-in patterns feel alive.
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-title">Android version</div>
+                        <div class="roadmap-item-desc">
+                            Under exploration. The core architecture is platform-agnostic in principle.
+                            The honest answer is that we do not know when or whether this ships.
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-title">Collaboration and shared setlists</div>
+                        <div class="roadmap-item-desc">
+                            The ability to share a live setlist with a bandmate — where changes one person
+                            makes propagate to others in real time. This requires a server component, which
+                            makes it the most architecturally significant change on the list.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download CTA -->
+            <div class="features-cta">
+                <p>SongScribe is free to download. Unlock all features with a one-time purchase.</p>
+                <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+                    Download for iOS
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="features-footer">
+        <div class="features-footer-inner">
+            <div>
+                <div class="features-footer-links">
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/changelog">Changelog</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="mailto:support@songscribe.io">Support</a>
+                </div>
+                <div style="margin-top: var(--space-md);">
+                    <a href="https://tuner.songscribe.io" class="tuner-crosslink" target="_blank" rel="noopener">
+                        Also from Rasputin Software: SongScribe Tuner &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="features-footer-copy">
+                &copy; 2026 Rasputin Software. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (toggle && navLinks) {
+            toggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+
+</html>
