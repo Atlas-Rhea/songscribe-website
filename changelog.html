@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Changelog - SongScribe</title>
+    <meta name="description" content="SongScribe release notes and changelog. See what's new in each version.">
+    <link rel="canonical" href="https://songscribe.io/changelog">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://songscribe.io/changelog">
+    <meta property="og:title" content="Changelog - SongScribe">
+    <meta property="og:description" content="SongScribe release notes and changelog. See what's new in each version.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/changelog">
+    <meta name="twitter:title" content="Changelog - SongScribe">
+    <meta name="twitter:description" content="SongScribe release notes and changelog. See what's new in each version.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .changelog-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: var(--space-xxl) var(--space-xl);
+            color: var(--color-text-primary);
+        }
+
+        .changelog-header {
+            margin-bottom: var(--space-lg);
+        }
+
+        .changelog-header h1 {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-primary);
+        }
+
+        .changelog-philosophy {
+            color: var(--color-text-secondary);
+            font-size: var(--text-base);
+            font-style: italic;
+            margin-bottom: var(--space-xxl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .release {
+            margin-bottom: var(--space-xxl);
+            padding-bottom: var(--space-xxl);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .release:last-of-type {
+            border-bottom: none;
+        }
+
+        .release-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .release-version {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .release-date {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .release-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .release-tag--latest {
+            background-color: rgba(251, 191, 36, 0.15);
+            color: var(--color-primary);
+        }
+
+        .release-notes {
+            line-height: 1.8;
+        }
+
+        .release-notes h3 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .release-notes ul {
+            padding-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .release-notes li {
+            margin-bottom: var(--space-xs);
+            color: var(--color-text-primary);
+            line-height: 1.7;
+        }
+
+        .release-notes p {
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .placeholder-note {
+            padding: var(--space-md) var(--space-lg);
+            background-color: rgba(251, 191, 36, 0.08);
+            border-left: 3px solid var(--color-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+            font-style: italic;
+        }
+
+        .changelog-footer {
+            margin-top: var(--space-xxl);
+            padding-top: var(--space-xl);
+            border-top: 2px solid var(--color-border-subtle);
+            text-align: center;
+        }
+
+        .changelog-footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .changelog-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/about" class="nav-link">About</a>
+                <div class="nav-cta mobile">
+                    <a href="/#download" class="btn btn-primary">Download Free</a>
+                </div>
+            </div>
+            <div class="nav-cta">
+                <a href="/#download" class="btn btn-primary">Download Free</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="changelog-container">
+            <div class="changelog-header">
+                <h1>Changelog</h1>
+            </div>
+            <p class="changelog-philosophy">Built by one person. Updates ship when they ship.</p>
+
+            <!-- TO ADD A NEW RELEASE: copy one of the <article class="release"> blocks below,
+                 paste it above this comment, update the version, date, and notes,
+                 move the "Latest" tag to the new version, and remove it from 1.0.3 -->
+
+            <!-- v1.0.3 -->
+            <article class="release">
+                <div class="release-header">
+                    <span class="release-version">1.0.3</span>
+                    <span class="release-date">February 23, 2026</span>
+                    <span class="release-tag release-tag--latest">Latest</span>
+                </div>
+                <div class="release-notes">
+                    <h3>Performance</h3>
+                    <ul>
+                        <li>Keyboard now appears instantly when tapping the editor — eliminated cold-start delay</li>
+                        <li>Editor feels significantly snappier with reduced input lag across the board</li>
+                    </ul>
+                    <h3>Bug Fixes</h3>
+                    <ul>
+                        <li>Fixed list rendering issues in the editor</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- v1.0.2 -->
+            <article class="release">
+                <div class="release-header">
+                    <span class="release-version">1.0.2</span>
+                    <span class="release-date">February 2026</span>
+                </div>
+                <div class="release-notes">
+                    <p class="placeholder-note">Release notes to be added. If you remember what changed, you are a better person than me.</p>
+                </div>
+            </article>
+
+            <!-- v1.0.1 -->
+            <article class="release">
+                <div class="release-header">
+                    <span class="release-version">1.0.1</span>
+                    <span class="release-date">January 2026</span>
+                </div>
+                <div class="release-notes">
+                    <p class="placeholder-note">Early bug fixes after launch. The usual "oh no, that worked on my phone" stuff.</p>
+                </div>
+            </article>
+
+            <!-- v1.0.0 -->
+            <article class="release">
+                <div class="release-header">
+                    <span class="release-version">1.0.0</span>
+                    <span class="release-date">December 2025</span>
+                </div>
+                <div class="release-notes">
+                    <p>The beginning. After about eight months of building, SongScribe shipped to the App Store.</p>
+                    <ul>
+                        <li>Chord-aware lyric editor with natural chord placement</li>
+                        <li>Fullscreen performance mode with auto-scroll</li>
+                        <li>Multi-take audio recorder with waveform editing</li>
+                        <li>Chord library for guitar, bass, ukulele, and piano</li>
+                        <li>Setlist builder for gigs and rehearsals</li>
+                        <li>Chromatic tuner and metronome with tap tempo</li>
+                        <li>Import from ChordPro, text, tabs, and PDFs</li>
+                        <li>Export to PDF, ChordPro, and plain text</li>
+                        <li>Works 100% offline. No account required.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <div class="changelog-footer">
+                <p><a href="/">&#8592; Back to Home</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (toggle && navLinks) {
+            toggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+
+</html>

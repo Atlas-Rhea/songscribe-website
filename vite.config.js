@@ -11,6 +11,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
+                about: resolve(__dirname, 'about.html'),
+                changelog: resolve(__dirname, 'changelog.html'),
                 terms: resolve(__dirname, 'terms.html'),
                 privacy: resolve(__dirname, 'privacy.html'),
                 tunerIndex: resolve(__dirname, 'tuner/index.html'),
