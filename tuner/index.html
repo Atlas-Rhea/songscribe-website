@@ -382,6 +382,11 @@
             .pipeline-card-num {
                 animation: none !important;
             }
+            .theme-swatch-grid .theme-swatch {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
 
         /* -------
@@ -653,6 +658,154 @@
             text-transform: uppercase;
             color: var(--color-primary);
             margin-bottom: var(--space-sm);
+        }
+
+        /* -------
+           Theme swatches
+           ------- */
+        .theme-swatch-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-xl) 0;
+        }
+
+        .theme-swatch-screen {
+            height: 52px;
+            border-radius: var(--radius-lg);
+            box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.18);
+            position: relative;
+            overflow: hidden;
+            background: var(--swatch-bg, #ccc);
+            transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .theme-swatch:hover .theme-swatch-screen {
+            transform: scale(1.12);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22),
+                        inset 0 0 0 1px rgba(128, 128, 128, 0.18);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Mini tuner UI — track line, center tick, needle */
+        .theme-swatch-track {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 50%;
+            height: 1px;
+            background: var(--swatch-track);
+            transform: translateY(-50%);
+        }
+
+        .theme-swatch-tick {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 1px;
+            height: 10px;
+            background: var(--swatch-track);
+            transform: translate(-50%, -50%);
+        }
+
+        .theme-swatch-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 20px;
+            border-radius: 9999px;
+            background: var(--swatch-needle);
+            transform: translate(-50%, -50%);
+        }
+
+        .theme-swatch-name {
+            display: block;
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-top: 5px;
+            line-height: 1.3;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Cascade in on scroll */
+        .theme-swatch-grid .theme-swatch {
+            opacity: 0;
+            transform: scale(0.85) translateY(6px);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .theme-swatch-grid.is-visible .theme-swatch { opacity: 1; transform: none; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(1)  { transition-delay: 0ms;   }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(2)  { transition-delay: 30ms;  }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(3)  { transition-delay: 60ms;  }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(4)  { transition-delay: 90ms;  }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(5)  { transition-delay: 120ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(6)  { transition-delay: 150ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(7)  { transition-delay: 180ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(8)  { transition-delay: 210ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(9)  { transition-delay: 240ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(10) { transition-delay: 270ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(11) { transition-delay: 300ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(12) { transition-delay: 330ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(13) { transition-delay: 360ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(14) { transition-delay: 390ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(15) { transition-delay: 420ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(16) { transition-delay: 450ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(17) { transition-delay: 480ms; }
+        .theme-swatch-grid.is-visible .theme-swatch:nth-child(18) { transition-delay: 510ms; }
+
+        /* Two callout cards below the grid */
+        .theme-extras {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .theme-extra-card {
+            background-color: var(--color-surface-0);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+        }
+
+        .theme-extra-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: var(--space-md);
+            color: var(--color-primary);
+        }
+
+        .theme-extra-card strong {
+            display: block;
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .theme-extra-card p {
+            font-size: var(--text-sm);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .theme-swatch-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .theme-extras {
+                grid-template-columns: 1fr;
+            }
         }
 
         .tuner-features-grid-header {
@@ -1121,26 +1274,171 @@
         <!-- Themes -->
         <section class="tuner-section reveal">
             <span class="tuner-section-eyebrow">Themes &amp; Wallpaper</span>
-            <h2>18 themes. Or bring your own photo.</h2>
+            <h2>18 themes. Build your own. Or bring a photo.</h2>
 
             <p>
-                18 handcrafted color themes, each a complete palette: background, surfaces, accent,
-                and text, all designed to hold together at a glance and stay readable when you are
-                focused on playing.
+                One tap switches the entire app to a new color palette. Every theme is a complete
+                system: background, surfaces, accent, and text, all designed to stay readable when
+                you are focused on playing.
             </p>
 
-            <p>
-                The range covers warm and literary (Sunset Manuscript, Analog Tape, Copper Sky),
-                cool and dark (Midnight Jazz, Lunar Ink, Arctic Aurora), and more specific
-                characters: Classic DOS for phosphor-green retro, Dreamwave for 80s vapor,
-                Neon Tokyo for late-night electric. High Contrast meets WCAG accessibility standards.
-            </p>
+            <!-- Swatch grid — each is a mini tuner screen with real theme colors -->
+            <div class="theme-swatch-grid">
 
-            <p>
-                If none fit, set any photo from your library as the wallpaper. Blur keeps the tuner
-                readable over it, tint lays a color wash, vignette darkens the edges. All three
-                are independent sliders.
-            </p>
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#FDF6EC;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#E67E22;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Sunset Manuscript</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#0D1117;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#38BDF8;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Midnight Jazz</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#F4F6F3;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#588157;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Forest Muse</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#2A2A2A;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#D97706;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Analog Tape</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#111827;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#818CF8;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Lunar Ink</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#FFF8E7;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#E76F51;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Vintage Melody</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#F0FDF4;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#10B981;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Cyber Solarpunk</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#1D1815;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#D4A373;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Café Noir</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#1E1B4B;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#F472B6;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Dreamwave</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#F5F3EE;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#B87333;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Copper Sky</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#FFF7FB;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#F472B6;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Pastel Floral</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#FFF5F2;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#FB7185;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Coral Reef</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#000000;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#00FF00;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Classic DOS</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#F3FAF7;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#34D399;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Sea Glass</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#000000;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#FFFF00;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">High Contrast</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#0F172A;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#22D3EE;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Arctic Aurora</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#FEF7ED;--swatch-track:rgba(0,0,0,0.12);--swatch-needle:#EA580C;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Desert Dusk</span>
+                </div>
+
+                <div class="theme-swatch">
+                    <div class="theme-swatch-screen" style="--swatch-bg:#0C0C0C;--swatch-track:rgba(255,255,255,0.18);--swatch-needle:#FF2E63;">
+                        <div class="theme-swatch-track"></div><div class="theme-swatch-tick"></div><div class="theme-swatch-needle"></div>
+                    </div>
+                    <span class="theme-swatch-name">Neon Tokyo</span>
+                </div>
+
+            </div>
+
+            <div class="theme-extras">
+                <div class="theme-extra-card">
+                    <div class="theme-extra-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+                            <circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/>
+                            <circle cx="10.5" cy="7" r="1" fill="currentColor" stroke="none"/>
+                            <circle cx="14.5" cy="7" r="1" fill="currentColor" stroke="none"/>
+                            <circle cx="17" cy="10.5" r="1" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                    <strong>Build your own theme</strong>
+                    <p>Adjust the background, surface, and accent colors to create a palette that is entirely yours. Changes apply across the whole app instantly.</p>
+                </div>
+                <div class="theme-extra-card">
+                    <div class="theme-extra-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <strong>Use any photo as wallpaper</strong>
+                    <p>Set any image from your library as the backdrop. Blur keeps the tuner readable, tint adds a color wash, vignette darkens the edges. All three are independent sliders.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Signal Processing -->
@@ -1445,6 +1743,18 @@
                 });
             }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
             reveals.forEach(function (el) { observer.observe(el); });
+
+            // Theme swatch grid — stagger via nth-child CSS, just needs is-visible on parent
+            var swatchGrid = document.querySelector('.theme-swatch-grid');
+            if (swatchGrid) {
+                var swatchObs = new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) {
+                        swatchGrid.classList.add('is-visible');
+                        swatchObs.disconnect();
+                    }
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                swatchObs.observe(swatchGrid);
+            }
         })();
     </script>
 
