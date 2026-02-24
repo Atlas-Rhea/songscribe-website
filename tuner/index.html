@@ -197,7 +197,7 @@
         }
 
         .tuner-demo-note {
-            font-family: 'Libre Baskerville', Georgia, serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
             font-size: 72px;
             font-weight: 700;
             font-variant-numeric: tabular-nums;
@@ -228,6 +228,28 @@
             margin-top: 8px;
             min-height: 20px;
             user-select: none;
+        }
+
+        .tuner-demo-listening {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #7A6F60;
+            margin-top: 8px;
+            min-height: 20px;
+            user-select: none;
+            animation: listeningPulse 1.5s ease-in-out infinite;
+        }
+
+        .tuner-demo-listening.hidden {
+            display: none;
+        }
+
+        @keyframes listeningPulse {
+            0%, 100% { opacity: 0.5; }
+            50%       { opacity: 1; }
         }
 
         .tuner-demo-track-wrap {
@@ -680,6 +702,7 @@
             <div class="tuner-hero-demo" aria-hidden="true">
                 <div class="tuner-demo-note" id="tunerDemoNote">--</div>
                 <div class="tuner-demo-status" id="tunerDemoStatus"></div>
+                <div class="tuner-demo-listening" id="tunerDemoListening">Listening...</div>
                 <div class="tuner-demo-track-wrap">
                     <div class="tuner-demo-track-line"></div>
                     <div class="tuner-demo-center-tick"></div>
@@ -1007,9 +1030,10 @@
     <!-- Animated tuner demo -->
     <script>
         (function () {
-            var noteEl   = document.getElementById('tunerDemoNote');
-            var statusEl = document.getElementById('tunerDemoStatus');
-            var needleEl = document.getElementById('tunerDemoNeedle');
+            var noteEl      = document.getElementById('tunerDemoNote');
+            var statusEl    = document.getElementById('tunerDemoStatus');
+            var needleEl    = document.getElementById('tunerDemoNeedle');
+            var listeningEl = document.getElementById('tunerDemoListening');
 
             if (!noteEl || !statusEl || !needleEl) return;
 
@@ -1176,8 +1200,13 @@
                 }
                 wasInTune = inTune;
 
-                // --- Update status text ---
+                // --- Update status text + listening indicator ---
                 statusEl.textContent = sim.statusLabel;
+                if (sim.hasPitch) {
+                    listeningEl.classList.add('hidden');
+                } else {
+                    listeningEl.classList.remove('hidden');
+                }
 
                 requestAnimationFrame(tick);
             }
