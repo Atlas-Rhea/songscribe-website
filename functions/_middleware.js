@@ -16,10 +16,7 @@ export async function onRequest({ request, env, next }) {
   if (url.hostname === "tuner.songscribe.io") {
     let assetPath = url.pathname === "/" ? "/tuner/index.html" : `/tuner${url.pathname}`;
     if (!assetPath.includes(".")) assetPath += ".html";
-    const resp = await env.ASSETS.fetch(`https://songscribe.io${assetPath}`);
-    const body = await resp.text();
-    const title = body.match(/<title>(.*?)<\/title>/)?.[1] || "no title";
-    return new Response(`DEBUG: path=${assetPath}, status=${resp.status}, title=${title}`, { status: 200 });
+    return env.ASSETS.fetch(`https://songscribe.io${assetPath}`);
   }
 
   return next();
