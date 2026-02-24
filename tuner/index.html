@@ -55,16 +55,36 @@
             padding: var(--space-xxxl) var(--space-xl) var(--space-xl);
             max-width: 1100px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xxl);
-            align-items: center;
         }
 
         .tuner-hero-text {
             display: flex;
             flex-direction: column;
             gap: var(--space-lg);
+        }
+
+        @media (min-width: 769px) {
+            .tuner-hero-text {
+                display: grid;
+                grid-template-columns: 1fr 360px;
+                column-gap: var(--space-xxl);
+                row-gap: var(--space-lg);
+                align-items: start;
+            }
+            .tuner-hero-eyebrow,
+            .tuner-hero-text > h1,
+            .tuner-hero-subtitle,
+            .tuner-hero-actions,
+            .tuner-pricing-note,
+            .tuner-hero-mobile-img {
+                grid-column: 1;
+            }
+            .tuner-hero-demo {
+                grid-column: 2;
+                grid-row: 1 / span 6;
+                align-self: center;
+                justify-self: center;
+            }
         }
 
         .tuner-hero-eyebrow {
@@ -192,9 +212,6 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            justify-self: center;
-            align-self: start;
-            margin-top: 20px;
         }
 
         .tuner-demo-note {
@@ -1059,7 +1076,6 @@
 
         @media (max-width: 768px) {
             .tuner-hero {
-                grid-template-columns: 1fr;
                 padding-top: var(--space-xxl);
                 padding-bottom: var(--space-lg);
             }
@@ -1149,6 +1165,19 @@
             <div class="tuner-hero-text">
                 <span class="tuner-hero-eyebrow">SongScribe Tuner</span>
                 <h1>Accurate.<br>Fast.<br><em>No nonsense.</em></h1>
+
+                <!-- Animated tuner demo — inline on mobile, right column on desktop -->
+                <div class="tuner-hero-demo" aria-hidden="true">
+                    <div class="tuner-demo-note" id="tunerDemoNote"></div>
+                    <div class="tuner-demo-status" id="tunerDemoStatus"></div>
+                    <div class="tuner-demo-listening" id="tunerDemoListening">Listening...</div>
+                    <div class="tuner-demo-track-wrap">
+                        <div class="tuner-demo-track-line"></div>
+                        <div class="tuner-demo-center-tick"></div>
+                        <div class="tuner-demo-needle" id="tunerDemoNeedle"></div>
+                    </div>
+                </div>
+
                 <p class="tuner-hero-subtitle">
                     Most virtual tuners jitter, lag, and fall apart in a loud room. This one was built
                     by musicians who were genuinely frustrated with that. They did not ship it until it
@@ -1165,18 +1194,6 @@
                 <p class="tuner-pricing-note">Free to download. Remove ads for $1.99: one-time, no subscription.</p>
                 <!-- Fallback visible on mobile when the animated demo is hidden -->
                 <img class="tuner-hero-mobile-img" src="/assets/images/tuner/slice1-6.7.png" alt="SongScribe Tuner app" loading="eager">
-            </div>
-
-            <!-- Animated tuner demo — replaces static screenshot strip -->
-            <div class="tuner-hero-demo" aria-hidden="true">
-                <div class="tuner-demo-note" id="tunerDemoNote"></div>
-                <div class="tuner-demo-status" id="tunerDemoStatus"></div>
-                <div class="tuner-demo-listening" id="tunerDemoListening">Listening...</div>
-                <div class="tuner-demo-track-wrap">
-                    <div class="tuner-demo-track-line"></div>
-                    <div class="tuner-demo-center-tick"></div>
-                    <div class="tuner-demo-needle" id="tunerDemoNeedle"></div>
-                </div>
             </div>
         </section>
 
