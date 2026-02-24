@@ -277,7 +277,7 @@
             left: 50%;
             top: 50%;
             width: 1px;
-            height: 16px;
+            height: 44px;
             background: #E4E0DA;
             transform: translate(-50%, -50%);
         }
@@ -1125,7 +1125,7 @@
 
             <!-- Animated tuner demo — replaces static screenshot strip -->
             <div class="tuner-hero-demo" aria-hidden="true">
-                <div class="tuner-demo-note" id="tunerDemoNote">--</div>
+                <div class="tuner-demo-note" id="tunerDemoNote"></div>
                 <div class="tuner-demo-status" id="tunerDemoStatus"></div>
                 <div class="tuner-demo-listening" id="tunerDemoListening">Listening...</div>
                 <div class="tuner-demo-track-wrap">
@@ -1793,7 +1793,7 @@
                     return {
                         targetCents: tc,
                         hasPitch: false,
-                        noteLabel: '--',
+                        noteLabel: '',
                         statusLabel: ''
                     };
                 }
