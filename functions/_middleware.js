@@ -6,7 +6,8 @@ export async function onRequest({ request, env, next }) {
   const url = new URL(request.url);
 
   if (url.hostname === "tuner.songscribe.io") {
-    return new Response("MIDDLEWARE RUNNING - path: " + url.pathname, { status: 200 });
+    const newPath = url.pathname === "/" ? "/tuner/" : `/tuner${url.pathname}`;
+    return env.ASSETS.fetch(`https://songscribe.io${newPath}`);
   }
 
   return next();
