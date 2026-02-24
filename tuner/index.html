@@ -378,6 +378,10 @@
             .tuner-screenshots-marquee {
                 animation-play-state: paused !important;
             }
+            .tuner-section--pipeline::before,
+            .pipeline-card-num {
+                animation: none !important;
+            }
         }
 
         /* -------
@@ -424,52 +428,121 @@
         }
 
         /* -------
-           Signal pipeline steps (Under the hood section)
+           Under the hood — pipeline card grid
            ------- */
-        .tuner-pipeline {
-            list-style: none;
+
+        /* Radar scan line sweeps top → bottom, suggesting live processing */
+        .tuner-section--pipeline {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tuner-section--pipeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent 0%, rgba(251, 191, 36, 0.35) 50%, transparent 100%);
+            animation: scanLine 5s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes scanLine {
+            from { top: 0%; }
+            to   { top: 100%; }
+        }
+
+        /* Ensure text content sits above the scan line */
+        .tuner-section--pipeline > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
             margin: var(--space-xl) 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
         }
 
-        .tuner-pipeline-step {
-            display: flex;
-            gap: var(--space-lg);
-            align-items: flex-start;
+        .pipeline-card {
+            background-color: var(--color-surface-0);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.25s ease;
         }
 
-        .tuner-pipeline-num {
-            flex: 0 0 28px;
-            width: 28px;
-            height: 28px;
+        .pipeline-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
+            border-color: var(--color-primary);
+        }
+
+        .pipeline-card-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: var(--space-md);
+            color: var(--color-text-secondary);
+            opacity: 0.5;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .pipeline-card:hover .pipeline-card-icon {
+            color: var(--color-primary);
+            opacity: 1;
+        }
+
+        .pipeline-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: var(--space-sm);
+        }
+
+        @keyframes pipelinePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+            50%       { box-shadow: 0 0 0 5px rgba(251, 191, 36, 0.25); }
+        }
+
+        .pipeline-card-num {
+            flex: 0 0 22px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             background-color: var(--color-primary);
-            font-size: var(--text-sm);
+            font-size: 11px;
             font-weight: 700;
-            color: rgba(0, 0, 0, 0.8);
+            color: rgba(0, 0, 0, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 3px;
+            animation: pipelinePulse 2.4s ease-in-out infinite;
+            animation-delay: calc(var(--step, 0) * 0.6s);
         }
 
-        .tuner-pipeline-body strong {
-            display: block;
-            font-size: var(--text-base);
+        .pipeline-card strong {
+            font-size: var(--text-sm);
             font-weight: 700;
             color: var(--color-text-primary);
-            margin-bottom: 4px;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
-        .tuner-pipeline-body p {
-            font-size: var(--text-base);
+        .pipeline-card p {
+            font-size: var(--text-sm);
             line-height: 1.7;
             color: var(--color-text-secondary);
             margin: 0;
+        }
+
+        @media (max-width: 580px) {
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* -------
@@ -1071,7 +1144,7 @@
         </section>
 
         <!-- Signal Processing -->
-        <section class="tuner-section reveal">
+        <section class="tuner-section tuner-section--pipeline reveal">
             <span class="tuner-section-eyebrow">Under the hood</span>
             <h2>Built to track pitch accurately in a noisy room</h2>
 
@@ -1081,36 +1154,78 @@
                 results show: jitter, latency, false readings.
             </p>
 
-            <ol class="tuner-pipeline">
-                <li class="tuner-pipeline-step">
-                    <div class="tuner-pipeline-num" aria-hidden="true">1</div>
-                    <div class="tuner-pipeline-body">
+            <div class="pipeline-grid">
+
+                <div class="pipeline-card reveal" style="--stagger-delay: 60ms; --step: 0">
+                    <div class="pipeline-card-icon" aria-hidden="true">
+                        <!-- Waveform with X — OS processing crossed out -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h3l2-7 3 14 2-7h3"/>
+                            <line x1="17" y1="8" x2="22" y2="13"/>
+                            <line x1="22" y1="8" x2="17" y2="13"/>
+                        </svg>
+                    </div>
+                    <div class="pipeline-card-header">
+                        <span class="pipeline-card-num">1</span>
                         <strong>OS processing disabled</strong>
-                        <p>Echo cancellation, noise suppression, and auto gain are turned off. The audio pipeline from microphone to display is ours to control.</p>
                     </div>
-                </li>
-                <li class="tuner-pipeline-step">
-                    <div class="tuner-pipeline-num" aria-hidden="true">2</div>
-                    <div class="tuner-pipeline-body">
+                    <p>Echo cancellation, noise suppression, and auto gain are turned off. The audio pipeline from microphone to display is ours to control.</p>
+                </div>
+
+                <div class="pipeline-card reveal" style="--stagger-delay: 160ms; --step: 1">
+                    <div class="pipeline-card-icon" aria-hidden="true">
+                        <!-- Vertical sliders — EQ/filter -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                            <line x1="4" y1="21" x2="4" y2="14"/>
+                            <line x1="4" y1="10" x2="4" y2="3"/>
+                            <circle cx="4" cy="12" r="2"/>
+                            <line x1="12" y1="21" x2="12" y2="8"/>
+                            <line x1="12" y1="4" x2="12" y2="3"/>
+                            <circle cx="12" cy="6" r="2"/>
+                            <line x1="20" y1="21" x2="20" y2="16"/>
+                            <line x1="20" y1="12" x2="20" y2="3"/>
+                            <circle cx="20" cy="14" r="2"/>
+                        </svg>
+                    </div>
+                    <div class="pipeline-card-header">
+                        <span class="pipeline-card-num">2</span>
                         <strong>Bandpass filter</strong>
-                        <p>Audio is filtered to the musically relevant range: low enough for an open bass string, high enough for violin. Everything outside is discarded before detection runs.</p>
                     </div>
-                </li>
-                <li class="tuner-pipeline-step">
-                    <div class="tuner-pipeline-num" aria-hidden="true">3</div>
-                    <div class="tuner-pipeline-body">
+                    <p>Audio is filtered to the musically relevant range: low enough for an open bass string, high enough for violin. Everything outside is discarded before detection runs.</p>
+                </div>
+
+                <div class="pipeline-card reveal" style="--stagger-delay: 260ms; --step: 2">
+                    <div class="pipeline-card-icon" aria-hidden="true">
+                        <!-- Waveform going flat — energy gating -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="2,12 5,12 7,5 9,19 11,12 14,12"/>
+                            <line x1="17" y1="12" x2="22" y2="12" stroke-dasharray="2,3"/>
+                        </svg>
+                    </div>
+                    <div class="pipeline-card-header">
+                        <span class="pipeline-card-num">3</span>
                         <strong>Energy gating</strong>
-                        <p>Silence and ambient noise are checked before pitch detection begins. The algorithm only runs on a signal that actually contains sound.</p>
                     </div>
-                </li>
-                <li class="tuner-pipeline-step">
-                    <div class="tuner-pipeline-num" aria-hidden="true">4</div>
-                    <div class="tuner-pipeline-body">
-                        <strong>Harmonic correction and confidence scoring</strong>
-                        <p>A candidate frequency's harmonic structure is analysed to confirm the correct octave. A confidence score over a rolling window prevents the needle from committing until the reading is stable.</p>
+                    <p>Silence and ambient noise are checked before pitch detection begins. The algorithm only runs on a signal that actually contains sound.</p>
+                </div>
+
+                <div class="pipeline-card reveal" style="--stagger-delay: 360ms; --step: 3">
+                    <div class="pipeline-card-icon" aria-hidden="true">
+                        <!-- Lock — confidence scoring -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/>
+                        </svg>
                     </div>
-                </li>
-            </ol>
+                    <div class="pipeline-card-header">
+                        <span class="pipeline-card-num">4</span>
+                        <strong>Harmonic correction and confidence</strong>
+                    </div>
+                    <p>A candidate frequency's harmonic structure is analysed to confirm the correct octave. A confidence score over a rolling window prevents false locks.</p>
+                </div>
+
+            </div>
 
             <p>Each step does one job. The next only runs when the previous one passes. We tested the whole chain against hardware tuners until the readings matched.</p>
         </section>
