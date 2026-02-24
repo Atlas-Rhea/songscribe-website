@@ -877,6 +877,63 @@
             </p>
         </section>
 
+        <!-- Signal Processing -->
+        <section class="tuner-section">
+            <span class="tuner-section-eyebrow">Under the hood</span>
+            <h2>Built to track pitch accurately in a noisy room</h2>
+
+            <p>
+                Most tuner apps hand your microphone signal straight to the operating system and ask
+                it to do the hard work. The OS applies its own noise suppression, echo cancellation,
+                and automatic gain correction. Those tools are designed for phone calls, not for
+                musical pitch detection, and the results show: jitter, latency, and false readings
+                when other instruments are playing nearby.
+            </p>
+
+            <p>
+                SongScribe Tuner takes control of the full audio pipeline. OS noise processing is
+                disabled entirely. Instead, the signal passes through a bandpass filter tuned to
+                the musically relevant frequency range — low enough to catch the fundamental of an
+                open bass string, high enough to track violin. Silence and ambient noise are gated
+                out before pitch detection runs, so the algorithm is never working on a signal that
+                has nothing in it. Once a candidate frequency is found, the harmonic structure of
+                the sound is analysed to confirm the correct octave. A confidence score is computed
+                over a short rolling window of readings, and the needle does not commit to a new
+                position until that score crosses a threshold. The result is a needle that locks
+                deliberately and holds steady rather than one that flickers at every breath of
+                background noise.
+            </p>
+
+            <p>
+                None of this is magic. It is just a carefully assembled chain where each step does
+                one job, and the next step only runs when the previous one passes its check. We
+                tested it against hardware clip-on tuners until the readings matched.
+            </p>
+        </section>
+
+        <!-- Design Philosophy -->
+        <section class="tuner-section">
+            <span class="tuner-section-eyebrow">Design philosophy</span>
+            <h2>One thing. Done properly.</h2>
+
+            <p>
+                A tuner has one job. Everything in the UI is arranged around that job. The needle
+                is large because you need to read it at arm's length while holding an instrument.
+                The note name is large because that is the first thing you need to know. The cents
+                display is smaller because it is secondary information. There are no feature tours,
+                no rate prompts mid-session, no banners while you are actively tuning.
+            </p>
+
+            <p>
+                We did not add features to make the app feel bigger. We added the instrument presets
+                because the string names and frequencies matter and generic guitar approximations are
+                wrong for banjo. We added the themes because staring at a screen for two hours of
+                rehearsal is better when the screen does not look clinical. We added the wallpaper
+                option because some people have a specific aesthetic and one size does not fit all.
+                Everything else we looked at and decided it did not belong.
+            </p>
+        </section>
+
         <!-- Pricing -->
         <section class="tuner-pricing">
             <div class="tuner-pricing-inner">
