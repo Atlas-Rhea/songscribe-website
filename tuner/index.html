@@ -618,47 +618,88 @@
         }
 
         /* -------
-           Features grid
+           Features accordion
            ------- */
         .tuner-features-grid {
-            max-width: 1000px;
+            max-width: 720px;
             margin: 0 auto;
             padding: var(--space-xxl) var(--space-xl);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-xl);
-            overflow: visible;
+        }
+
+        .tuner-features-grid-header {
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-border-subtle);
+            margin-bottom: 0;
         }
 
         .tuner-feature-card {
-            background-color: var(--color-surface-0);
-            border: 1px solid var(--color-border-subtle);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            box-shadow: inset 3px 0 0 var(--color-primary);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .tuner-feature-card-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-lg) 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .tuner-feature-card-accent {
+            flex: 0 0 120px;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-primary);
         }
 
         .tuner-feature-card-title {
-            font-size: var(--text-lg);
-            font-weight: 700;
+            flex: 1;
+            font-size: var(--text-base);
+            font-weight: 600;
             color: var(--color-text-primary);
-            margin-bottom: var(--space-sm);
+        }
+
+        .tuner-feature-card-chevron {
+            flex: 0 0 16px;
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-secondary);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tuner-feature-card.is-open .tuner-feature-card-chevron {
+            transform: rotate(180deg);
+        }
+
+        .tuner-feature-card.is-open .tuner-feature-card-title {
+            color: var(--color-primary);
         }
 
         .tuner-feature-card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tuner-feature-card-body-inner {
+            padding: 0 0 var(--space-lg) 136px;
             font-size: var(--text-base);
             line-height: 1.75;
             color: var(--color-text-secondary);
         }
 
-        .tuner-feature-card-accent {
-            display: inline-block;
-            font-size: var(--text-sm);
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--color-primary);
-            margin-bottom: var(--space-sm);
+        @media (max-width: 560px) {
+            .tuner-feature-card-accent {
+                flex: 0 0 80px;
+            }
+            .tuner-feature-card-body-inner {
+                padding-left: 0;
+            }
         }
 
         /* -------
@@ -809,12 +850,6 @@
             }
         }
 
-        .tuner-features-grid-header {
-            grid-column: 1 / -1;
-            padding-bottom: var(--space-lg);
-            border-bottom: 1px solid var(--color-border-subtle);
-            margin-bottom: var(--space-sm);
-        }
 
         .tuner-features-grid-heading {
             font-family: 'Libre Baskerville', Georgia, serif;
@@ -1265,82 +1300,90 @@
             </div>
 
             <div class="tuner-feature-card reveal" style="--stagger-delay: 0ms">
-                <div class="tuner-feature-card-accent">Accuracy</div>
-                <div class="tuner-feature-card-title">Plus or minus 1 cent</div>
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Accuracy</span>
+                    <span class="tuner-feature-card-title">Plus or minus 1 cent</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Cent-level accuracy across the full frequency range. Tested against hardware tuners.
-                    The needle settles cleanly and stays there when the pitch is stable. It does not
-                    wander once it locks.
+                    <div class="tuner-feature-card-body-inner">Cent-level accuracy across the full frequency range. Tested against hardware tuners. The needle settles cleanly and stays there when the pitch is stable. It does not wander once it locks.</div>
                 </div>
             </div>
 
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 80ms">
-                <div class="tuner-feature-card-accent">Speed</div>
-                <div class="tuner-feature-card-title">No perceptible lag</div>
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 60ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Speed</span>
+                    <span class="tuner-feature-card-title">No perceptible lag</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Pitch detection processes in real time with no buffering delay that you would notice
-                    while tuning. Strike the string, the needle responds. No waiting.
+                    <div class="tuner-feature-card-body-inner">Pitch detection processes in real time with no buffering delay that you would notice while tuning. Strike the string, the needle responds. No waiting.</div>
                 </div>
             </div>
 
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 160ms">
-                <div class="tuner-feature-card-accent">Instrument Presets</div>
-                <div class="tuner-feature-card-title">22 presets across 6 instruments</div>
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 120ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Instrument Presets</span>
+                    <span class="tuner-feature-card-title">22 presets across 6 instruments</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Guitar (8 tunings including DADGAD, Open G, Drop D), bass (4-string and 5-string),
-                    ukulele (High G, Low G, Baritone, D Tuning), mandolin, banjo (Open G, Double C,
-                    Sawmill), and violin. Every preset shows the correct string names and expected pitch.
-                    No presets gated behind a paywall.
+                    <div class="tuner-feature-card-body-inner">Guitar (8 tunings including DADGAD, Open G, Drop D), bass (4-string and 5-string), ukulele (High G, Low G, Baritone, D Tuning), mandolin, banjo (Open G, Double C, Sawmill), and violin. Every preset shows the correct string names and expected pitch. No presets gated behind a paywall.</div>
+                </div>
+            </div>
+
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 180ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Reference Pitch</span>
+                    <span class="tuner-feature-card-title">Adjustable from 430 to 450 Hz</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="tuner-feature-card-body">
+                    <div class="tuner-feature-card-body-inner">Standard concert pitch is A440. If you play with a keyboard player who has tuned to A432, A443, or any non-standard reference, you can match it exactly. The full range covers period instrument tuning, early music, and alternative temperament work.</div>
                 </div>
             </div>
 
             <div class="tuner-feature-card reveal" style="--stagger-delay: 240ms">
-                <div class="tuner-feature-card-accent">Reference Pitch</div>
-                <div class="tuner-feature-card-title">Adjustable from 430 to 450 Hz</div>
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Notation</span>
+                    <span class="tuner-feature-card-title">Sharps or flats, your choice</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Standard concert pitch is A440. If you play with a keyboard player who has tuned to
-                    A432, A443, or any non-standard reference, you can match it exactly. The full range
-                    covers period instrument tuning, early music, and alternative temperament work.
+                    <div class="tuner-feature-card-body-inner">Toggle between sharp and flat notation with one tap. If you read F-sharp as G-flat or vice versa, the display uses the notation you prefer. Both are correct; this is a personal preference setting.</div>
                 </div>
             </div>
 
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 320ms">
-                <div class="tuner-feature-card-accent">Notation</div>
-                <div class="tuner-feature-card-title">Sharps or flats, your choice</div>
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 300ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Privacy</span>
+                    <span class="tuner-feature-card-title">Your audio never leaves your phone</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Toggle between sharp and flat notation with one tap. If you read F-sharp as G-flat
-                    or vice versa, the display uses the notation you prefer. Both are correct; this is
-                    a personal preference setting.
+                    <div class="tuner-feature-card-body-inner">Microphone audio is processed locally in real time. Nothing is recorded, stored, or transmitted. No account is required. No email address. The app opens to the tuner immediately.</div>
                 </div>
             </div>
 
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 400ms">
-                <div class="tuner-feature-card-accent">Privacy</div>
-                <div class="tuner-feature-card-title">Your audio never leaves your phone</div>
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 360ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Themes</span>
+                    <span class="tuner-feature-card-title">18 themes. Or your own photo.</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    Microphone audio is processed locally in real time. Nothing is recorded, stored, or
-                    transmitted. No account is required. No email address. The app opens to the tuner
-                    immediately.
+                    <div class="tuner-feature-card-body-inner">18 handcrafted color themes: warm parchment tones, late-night studio darks, retro phosphor glow. Or set any photo from your library as the wallpaper with adjustable blur and tint. The tuner can look exactly the way you want it to look.</div>
                 </div>
             </div>
 
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 480ms">
-                <div class="tuner-feature-card-accent">Themes</div>
-                <div class="tuner-feature-card-title">18 themes. Or your own photo.</div>
+            <div class="tuner-feature-card reveal" style="--stagger-delay: 420ms">
+                <button class="tuner-feature-card-trigger" aria-expanded="false">
+                    <span class="tuner-feature-card-accent">Offline</span>
+                    <span class="tuner-feature-card-title">Works without internet</span>
+                    <svg class="tuner-feature-card-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
                 <div class="tuner-feature-card-body">
-                    18 handcrafted color themes: warm parchment tones, late-night studio darks,
-                    retro phosphor glow. Or set any photo from your library as the wallpaper with
-                    adjustable blur and tint. The tuner can look exactly the way you want it to look.
-                </div>
-            </div>
-
-            <div class="tuner-feature-card reveal" style="--stagger-delay: 560ms">
-                <div class="tuner-feature-card-accent">Offline</div>
-                <div class="tuner-feature-card-title">Works without internet</div>
-                <div class="tuner-feature-card-body">
-                    The tuner functions with no network connection at all. Underground venues, rural
-                    rehearsal spaces, airplane mode: it makes no difference. The pitch detection
-                    runs entirely on device.
+                    <div class="tuner-feature-card-body-inner">The tuner functions with no network connection at all. Underground venues, rural rehearsal spaces, airplane mode: it makes no difference. The pitch detection runs entirely on device.</div>
                 </div>
             </div>
 
@@ -1757,6 +1800,28 @@
                 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
                 swatchObs.observe(swatchGrid);
             }
+        })();
+    </script>
+
+    <!-- Features accordion -->
+    <script>
+        (function () {
+            document.querySelectorAll('.tuner-feature-card-trigger').forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    var card = trigger.closest('.tuner-feature-card');
+                    var body = card.querySelector('.tuner-feature-card-body');
+                    var isOpen = card.classList.contains('is-open');
+                    if (isOpen) {
+                        card.classList.remove('is-open');
+                        trigger.setAttribute('aria-expanded', 'false');
+                        body.style.maxHeight = '0';
+                    } else {
+                        card.classList.add('is-open');
+                        trigger.setAttribute('aria-expanded', 'true');
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                    }
+                });
+            });
         })();
     </script>
 
