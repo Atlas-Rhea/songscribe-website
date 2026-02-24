@@ -12,8 +12,14 @@ export async function onRequest({ request, env, next }) {
     return Response.redirect(`https://tuner.songscribe.io${subPath}`, 301);
   }
 
-  // Serve tuner subdomain from /tuner/ subfolder
+  // Serve tuner subdomain
   if (url.hostname === "tuner.songscribe.io") {
+    // Static assets (CSS, JS, images, fonts) — serve from project root
+    if (url.pathname.startsWith("/assets/") || /\.(css|js|svg|png|jpg|gif|woff2?|ico)$/.test(url.pathname)) {
+      return env.ASSETS.fetch(`https://songscribe.io${url.pathname}`);
+    }
+
+    // Pages — serve from /tuner/ subfolder
     let assetPath = url.pathname === "/" ? "/tuner/index.html" : `/tuner${url.pathname}`;
     if (!assetPath.includes(".")) assetPath += ".html";
     return env.ASSETS.fetch(`https://songscribe.io${assetPath}`);
