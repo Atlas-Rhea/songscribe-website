@@ -424,6 +424,55 @@
         }
 
         /* -------
+           Signal pipeline steps (Under the hood section)
+           ------- */
+        .tuner-pipeline {
+            list-style: none;
+            margin: var(--space-xl) 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .tuner-pipeline-step {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: flex-start;
+        }
+
+        .tuner-pipeline-num {
+            flex: 0 0 28px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3px;
+        }
+
+        .tuner-pipeline-body strong {
+            display: block;
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .tuner-pipeline-body p {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* -------
            Screenshots marquee
            ------- */
         .tuner-screenshots-wrap {
@@ -894,19 +943,14 @@
             <h2>Because most of them are not good enough to perform with</h2>
 
             <p>
-                Most tuners bundled into other apps share the same failure modes: they jitter when
-                locking onto a pitch, lag by a quarter second, lose tracking in a room with other
-                instruments, and require you to hold still and be patient. Those constraints are not
-                acceptable on stage between songs or when you need to re-tune mid-rehearsal without
-                stopping the room.
+                Most tuners jitter on lock, lag by a quarter second, and fall apart when other
+                instruments are in the room. On stage between songs, you do not have time for any of that.
             </p>
 
             <p>
-                SongScribe Tuner was built because we needed something better for ourselves. We tested
-                pitch detection against hardware clip-on tuners. We worked on the needle smoothing until
-                it tracked accurately without jitter. We made the instrument presets correct: string
-                names and expected frequencies are right for each instrument, not approximated from a
-                guitar model. We did not ship it until we had used it at rehearsals and found nothing
+                We built this because we needed it. Tested against hardware clip-on tuners. Tuned
+                the needle smoothing until the jitter was gone. Made sure every preset shows correct
+                string names, not approximations. Did not ship until rehearsals gave us nothing
                 to complain about.
             </p>
         </section>
@@ -1007,27 +1051,22 @@
             <h2>18 themes. Or bring your own photo.</h2>
 
             <p>
-                The tuner ships with 18 handcrafted color themes. Each one is a complete palette:
-                background, surface, accent colors, and text — designed to hold together at a glance
-                and stay readable when you are focused on playing.
+                18 handcrafted color themes, each a complete palette: background, surfaces, accent,
+                and text, all designed to hold together at a glance and stay readable when you are
+                focused on playing.
             </p>
 
             <p>
-                The range runs from warm and literary (Sunset Manuscript, Vintage Melody, Copper Sky,
-                Desert Dusk) through cool and dark (Midnight Jazz, Lunar Ink, Arctic Aurora, Café Noir)
-                to more specific characters: Analog Tape for a worn-studio feel, Classic DOS for
-                phosphor-green retro terminal, Dreamwave for 80s vapor, Neon Tokyo for late-night
-                electric. There is a High Contrast theme that meets WCAG accessibility standards
-                for maximum readability.
+                The range covers warm and literary (Sunset Manuscript, Analog Tape, Copper Sky),
+                cool and dark (Midnight Jazz, Lunar Ink, Arctic Aurora), and more specific
+                characters: Classic DOS for phosphor-green retro, Dreamwave for 80s vapor,
+                Neon Tokyo for late-night electric. High Contrast meets WCAG accessibility standards.
             </p>
 
             <p>
-                If none of the 18 fit, set any photo from your library as the wallpaper. Three
-                controls let you shape how it looks: blur softens the image so the tuner stays
-                readable over it, tint lays a color wash over the photo, and vignette darkens the
-                edges to draw focus toward the center of the screen. All three are adjustable
-                independently. The result can be anything from a barely-there texture to a fully
-                atmospheric backdrop.
+                If none fit, set any photo from your library as the wallpaper. Blur keeps the tuner
+                readable over it, tint lays a color wash, vignette darkens the edges. All three
+                are independent sliders.
             </p>
         </section>
 
@@ -1037,32 +1076,43 @@
             <h2>Built to track pitch accurately in a noisy room</h2>
 
             <p>
-                Most tuner apps hand your microphone signal straight to the operating system and ask
-                it to do the hard work. The OS applies its own noise suppression, echo cancellation,
-                and automatic gain correction. Those tools are designed for phone calls, not for
-                musical pitch detection, and the results show: jitter, latency, and false readings
-                when other instruments are playing nearby.
+                Most tuner apps hand the microphone to the operating system and let it do the hard
+                work. OS noise tools are built for phone calls, not music. In a loud room, the
+                results show: jitter, latency, false readings.
             </p>
 
-            <p>
-                SongScribe Tuner takes control of the full audio pipeline. OS noise processing is
-                disabled entirely. Instead, the signal passes through a bandpass filter tuned to
-                the musically relevant frequency range — low enough to catch the fundamental of an
-                open bass string, high enough to track violin. Silence and ambient noise are gated
-                out before pitch detection runs, so the algorithm is never working on a signal that
-                has nothing in it. Once a candidate frequency is found, the harmonic structure of
-                the sound is analysed to confirm the correct octave. A confidence score is computed
-                over a short rolling window of readings, and the needle does not commit to a new
-                position until that score crosses a threshold. The result is a needle that locks
-                deliberately and holds steady rather than one that flickers at every breath of
-                background noise.
-            </p>
+            <ol class="tuner-pipeline">
+                <li class="tuner-pipeline-step">
+                    <div class="tuner-pipeline-num" aria-hidden="true">1</div>
+                    <div class="tuner-pipeline-body">
+                        <strong>OS processing disabled</strong>
+                        <p>Echo cancellation, noise suppression, and auto gain are turned off. The audio pipeline from microphone to display is ours to control.</p>
+                    </div>
+                </li>
+                <li class="tuner-pipeline-step">
+                    <div class="tuner-pipeline-num" aria-hidden="true">2</div>
+                    <div class="tuner-pipeline-body">
+                        <strong>Bandpass filter</strong>
+                        <p>Audio is filtered to the musically relevant range: low enough for an open bass string, high enough for violin. Everything outside is discarded before detection runs.</p>
+                    </div>
+                </li>
+                <li class="tuner-pipeline-step">
+                    <div class="tuner-pipeline-num" aria-hidden="true">3</div>
+                    <div class="tuner-pipeline-body">
+                        <strong>Energy gating</strong>
+                        <p>Silence and ambient noise are checked before pitch detection begins. The algorithm only runs on a signal that actually contains sound.</p>
+                    </div>
+                </li>
+                <li class="tuner-pipeline-step">
+                    <div class="tuner-pipeline-num" aria-hidden="true">4</div>
+                    <div class="tuner-pipeline-body">
+                        <strong>Harmonic correction and confidence scoring</strong>
+                        <p>A candidate frequency's harmonic structure is analysed to confirm the correct octave. A confidence score over a rolling window prevents the needle from committing until the reading is stable.</p>
+                    </div>
+                </li>
+            </ol>
 
-            <p>
-                None of this is magic. It is just a carefully assembled chain where each step does
-                one job, and the next step only runs when the previous one passes its check. We
-                tested it against hardware clip-on tuners until the readings matched.
-            </p>
+            <p>Each step does one job. The next only runs when the previous one passes. We tested the whole chain against hardware tuners until the readings matched.</p>
         </section>
 
         <!-- Design Philosophy -->
@@ -1071,20 +1121,17 @@
             <h2>One thing. Done properly.</h2>
 
             <p>
-                A tuner has one job. Everything in the UI is arranged around that job. The needle
-                is large because you need to read it at arm's length while holding an instrument.
-                The note name is large because that is the first thing you need to know. The cents
-                display is smaller because it is secondary information. There are no feature tours,
-                no rate prompts mid-session, no banners while you are actively tuning.
+                A tuner has one job. The needle is large because you read it at arm's length while
+                holding an instrument. The note name is first because it is the first thing you need.
+                No tour screens, no mid-session prompts, nothing competing for your attention while
+                you are actively tuning.
             </p>
 
             <p>
-                We did not add features to make the app feel bigger. We added the instrument presets
-                because the string names and frequencies matter and generic guitar approximations are
-                wrong for banjo. We added the themes because staring at a screen for two hours of
-                rehearsal is better when the screen does not look clinical. We added the wallpaper
-                option because some people have a specific aesthetic and one size does not fit all.
-                Everything else we looked at and decided it did not belong.
+                Every feature earned its place: instrument presets because string names matter and
+                guitar approximations are wrong for banjo; themes because two hours of rehearsal is
+                better when the screen does not look clinical; wallpaper because one size does not
+                fit all. Everything else we looked at, we decided did not belong.
             </p>
         </section>
 
@@ -1139,21 +1186,17 @@
             <div class="faq-item">
                 <div class="faq-question">Does it record my audio?</div>
                 <div class="faq-answer">
-                    No. The microphone is used for real-time pitch detection only. No audio is recorded,
-                    stored, or transmitted anywhere. Once you close the app, nothing from your microphone
-                    is retained. This is verifiable: the app requests only the microphone permission,
-                    and it uses it only while the tuner screen is active.
+                    No. Audio is processed on-device for pitch detection only. Nothing is recorded,
+                    stored, or transmitted. The microphone is released when you leave the tuner screen.
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">What instruments does it support?</div>
                 <div class="faq-answer">
-                    22 presets across 6 instruments: guitar (8 tunings including DADGAD, Open G, and
-                    Drop D), bass (4-string and 5-string), ukulele (High G, Low G, Baritone, D Tuning),
-                    mandolin, banjo (Open G, Double C, Sawmill), and violin. Each preset shows the
-                    correct string names and expected pitches. Chromatic mode lets you tune any
-                    instrument to any note without selecting a preset first.
+                    22 presets across 6 instruments: guitar (8 tunings including DADGAD, Open G,
+                    Drop D), bass (4 and 5 string), ukulele, mandolin, banjo, and violin.
+                    Chromatic mode lets you tune any instrument without selecting a preset.
                 </div>
             </div>
 
