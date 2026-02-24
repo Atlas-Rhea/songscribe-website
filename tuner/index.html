@@ -52,7 +52,7 @@
            Hero
            ------- */
         .tuner-hero {
-            padding: var(--space-xxxl) var(--space-xl) var(--space-xxl);
+            padding: var(--space-xxxl) var(--space-xl) var(--space-xl);
             max-width: 1100px;
             margin: 0 auto;
             display: grid;
@@ -470,7 +470,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: var(--space-lg);
-            margin: var(--space-xl) 0;
         }
 
         .pipeline-card {
@@ -562,7 +561,7 @@
         .tuner-screenshots-label {
             max-width: 1100px;
             margin: 0 auto;
-            padding: var(--space-xxl) var(--space-xl) var(--space-md);
+            padding: var(--space-xxl) var(--space-xl) var(--space-lg);
             font-size: var(--text-sm);
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -585,7 +584,7 @@
         .tuner-screenshots-marquee {
             display: flex;
             gap: 16px;
-            padding: 8px 0 var(--space-xxl);
+            padding: 0 0 var(--space-xl);
             animation: marqueeScroll 26s linear infinite;
             width: max-content;
             align-items: flex-end;
@@ -621,7 +620,7 @@
            Features accordion
            ------- */
         .tuner-features-grid {
-            max-width: 720px;
+            max-width: 800px;
             margin: 0 auto;
             padding: var(--space-xxl) var(--space-xl);
         }
@@ -862,7 +861,7 @@
 
         /* Extra breathing room before pricing — final emotional beat */
         .tuner-section--climax {
-            padding-top: calc(var(--space-xxl) * 1.5);
+            padding-top: var(--space-xxxl);
         }
 
         /* -------
@@ -876,7 +875,7 @@
         }
 
         .tuner-pricing-inner {
-            max-width: 720px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -961,7 +960,7 @@
            FAQ
            ------- */
         .tuner-faq {
-            max-width: 720px;
+            max-width: 800px;
             margin: 0 auto;
             padding: var(--space-xxl) var(--space-xl);
         }
@@ -1061,6 +1060,7 @@
             .tuner-hero {
                 grid-template-columns: 1fr;
                 padding-top: var(--space-xxl);
+                padding-bottom: var(--space-lg);
             }
 
             .tuner-hero-demo {
@@ -1088,7 +1088,9 @@
         @media (max-width: 600px) {
             .tuner-section,
             .tuner-faq,
-            .tuner-features-grid {
+            .tuner-features-grid,
+            .tuner-pricing,
+            .tuner-footer {
                 padding-left: var(--space-lg);
                 padding-right: var(--space-lg);
             }
@@ -1218,7 +1220,8 @@
         </section>
 
         <!-- Pipeline cards — moved directly under Why section -->
-        <div class="pipeline-grid reveal" style="margin: var(--space-xl) 0;">
+        <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--space-xl);">
+        <div class="pipeline-grid reveal">
 
                 <div class="pipeline-card reveal" style="--stagger-delay: 60ms; --step: 0">
                     <div class="pipeline-card-icon" aria-hidden="true">
@@ -1289,6 +1292,7 @@
                     <p>A candidate frequency's harmonic structure is analysed to confirm the correct octave. A confidence score over a rolling window prevents false locks.</p>
                 </div>
 
+        </div>
         </div>
 
         <!-- Features grid -->
@@ -1596,7 +1600,7 @@
         <!-- Pricing -->
         <section class="tuner-pricing">
             <div class="tuner-pricing-inner reveal">
-                <span class="tuner-section-eyebrow" style="display:block; margin-bottom: var(--space-sm);">Pricing</span>
+                <span class="tuner-section-eyebrow">Pricing</span>
                 <h2>Free to use. Pay once to remove ads.</h2>
                 <div class="tuner-pricing-grid">
                     <div class="pricing-tier">
