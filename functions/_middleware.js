@@ -6,6 +6,12 @@
 export async function onRequest({ request, env, next }) {
   const url = new URL(request.url);
 
+  // Redirect www to non-www
+  if (url.hostname === "www.songscribe.io") {
+    url.hostname = "songscribe.io";
+    return Response.redirect(url.toString(), 301);
+  }
+
   // Redirect songscribe.io/tuner paths to tuner subdomain
   if (url.hostname === "songscribe.io" && url.pathname.startsWith("/tuner")) {
     const subPath = url.pathname.replace(/^\/tuner\/?/, "/");
