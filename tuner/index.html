@@ -146,7 +146,7 @@
             color: var(--color-text-secondary);
         }
 
-        /* Hero screenshot strip */
+        /* Hero screenshot strip (legacy, kept for safety) */
         .tuner-hero-screenshots {
             display: flex;
             gap: var(--space-sm);
@@ -174,6 +174,110 @@
 
         .tuner-hero-screenshots figure:nth-child(3) {
             transform: translateY(-8px);
+        }
+
+        /* -------
+           Animated tuner demo
+           ------- */
+        .tuner-hero-demo {
+            width: 300px;
+            height: 520px;
+            background: #F5F0E8;
+            border: 1px solid #E4E0DA;
+            border-radius: 36px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            /* centering within the grid column */
+            justify-self: center;
+        }
+
+        .tuner-demo-note {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 72px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.35);
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+            user-select: none;
+        }
+
+        .tuner-demo-note.note-in-tune {
+            color: #FBBF24;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            animation: notePulse 0.3s ease-out;
+        }
+
+        @keyframes notePulse {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .tuner-demo-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #7A6F60;
+            letter-spacing: 0.04em;
+            margin-top: 8px;
+            min-height: 20px;
+            user-select: none;
+        }
+
+        .tuner-demo-track-wrap {
+            width: 80%;
+            height: 48px;
+            position: relative;
+            margin-top: 16px;
+        }
+
+        /* Horizontal track line */
+        .tuner-demo-track-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: #E4E0DA;
+            transform: translateY(-50%);
+        }
+
+        /* Center tick mark */
+        .tuner-demo-center-tick {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 1px;
+            height: 16px;
+            background: #E4E0DA;
+            transform: translate(-50%, -50%);
+        }
+
+        /* The needle */
+        .tuner-demo-needle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 6px;
+            height: 30px;
+            border-radius: 9999px;
+            background: #5F8484;
+            transform: translateX(0px) translate(-50%, -50%);
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;
+            will-change: transform;
+        }
+
+        .tuner-demo-needle.needle-in-tune {
+            background: #FBBF24;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+            transform-origin: center;
+            /* scale applied inline via JS on the transform */
         }
 
         /* -------
@@ -486,7 +590,7 @@
                 padding-top: var(--space-xxl);
             }
 
-            .tuner-hero-screenshots {
+            .tuner-hero-demo {
                 display: none;
             }
 
@@ -572,16 +676,15 @@
                 <p class="tuner-pricing-note">Free to download. Remove ads for $1.99: one-time, no subscription.</p>
             </div>
 
-            <div class="tuner-hero-screenshots" aria-hidden="true">
-                <figure>
-                    <img src="/assets/images/tuner/slice1-6.7.png" alt="Tuner in standard guitar mode">
-                </figure>
-                <figure>
-                    <img src="/assets/images/tuner/slice2-6.7.png" alt="Tuner detecting pitch">
-                </figure>
-                <figure>
-                    <img src="/assets/images/tuner/slice3-6.7.png" alt="Tuner instrument presets">
-                </figure>
+            <!-- Animated tuner demo — replaces static screenshot strip -->
+            <div class="tuner-hero-demo" aria-hidden="true">
+                <div class="tuner-demo-note" id="tunerDemoNote">--</div>
+                <div class="tuner-demo-status" id="tunerDemoStatus"></div>
+                <div class="tuner-demo-track-wrap">
+                    <div class="tuner-demo-track-line"></div>
+                    <div class="tuner-demo-center-tick"></div>
+                    <div class="tuner-demo-needle" id="tunerDemoNeedle"></div>
+                </div>
             </div>
         </section>
 
@@ -900,6 +1003,189 @@
             }
         })();
     </script>
+
+    <!-- Animated tuner demo -->
+    <script>
+        (function () {
+            var noteEl   = document.getElementById('tunerDemoNote');
+            var statusEl = document.getElementById('tunerDemoStatus');
+            var needleEl = document.getElementById('tunerDemoNeedle');
+
+            if (!noteEl || !statusEl || !needleEl) return;
+
+            // Alpha coefficients — ported from real app RAF loop
+            var ALPHA_MAGNETIC = 0.25;
+            var ALPHA_NORMAL   = 0.18;
+            var ALPHA_SILENT   = 0.08;
+
+            // Max pixel travel maps ±50 cents → ±100px
+            var CENTS_TO_PX = 2.0;
+
+            // In-tune threshold (cents)
+            var IN_TUNE_THRESHOLD = 1.5;
+
+            var visualCents  = 0;
+            var startTime    = null;
+            var wasInTune    = false;
+
+            // --- Simulation timeline ---
+            // Returns { targetCents, hasPitch, noteLabel, statusLabel }
+            // given elapsed seconds (looped over 7s)
+            function simulate(t) {
+                // t 0.0 – 1.5: searching, no pitch
+                if (t < 1.5) {
+                    var tc = 35 * Math.sin(t * 6.2) + 20 * Math.sin(t * 11.3);
+                    return {
+                        targetCents: tc,
+                        hasPitch: false,
+                        noteLabel: '--',
+                        statusLabel: ''
+                    };
+                }
+
+                // t 1.5 – 2.8: homing in, pitch present, converging toward 0
+                if (t < 2.8) {
+                    var progress = (t - 1.5) / 1.3; // 0 → 1
+                    // start value from end of searching phase (t=1.5)
+                    var searchEnd = 35 * Math.sin(1.5 * 6.2) + 20 * Math.sin(1.5 * 11.3);
+                    var tc = searchEnd * (1 - progress);
+                    var centsRounded = Math.round(tc);
+                    var sign = centsRounded >= 0 ? '+' : '';
+                    return {
+                        targetCents: tc,
+                        hasPitch: true,
+                        noteLabel: 'A4',
+                        statusLabel: sign + centsRounded + ' cents  440.3 Hz'
+                    };
+                }
+
+                // t 2.8 – 4.5: locked, tiny drift
+                if (t < 4.5) {
+                    var drift = 0.4 * Math.sin((t - 2.8) * 3.1);
+                    return {
+                        targetCents: drift,
+                        hasPitch: true,
+                        noteLabel: 'A4',
+                        statusLabel: '+0 cents  440.0 Hz'
+                    };
+                }
+
+                // t 4.5 – 5.2: drift sharp
+                if (t < 5.2) {
+                    var progress = (t - 4.5) / 0.7; // 0 → 1
+                    var tc = progress * 18;
+                    var centsRounded = Math.round(tc);
+                    return {
+                        targetCents: tc,
+                        hasPitch: true,
+                        noteLabel: 'A4',
+                        statusLabel: '+' + centsRounded + ' cents  440.0 Hz'
+                    };
+                }
+
+                // t 5.2 – 7.0: return to center, re-lock
+                var progress = (t - 5.2) / 1.8; // 0 → 1
+                var tc = 18 * (1 - progress);
+                var centsRounded = Math.round(tc);
+                var sign = centsRounded >= 0 ? '+' : '';
+                return {
+                    targetCents: tc,
+                    hasPitch: true,
+                    noteLabel: 'A4',
+                    statusLabel: sign + centsRounded + ' cents  440.0 Hz'
+                };
+            }
+
+            // --- Pulse ring on in-tune transition ---
+            function triggerPulse(el) {
+                var ring = document.createElement('div');
+                ring.style.cssText = [
+                    'position:absolute',
+                    'inset:0',
+                    'border-radius:50%',
+                    'background:white',
+                    'filter:blur(2px)',
+                    'opacity:0.8',
+                    'transform:scale(1)',
+                    'transition:opacity 0.4s ease-out,transform 0.4s ease-out',
+                    'pointer-events:none'
+                ].join(';');
+                el.appendChild(ring);
+                requestAnimationFrame(function () {
+                    ring.style.opacity = '0';
+                    ring.style.transform = 'scale(1.5)';
+                });
+                setTimeout(function () { ring.remove(); }, 420);
+            }
+
+            // --- RAF loop ---
+            function tick(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var elapsed = (timestamp - startTime) / 1000; // seconds
+                var t = elapsed % 7.0;
+
+                var sim = simulate(t);
+                var target   = sim.targetCents;
+                var hasPitch = sim.hasPitch;
+
+                // Magnetic snap: if within 3 cents of zero and pitch present, snap to 0
+                if (hasPitch && Math.abs(target) < 3) {
+                    target = 0;
+                }
+
+                var isMagnetic = (target === 0 && hasPitch);
+                var alpha = isMagnetic ? ALPHA_MAGNETIC : (hasPitch ? ALPHA_NORMAL : ALPHA_SILENT);
+
+                visualCents += (target - visualCents) * alpha;
+                if (Math.abs(target - visualCents) < 0.25) visualCents = target;
+
+                var inTune = hasPitch && Math.abs(visualCents) < IN_TUNE_THRESHOLD;
+
+                // --- Update needle ---
+                var px = Math.max(-100, Math.min(100, visualCents * CENTS_TO_PX));
+                var scale = inTune ? 1.3 : 1.0;
+                needleEl.style.transform = 'translateX(' + px + 'px) translate(-50%, -50%) scale(' + scale + ')';
+
+                if (inTune) {
+                    needleEl.style.backgroundColor = '#FBBF24';
+                    needleEl.style.boxShadow = '0 0 12px rgba(255,255,255,0.6)';
+                } else {
+                    needleEl.style.backgroundColor = '#5F8484';
+                    needleEl.style.boxShadow = 'none';
+                }
+
+                // --- Update note text ---
+                noteEl.textContent = sim.noteLabel;
+                if (inTune) {
+                    noteEl.style.color = '#FBBF24';
+                    noteEl.style.textShadow = '0 2px 8px rgba(0,0,0,0.3)';
+                } else {
+                    noteEl.style.color = 'rgba(0,0,0,0.35)';
+                    noteEl.style.textShadow = 'none';
+                }
+
+                // --- Note pulse animation on in-tune edge ---
+                if (inTune && !wasInTune) {
+                    noteEl.classList.remove('note-in-tune');
+                    // force reflow so the animation re-fires reliably
+                    void noteEl.offsetWidth;
+                    noteEl.classList.add('note-in-tune');
+                    triggerPulse(needleEl);
+                } else if (!inTune && wasInTune) {
+                    noteEl.classList.remove('note-in-tune');
+                }
+                wasInTune = inTune;
+
+                // --- Update status text ---
+                statusEl.textContent = sim.statusLabel;
+
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        })();
+    </script>
+
 </body>
 
 </html>
