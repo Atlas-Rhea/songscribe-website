@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>About - SongScribe</title>
-    <meta name="description" content="The story behind SongScribe — built by a songwriter who needed better tools for writing and performing music.">
+    <meta name="description" content="The story behind SongScribe, built by a songwriter who needed better tools for writing and performing music.">
     <link rel="canonical" href="https://songscribe.io/about">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://songscribe.io/about">
     <meta property="og:title" content="About - SongScribe">
-    <meta property="og:description" content="The story behind SongScribe — built by a songwriter who needed better tools for writing and performing music.">
+    <meta property="og:description" content="The story behind SongScribe, built by a songwriter who needed better tools for writing and performing music.">
     <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://songscribe.io/about">
     <meta name="twitter:title" content="About - SongScribe">
-    <meta name="twitter:description" content="The story behind SongScribe — built by a songwriter who needed better tools for writing and performing music.">
+    <meta name="twitter:description" content="The story behind SongScribe, built by a songwriter who needed better tools for writing and performing music.">
     <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- iOS Smart App Banner -->
@@ -131,6 +131,17 @@
 </head>
 
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
@@ -138,7 +149,7 @@
                 <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
             </a>
             <div class="nav-links" id="nav-links">
-                <a href="/#features" class="nav-link">Features</a>
+                <a href="/features" class="nav-link">Features</a>
                 <a href="/about" class="nav-link">About</a>
                 <a href="/changelog" class="nav-link">Changelog</a>
                 <a href="https://tuner.songscribe.io" class="nav-link nav-link--tuner" target="_blank" rel="noopener">Tuner <span class="nav-badge">Free App</span></a>
@@ -245,6 +256,44 @@
                 toggle.classList.toggle('active');
             });
         }
+    </script>
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', gtmId);
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || [];
+                    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                    var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true;
+                    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', gtmId);
+            }
+            if (consent === 'accepted') { loadGTM(); }
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
     </script>
 </body>
 
