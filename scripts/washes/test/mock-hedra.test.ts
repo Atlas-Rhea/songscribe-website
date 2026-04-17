@@ -11,13 +11,13 @@ describe('createMockFetch', () => {
 
     // #when
     const res = await fetchImpl(`${BASE}/web-app/public/models`);
-    const body = (await res.json()) as Array<{ id: string; display_name: string }>;
+    const body = (await res.json()) as Array<{ id: string; name: string }>;
 
     // #then
     assert.equal(res.status, 200);
     assert.equal(body.length, 2);
-    assert.equal(body[0]?.display_name, 'FLUX Dev');
-    assert.equal(body[1]?.display_name, 'Veo 3.1 Fast');
+    assert.equal(body[0]?.name, 'Flux Dev');
+    assert.equal(body[1]?.name, 'Grok Video I2V');
   });
 
   it('routes an image job end-to-end to real PNG bytes', async () => {

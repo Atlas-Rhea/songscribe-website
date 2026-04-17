@@ -27,7 +27,7 @@ const TMP = resolve(ROOT, 'scripts/washes/tmp');
 const STILL_COST_USD = 0.03;
 const MOTION_COST_USD = 0.50;
 const MOTION_FRAME_WIDTH = 1200;
-const VIDEO_RESOLUTION: '540p' = '540p';
+const VIDEO_RESOLUTION: '720p' = '720p';
 
 export async function generate(opts: CliOptions): Promise<void> {
   const manifest = JSON.parse(await readFile(MANIFEST, 'utf8')) as Manifest;

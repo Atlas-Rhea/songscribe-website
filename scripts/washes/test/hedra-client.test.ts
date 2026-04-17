@@ -320,8 +320,8 @@ describe('HedraClient.listModels', () => {
   it('GETs /models and returns the array', async () => {
     // #given
     const models = [
-      { id: 'u1', display_name: 'FLUX Dev' },
-      { id: 'u2', display_name: 'Seedream 4.0' },
+      { id: 'u1', name: 'Flux Dev' },
+      { id: 'u2', name: 'Nano Banana Pro T2I' },
     ];
     const fetchImpl: typeof fetch = async (url, init) => {
       assert.match(String(url), /\/web-app\/public\/models$/);

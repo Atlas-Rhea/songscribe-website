@@ -93,8 +93,8 @@ export function createMockFetch(): typeof fetch {
 
     if (method === 'GET' && path === '/web-app/public/models') {
       return Response.json([
-        { id: MOCK_IMAGE_MODEL_ID, display_name: 'FLUX Dev' },
-        { id: MOCK_VIDEO_MODEL_ID, display_name: 'Veo 3.1 Fast' },
+        { id: MOCK_IMAGE_MODEL_ID, name: 'Flux Dev' },
+        { id: MOCK_VIDEO_MODEL_ID, name: 'Grok Video I2V' },
       ]);
     }
 

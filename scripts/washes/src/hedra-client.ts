@@ -106,7 +106,8 @@ export interface AnimateImageResult {
 
 export interface HedraModel {
   id: string;
-  display_name: string;
+  /** Hedra calls this `name` — not `display_name`. Verified live 2026-04-17. */
+  name: string;
   [k: string]: unknown;
 }
 
@@ -288,7 +289,16 @@ function aspectRatio(w: number, h: number): string {
   return `${w / g}:${h / g}`;
 }
 
-/** Map the longer edge to Hedra's resolution label. */
+/**
+ * Map the longer edge to a Hedra image resolution literal.
+ *
+ * CAUTION — the literal set is MODEL-SPECIFIC (verified live 2026-04-17):
+ *   Nano Banana Pro T2I → "1K" | "2K" | "4K"
+ *   Flux Dev            → "540p" | "720p" | "1080p" | "1440p (2K QHD)" | "2160p (4K UHD)"
+ *   Nano Banana T2I     → (empty — no resolution parameter)
+ * This helper emits the Nano Banana Pro scheme because that's what the
+ * manifest uses for stills. Swap models and this mapping must change too.
+ */
 function resolutionLabel(longEdge: number): string {
   if (longEdge >= 3500) return '4K';
   if (longEdge >= 1700) return '2K';

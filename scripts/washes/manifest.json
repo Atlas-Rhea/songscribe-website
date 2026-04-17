@@ -1,7 +1,7 @@
 {
   "version": 1,
   "global": {
-    "model": "flux-dev",
+    "model": "nano-banana-pro-t2i",
     "size": "2048x2048",
     "template": "A single {palette} watercolor wash on pure white paper, {density}, {edge} edges, slight granulation, hand-painted, no subject, centered, isolated, high-resolution scan. Overall mood: {mood}.",
     "negative": "text, borders, frame, subject, object, geometry, sharp lines, digital gradient, vignette, photograph, 3D render",
@@ -20,7 +20,7 @@
         "frames": 90,
         "duration": 6.0,
         "direction": "bloom",
-        "videoModel": "veo-3.1-fast",
+        "videoModel": "grok-video-i2v",
         "videoPrompt": "the watercolor wash slowly blooming outward from its center, paint expanding organically into the surrounding paper, subtle wet edge spread, no new objects appearing"
       }
     }
