@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "entries": {
+    "hero": {
+      "id": "hero",
+      "prompt": "A single soft burnt orange blending into amber watercolor wash on pure white paper, large diffuse bloom with a quieter center, torn, feathered edges, slight granulation, hand-painted, no subject, centered, isolated, high-resolution scan. Overall mood: warm invitation, dawn light, unhurried.\n\nNEGATIVE: text, borders, frame, subject, object, geometry, sharp lines, digital gradient, vignette, photograph, 3D render",
+      "seed": 47213,
+      "model": "nano-banana-pro-t2i",
+      "size": "2048x2048",
+      "hash": "ae2c00471c989529",
+      "rawPath": "public/assets/decor/washes/hero.raw.png",
+      "webpPath": "public/assets/decor/washes/hero.webp",
+      "alphaWebpPath": null,
+      "motion": {
+        "frames": 91,
+        "duration": 6,
+        "hash": "b35dc2528e4740f1"
+      },
+      "updatedAt": "2026-04-17T20:59:55.808Z"
+    }
+  }
+}

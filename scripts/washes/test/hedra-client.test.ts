@@ -28,26 +28,32 @@ function scriptedFetch(
 }
 
 describe('HedraClient.generateImage', () => {
-  it('creates a job, polls until complete, fetches bytes from the asset URL', async () => {
+  it('creates a job, polls until complete, resolves asset CDN url, fetches bytes', async () => {
     // #given
     const { fetchImpl, calls } = scriptedFetch([
-      // POST /generations → returns a job id
+      // POST /generations → returns job with asset_id
       { match: /\/generations$/, reply: () =>
         new Response(JSON.stringify({ id: 'job-123', asset_id: 'a1', type: 'image' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
-      // GET /generations/job-123/status → still queued
+      // GET /generations/job-123/status → still queued (url stays null even when complete)
       { match: /\/generations\/job-123\/status$/, reply: () =>
-        new Response(JSON.stringify({ status: 'queued' }), {
+        new Response(JSON.stringify({ status: 'queued', asset_id: 'a1' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
-      // GET /generations/job-123/status → complete + url
+      // GET /generations/job-123/status → complete (still null url; asset_id carries forward)
       { match: /\/generations\/job-123\/status$/, reply: () =>
-        new Response(JSON.stringify({ status: 'complete', url: 'https://cdn.hedra.com/a1.png' }), {
+        new Response(JSON.stringify({ status: 'complete', asset_id: 'a1', url: null }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
+      },
+      // GET /assets?type=image&ids=a1 → lookup returns CDN url
+      { match: /\/web-app\/public\/assets\?type=image&ids=a1$/, reply: () =>
+        new Response(JSON.stringify([
+          { id: 'a1', asset: { url: 'https://cdn.hedra.com/a1.png', width: 512, height: 512 } },
+        ]), { status: 200, headers: { 'content-type': 'application/json' } }),
       },
       // GET the CDN asset → PNG bytes
       { match: /cdn\.hedra\.com\/a1\.png$/, reply: () =>
@@ -64,7 +70,7 @@ describe('HedraClient.generateImage', () => {
     });
 
     // #then
-    assert.equal(calls.length, 4);
+    assert.equal(calls.length, 5);
     assert.match(calls[0]!.url, /\/web-app\/public\/generations$/);
     assert.equal(calls[0]!.init.method, 'POST');
     const createHeaders = calls[0]!.init.headers as Record<string, string>;
@@ -73,9 +79,13 @@ describe('HedraClient.generateImage', () => {
     const createBody = JSON.parse(calls[0]!.init.body as string);
     assert.equal(createBody.type, 'image');
     assert.equal(createBody.ai_model_id, 'model-uuid-abc');
-    assert.equal(createBody.generated_image_inputs.text_prompt, 'x');
-    assert.equal(createBody.generated_image_inputs.aspect_ratio, '1:1');
-    assert.equal(createBody.generated_image_inputs.seed, 1);
+    assert.equal(createBody.text_prompt, 'x');
+    assert.equal(createBody.aspect_ratio, '1:1');
+    assert.equal(createBody.seed, 1);
+    assert.equal(createBody.generated_image_inputs, undefined, 'flat body — no nested wrapper');
+    // assets lookup carries the api key
+    const lookupHeaders = calls[3]!.init.headers as Record<string, string>;
+    assert.equal(lookupHeaders['x-api-key'], 'test-key');
     assert.equal(result.bytes.byteLength, 4);
     assert.equal(result.contentType, 'image/png');
   });
@@ -85,12 +95,17 @@ describe('HedraClient.generateImage', () => {
     const { fetchImpl } = scriptedFetch([
       { match: /\/generations$/, reply: () => new Response('boom', { status: 503 }) },
       { match: /\/generations$/, reply: () =>
-        new Response(JSON.stringify({ id: 'job-retry', type: 'image' }), {
+        new Response(JSON.stringify({ id: 'job-retry', asset_id: 'ar', type: 'image' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
       { match: /\/generations\/job-retry\/status$/, reply: () =>
-        new Response(JSON.stringify({ status: 'complete', url: 'https://cdn.hedra.com/r.png' }), {
+        new Response(JSON.stringify({ status: 'complete', asset_id: 'ar' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\?type=image&ids=ar$/, reply: () =>
+        new Response(JSON.stringify([{ id: 'ar', asset: { url: 'https://cdn.hedra.com/r.png' } }]), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
@@ -163,7 +178,7 @@ describe('HedraClient.animateImage', () => {
   it('uploads image, creates video job, polls to complete, fetches mp4 bytes', async () => {
     // #given
     const { fetchImpl, calls } = scriptedFetch([
-      // POST /assets → returns asset id
+      // POST /assets → returns asset id (for the uploaded start keyframe)
       { match: /\/web-app\/public\/assets$/, reply: () =>
         new Response(JSON.stringify({ id: 'asset-77' }), {
           status: 200, headers: { 'content-type': 'application/json' },
@@ -173,23 +188,29 @@ describe('HedraClient.animateImage', () => {
       { match: /\/web-app\/public\/assets\/asset-77\/upload$/, reply: () =>
         new Response('', { status: 200 }),
       },
-      // POST /generations → returns video job id
+      // POST /generations → returns video job with its own output asset_id
       { match: /\/web-app\/public\/generations$/, reply: () =>
-        new Response(JSON.stringify({ id: 'vjob-9', type: 'video' }), {
+        new Response(JSON.stringify({ id: 'vjob-9', asset_id: 'vasset-9', type: 'video' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
       // GET /generations/vjob-9/status → queued
       { match: /\/generations\/vjob-9\/status$/, reply: () =>
-        new Response(JSON.stringify({ status: 'queued' }), {
+        new Response(JSON.stringify({ status: 'queued', asset_id: 'vasset-9' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
       },
-      // GET /generations/vjob-9/status → complete + url
+      // GET /generations/vjob-9/status → complete
       { match: /\/generations\/vjob-9\/status$/, reply: () =>
-        new Response(JSON.stringify({ status: 'complete', url: 'https://cdn.hedra.com/v9.mp4' }), {
+        new Response(JSON.stringify({ status: 'complete', asset_id: 'vasset-9' }), {
           status: 200, headers: { 'content-type': 'application/json' },
         }),
+      },
+      // GET /assets?type=video&ids=vasset-9 → CDN url
+      { match: /\/web-app\/public\/assets\?type=video&ids=vasset-9$/, reply: () =>
+        new Response(JSON.stringify([
+          { id: 'vasset-9', asset: { url: 'https://cdn.hedra.com/v9.mp4' } },
+        ]), { status: 200, headers: { 'content-type': 'application/json' } }),
       },
       // GET the CDN asset → mp4 bytes
       { match: /cdn\.hedra\.com\/v9\.mp4$/, reply: () =>
@@ -213,7 +234,7 @@ describe('HedraClient.animateImage', () => {
     });
 
     // #then
-    assert.equal(calls.length, 6);
+    assert.equal(calls.length, 7);
 
     // 1. Asset metadata POST
     assert.match(calls[0]!.url, /\/web-app\/public\/assets$/);
@@ -247,8 +268,13 @@ describe('HedraClient.animateImage', () => {
     assert.equal(createBody.generated_video_inputs.duration_ms, 6000);
     assert.equal(createBody.generated_video_inputs.seed, 123);
 
-    // 6. CDN fetch has no x-api-key
-    const cdnHeaders = (calls[5]!.init.headers ?? {}) as Record<string, string>;
+    // 6. Asset lookup carries api key
+    assert.match(calls[5]!.url, /\/assets\?type=video&ids=vasset-9$/);
+    const lookupHeaders = calls[5]!.init.headers as Record<string, string>;
+    assert.equal(lookupHeaders['x-api-key'], 'test-key');
+
+    // 7. CDN fetch has no x-api-key
+    const cdnHeaders = (calls[6]!.init.headers ?? {}) as Record<string, string>;
     assert.equal(cdnHeaders['x-api-key'], undefined);
 
     assert.equal(result.bytes.byteLength, MP4_MAGIC.byteLength);

@@ -73,7 +73,8 @@ const getStill = (): Promise<Uint8Array> => (cachedStill ??= generateSolidPng())
 const getVideo = (): Promise<Uint8Array> => (cachedVideo ??= generateSolidMp4());
 
 export function createMockFetch(): typeof fetch {
-  const jobs = new Map<string, { type: 'image' | 'video' }>();
+  const jobs = new Map<string, { type: 'image' | 'video'; assetId: string }>();
+  const outputs = new Map<string, { type: 'image' | 'video'; jobId: string }>();
   let jobCounter = 0;
   let assetCounter = 0;
 
@@ -98,6 +99,7 @@ export function createMockFetch(): typeof fetch {
       ]);
     }
 
+    // Uploaded-keyframe asset creation (video flow, step 1)
     if (method === 'POST' && path === '/web-app/public/assets') {
       return Response.json({ id: `mock-asset-${++assetCounter}` });
     }
@@ -110,8 +112,10 @@ export function createMockFetch(): typeof fetch {
       const body = JSON.parse(String(init?.body ?? '{}')) as { type?: string };
       const type: 'image' | 'video' = body.type === 'video' ? 'video' : 'image';
       const id = `mock-job-${++jobCounter}`;
-      jobs.set(id, { type });
-      return Response.json({ id });
+      const assetId = `mock-output-${++assetCounter}`;
+      jobs.set(id, { type, assetId });
+      outputs.set(assetId, { type, jobId: id });
+      return Response.json({ id, asset_id: assetId, type });
     }
 
     const statusMatch = path.match(/^\/web-app\/public\/generations\/([^/]+)\/status$/);
@@ -122,12 +126,36 @@ export function createMockFetch(): typeof fetch {
       if (!info) {
         return Response.json({ status: 'error', error_message: `Unknown mock job ${jobId}` });
       }
-      const ext = info.type === 'image' ? 'png' : 'mp4';
-      const kind = info.type === 'image' ? 'still' : 'video';
       return Response.json({
         status: 'complete',
-        url: `https://${MOCK_CDN_HOST}/${kind}/${jobId}.${ext}`,
+        asset_id: info.assetId,
+        url: null,
       });
+    }
+
+    // GET /assets?type={image|video}&ids={asset_id} — post-completion lookup
+    if (method === 'GET' && path === '/web-app/public/assets') {
+      const type = u.searchParams.get('type');
+      const ids = u.searchParams.get('ids');
+      if (!type || !ids) {
+        return new Response('mock: /assets requires type and ids', { status: 422 });
+      }
+      const info = outputs.get(ids);
+      if (!info || info.type !== type) {
+        return Response.json([]);
+      }
+      const ext = type === 'image' ? 'png' : 'mp4';
+      const kind = type === 'image' ? 'still' : 'video';
+      return Response.json([
+        {
+          id: ids,
+          type,
+          asset: {
+            type: `generated_${type}`,
+            url: `https://${MOCK_CDN_HOST}/${kind}/${info.jobId}.${ext}`,
+          },
+        },
+      ]);
     }
 
     if (method === 'GET' && u.hostname === MOCK_CDN_HOST && path.startsWith('/still/')) {

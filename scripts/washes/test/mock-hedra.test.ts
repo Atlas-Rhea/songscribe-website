@@ -29,11 +29,16 @@ describe('createMockFetch', () => {
       method: 'POST',
       body: JSON.stringify({ type: 'image', ai_model_id: 'm' }),
     });
-    const { id } = (await createRes.json()) as { id: string };
+    const { id, asset_id } = (await createRes.json()) as { id: string; asset_id: string };
     const statusRes = await fetchImpl(`${BASE}/web-app/public/generations/${id}/status`);
-    const status = (await statusRes.json()) as { status: string; url?: string };
+    const status = (await statusRes.json()) as { status: string; asset_id: string };
     assert.equal(status.status, 'complete');
-    const pngRes = await fetchImpl(status.url!);
+    assert.equal(status.asset_id, asset_id);
+    const lookupRes = await fetchImpl(
+      `${BASE}/web-app/public/assets?type=image&ids=${asset_id}`,
+    );
+    const list = (await lookupRes.json()) as Array<{ asset: { url: string } }>;
+    const pngRes = await fetchImpl(list[0]!.asset.url);
     const bytes = new Uint8Array(await pngRes.arrayBuffer());
 
     // #then — PNG magic number: 89 50 4E 47
@@ -53,10 +58,13 @@ describe('createMockFetch', () => {
       method: 'POST',
       body: JSON.stringify({ type: 'video', ai_model_id: 'm', start_keyframe_id: 'k' }),
     });
-    const { id } = (await createRes.json()) as { id: string };
-    const statusRes = await fetchImpl(`${BASE}/web-app/public/generations/${id}/status`);
-    const status = (await statusRes.json()) as { url?: string };
-    const mp4Res = await fetchImpl(status.url!);
+    const { id, asset_id } = (await createRes.json()) as { id: string; asset_id: string };
+    await fetchImpl(`${BASE}/web-app/public/generations/${id}/status`);
+    const lookupRes = await fetchImpl(
+      `${BASE}/web-app/public/assets?type=video&ids=${asset_id}`,
+    );
+    const list = (await lookupRes.json()) as Array<{ asset: { url: string } }>;
+    const mp4Res = await fetchImpl(list[0]!.asset.url);
     const bytes = new Uint8Array(await mp4Res.arrayBuffer());
 
     // #then — MP4: "ftyp" box at bytes 4..8

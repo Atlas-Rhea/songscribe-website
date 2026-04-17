@@ -1,33 +1,43 @@
 /**
  * Hedra public API client.
  *
- * Endpoint contract (verified 2026-04-17 against
- * https://github.com/hedra-labs/hedra-api-starter/blob/main/main.py):
+ * Endpoint contract (verified live 2026-04-17; the published hedra-api-starter
+ * main.py is OUT OF DATE — different body shape, and no URL on status):
  *   - Base URL:     https://api.hedra.com
- *   - POST          /web-app/public/generations               → { id, asset_id, type, ai_model_id }
- *   - GET           /web-app/public/generations/{id}/status   → { status, url?, error_message? }
- *   - GET           /web-app/public/models                    → [{ id, display_name, ... }, ...]
- *   - POST          /web-app/public/assets                    → { id }          (video flow)
- *   - POST          /web-app/public/assets/{id}/upload        → 200 OK           (video flow, multipart)
+ *   - POST          /web-app/public/generations
+ *       → { id, asset_id, type, status: "queued", ... }
+ *   - GET           /web-app/public/generations/{id}/status
+ *       → { status, asset_id, url: null, download_url: null, streaming_url: null, ... }
+ *         (status transitions queued → finalizing → complete; `url` stays
+ *          null — the result URL is NOT on this endpoint, see below)
+ *   - GET           /web-app/public/assets?type={image|video}&ids={asset_id}
+ *       → [{ id, asset: { url, width, height, type }, ... }]
+ *         (THIS is where the signed CDN URL lives; call after status=complete.
+ *          `type` param is REQUIRED; `ids` selects the specific asset.)
+ *   - GET           /web-app/public/models
+ *       → [{ id, name, type, resolutions, aspect_ratios, ... }, ...]
+ *   - POST          /web-app/public/assets                    → { id }   (video flow)
+ *   - POST          /web-app/public/assets/{id}/upload        → 200 OK   (video flow, multipart)
  *   - Auth header:  x-api-key: <key>   (NOT Authorization: Bearer; NOT on CDN fetches)
  *
- * Image request body:
+ * Image request body (FLAT — verified live 2026-04-17 against Nano Banana
+ * Pro T2I and Flux Dev; the hedra-api-starter main.py uses an outdated
+ * `generated_image_inputs` wrapper that returns 422):
  *   {
- *     "type": "image",
- *     "ai_model_id": "<model UUID from /models>",
- *     "generated_image_inputs": {
- *       "text_prompt":  "<prompt>",
- *       "aspect_ratio": "1:1" | "16:9" | "9:16" | ...,
- *       "resolution":   "1K" | "2K" | "4K",
- *       "seed":         <int, optional>
- *     }
+ *     "type":         "image",
+ *     "ai_model_id":  "<model UUID from /models>",
+ *     "text_prompt":  "<prompt>",
+ *     "aspect_ratio": "1:1" | "16:9" | "9:16" | ...,
+ *     "resolution":   "1K" | "2K" | "4K"   // model-specific literals
+ *     "seed":         <int, optional>
  *   }
  *
- * Video request body (image-to-video; no audio):
+ * Video request body (image-to-video; no audio — still uses the nested
+ * wrapper, unlike image):
  *   {
  *     "type": "video",
  *     "ai_model_id":       "<video model UUID from /models>",
- *     "start_keyframe_id": "<asset id returned by POST /assets>",
+ *     "start_keyframe_id": "<asset UUID from POST /assets>",
  *     "generated_video_inputs": {
  *       "text_prompt":  "<prompt>",
  *       "aspect_ratio": "16:9" | "9:16" | "1:1",
@@ -37,7 +47,7 @@
  *     }
  *   }
  *   NOTE: start_keyframe_id sits at the TOP level of the body — NOT nested
- *   inside generated_video_inputs. Confirmed in the Hedra starter main.py.
+ *   inside generated_video_inputs.
  *
  * Upload flow (video only): bytes become an "asset" via two POSTs against
  * the Hedra origin (NO presigned S3 step):
@@ -155,17 +165,16 @@ export class HedraClient {
     const body = JSON.stringify({
       type: 'image',
       ai_model_id: req.modelId,
-      generated_image_inputs: {
-        text_prompt: req.prompt,
-        aspect_ratio: aspectRatio(w, h),
-        resolution: resolutionLabel(Math.max(w, h)),
-        seed: req.seed,
-      },
+      text_prompt: req.prompt,
+      aspect_ratio: aspectRatio(w, h),
+      resolution: resolutionLabel(Math.max(w, h)),
+      seed: req.seed,
     });
 
     const job = await this.createJob(body);
-    const asset = await this.pollUntilComplete(job.id);
-    return this.downloadAsset(asset.url, 'image/png');
+    const assetId = await this.pollUntilComplete(job.id);
+    const url = await this.resolveAssetUrl(assetId, 'image');
+    return this.downloadAsset(url, 'image/png');
   }
 
   async animateImage(req: AnimateImageRequest): Promise<AnimateImageResult> {
@@ -192,8 +201,9 @@ export class HedraClient {
     });
 
     const job = await this.createJob(body);
-    const asset = await this.pollUntilComplete(job.id);
-    return this.downloadAsset(asset.url, 'video/mp4');
+    const resultAssetId = await this.pollUntilComplete(job.id);
+    const url = await this.resolveAssetUrl(resultAssetId, 'video');
+    return this.downloadAsset(url, 'video/mp4');
   }
 
   private async uploadImageAsset(bytes: Uint8Array, name: string): Promise<string> {
@@ -242,7 +252,7 @@ export class HedraClient {
     throw new Error(`HTTP ${res.status} from Hedra createJob: ${await res.text()}`);
   }
 
-  private async pollUntilComplete(jobId: string): Promise<{ url: string }> {
+  private async pollUntilComplete(jobId: string): Promise<string> {
     const url = `${this.baseUrl}${GENERATIONS_PATH}/${jobId}/status`;
     for (let i = 0; i < this.maxPolls; i++) {
       const res = await this.fetchImpl(url, {
@@ -254,12 +264,14 @@ export class HedraClient {
       }
       const payload = (await res.json()) as {
         status: string;
-        url?: string;
+        asset_id?: string;
         error_message?: string;
       };
       if (payload.status === 'complete') {
-        if (!payload.url) throw new Error('Hedra reported complete but no asset url.');
-        return { url: payload.url };
+        if (!payload.asset_id) {
+          throw new Error(`Hedra job ${jobId} complete but no asset_id in status payload.`);
+        }
+        return payload.asset_id;
       }
       if (payload.status === 'error' || payload.status === 'failed') {
         throw new Error(`Hedra job ${jobId} failed: ${payload.error_message ?? 'unknown error'}`);
@@ -267,6 +279,32 @@ export class HedraClient {
       await sleep(this.pollIntervalMs);
     }
     throw new Error(`Hedra job ${jobId} timed out after ${this.maxPolls} polls.`);
+  }
+
+  /**
+   * Resolve an asset UUID to its signed CDN URL. Must be called after the
+   * generation status is "complete" — the URL is NOT on the status payload,
+   * despite having `url`/`download_url` fields that sit perpetually null.
+   * The `type` query param is required; passing "image" for a video asset
+   * returns an empty array (silent miss).
+   */
+  private async resolveAssetUrl(assetId: string, type: 'image' | 'video'): Promise<string> {
+    const url = `${this.baseUrl}${ASSETS_PATH}?type=${type}&ids=${assetId}`;
+    const res = await this.fetchImpl(url, {
+      method: 'GET',
+      headers: { 'x-api-key': this.apiKey },
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} from Hedra assets lookup: ${await res.text()}`);
+    }
+    const list = (await res.json()) as Array<{ id: string; asset?: { url?: string } }>;
+    const hit = list.find((a) => a.id === assetId);
+    if (!hit?.asset?.url) {
+      throw new Error(
+        `Asset ${assetId} (${type}) had no CDN url. Response: ${JSON.stringify(list).slice(0, 300)}`,
+      );
+    }
+    return hit.asset.url;
   }
 
   private async downloadAsset(
