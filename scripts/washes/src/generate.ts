@@ -9,6 +9,7 @@ import { loadLockfile, saveLockfile, shouldSkip, upsertEntry } from './lockfile.
 import { renderTable, type PlannedAction } from './cli-table.ts';
 import { HedraClient, type HedraModel } from './hedra-client.ts';
 import { resolveModelId } from './model-resolver.ts';
+import { createMockFetch } from './mock-hedra.ts';
 import { cwebp, rembg, assertBinary } from './post-process.ts';
 import { extractFrames, cleanupTmp } from './extract-frames.ts';
 import type { CliOptions } from './cli-args.ts';
@@ -54,16 +55,27 @@ export async function generate(opts: CliOptions): Promise<void> {
     }
   }
 
-  const apiKey = process.env.HEDRA_API_KEY;
+  const apiKey = opts.mock ? 'mock' : process.env.HEDRA_API_KEY;
   if (!apiKey) {
-    throw new Error('HEDRA_API_KEY missing. Copy .env.local.example to .env.local and fill it in.');
+    throw new Error(
+      'HEDRA_API_KEY missing. Copy .env.local.example to .env.local and fill it in, ' +
+        'or pass --mock to generate placeholder fixtures without hitting the API.',
+    );
   }
   await assertBinary('cwebp');
   if (plan.some((a) => a.kind === 'motion' && a.status === 'REGEN')) {
     await assertBinary('ffmpeg');
   }
 
-  const client = new HedraClient({ apiKey });
+  if (opts.mock) {
+    console.log('⚠  MOCK MODE: generating solid-amber placeholder fixtures. No API calls.');
+  }
+
+  const client = new HedraClient(
+    opts.mock
+      ? { apiKey, fetchImpl: createMockFetch(), pollIntervalMs: 0 }
+      : { apiKey },
+  );
   const models = await client.listModels();
   const imageModelId = resolveModelId(manifest.global.model, models);
 

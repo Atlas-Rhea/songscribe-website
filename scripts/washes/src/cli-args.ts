@@ -6,6 +6,7 @@ export interface CliOptions {
   force: boolean;
   noAlpha: boolean;
   yes: boolean;
+  mock: boolean;
 }
 
 export function parseArgs(argv: readonly string[]): CliOptions {
@@ -17,6 +18,7 @@ export function parseArgs(argv: readonly string[]): CliOptions {
     force: false,
     noAlpha: false,
     yes: false,
+    mock: false,
   };
 
   for (let i = 0; i < argv.length; i++) {
@@ -28,6 +30,7 @@ export function parseArgs(argv: readonly string[]): CliOptions {
       case '--force': opts.force = true; break;
       case '--no-alpha': opts.noAlpha = true; break;
       case '--yes': case '-y': opts.yes = true; break;
+      case '--mock': opts.mock = true; break;
       case '--only': {
         const v = argv[++i];
         if (!v) throw new Error('--only requires a value');

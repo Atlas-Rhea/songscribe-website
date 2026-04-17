@@ -16,6 +16,7 @@ describe('parseArgs', () => {
       force: false,
       noAlpha: false,
       yes: false,
+      mock: false,
     });
   });
 
