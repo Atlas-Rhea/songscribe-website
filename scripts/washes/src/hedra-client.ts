@@ -7,7 +7,9 @@
  *   - POST          /web-app/public/generations               → { id, asset_id, type, ai_model_id }
  *   - GET           /web-app/public/generations/{id}/status   → { status, url?, error_message? }
  *   - GET           /web-app/public/models                    → [{ id, display_name, ... }, ...]
- *   - Auth header:  x-api-key: <key>   (NOT Authorization: Bearer)
+ *   - POST          /web-app/public/assets                    → { id }          (video flow)
+ *   - POST          /web-app/public/assets/{id}/upload        → 200 OK           (video flow, multipart)
+ *   - Auth header:  x-api-key: <key>   (NOT Authorization: Bearer; NOT on CDN fetches)
  *
  * Image request body:
  *   {
@@ -21,11 +23,37 @@
  *     }
  *   }
  *
- * Flow: POST creates an async job → poll status until "complete" → fetch
- * the presigned CDN url from the status payload → that's the actual image.
+ * Video request body (image-to-video; no audio):
+ *   {
+ *     "type": "video",
+ *     "ai_model_id":       "<video model UUID from /models>",
+ *     "start_keyframe_id": "<asset id returned by POST /assets>",
+ *     "generated_video_inputs": {
+ *       "text_prompt":  "<prompt>",
+ *       "aspect_ratio": "16:9" | "9:16" | "1:1",
+ *       "resolution":   "540p" | "720p",     // NB: not "1K"/"2K" like image
+ *       "duration_ms":  <int milliseconds, optional>,
+ *       "seed":         <int, optional>
+ *     }
+ *   }
+ *   NOTE: start_keyframe_id sits at the TOP level of the body — NOT nested
+ *   inside generated_video_inputs. Confirmed in the Hedra starter main.py.
+ *
+ * Upload flow (video only): bytes become an "asset" via two POSTs against
+ * the Hedra origin (NO presigned S3 step):
+ *   1. POST /web-app/public/assets            JSON {name, type:"image"}  → { id }
+ *   2. POST /web-app/public/assets/{id}/upload  multipart file=<bytes>    → 200
+ * Both carry the x-api-key header.
+ *
+ * Duration unit: callers pass seconds (matches manifest.json motion.duration);
+ * animateImage() converts to milliseconds internally for the wire format.
+ *
+ * Flow (both image and video): POST creates an async job → poll status
+ * until "complete" → fetch the presigned CDN url from the status payload.
  *
  * Retry policy: one retry on 5xx at job creation. Poll errors do not retry;
- * a status of "error" surfaces error_message verbatim.
+ * a status of "error" surfaces error_message verbatim. Asset upload has no
+ * retry — a bad upload fails fast.
  */
 
 export interface HedraClientOptions {
@@ -54,6 +82,28 @@ export interface GenerateImageResult {
   contentType: string;
 }
 
+export interface AnimateImageRequest {
+  /** Raw image bytes (PNG or JPEG) to use as the first frame. */
+  imageBytes: Uint8Array;
+  /** Filename hint sent in the asset-creation step (e.g. "hero-still.png"). */
+  imageName: string;
+  prompt: string;
+  /** Hedra video model UUID (resolve via listModels() from a slug). */
+  modelId: string;
+  /** "WxH" string of the input still; only used to derive aspect_ratio. */
+  size: string;
+  /** Hedra video resolution literal. */
+  resolution: '540p' | '720p';
+  /** Duration in SECONDS; converted to duration_ms on the wire. */
+  durationSeconds: number;
+  seed: number;
+}
+
+export interface AnimateImageResult {
+  bytes: Uint8Array;
+  contentType: string;
+}
+
 export interface HedraModel {
   id: string;
   display_name: string;
@@ -63,6 +113,7 @@ export interface HedraModel {
 const DEFAULT_BASE = 'https://api.hedra.com';
 const GENERATIONS_PATH = '/web-app/public/generations';
 const MODELS_PATH = '/web-app/public/models';
+const ASSETS_PATH = '/web-app/public/assets';
 
 export class HedraClient {
   private readonly apiKey: string;
@@ -113,7 +164,63 @@ export class HedraClient {
 
     const job = await this.createJob(body);
     const asset = await this.pollUntilComplete(job.id);
-    return this.downloadAsset(asset.url);
+    return this.downloadAsset(asset.url, 'image/png');
+  }
+
+  async animateImage(req: AnimateImageRequest): Promise<AnimateImageResult> {
+    const [wStr, hStr] = req.size.split('x');
+    const w = Number(wStr);
+    const h = Number(hStr);
+    if (!Number.isFinite(w) || !Number.isFinite(h)) {
+      throw new Error(`Invalid size "${req.size}"; expected "WxH" like "2048x2048".`);
+    }
+
+    const assetId = await this.uploadImageAsset(req.imageBytes, req.imageName);
+
+    const body = JSON.stringify({
+      type: 'video',
+      ai_model_id: req.modelId,
+      start_keyframe_id: assetId,
+      generated_video_inputs: {
+        text_prompt: req.prompt,
+        aspect_ratio: aspectRatio(w, h),
+        resolution: req.resolution,
+        duration_ms: Math.round(req.durationSeconds * 1000),
+        seed: req.seed,
+      },
+    });
+
+    const job = await this.createJob(body);
+    const asset = await this.pollUntilComplete(job.id);
+    return this.downloadAsset(asset.url, 'video/mp4');
+  }
+
+  private async uploadImageAsset(bytes: Uint8Array, name: string): Promise<string> {
+    const createUrl = `${this.baseUrl}${ASSETS_PATH}`;
+    const createRes = await this.fetchImpl(createUrl, {
+      method: 'POST',
+      headers: { 'x-api-key': this.apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, type: 'image' }),
+    });
+    if (!createRes.ok) {
+      throw new Error(`HTTP ${createRes.status} from Hedra createAsset: ${await createRes.text()}`);
+    }
+    const { id } = (await createRes.json()) as { id: string };
+
+    const form = new FormData();
+    const blob = new Blob([bytes as unknown as BlobPart]);
+    form.append('file', blob, name);
+
+    const uploadUrl = `${this.baseUrl}${ASSETS_PATH}/${id}/upload`;
+    const uploadRes = await this.fetchImpl(uploadUrl, {
+      method: 'POST',
+      headers: { 'x-api-key': this.apiKey },
+      body: form,
+    });
+    if (!uploadRes.ok) {
+      throw new Error(`HTTP ${uploadRes.status} from Hedra uploadAsset: ${await uploadRes.text()}`);
+    }
+    return id;
   }
 
   private async createJob(body: string): Promise<{ id: string }> {
@@ -161,13 +268,16 @@ export class HedraClient {
     throw new Error(`Hedra job ${jobId} timed out after ${this.maxPolls} polls.`);
   }
 
-  private async downloadAsset(assetUrl: string): Promise<GenerateImageResult> {
+  private async downloadAsset(
+    assetUrl: string,
+    defaultContentType: string,
+  ): Promise<{ bytes: Uint8Array; contentType: string }> {
     const res = await this.fetchImpl(assetUrl);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status} downloading asset from ${assetUrl}`);
     }
     const buf = new Uint8Array(await res.arrayBuffer());
-    return { bytes: buf, contentType: res.headers.get('content-type') ?? 'image/png' };
+    return { bytes: buf, contentType: res.headers.get('content-type') ?? defaultContentType };
   }
 }
 
