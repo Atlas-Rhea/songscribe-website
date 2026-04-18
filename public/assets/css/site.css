@@ -46,3 +46,30 @@
   color: var(--text-secondary);
   margin: 0;
 }
+
+/* -------------------------------------------------------------
+   Section inner — shared layout wrapper
+   ------------------------------------------------------------- */
+:root {
+  --site-max-width: 1200px;
+  --side-pad:       clamp(1.25rem, 4vw, 2.5rem);
+  --section-pad-y:  clamp(3rem, 8vw, 7rem);
+}
+
+.section-inner {
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+  padding-block: var(--section-pad-y);
+  padding-inline: max(var(--side-pad), env(safe-area-inset-left));
+  padding-inline-end: max(var(--side-pad), env(safe-area-inset-right));
+}
+
+/* First section on page respects top safe-area (notch) */
+.section:first-of-type .section-inner {
+  padding-top: max(var(--section-pad-y), env(safe-area-inset-top));
+}
+
+/* Last section respects bottom safe-area (home indicator) */
+.section:last-of-type .section-inner {
+  padding-bottom: max(var(--section-pad-y), env(safe-area-inset-bottom));
+}
