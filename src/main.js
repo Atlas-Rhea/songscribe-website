@@ -1,3 +1,6 @@
+import { initTheme } from './theme-toggle.js';
+initTheme();
+
 import './style-glass.css'
 import { LiquidLogoCSS } from './LiquidLogoCSS.js'
 
