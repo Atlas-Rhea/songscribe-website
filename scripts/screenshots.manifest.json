@@ -1,0 +1,20 @@
+{
+  "sourceRoot": "/Users/Atlas/Projects/songscribe-offline-muse/carousel-assets",
+  "outputDir": "public/assets/images/shots",
+  "widths": [480, 720, 1080],
+  "quality": 85,
+  "shots": [
+    { "slug": "01-editor-chords-on-lyrics", "source": "01-editor-chords-on-lyrics.png" },
+    { "slug": "02-dark-mode-editor",        "source": "02-dark-mode-editor.png" },
+    { "slug": "03-chord-picker",            "source": "03-chord-picker.png" },
+    { "slug": "04-multi-track-recording",   "source": "04-multi-track-recording.png" },
+    { "slug": "05-performance-mode",        "source": "05-performance-mode.png" },
+    { "slug": "06-export-preview",          "source": "06-export-preview.png" },
+    { "slug": "07-theme-grid",              "source": "07-theme-grid.png" },
+    { "slug": "08-metronome",               "source": "08-metronome.png" },
+    { "slug": "09-tuner",                   "source": "09-tuner.png" },
+    { "slug": "10-fretboard-diagram",       "source": "10-fretboard-diagram.png" },
+    { "slug": "11-harmony-constellation",   "source": "11-harmony-constellation.png" },
+    { "slug": "12-harmony-add-to-song",     "source": "12-harmony-add-to-song.png" }
+  ]
+}
