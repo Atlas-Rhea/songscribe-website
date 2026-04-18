@@ -1,0 +1,29 @@
+/* =============================================================
+   SongScribe 2.0 — Site Styles
+   Section pattern, tier backgrounds, phone frames, typography
+   Depends on decor.css for color primitives and theme tokens
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   Section tiers
+   Every <section> gets .section--light or .section--dark
+   ------------------------------------------------------------- */
+.section {
+  position: relative;
+  isolation: isolate;
+}
+
+.section--light {
+  background: var(--section-bg-light);
+  color: var(--text-primary);
+}
+
+.section--dark {
+  background: var(--section-bg-dark);
+  color: var(--cream-warm);
+}
+
+.section--dark .section-subtitle,
+.section--dark p {
+  color: var(--warm-gray-soft);
+}
