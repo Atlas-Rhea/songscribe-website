@@ -40,12 +40,20 @@ export function toggleTheme() {
   return next;
 }
 
+function syncButton(button, theme) {
+  const isDark = theme === 'dark';
+  button.setAttribute('aria-pressed', String(isDark));
+  button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  const icon = button.querySelector('.theme-toggle__icon');
+  if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+}
+
 export function bindToggleButton(button) {
   if (!button) return;
-  button.setAttribute('aria-pressed', String(getCurrentTheme() === 'dark'));
+  syncButton(button, getCurrentTheme());
   button.addEventListener('click', () => {
     const theme = toggleTheme();
-    button.setAttribute('aria-pressed', String(theme === 'dark'));
+    syncButton(button, theme);
     button.dispatchEvent(new CustomEvent('themechange', { detail: { theme }, bubbles: true }));
   });
 }

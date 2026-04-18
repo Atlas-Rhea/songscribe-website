@@ -187,13 +187,6 @@
   outline-offset: 2px;
 }
 
-:root[data-theme="dark"] .theme-toggle__icon::before {
-  content: "☀️";
-}
-:root[data-theme="dark"] .theme-toggle__icon {
-  font-size: 0;
-}
-
 @media (max-width: 640px) {
   .nav-links { display: none; }
 }
