@@ -192,6 +192,10 @@
 
 @media (max-width: 640px) {
   .nav-section .nav-links { display: none; }
+  /* Nav CTA overflows at 390px because logo + toggle + button won't
+     fit. Users can still convert via the hero CTA or the pricing
+     link in the announcement strip above. */
+  .nav-section .nav-actions .btn { display: none; }
 }
 
 /* -------------------------------------------------------------
@@ -300,6 +304,21 @@
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   margin-top: 1rem;
   max-width: 42ch;
+}
+
+/* In dark mode the hero's chocolate plate has large orange-pigment
+   regions that sit directly behind the subtitle copy. The default
+   --text-secondary (warm-gray-soft #8A7D6F) reads as warm-on-warm
+   and vanishes. Override with cream-warm at 85% so the subtitle
+   stays distinct from the headline (which is full cream-warm) but
+   remains clearly legible against the busy plate. */
+:root[data-theme="dark"] .hero .hero-subtitle {
+  color: rgb(250 246 240 / 0.88);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero .hero-subtitle {
+    color: rgb(250 246 240 / 0.88);
+  }
 }
 
 .hero-cta {
