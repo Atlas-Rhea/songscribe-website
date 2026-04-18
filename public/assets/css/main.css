@@ -6,34 +6,34 @@
    ============================================================================= */
 
 :root {
-  /* Watercolor Palette */
-  --color-coral: #F5A962;
+  /* Watercolor Palette — now references decor.css */
+  --color-coral:       var(--coral);
   --color-coral-light: #FBCFA0;
-  --color-coral-dark: #E8944D;
-  --color-teal: #2D9E9E;
-  --color-teal-light: #5FBFBF;
-  --color-teal-dark: #1F7A7A;
+  --color-coral-dark:  #E8944D;
+  --color-teal:        var(--teal);
+  --color-teal-light:  #5FBFBF;
+  --color-teal-dark:   var(--teal-deep);
 
-  /* Brand Colors */
-  --color-primary: #FBBF24;
-  --color-primary-hover: #F9B910;
-  --color-secondary: #2D9E9E;
-  --color-secondary-strong: #1F7A7A;
+  /* Brand Colors — amber family maps to decor --amber */
+  --color-primary:          var(--amber);
+  --color-primary-hover:    var(--amber-soft);
+  --color-secondary:        var(--teal);
+  --color-secondary-strong: var(--teal-deep);
 
-  /* Surface Colors (warmer cream tints) */
-  --color-surface-0: #FFFFFF;
-  --color-surface-1: #FDF9F3;
-  --color-surface-2: #FAF5ED;
-  --color-surface-warm: #FFF8F0;
+  /* Surface Colors — unified to parchment family */
+  --color-surface-0:     var(--parchment);
+  --color-surface-1:     var(--cream);
+  --color-surface-2:     var(--cream-warm);
+  --color-surface-warm:  var(--cream-warm);
 
-  /* Text Colors */
-  --color-text-primary: #2D3748;
-  --color-text-secondary: rgba(45, 55, 72, 0.7);
-  --color-text-on-dark: #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.8);
+  /* Text Colors — map to decor text tokens */
+  --color-text-primary:        var(--text-primary);
+  --color-text-secondary:      var(--text-secondary);
+  --color-text-on-dark:        var(--cream-warm);
+  --color-text-on-dark-muted:  var(--warm-gray-soft);
 
   /* Border Colors */
-  --color-border-subtle: #E8E4DC;
+  --color-border-subtle: var(--hairline);
   --color-border-medium: #D4CFC5;
 
   /* Typography */
