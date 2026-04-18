@@ -16,6 +16,11 @@ _site/
 *.swo
 *~
 
+# Local agent / dev-tool caches (per-user, not project state)
+.claude/
+.serena/
+.superpowers/
+
 # OS
 .DS_Store
 Thumbs.db
