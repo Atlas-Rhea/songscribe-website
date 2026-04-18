@@ -73,3 +73,41 @@
 .section:last-of-type .section-inner {
   padding-bottom: max(var(--section-pad-y), env(safe-area-inset-bottom));
 }
+
+/* -------------------------------------------------------------
+   Announcement strip
+   ------------------------------------------------------------- */
+.strip .section-inner {
+  padding-block: 0.75rem;
+}
+
+.strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.strip-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cream-warm);
+}
+
+.strip-link {
+  color: var(--amber-soft);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.strip-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .strip-text { font-size: 0.8rem; }
+  .strip-inner { gap: 0.75rem; }
+}
