@@ -1,5 +1,8 @@
-import { initTheme } from './theme-toggle.js';
+import { initTheme, bindToggleButton } from './theme-toggle.js';
 initTheme();
+document.addEventListener('DOMContentLoaded', () => {
+  bindToggleButton(document.getElementById('themeToggle'));
+});
 
 import './style-glass.css'
 import { LiquidLogoCSS } from './LiquidLogoCSS.js'
