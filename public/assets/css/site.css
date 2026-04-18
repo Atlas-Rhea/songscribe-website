@@ -27,3 +27,22 @@
 .section--dark p {
   color: var(--warm-gray-soft);
 }
+
+/* -------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------- */
+.section-headline {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
