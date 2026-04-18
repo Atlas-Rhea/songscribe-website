@@ -4,8 +4,16 @@
 
 const STORAGE_KEY = 'ss-theme';
 
+function readStored() {
+  try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+}
+
+function writeStored(value) {
+  try { localStorage.setItem(STORAGE_KEY, value); } catch { /* storage unavailable — session-only */ }
+}
+
 function readPreferred() {
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const stored = readStored();
   if (stored === 'light' || stored === 'dark') return stored;
   return window.matchMedia('(prefers-color-scheme: dark)').matches
     ? 'dark'
@@ -28,7 +36,7 @@ export function getCurrentTheme() {
 export function toggleTheme() {
   const next = getCurrentTheme() === 'dark' ? 'light' : 'dark';
   apply(next);
-  localStorage.setItem(STORAGE_KEY, next);
+  writeStored(next);
   return next;
 }
 
