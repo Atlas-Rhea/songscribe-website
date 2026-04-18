@@ -91,7 +91,8 @@
   flex-wrap: wrap;
 }
 
-.strip-text {
+/* Specificity bump (.strip .strip-text) so dark-tier p { warm-gray-soft } default doesn't dim the strip announcement. */
+.strip .strip-text {
   margin: 0;
   font-size: 0.9rem;
   color: var(--cream-warm);
@@ -116,6 +117,8 @@
 
 /* -------------------------------------------------------------
    Navigation
+   All v2 nav rules scoped under .nav-section to beat v1 main.css
+   (loaded later) which defines conflicting .nav-links rules.
    ------------------------------------------------------------- */
 .nav-section {
   border-bottom: 1px solid var(--hairline-color);
@@ -126,20 +129,20 @@
   padding-block: 1rem;
 }
 
-.nav-inner {
+.nav-section .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
 
-.nav-logo img {
+.nav-section .nav-logo img {
   display: block;
   height: 32px;
   width: auto;
 }
 
-.nav-links {
+.nav-section .nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -148,23 +151,23 @@
   font-size: 0.95rem;
 }
 
-.nav-links a {
+.nav-section .nav-links a {
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
 }
 
-.nav-links a:hover {
+.nav-section .nav-links a:hover {
   color: var(--amber);
 }
 
-.nav-actions {
+.nav-section .nav-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.theme-toggle {
+.nav-section .theme-toggle {
   background: transparent;
   border: 1px solid var(--hairline-color);
   border-radius: 999px;
@@ -178,15 +181,15 @@
   transition: border-color 160ms ease;
 }
 
-.theme-toggle:hover {
+.nav-section .theme-toggle:hover {
   border-color: var(--amber);
 }
 
-.theme-toggle:focus-visible {
+.nav-section .theme-toggle:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 2px;
 }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  .nav-section .nav-links { display: none; }
 }
