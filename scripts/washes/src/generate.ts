@@ -103,7 +103,8 @@ export async function generate(opts: CliOptions): Promise<void> {
 
     if (!opts.stillsOnly && section.motion?.enabled && entry) {
       const motionEntry = await regenMotion({
-        client, section, stillRawPath: entry.rawPath, models, size: manifest.global.size,
+        client, manifest, section, stillRawPath: entry.rawPath,
+        models, size: manifest.global.size, imageModelId,
       });
       const merged: LockEntry = { ...entry, motion: motionEntry };
       nextLock = upsertEntry(nextLock, merged);
@@ -145,10 +146,17 @@ function buildPlan(
       });
     }
     if (section.motion?.enabled && !opts.stillsOnly) {
+      // motion-only explicitly targets motion regardless of still cache state;
+      // otherwise motion regens whenever the still does (hash mismatch or --force)
+      const motionStatus = opts.motionOnly
+        ? 'REGEN'
+        : stillSkipped && !opts.force
+          ? 'SKIP'
+          : 'REGEN';
       plan.push({
         id: section.id,
         kind: 'motion',
-        status: stillSkipped && !opts.force ? 'SKIP' : 'REGEN',
+        status: motionStatus,
         prompt: `${section.motion.duration}s ${section.motion.direction}, ${section.motion.frames} frames`,
       });
     }
@@ -214,20 +222,49 @@ async function regenStill(args: {
 
 async function regenMotion(args: {
   client: HedraClient;
+  manifest: Manifest;
   section: ManifestSection;
   stillRawPath: string;
   models: HedraModel[];
   size: string;
+  imageModelId: string;
 }): Promise<LockEntry['motion']> {
-  const { client, section, stillRawPath, models, size } = args;
+  const { client, manifest, section, stillRawPath, models, size, imageModelId } = args;
   const motion = section.motion!;
   console.log(`\n→ ${section.id}: generating ${motion.duration}s motion…`);
 
   const videoModelId = resolveModelId(motion.videoModel, models);
-  const imageBytes = new Uint8Array(await readFile(resolve(ROOT, stillRawPath)));
+  const heroBytes = new Uint8Array(await readFile(resolve(ROOT, stillRawPath)));
+
+  let seedPath: string | null = null;
+  // Loosen the generic so both Buffer-backed (fs.readFile) and
+  // ArrayBuffer-backed (res.arrayBuffer) Uint8Arrays coexist in these locals.
+  let startBytes: Uint8Array<ArrayBufferLike> = heroBytes;
+  let endBytes: Uint8Array<ArrayBufferLike> | undefined;
+  let endName: string | undefined;
+
+  if (motion.seedPrompt) {
+    console.log(`   ↳ generating seed still ("${motion.seedPrompt.slice(0, 60)}…")`);
+    const seedSeed = (section.seed ?? 0) + 1; // deterministic-but-distinct from hero
+    const seedImg = await client.generateImage({
+      prompt: motion.seedPrompt,
+      modelId: imageModelId,
+      size: manifest.global.size,
+      seed: seedSeed,
+    });
+    await mkdir(WASH_DIR, { recursive: true });
+    const seedRawPath = join(WASH_DIR, `${section.id}.seed.raw.png`);
+    await writeFile(seedRawPath, seedImg.bytes);
+    seedPath = toRelative(seedRawPath);
+    startBytes = seedImg.bytes;
+    endBytes = heroBytes;
+    endName = `${section.id}-end.png`;
+  }
+
   const vid = await client.animateImage({
-    imageBytes,
-    imageName: `${section.id}-still.png`,
+    imageBytes: startBytes,
+    imageName: motion.seedPrompt ? `${section.id}-seed.png` : `${section.id}-still.png`,
+    ...(endBytes ? { endImageBytes: endBytes, endImageName: endName! } : {}),
     prompt: motion.videoPrompt,
     modelId: videoModelId,
     size,
@@ -259,12 +296,17 @@ async function regenMotion(args: {
   await cleanupTmp(tmpDir);
 
   const motionHash = fingerprint({
-    prompt: motion.videoPrompt,
+    prompt: motion.videoPrompt + (motion.seedPrompt ? `|seed:${motion.seedPrompt}` : ''),
     seed: motion.frames,
     model: motion.videoModel,
     size: `${motion.duration}s`,
   });
-  return { frames: pngFrames.length, duration: motion.duration, hash: motionHash };
+  return {
+    frames: pngFrames.length,
+    duration: motion.duration,
+    hash: motionHash,
+    seedPath,
+  };
 }
 
 function toRelative(abs: string): string {

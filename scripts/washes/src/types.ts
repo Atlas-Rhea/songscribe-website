@@ -13,6 +13,15 @@ export interface ManifestMotion {
   direction: string;
   videoModel: string;
   videoPrompt: string;
+  /**
+   * Optional prompt for a separate "seed" still used as the START keyframe.
+   * When present, the section's main still becomes the END keyframe and the
+   * I2V model interpolates between them — producing anchored motion (e.g.
+   * watercolor blooming from droplets into the full wash). Omit to let the
+   * model improvise motion from the main still alone (tends to rotate/deform
+   * in place rather than bloom).
+   */
+  seedPrompt?: string;
 }
 
 export interface ManifestSection {
@@ -42,7 +51,13 @@ export interface LockEntry {
   rawPath: string;
   webpPath: string;
   alphaWebpPath: string | null;
-  motion: { frames: number; duration: number; hash: string } | null;
+  motion: {
+    frames: number;
+    duration: number;
+    hash: string;
+    /** Path of the seed still used as start keyframe, when seedPrompt is set. */
+    seedPath?: string | null;
+  } | null;
   updatedAt: string;
 }
 

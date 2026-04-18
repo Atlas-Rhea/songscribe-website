@@ -262,6 +262,7 @@ describe('HedraClient.animateImage', () => {
     assert.equal(createBody.type, 'video');
     assert.equal(createBody.ai_model_id, 'video-model-uuid');
     assert.equal(createBody.start_keyframe_id, 'asset-77');
+    assert.equal(createBody.end_keyframe_id, undefined, 'single-keyframe flow omits end_keyframe_id entirely');
     assert.equal(createBody.generated_video_inputs.text_prompt, 'gentle bloom');
     assert.equal(createBody.generated_video_inputs.aspect_ratio, '1:1');
     assert.equal(createBody.generated_video_inputs.resolution, '720p');
@@ -279,6 +280,150 @@ describe('HedraClient.animateImage', () => {
 
     assert.equal(result.bytes.byteLength, MP4_MAGIC.byteLength);
     assert.equal(result.contentType, 'video/mp4');
+  });
+
+  it('uploads both keyframes and sends end_keyframe_id when endImageBytes is provided', async () => {
+    // #given
+    const SEED_BYTES = new Uint8Array([137, 80, 78, 71, 13, 10]); // fake seed PNG
+    const END_BYTES = new Uint8Array([137, 80, 78, 71, 26, 10]); // fake end PNG
+    const { fetchImpl, calls } = scriptedFetch([
+      // Start keyframe: POST /assets then upload
+      { match: /\/web-app\/public\/assets$/, reply: () =>
+        new Response(JSON.stringify({ id: 'seed-asset' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\/seed-asset\/upload$/, reply: () =>
+        new Response('', { status: 200 }),
+      },
+      // End keyframe: POST /assets then upload
+      { match: /\/web-app\/public\/assets$/, reply: () =>
+        new Response(JSON.stringify({ id: 'end-asset' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\/end-asset\/upload$/, reply: () =>
+        new Response('', { status: 200 }),
+      },
+      // Video job creation with both keyframes
+      { match: /\/web-app\/public\/generations$/, reply: () =>
+        new Response(JSON.stringify({ id: 'vjob-2k', asset_id: 'vasset-2k', type: 'video' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/generations\/vjob-2k\/status$/, reply: () =>
+        new Response(JSON.stringify({ status: 'complete', asset_id: 'vasset-2k' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\?type=video&ids=vasset-2k$/, reply: () =>
+        new Response(JSON.stringify([
+          { id: 'vasset-2k', asset: { url: 'https://cdn.hedra.com/v2k.mp4' } },
+        ]), { status: 200, headers: { 'content-type': 'application/json' } }),
+      },
+      { match: /cdn\.hedra\.com\/v2k\.mp4$/, reply: () =>
+        new Response(MP4_MAGIC, { status: 200, headers: { 'content-type': 'video/mp4' } }),
+      },
+    ]);
+    const client = new HedraClient({
+      apiKey: 'test-key', fetchImpl, pollIntervalMs: 0, retryDelayMs: 0,
+    });
+
+    // #when
+    const result = await client.animateImage({
+      imageBytes: SEED_BYTES,
+      imageName: 'seed.png',
+      endImageBytes: END_BYTES,
+      endImageName: 'end.png',
+      prompt: 'bloom from droplets into full wash',
+      modelId: 'video-model-uuid',
+      size: '2048x2048',
+      resolution: '720p',
+      durationSeconds: 6,
+      seed: 456,
+    });
+
+    // #then — two distinct upload handshakes happened before the job
+    const startAssetCreate = JSON.parse(calls[0]!.init.body as string);
+    assert.equal(startAssetCreate.name, 'seed.png');
+    assert.match(calls[1]!.url, /\/assets\/seed-asset\/upload$/);
+    const endAssetCreate = JSON.parse(calls[2]!.init.body as string);
+    assert.equal(endAssetCreate.name, 'end.png');
+    assert.match(calls[3]!.url, /\/assets\/end-asset\/upload$/);
+
+    // Video body carries both keyframe IDs at the TOP level
+    const createBody = JSON.parse(calls[4]!.init.body as string);
+    assert.equal(createBody.start_keyframe_id, 'seed-asset');
+    assert.equal(createBody.end_keyframe_id, 'end-asset');
+    assert.equal(
+      createBody.generated_video_inputs.start_keyframe_id,
+      undefined,
+      'end_keyframe_id/start_keyframe_id sit at the TOP level, not nested',
+    );
+    assert.equal(createBody.generated_video_inputs.end_keyframe_id, undefined);
+
+    assert.equal(result.contentType, 'video/mp4');
+  });
+
+  it('defaults endImageName when endImageBytes is provided without a name', async () => {
+    // #given
+    const { fetchImpl, calls } = scriptedFetch([
+      { match: /\/web-app\/public\/assets$/, reply: () =>
+        new Response(JSON.stringify({ id: 's' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\/s\/upload$/, reply: () =>
+        new Response('', { status: 200 }),
+      },
+      { match: /\/web-app\/public\/assets$/, reply: () =>
+        new Response(JSON.stringify({ id: 'e' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\/e\/upload$/, reply: () =>
+        new Response('', { status: 200 }),
+      },
+      { match: /\/web-app\/public\/generations$/, reply: () =>
+        new Response(JSON.stringify({ id: 'j', asset_id: 'va' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/generations\/j\/status$/, reply: () =>
+        new Response(JSON.stringify({ status: 'complete', asset_id: 'va' }), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /\/web-app\/public\/assets\?type=video&ids=va$/, reply: () =>
+        new Response(JSON.stringify([{ id: 'va', asset: { url: 'https://cdn.hedra.com/va.mp4' } }]), {
+          status: 200, headers: { 'content-type': 'application/json' },
+        }),
+      },
+      { match: /cdn\.hedra\.com\/va\.mp4$/, reply: () =>
+        new Response(MP4_MAGIC, { status: 200, headers: { 'content-type': 'video/mp4' } }),
+      },
+    ]);
+    const client = new HedraClient({
+      apiKey: 'k', fetchImpl, pollIntervalMs: 0, retryDelayMs: 0,
+    });
+
+    // #when
+    await client.animateImage({
+      imageBytes: JPEG_BYTES,
+      imageName: 'start.jpg',
+      endImageBytes: new Uint8Array([1, 2, 3]),
+      // endImageName intentionally omitted
+      prompt: 'p',
+      modelId: 'm',
+      size: '1024x1024',
+      resolution: '540p',
+      durationSeconds: 4,
+      seed: 1,
+    });
+
+    // #then — the end-keyframe asset-create body used the default filename
+    const endAssetCreate = JSON.parse(calls[2]!.init.body as string);
+    assert.equal(endAssetCreate.name, 'end-keyframe.png');
   });
 
   it('throws on upload failure', async () => {

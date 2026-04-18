@@ -38,6 +38,7 @@
  *     "type": "video",
  *     "ai_model_id":       "<video model UUID from /models>",
  *     "start_keyframe_id": "<asset UUID from POST /assets>",
+ *     "end_keyframe_id":   "<asset UUID>",  // optional; anchors the final frame
  *     "generated_video_inputs": {
  *       "text_prompt":  "<prompt>",
  *       "aspect_ratio": "16:9" | "9:16" | "1:1",
@@ -46,8 +47,14 @@
  *       "seed":         <int, optional>
  *     }
  *   }
- *   NOTE: start_keyframe_id sits at the TOP level of the body — NOT nested
- *   inside generated_video_inputs.
+ *   NOTE: start_keyframe_id (and end_keyframe_id, when provided) sit at the
+ *   TOP level of the body — NOT nested inside generated_video_inputs.
+ *   Verified live 2026-04-17: probe with bogus UUIDs returned a 400 on the
+ *   start-asset existence check, which means the validator accepted both
+ *   field names before checking asset existence.
+ *   When end_keyframe_id is omitted, Grok I2V improvises the full sequence
+ *   from the start frame (often just deforms the start image in place).
+ *   Providing both keyframes anchors the motion to interpolate between them.
  *
  * Upload flow (video only): bytes become an "asset" via two POSTs against
  * the Hedra origin (NO presigned S3 step):
@@ -97,6 +104,15 @@ export interface AnimateImageRequest {
   imageBytes: Uint8Array;
   /** Filename hint sent in the asset-creation step (e.g. "hero-still.png"). */
   imageName: string;
+  /**
+   * Optional final-frame bytes. When present, the video interpolates from
+   * `imageBytes` → `endImageBytes`, producing anchored motion (e.g. watercolor
+   * blooming from seed droplets into a full wash). Omit to let the model
+   * improvise motion from the start frame alone.
+   */
+  endImageBytes?: Uint8Array;
+  /** Filename hint for the end-keyframe asset upload. Required if endImageBytes is set. */
+  endImageName?: string;
   prompt: string;
   /** Hedra video model UUID (resolve via listModels() from a slug). */
   modelId: string;
@@ -185,12 +201,16 @@ export class HedraClient {
       throw new Error(`Invalid size "${req.size}"; expected "WxH" like "2048x2048".`);
     }
 
-    const assetId = await this.uploadImageAsset(req.imageBytes, req.imageName);
+    const startAssetId = await this.uploadImageAsset(req.imageBytes, req.imageName);
+    const endAssetId = req.endImageBytes
+      ? await this.uploadImageAsset(req.endImageBytes, req.endImageName ?? 'end-keyframe.png')
+      : null;
 
     const body = JSON.stringify({
       type: 'video',
       ai_model_id: req.modelId,
-      start_keyframe_id: assetId,
+      start_keyframe_id: startAssetId,
+      ...(endAssetId ? { end_keyframe_id: endAssetId } : {}),
       generated_video_inputs: {
         text_prompt: req.prompt,
         aspect_ratio: aspectRatio(w, h),
