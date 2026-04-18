@@ -196,28 +196,38 @@
 
 /* -------------------------------------------------------------
    Phone frame — bezel SVG overlaid on screenshot
-   Bezel viewBox: 0 0 3000 3000, visible device width 1470 → aspect 0.49
-   Screen inset (approx, tune empirically): top 3.6%, sides 2%, bottom 3.6%
+   Frame aspect matches the iphone-17-pro-bezel.svg's natural
+   draw proportions (1350 × 2760 = 0.489) so the bezel renders
+   without distortion. Screen inset values are measured from the
+   SVG's actual painted cutout (scanned via canvas, see session
+   history): sides 5.33% / 5.50%, top 2.93%, bottom 3.02%.
+   Resulting cutout aspect is 0.4636, within 0.8% of the
+   screenshot aspect 1160 × 2522 (0.460) — imperceptible with
+   object-fit: fill.
    ------------------------------------------------------------- */
 .phone-frame {
   position: relative;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 1470 / 3000;
+  aspect-ratio: 1350 / 2760;
   margin: 0 auto;
   filter: drop-shadow(0 20px 40px rgba(44, 24, 16, 0.25));
 }
 
 .phone-frame__screen {
   position: absolute;
-  top: 3.6%;
-  left: 2%;
-  width: 96%;
-  height: 92.8%;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 11% / 5.4%;
-  background: var(--ink);
+  /* Insets matched to the bezel SVG's measured rim: 5.33% left,
+     5.50% right, 2.44% top, 2.51% bottom. Width/height derived:
+     100% − 5.33% − 5.50% = 89.17%, 100% − 2.44% − 2.51% = 95.05%. */
+  top: 2.44%;
+  left: 5.33%;
+  width: 89.17%;
+  height: 95.05%;
+  object-fit: fill;
+  /* No border-radius: the screenshot itself has Apple-style squircle
+     corners baked in as transparent alpha (see scripts/process-
+     screenshots.mjs). CSS border-radius would force elliptical corners
+     that don't match Apple's G2 curve. */
 }
 
 .phone-frame__bezel {
@@ -232,4 +242,81 @@
   .phone-frame {
     max-width: min(320px, 70vw);
   }
+}
+
+/* -------------------------------------------------------------
+   Hero — baked plate (orange + paper fiber, pigment bleeds past
+   top-right) as the section background, with a separate teal
+   overlay at bottom-left. Matches /decor-preview scene 1.
+   Specificity bump (.hero.section) to override .section--light's
+   `background:` shorthand (which resets background-image to none).
+   ------------------------------------------------------------- */
+.hero {
+  overflow: hidden;
+}
+
+.hero.section {
+  background-color: var(--section-bg-light);
+  background-image: url('/assets/decor/washes/hero-plate-light.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top right;
+  /* Neutralize v1 main.css .hero: watercolor gradient + its animation,
+     flex layout, and the ::before radial-gradient overlay. */
+  animation: none;
+  display: block;
+  min-height: auto;
+}
+
+.hero.section::before {
+  content: none;
+}
+
+:root[data-theme="dark"] .hero.section {
+  background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero.section {
+    background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+  }
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 420px);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-headline {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  max-width: 14ch;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  margin-top: 1rem;
+  max-width: 42ch;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
+  .hero-headline { margin-inline: auto; }
+  .hero-subtitle { margin-inline: auto; }
 }

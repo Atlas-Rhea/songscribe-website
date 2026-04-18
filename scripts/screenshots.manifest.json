@@ -1,8 +1,14 @@
 {
-  "sourceRoot": "/Users/Atlas/Projects/songscribe-offline-muse/carousel-assets",
+  "sourceRoot": "/Users/Atlas/Projects/SongScribe Media/carousel-assets",
   "outputDir": "public/assets/images/shots",
   "widths": [480, 720, 1080],
   "quality": 85,
+  "squircle": {
+    "enabled": true,
+    "cornerRadiusXPct": 0.160,
+    "cornerRadiusYPct": 0.152,
+    "comment": "Elliptical corner mask (SVG rect rx/ry) matches the bezel SVG's measured arc. Canvas alpha scan of iphone-17-pro-bezel.svg (1350×2760 canvas) shows the corner arc extends ~210px horizontally and ~200px vertically from the rim inset. Image occupies 89.17%w × 94.96%h of frame, so in image-pixel terms: rx = 210/(1350×0.8917) = 17.4% of image width; ry = 200/(2760×0.9496) = 7.63% of image height. Both expressed as % of WIDTH (consistent normalization): ry_of_width = 7.63% × (image_h/image_w) = 7.63% × 2.178 = 16.6%. Rounded-rect/elliptical corner (not Apple squircle) because the bezel itself is drawn with simple cubic beziers approximating an ellipse — the mask matches the bezel, not the physical device."
+  },
   "shots": [
     { "slug": "01-editor-chords-on-lyrics", "source": "01-editor-chords-on-lyrics.png" },
     { "slug": "02-dark-mode-editor",        "source": "02-dark-mode-editor.png" },

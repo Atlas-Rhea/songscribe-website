@@ -201,6 +201,29 @@ body.decor-paper,
   opacity: 0.85;
 }
 
+/* Dark mode: the legacy wash-teal.webp is painted on white paper and
+   ghosts pale under `screen` blend on chocolate. Reuse one of the
+   dark mood blobs and CSS-crop to a single quadrant — the TR quadrant
+   of mood-a-dark lands pigment at the box's bottom-left corner,
+   bleeding off the section's BL edge. scaleX(-1) flip from the light
+   rule would reverse this, so reset transform to none. */
+:root[data-theme="dark"] .wash--hero-teal-bl {
+  background-image: url('/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp');
+  background-size: 200% 200%;
+  background-position: right top;
+  transform: none;
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wash--hero-teal-bl {
+    background-image: url('/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp');
+    background-size: 200% 200%;
+    background-position: right top;
+    transform: none;
+    opacity: 1;
+  }
+}
+
 /* Generic scattering positions for section breaks */
 .wash--tl { top: -200px; left: -200px;   width: 720px; height: 720px; }
 .wash--tr { top: -200px; right: -200px;  width: 720px; height: 720px; transform: scaleX(-1); }

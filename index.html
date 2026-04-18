@@ -120,29 +120,34 @@
     </section>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero section section--light">
-            <h1 class="sr-only">Songwriting and Live Performance App for Musicians</h1>
-            <div class="hero-container">
-                <div class="hero-visual">
-                    <img src="/assets/images/hero-phone.png" alt="SongScribe app showing chord editor with lyrics" class="hero-phone">
-                </div>
-                <div class="hero-content">
-                    <div class="hero-logo-container">
-                        <div id="logo-container"></div>
-                    </div>
-                    <img src="/assets/images/Write%20songs%20the%20way%20you%20play.svg"
-                         alt="Write songs the way you play"
-                         class="hero-tagline-svg">
-                    <p class="hero-subtitle">
-                        Chord charts, setlists, and a recorder that work when your phone has no signal. No account. No subscription tricks.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#download" class="btn btn-primary btn-large">Download Free</a>
-                        <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
-                    </div>
-                </div>
+        <!-- Section 3: Hero (light tier, baked orange plate + teal BL overlay) -->
+        <section class="hero section section--light" data-section="hero">
+          <div class="wash wash--teal wash--hero-teal-bl" aria-hidden="true"></div>
+          <div class="section-inner hero-inner">
+            <div class="hero-copy">
+              <h1 class="section-headline hero-headline">Write songs the way you play.</h1>
+              <p class="section-subtitle hero-subtitle">
+                Chord charts, setlists, and a recorder that work when your phone has no signal.
+                No account. No subscription tricks.
+              </p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-large" href="#pricing">Get SongScribe</a>
+                <a class="btn btn-secondary btn-large" href="#features">See features</a>
+              </div>
             </div>
+            <figure class="phone-frame hero-phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/01-editor-chords-on-lyrics-md.webp"
+                   srcset="/assets/images/shots/01-editor-chords-on-lyrics-sm.webp 480w,
+                           /assets/images/shots/01-editor-chords-on-lyrics-md.webp 720w,
+                           /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 420px"
+                   alt="SongScribe editor showing chords placed above lyrics">
+              <img class="phone-frame__bezel"
+                   src="/assets/images/decor/iphone-17-pro-bezel.svg"
+                   alt="">
+            </figure>
+          </div>
         </section>
 
         <!-- Features Section - Watercolor Cascade -->
