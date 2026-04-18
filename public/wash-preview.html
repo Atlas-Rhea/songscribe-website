@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Wash Preview — SongScribe 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F0EBE6;
+    --cream-deep: #E8DFD4;
+    --ink: #1F1B16;
+    --ink-soft: #55463A;
+    --accent: #D97842;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px dashed rgba(31,27,22,.15);
+  }
+  .stage + .stage { min-height: 90vh; }
+
+  .stage-label {
+    position: absolute;
+    top: 14px; left: 14px;
+    z-index: 2;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: rgba(255,255,255,.6);
+    border: 1px solid rgba(31,27,22,.1);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Hero still wash — large decorative placement behind copy */
+  .wash {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    transition: opacity .2s ease;
+  }
+  .wash-hero {
+    top: 50%;
+    left: 50%;
+    width: 110vw;
+    max-width: 1600px;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Motion frame player */
+  .motion-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70vmin;
+    max-width: 900px;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  .motion-canvas img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity .05s linear;
+  }
+  .motion-canvas img.active { opacity: 1; }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 18vh 6vw 14vh;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem 1rem;
+    border: 1px solid rgba(31,27,22,.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,.35);
+    font-size: .78rem;
+    letter-spacing: .02em;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: 'Baskervville', Georgia, serif;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .sub {
+    max-width: 620px;
+    margin: 1.6rem auto 0;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .ctas {
+    display: inline-flex;
+    gap: .8rem;
+    margin-top: 2.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .9rem 1.4rem;
+    border-radius: 999px;
+    font-size: .95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform .15s ease, box-shadow .2s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(31,27,22,.35);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: rgba(31,27,22,.25);
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,.35);
+  }
+  .meta {
+    margin-top: 1.4rem;
+    font-size: .78rem;
+    color: rgba(31,27,22,.5);
+    letter-spacing: .02em;
+  }
+
+  /* Floating control panel */
+  .panel {
+    position: fixed;
+    bottom: 1rem; right: 1rem;
+    z-index: 100;
+    background: rgba(255, 253, 250, .92);
+    border: 1px solid rgba(31,27,22,.12);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--ink);
+    box-shadow: 0 12px 40px -12px rgba(31,27,22,.25);
+    backdrop-filter: blur(8px);
+    min-width: 260px;
+  }
+  .panel h3 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .panel h3 + h3 { margin-top: 14px; }
+  .panel label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    gap: 8px;
+  }
+  .panel input[type="range"] { flex: 1; }
+  .panel select, .panel input[type="color"], .panel button {
+    font-size: 12px; padding: 2px 6px;
+    border: 1px solid rgba(31,27,22,.15);
+    border-radius: 6px;
+    background: white;
+    font-family: inherit;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .panel .val { width: 44px; text-align: right; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .panel .source-note {
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body>
+
+<!-- Stage 1 — hero still wash -->
+<div class="stage" id="stage1">
+  <span class="stage-label">Hero still · hero.webp · 2048²</span>
+  <img class="wash wash-hero" id="washHero" src="/assets/decor/washes/hero.webp" alt="" />
+
+  <section class="hero">
+    <span class="eyebrow">Version 2.0 · Built for iOS, iPad, and Mac</span>
+    <h1>Write <em>songs</em> the way you play.</h1>
+    <p class="sub">Chords sit exactly where you sing them. Record your ideas on the fly. Tune up, play through, export a chart. All offline, no account required.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#">Download for iPhone</a>
+      <a class="btn btn-ghost" href="#">Watch the 90-second tour</a>
+    </div>
+    <p class="meta">Free forever for 10 songs · One-time $19.95 for everything · No subscription</p>
+  </section>
+</div>
+
+<!-- Stage 2 — motion bloom preview -->
+<div class="stage" id="stage2">
+  <span class="stage-label">Hero motion · 91 frames · Grok I2V → WebP</span>
+  <div class="motion-canvas" id="motionCanvas"></div>
+
+  <section class="hero">
+    <h1 style="font-size: clamp(1.6rem, 3vw, 2.6rem); color: var(--ink-soft);">Bloom animation</h1>
+    <p class="sub">Autoplays at 15 fps. Scrub with the slider to inspect individual frames.</p>
+  </section>
+</div>
+
+<aside class="panel">
+  <h3>Still wash</h3>
+  <label>Background <input type="color" id="bg" value="#F0EBE6"></label>
+  <label>Opacity <input type="range" id="oHero" min="0" max="100" value="100"><span class="val" id="oHeroV">1.00</span></label>
+  <label>Blend
+    <select id="blend">
+      <option value="normal">normal</option>
+      <option value="multiply" selected>multiply</option>
+      <option value="darken">darken</option>
+      <option value="overlay">overlay</option>
+      <option value="soft-light">soft-light</option>
+    </select>
+  </label>
+  <label>Source
+    <select id="src">
+      <option value="webp" selected>webp (460 KB)</option>
+      <option value="png">raw png (3.9 MB)</option>
+    </select>
+  </label>
+
+  <h3>Motion</h3>
+  <label>Playback
+    <select id="motionMode">
+      <option value="auto" selected>autoplay loop</option>
+      <option value="scrub">scrub manually</option>
+      <option value="pause">paused</option>
+    </select>
+  </label>
+  <label>Frame <input type="range" id="frame" min="1" max="91" value="1"><span class="val" id="frameV">1/91</span></label>
+  <div class="source-note" id="motionNote">Preloading frames…</div>
+</aside>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  // ── Still wash controls ──────────────────────────────────────────────
+  const heroImg = $('washHero');
+  const applyStill = () => {
+    const fmt = $('src').value;
+    const want = fmt === 'webp'
+      ? '/assets/decor/washes/hero.webp'
+      : '/assets/decor/washes/hero.raw.png';
+    if (!heroImg.src.endsWith(want)) heroImg.src = want;
+
+    const o = $('oHero').valueAsNumber / 100;
+    heroImg.style.opacity = o;
+    $('oHeroV').textContent = o.toFixed(2);
+
+    const blend = $('blend').value;
+    heroImg.style.mixBlendMode = blend;
+
+    document.body.style.background = $('bg').value;
+  };
+  ['input', 'change'].forEach(evt =>
+    ['oHero', 'blend', 'src', 'bg'].forEach(id => $(id).addEventListener(evt, applyStill))
+  );
+  applyStill();
+
+  // ── Motion frame player ──────────────────────────────────────────────
+  const TOTAL = 91;
+  const FPS = 15;
+  const canvas = $('motionCanvas');
+  const frames = [];
+  let loaded = 0;
+  let current = 0;
+  let rafId = null;
+  let lastTick = 0;
+
+  for (let i = 1; i <= TOTAL; i++) {
+    const img = document.createElement('img');
+    img.src = `/assets/decor/motion/hero/${String(i).padStart(3, '0')}.webp`;
+    img.alt = '';
+    img.addEventListener('load', () => {
+      loaded++;
+      $('motionNote').textContent = loaded === TOTAL
+        ? `All ${TOTAL} frames loaded · ${FPS} fps · ~${(TOTAL / FPS).toFixed(1)}s loop`
+        : `Loading frame ${loaded}/${TOTAL}…`;
+    }, { once: true });
+    canvas.appendChild(img);
+    frames.push(img);
+  }
+  frames[0].classList.add('active');
+
+  const showFrame = (idx) => {
+    if (idx === current) return;
+    frames[current].classList.remove('active');
+    frames[idx].classList.add('active');
+    current = idx;
+    $('frame').value = String(idx + 1);
+    $('frameV').textContent = `${idx + 1}/${TOTAL}`;
+  };
+
+  const tick = (ts) => {
+    if (ts - lastTick >= 1000 / FPS) {
+      lastTick = ts;
+      showFrame((current + 1) % TOTAL);
+    }
+    rafId = requestAnimationFrame(tick);
+  };
+
+  const setMode = () => {
+    const mode = $('motionMode').value;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    if (mode === 'auto') {
+      lastTick = 0;
+      rafId = requestAnimationFrame(tick);
+    }
+  };
+
+  $('frame').addEventListener('input', () => {
+    if ($('motionMode').value === 'auto') $('motionMode').value = 'scrub';
+    setMode();
+    showFrame($('frame').valueAsNumber - 1);
+  });
+  $('motionMode').addEventListener('change', setMode);
+  setMode();
+</script>
+
+</body>
+</html>
