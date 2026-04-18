@@ -77,8 +77,10 @@
 /* -------------------------------------------------------------
    Announcement strip
    ------------------------------------------------------------- */
-.strip .section-inner {
-  padding-block: 0.75rem;
+/* Specificity bump (.strip.section) to override :first-of-type / :last-of-type. */
+.strip.section .section-inner {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
 }
 
 .strip-inner {
