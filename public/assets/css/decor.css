@@ -39,6 +39,10 @@
   --note-opacity:       0.85;
   --quill-blend:        multiply;
   --quill-opacity:      0.70;
+
+  /* Section tier backgrounds (light theme defaults) */
+  --section-bg-light: var(--parchment);
+  --section-bg-dark:  var(--ink);
 }
 
 /* Auto dark when user prefers it, but only if the page hasn't set a theme */
@@ -58,6 +62,10 @@
     --note-opacity:       0.75;
     --quill-blend:        screen;
     --quill-opacity:      0.55;
+
+    /* Dark tier swap: light-tier sections become ink, dark-tier becomes darker */
+    --section-bg-light: var(--ink);
+    --section-bg-dark:  #0C0604;
   }
 }
 
@@ -75,6 +83,16 @@
   --note-opacity:       0.75;
   --quill-blend:        screen;
   --quill-opacity:      0.55;
+
+  /* Dark tier swap: light-tier sections become ink, dark-tier becomes darker */
+  --section-bg-light: var(--ink);
+  --section-bg-dark:  #0C0604;
+}
+
+/* Explicit light-theme override (wins when user toggles off dark even if system prefers dark) */
+:root[data-theme="light"] {
+  --section-bg-light: var(--parchment);
+  --section-bg-dark:  var(--ink);
 }
 
 
