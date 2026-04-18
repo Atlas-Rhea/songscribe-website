@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "shots": "node scripts/process-screenshots.mjs",
     "washes": "npm --prefix scripts/washes run generate --"
   },
   "devDependencies": {
+    "sharp": "^0.34.5",
     "vite": "^5.0.0"
   },
   "dependencies": {
