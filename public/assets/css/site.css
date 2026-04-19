@@ -23,6 +23,10 @@
   color: var(--cream-warm);
 }
 
+.section--dark .section-headline {
+  color: var(--cream-warm);
+}
+
 .section--dark .section-subtitle,
 .section--dark p {
   color: var(--warm-gray-soft);
