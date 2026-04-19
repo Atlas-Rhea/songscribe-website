@@ -215,7 +215,32 @@
   max-width: 420px;
   aspect-ratio: 1350 / 2760;
   margin: 0 auto;
-  filter: drop-shadow(0 20px 40px rgba(44, 24, 16, 0.25));
+  /* Layered drop-shadow: close contact shadow (short, firmer) anchors
+     the device to the plate; ambient shadow (longer, softer) gives
+     depth. Near-black at meaningful opacity so the shadow reads even
+     on the dark-mode chocolate plate (where a warm-brown tint
+     matching the plate would vanish). Blur radius scales with
+     expected visual weight of the phone — a 420px device wants ~60px
+     of soft spread to look naturally lifted. */
+  filter:
+    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.22))
+    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.35));
+}
+
+/* Dark plate needs a stronger shadow because it's already dark — the
+   delta between shadow and plate is what makes depth read, so punch
+   the opacity up. */
+:root[data-theme="dark"] .phone-frame {
+  filter:
+    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.65));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .phone-frame {
+    filter:
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 40px 80px rgba(0, 0, 0, 0.65));
+  }
 }
 
 .phone-frame__screen {
