@@ -508,3 +508,52 @@
     color: var(--cream-warm);
   }
 }
+
+/* -------------------------------------------------------------
+   Pricing
+   ------------------------------------------------------------- */
+.pricing .section-inner {
+  text-align: center;
+}
+
+.pricing-price {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 1;
+  margin: 1rem 0 0.5rem;
+  color: var(--amber-soft);
+}
+
+.pricing-currency {
+  font-size: 0.45em;
+  vertical-align: top;
+  margin-right: 0.1em;
+}
+
+.pricing-unit {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--warm-gray-soft);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.pricing-points {
+  list-style: none;
+  margin: 0 auto 2.5rem;
+  padding: 0;
+  max-width: 24rem;
+  text-align: left;
+  display: grid;
+  gap: 0.75rem;
+  color: var(--cream-warm);
+}
+
+.pricing-points li::before {
+  content: "\2713\00a0\00a0";
+  color: var(--amber-soft);
+  font-weight: bold;
+}
