@@ -28,6 +28,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        body {
+            min-height: 100vh;
+            background: var(--section-bg-light);
+            color: var(--text-primary);
+        }
+
         .privacy-container {
             max-width: 800px;
             margin: 0 auto;
@@ -155,8 +161,7 @@
         </div>
     </div>
 
-    <div class="coming-soon-container">
-        <div class="privacy-container">
+    <div class="privacy-container">
             <div class="privacy-header">
                 <h1>Support - SongScribe Tuner</h1>
                 <p>Professional Tuner for Musicians</p>
@@ -389,7 +394,6 @@
                 <p><a href="/">← Back to SongScribe Tuner</a> | <a href="https://songscribe.io">Main SongScribe App</a></p>
             </div>
         </div>
-    </div>
     <script>
         (function () {
             const consent = localStorage.getItem('cookie-consent');

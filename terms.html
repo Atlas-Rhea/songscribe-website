@@ -53,6 +53,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        body {
+            min-height: 100vh;
+            background: var(--section-bg-light);
+            color: var(--text-primary);
+        }
+
         .privacy-container {
             max-width: 800px;
             margin: 0 auto;
@@ -166,8 +172,7 @@
         </div>
     </div>
 
-    <div class="coming-soon-container">
-        <div class="privacy-container">
+    <div class="privacy-container">
             <div class="privacy-header">
                 <h1>Terms of Use</h1>
                 <p class="last-updated">Last Updated: January 10, 2026</p>
@@ -328,7 +333,6 @@
                 <p><a href="/">← Back to Home</a></p>
             </div>
         </div>
-    </div>
     <script>
         (function () {
             const consent = localStorage.getItem('cookie-consent');
