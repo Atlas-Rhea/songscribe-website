@@ -245,13 +245,16 @@
 
 .phone-frame__screen {
   position: absolute;
-  /* Insets matched to the bezel SVG's measured rim: 5.33% left,
-     5.50% right, 2.44% top, 2.51% bottom. Width/height derived:
-     100% − 5.33% − 5.50% = 89.17%, 100% − 2.44% − 2.51% = 95.05%. */
-  top: 2.44%;
-  left: 5.33%;
-  width: 89.17%;
-  height: 95.05%;
+  /* Insets matched to the bezel SVG's actual inner cutout, measured
+     by canvas alpha scan: symmetric 5.333% L/R, 2.500% T/B.
+     Width = 100% − 2×5.333% = 89.333%; height = 100% − 2×2.500% =
+     95.000%. Earlier values (5.33 + 5.50, 2.44 + 2.51) left a
+     ~0.17% sliver on the right edge where the section background
+     showed between the webp and the bezel's rim. */
+  top: 2.500%;
+  left: 5.333%;
+  width: 89.333%;
+  height: 95.000%;
   object-fit: fill;
   /* No border-radius: the screenshot itself has Apple-style squircle
      corners baked in as transparent alpha (see scripts/process-
