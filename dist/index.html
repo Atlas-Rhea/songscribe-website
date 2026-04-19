@@ -35,16 +35,44 @@
     <!-- iOS Smart App Banner -->
     <meta name="apple-itunes-app" content="app-id=6756506993">
 
-    <!-- Preconnects -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts are self-hosted (see /assets/fonts/). No preconnects to Google Fonts. -->
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function(){try{
+        var s=localStorage.getItem('ss-theme');
+        var t=(s==='light'||s==='dark')?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+        document.documentElement.setAttribute('data-theme',t);
+      }catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+    </script>
+    <!-- Preload LCP hero image so the browser fetches it alongside the HTML.
+         imagesrcset/imagesizes mirror the <img> so mobile picks the sm variant. -->
+    <link rel="preload" as="image"
+          href="/assets/images/shots/01-editor-chords-on-lyrics-md.webp"
+          imagesrcset="/assets/images/shots/01-editor-chords-on-lyrics-sm.webp 480w,
+                       /assets/images/shots/01-editor-chords-on-lyrics-md.webp 720w,
+                       /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
+          imagesizes="(max-width: 768px) 70vw, 420px"
+          fetchpriority="high">
+    <style data-inlined-from="decor.css">:root{--parchment:#f0ebe6;--cream:#f7f3ec;--cream-warm:#faf6f0;--hairline:#e0d8ce;--ink:#2c1810;--ink-soft:#4a3420;--warm-gray:#6b5e50;--warm-gray-soft:#9d9082;--amber:#d4a017;--amber-soft:#e5b84a;--coral:#f5a962;--teal:#2d9e9e;--teal-deep:#1f6b6b;--paper-bg:var(--parchment);--paper-grain:rgba(74,52,32,.4);--paper-grain-coarse:rgba(74,52,32,.12);--text-primary:var(--ink);--text-secondary:var(--warm-gray);--hairline-color:var(--hairline);--wash-blend:multiply;--wash-opacity:0.55;--note-blend:multiply;--note-opacity:0.85;--quill-blend:multiply;--quill-opacity:0.70;--section-bg-light:var(--parchment);--section-bg-dark:var(--ink)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper-bg:var(--ink);--paper-grain:hsla(36,50%,96%,.08);--paper-grain-coarse:hsla(36,50%,96%,.04);--text-primary:var(--cream-warm);--text-secondary:var(--warm-gray-soft);--hairline-color:var(--ink-soft);--wash-blend:screen;--wash-opacity:0.40;--note-blend:screen;--note-opacity:0.75;--quill-blend:screen;--quill-opacity:0.55;--section-bg-light:var(--ink);--section-bg-dark:#0c0604}}:root[data-theme=dark]{--paper-bg:var(--ink);--paper-grain:hsla(36,50%,96%,.08);--paper-grain-coarse:hsla(36,50%,96%,.04);--text-primary:var(--cream-warm);--text-secondary:var(--warm-gray-soft);--hairline-color:var(--ink-soft);--wash-blend:screen;--wash-opacity:0.40;--note-blend:screen;--note-opacity:0.75;--quill-blend:screen;--quill-opacity:0.55;--section-bg-light:var(--ink);--section-bg-dark:#0c0604}:root[data-theme=light]{--section-bg-light:var(--parchment);--section-bg-dark:var(--ink)}.decor-paper,body.decor-paper{background-blend-mode:multiply,multiply;background-color:var(--paper-bg);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.29  0 0 0 0 0.20  0 0 0 0 0.12  0 0 0 0.55 -0.25'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>"),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='680' height='680'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.29  0 0 0 0 0.20  0 0 0 0 0.12  0 0 0 0.15 -0.06'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");background-position:0 0,0 0;background-repeat:repeat,repeat;background-size:420px 420px,680px 680px}:root[data-theme=dark] .decor-paper,:root[data-theme=dark] body.decor-paper{background-blend-mode:screen,screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.98  0 0 0 0 0.97  0 0 0 0 0.94  0 0 0 0.08 -0.02'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>"),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='680' height='680'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.98  0 0 0 0 0.97  0 0 0 0 0.94  0 0 0 0.04 -0.01'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>")}.wash-group{inset:0;isolation:isolate}.wash,.wash-group{mix-blend-mode:var(--wash-blend);opacity:var(--wash-opacity);pointer-events:none;position:absolute;z-index:0}.wash{background-position:50%;background-repeat:no-repeat;background-size:contain;will-change:opacity}.wash-group .wash{mix-blend-mode:multiply;opacity:1}:root[data-theme=dark] .wash-group .wash{mix-blend-mode:screen}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash-group .wash{mix-blend-mode:screen}}.wash--orange{background-image:url(/assets/images/decor/wash-orange.webp)}.wash--teal{background-image:url(/assets/images/decor/wash-teal.webp)}.wash--hero-orange-tl{height:1100px;left:-340px;top:-380px;width:1100px}.wash--hero-teal-tr{height:1100px;right:-340px;top:-220px;transform:scaleX(-1);width:1100px}.wash--hero-teal-bl{bottom:0;height:900px;left:0;opacity:.85;transform:scaleX(-1);width:900px}:root[data-theme=dark] .wash--hero-teal-bl{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp);background-position:100% 0;background-size:200% 200%;opacity:1;transform:none}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash--hero-teal-bl{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp);background-position:100% 0;background-size:200% 200%;opacity:1;transform:none}}.wash--tl{left:-200px}.wash--tl,.wash--tr{height:720px;top:-200px;width:720px}.wash--tr{right:-200px;transform:scaleX(-1)}.wash--bl{left:-200px;transform:scaleY(-1)}.wash--bl,.wash--br{bottom:-200px;height:720px;width:720px}.wash--br{right:-200px;transform:scale(-1)}.decor-note,.decor-quill{mix-blend-mode:var(--note-blend);pointer-events:none;position:absolute;user-select:none;will-change:transform;z-index:1}.decor-note{height:auto;opacity:var(--note-opacity);width:48px}.decor-quill{height:auto;mix-blend-mode:var(--quill-blend);opacity:var(--quill-opacity);width:180px}@keyframes note-float{0%,to{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}.decor-note{animation:note-float 6.5s ease-in-out infinite}.decor-note.n-2{animation-delay:-1.8s;animation-duration:7.2s}.decor-note.n-3{animation-delay:-3.1s;animation-duration:5.8s}.decor-note.n-4{animation-delay:-4.4s;animation-duration:8s}.decor-note.n-5{animation-delay:-2.5s;animation-duration:6s}.decor-note.n-6{animation-delay:-.9s;animation-duration:7.6s}@keyframes quill-sway{0%,to{transform:rotate(-1.8deg) translateY(0)}50%{transform:rotate(1.8deg) translateY(-4px)}}.decor-quill{animation:quill-sway 11s ease-in-out infinite;transform-origin:50% 95%}.decor-quill.q-2{animation-delay:-3.5s;animation-duration:13s}@media (prefers-reduced-motion:reduce){.decor-note,.decor-quill{animation:none}}.decor-section{isolation:isolate;overflow:hidden;position:relative}</style>
+    <style data-inlined-from="site.css">.skip-link{background:var(--ink);border-radius:4px;color:var(--cream-warm);font-family:Inter,system-ui,sans-serif;font-size:.875rem;font-weight:600;left:8px;padding:8px 16px;position:absolute;text-decoration:none;top:-40px;transition:top .15s ease-out;z-index:1000}.skip-link:focus{outline:2px solid var(--amber);outline-offset:2px;top:8px}.section{isolation:isolate;position:relative}.section--light{background:var(--section-bg-light);color:var(--text-primary)}.section--dark{background:var(--section-bg-dark)}.section--dark,.section--dark .section-headline{color:var(--cream-warm)}.section--dark .section-subtitle,.section--dark p{color:var(--warm-gray-soft)}.section-headline{color:var(--text-primary);font-family:Baskervville,Georgia,Times New Roman,serif;font-weight:400;line-height:1.1;margin:0 0 .5em}.section-subtitle{color:var(--text-secondary);font-family:Inter,system-ui,sans-serif;font-weight:400;line-height:1.5;margin:0}:root{--site-max-width:1200px;--side-pad:clamp(1.25rem,4vw,2.5rem);--section-pad-y:clamp(3rem,8vw,7rem)}.section-inner{margin:0 auto;max-width:var(--site-max-width);padding-block:var(--section-pad-y);padding-inline:max(var(--side-pad),env(safe-area-inset-left));padding-inline-end:max(var(--side-pad),env(safe-area-inset-right))}.section:first-of-type .section-inner{padding-top:max(var(--section-pad-y),env(safe-area-inset-top))}.section:last-of-type .section-inner{padding-bottom:max(var(--section-pad-y),env(safe-area-inset-bottom))}.strip.section .section-inner{padding-bottom:max(.75rem,env(safe-area-inset-bottom));padding-top:max(.75rem,env(safe-area-inset-top))}.strip-inner{align-items:center;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}.strip .strip-text{color:var(--cream-warm);font-size:.9rem;margin:0}.strip-link{color:var(--amber-soft);font-size:.9rem;font-weight:600;text-decoration:none;white-space:nowrap}.strip-link:hover{text-decoration:underline}@media (max-width:480px){.strip-text{font-size:.8rem}.strip-inner{gap:.75rem}}.nav-section{border-bottom:1px solid var(--hairline-color)}.nav-section.section .section-inner{padding-block:1rem}.nav-section .nav-inner{align-items:center;display:flex;gap:2rem;justify-content:space-between}.nav-section .nav-logo img{display:block;height:32px;width:auto}.nav-section .nav-links{display:flex;font-size:.95rem;gap:2rem;list-style:none;margin:0;padding:0}.nav-section .nav-links a{color:var(--text-primary);font-weight:500;text-decoration:none}.nav-section .nav-links a:hover{color:var(--amber)}.nav-section .nav-actions{align-items:center;display:flex;gap:1rem}.nav-section .theme-toggle{align-items:center;background:transparent;border:1px solid var(--hairline-color);border-radius:999px;cursor:pointer;display:inline-flex;font-size:1rem;height:40px;justify-content:center;transition:border-color .16s ease;width:40px}.nav-section .theme-toggle:hover{border-color:var(--amber)}.nav-section .theme-toggle:focus-visible{outline:2px solid var(--amber);outline-offset:2px}@media (max-width:640px){.nav-section .nav-actions .btn,.nav-section .nav-links{display:none}}.phone-frame{aspect-ratio:1350/2760;filter:drop-shadow(0 12px 20px rgba(0,0,0,.22)) drop-shadow(0 40px 80px rgba(0,0,0,.35));margin:0 auto;max-width:420px;position:relative;width:100%}:root[data-theme=dark] .phone-frame{filter:drop-shadow(0 12px 20px rgba(0,0,0,.55)) drop-shadow(0 40px 80px rgba(0,0,0,.65))}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .phone-frame{filter:drop-shadow(0 12px 20px rgba(0,0,0,.55)) drop-shadow(0 40px 80px rgba(0,0,0,.65))}}.phone-frame__screen{height:95%;left:5.333%;object-fit:fill;position:absolute;top:2.5%;width:89.333%}.phone-frame__bezel{height:100%;inset:0;pointer-events:none;position:absolute;width:100%}@media (max-width:768px){.phone-frame{max-width:min(320px,70vw)}}.hero{overflow:hidden}.hero.section{animation:none;background-color:var(--section-bg-light);background-image:url(/assets/decor/washes/hero-plate-light-sm.webp);background-position:100% 0;background-repeat:no-repeat;background-size:cover;display:block;min-height:auto}.hero.section:before{content:none}@media (min-width:769px){.hero.section{background-image:url(/assets/decor/washes/hero-plate-light.webp)}}:root[data-theme=dark] .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark-sm.webp)}@media (min-width:769px){:root[data-theme=dark] .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark.webp)}}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark-sm.webp)}@media (min-width:769px){:root:not([data-theme=light]) .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark.webp)}}}.hero-inner{align-items:center;display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr minmax(280px,420px);position:relative;z-index:1}.hero-headline{font-size:clamp(2.5rem,6vw,4.5rem);max-width:14ch}.hero-subtitle{font-size:clamp(1rem,1.5vw,1.25rem);margin-top:1rem;max-width:42ch}:root[data-theme=dark] .hero .hero-subtitle{color:hsla(36,50%,96%,.88)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .hero .hero-subtitle{color:hsla(36,50%,96%,.88)}}.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}@media (max-width:768px){.hero-inner{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero-headline,.hero-subtitle{margin-inline:auto}}.hero .hero-cta .btn{background:transparent;border:0;border-radius:0;box-shadow:none;color:var(--text-primary);font-family:Baskervville,Georgia,Times New Roman,serif;font-size:clamp(1.15rem,1.6vw,1.35rem);font-weight:400;letter-spacing:0;line-height:1.3;padding:0;text-decoration:none;transform:none;transition:color .16s ease}.hero .hero-cta .btn.btn-primary,.hero .hero-cta .btn.btn-secondary{background:transparent;border:0;color:var(--text-primary)}.hero .hero-cta .btn:focus-visible,.hero .hero-cta .btn:hover{background:transparent;box-shadow:none;color:var(--amber);transform:none}.hero .hero-cta .btn:focus-visible{border-radius:2px;outline:2px solid var(--amber);outline-offset:4px}.hero .hero-cta .btn+.btn:before{color:currentColor;content:"·";margin-right:1.25rem;opacity:.45}@media (max-width:640px){.hero .hero-cta{flex-direction:column;gap:.75rem}.hero .hero-cta .btn+.btn:before{display:none}}.feature{position:relative}.feature .section-inner{align-items:center;display:grid;gap:clamp(2rem,5vw,5rem);grid-template-columns:1fr minmax(280px,380px)}.feature--reverse .section-inner{grid-template-columns:minmax(280px,380px) 1fr}.feature--reverse .feature-copy{order:2}.feature--reverse .feature-phone{order:1}.feature-headline{font-size:clamp(2rem,4vw,3rem);max-width:16ch}.feature-subtitle{font-size:clamp(1rem,1.25vw,1.125rem);margin-top:1rem;max-width:44ch}@media (max-width:768px){.feature .section-inner,.feature--reverse .section-inner{grid-template-columns:1fr;text-align:center}.feature--reverse .feature-copy,.feature--reverse .feature-phone,.feature-copy,.feature-phone{order:unset}.feature-headline,.feature-subtitle{margin-inline:auto}}.section--cream{background:var(--cream);color:var(--text-primary)}:root[data-theme=dark] .section--cream{background:var(--section-bg-dark);color:var(--cream-warm)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .section--cream{background:var(--section-bg-dark);color:var(--cream-warm)}}.pricing .section-inner{text-align:center}.pricing .pricing-price{color:var(--amber-soft);font-family:Baskervville,Georgia,Times New Roman,serif;font-size:clamp(4rem,10vw,8rem);line-height:1;margin:1rem 0 .5rem}.pricing-currency{font-size:.45em;margin-right:.1em;vertical-align:top}.pricing-unit{color:var(--warm-gray-soft);display:block;font-family:Inter,system-ui,sans-serif;font-size:clamp(.9rem,1vw,1rem);font-weight:500;letter-spacing:.08em;margin-bottom:2rem;text-transform:uppercase}.pricing-points{color:var(--cream-warm);display:grid;gap:.75rem;list-style:none;margin:0 auto 2.5rem;max-width:24rem;padding:0;text-align:left}.pricing-points li:before{color:var(--amber-soft);content:"\2713\00a0\00a0";font-weight:700}.footer{border-top:1px solid var(--hairline-color)}.footer-inner{align-items:center;display:flex;flex-direction:column;gap:1.5rem;text-align:center}.footer-brand img{display:block;margin:0 auto .5rem}.footer-tagline{color:var(--text-secondary);font-style:italic;margin:0}.footer-nav{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}.footer-nav a{color:var(--text-primary);font-size:.95rem;font-weight:500;text-decoration:none}.footer-nav a:hover{color:var(--amber);text-decoration:underline}.footer-legal{color:var(--text-secondary);font-size:.85rem;margin:0}</style>
+    <!-- main.css (v1) holds legacy cookie-consent / nav / btn rules that aren't critical
+         for above-the-fold render. Deferred via print-media trick so it doesn't block
+         the critical render path. Swap to 'all' once the stylesheet has loaded. -->
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <!-- Self-hosted fonts. Preload the two WOFF2 files so the browser fetches them
+         alongside the HTML, then declare @font-face inline (cheaper than another
+         CSS roundtrip for 727 bytes). -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -63,11 +91,21 @@
       }
     }
     </script>
-  <script type="module" crossorigin src="/assets/main-CyT40NkH.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main.css">
+  <script type="module" crossorigin src="/assets/main-BAhmSu7g.js"></script>
 </head>
 
-<body>
+<body class="decor-paper">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe 2.0 — out now on iPhone, iPad, and Mac.</p>
+        <a class="strip-link" href="#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
         <div class="cookie-consent-content">
@@ -79,396 +117,259 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <a href="/" class="logo">
-                <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+        <!-- Section 3: Hero (light tier, baked orange plate + teal BL overlay) -->
+        <section class="hero section section--light" data-section="hero">
+          <div class="wash wash--teal wash--hero-teal-bl" aria-hidden="true"></div>
+          <div class="section-inner hero-inner">
+            <div class="hero-copy">
+              <h1 class="section-headline hero-headline">Write songs the way you play.</h1>
+              <p class="section-subtitle hero-subtitle">
+                Chord charts, setlists, and a recorder that work when your phone has no signal.
+                No account. No subscription tricks.
+              </p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-large" href="#pricing">Get SongScribe →</a>
+                <a class="btn btn-secondary btn-large" href="#features">See features →</a>
+              </div>
+            </div>
+            <figure class="phone-frame hero-phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/01-editor-chords-on-lyrics-md.webp"
+                   srcset="/assets/images/shots/01-editor-chords-on-lyrics-sm.webp 480w, /assets/images/shots/01-editor-chords-on-lyrics-md.webp 720w, /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 420px"
+                   width="720" height="1565"
+                   fetchpriority="high"
+                   alt="SongScribe editor showing chords placed above lyrics">
+              <img class="phone-frame__bezel"
+                   src="/assets/images/decor/iphone-17-pro-bezel.svg"
+                   width="720" height="1565"
+                   alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 4: Feature 1 — Chord-on-lyric editor (anchor for nav "Features" link) -->
+        <section id="features" class="feature section section--light" data-section="feature-1">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">Write songs the way you play.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Tap a word. Drop a chord. Keep writing. Your lyrics and chords stay
+                where you put them, exactly as they need to be.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/01-editor-chords-on-lyrics-md.webp"
+                   srcset="/assets/images/shots/01-editor-chords-on-lyrics-sm.webp 480w, /assets/images/shots/01-editor-chords-on-lyrics-md.webp 720w, /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Editor with chords placed above lyric words"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 5: Feature 2 — Offline / no account (cream tier) -->
+        <section class="feature feature--reverse section section--cream" data-section="feature-2">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">No WiFi. No account. No problem.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Works everywhere, even off the grid. Your songs live on your device.
+                No login walls. No sync errors ruining a writing session.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/02-dark-mode-editor-md.webp"
+                   srcset="/assets/images/shots/02-dark-mode-editor-sm.webp 480w, /assets/images/shots/02-dark-mode-editor-md.webp 720w, /assets/images/shots/02-dark-mode-editor-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="SongScribe in dark mode, working offline"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 6: Feature 3 — Chord tools -->
+        <section class="feature section section--light" data-section="feature-3">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">Every chord. Every voicing.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Guitar, piano, ukulele, banjo, and mandolin. From open shapes to
+                jazz voicings, they're all here &mdash; and you can find the chord by
+                tapping the strings if you don't know its name.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/03-chord-picker-md.webp"
+                   srcset="/assets/images/shots/03-chord-picker-sm.webp 480w, /assets/images/shots/03-chord-picker-md.webp 720w, /assets/images/shots/03-chord-picker-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Chord picker showing multiple guitar voicings"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 7: Feature 4 — Performance mode (DARK TIER) -->
+        <section class="feature feature--reverse section section--dark" data-section="feature-4">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">Built for the stage.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Fullscreen lyrics. Auto-scroll setlists. Hands stay on the guitar;
+                eyes stay on the audience. MIDI footswitch support if you want it.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/05-performance-mode-md.webp"
+                   srcset="/assets/images/shots/05-performance-mode-sm.webp 480w, /assets/images/shots/05-performance-mode-md.webp 720w, /assets/images/shots/05-performance-mode-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Performance mode with large lyrics and chord chart"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 8: Feature 5 — Recording -->
+        <section class="feature section section--light" data-section="feature-5">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">A studio in your pocket.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Layer up to four overdub tracks per song. Stack parts, catch ideas,
+                bounce to a single mix when you're ready to share.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/04-multi-track-recording-md.webp"
+                   srcset="/assets/images/shots/04-multi-track-recording-sm.webp 480w, /assets/images/shots/04-multi-track-recording-md.webp 720w, /assets/images/shots/04-multi-track-recording-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Multi-track recording view with waveforms"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 9: Feature 6 — Tuner & harmony (cream tier) -->
+        <section class="feature feature--reverse section section--cream" data-section="feature-6">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">Tune up. See how it fits.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Precision tuner with noise suppression that actually works on a loud stage.
+                Tap any chord in the key to hear how it sounds against the others.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/09-tuner-md.webp"
+                   srcset="/assets/images/shots/09-tuner-sm.webp 480w, /assets/images/shots/09-tuner-md.webp 720w, /assets/images/shots/09-tuner-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Instrument tuner showing precise pitch tracking"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 10: Feature 7 — Export -->
+        <section class="feature section section--light" data-section="feature-7">
+          <div class="section-inner">
+            <div class="feature-copy">
+              <h2 class="section-headline feature-headline">Export to PDF, ChordPro, and more.</h2>
+              <p class="section-subtitle feature-subtitle">
+                Print-ready lead sheets. Hand your bandmates a chart they can actually
+                read. Three PDF styles, plus ChordPro and plain text for the nerds.
+              </p>
+            </div>
+            <figure class="feature-phone phone-frame">
+              <img class="phone-frame__screen"
+                   src="/assets/images/shots/06-export-preview-md.webp"
+                   srcset="/assets/images/shots/06-export-preview-sm.webp 480w, /assets/images/shots/06-export-preview-md.webp 720w, /assets/images/shots/06-export-preview-lg.webp 1080w"
+                   sizes="(max-width: 768px) 70vw, 380px"
+                   width="720" height="1565"
+                   alt="Export preview showing a formatted lead sheet"
+                   loading="lazy">
+              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+            </figure>
+          </div>
+        </section>
+
+        <!-- Section 11: Pricing (DARK TIER) -->
+        <section id="pricing" class="pricing section section--dark" data-section="pricing">
+          <div class="section-inner">
+            <h2 class="section-headline">One price. Everything. Forever.</h2>
+            <p class="pricing-price">
+              <span class="pricing-currency">$</span>19.95
+            </p>
+            <span class="pricing-unit">Lifetime upgrade</span>
+            <ul class="pricing-points">
+              <li>No subscriptions, no upsells</li>
+              <li>Every feature, unlocked for good</li>
+              <li>Free tier: 10 songs, 5 recordings each, forever</li>
+              <li>7-day free trial on the lifetime upgrade</li>
+            </ul>
+            <a class="btn btn-primary btn-large" href="https://apps.apple.com/app/id6756506993">
+              Get SongScribe
             </a>
-            <div class="nav-links" id="nav-links">
-                <a href="/features" class="nav-link">Features</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/changelog" class="nav-link">Changelog</a>
-                <a href="https://tuner.songscribe.io" class="nav-link nav-link--tuner" target="_blank" rel="noopener">Tuner <span class="nav-badge">Free App</span></a>
-                <div class="nav-cta mobile">
-                    <a href="#download" class="btn btn-primary">Download Free</a>
-                </div>
-            </div>
-            <div class="nav-cta">
-                <a href="#download" class="btn btn-primary">Download Free</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="sr-only">Songwriting and Live Performance App for Musicians</h1>
-            <div class="hero-container">
-                <div class="hero-visual">
-                    <img src="/assets/images/hero-phone.png" alt="SongScribe app showing chord editor with lyrics" class="hero-phone">
-                </div>
-                <div class="hero-content">
-                    <div class="hero-logo-container">
-                        <div id="logo-container"></div>
-                    </div>
-                    <img src="/assets/images/Write songs the way you play.svg"
-                         alt="Write songs the way you play"
-                         class="hero-tagline-svg">
-                    <p class="hero-subtitle">
-                        Chord charts, setlists, and a recorder that work when your phone has no signal. No account. No subscription tricks.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#download" class="btn btn-primary btn-large">Download Free</a>
-                        <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section - Watercolor Cascade -->
-        <section id="features" class="feature-cascade">
-            <div class="container">
-                <div class="section-header section-header--flow">
-                    <h2 class="section-title">Songwriting that stays in flow</h2>
-                    <p class="section-tagline">Your song looks the way it sounds.</p>
-                    <div class="flow-divider"></div>
-                    <ul class="flow-features">
-                        <li>Natural chord placement</li>
-                        <li>Structured sections</li>
-                        <li>Key, tempo & tuning</li>
-                        <li>Clean, readable layouts</li>
-                    </ul>
-                </div>
-
-                <!-- Feature Showcase - Dynamic Layout -->
-                <div class="feature-showcase">
-
-                    <!-- Row 1: All your songs -->
-                    <div class="showcase-row">
-                        <div class="showcase-text showcase-text--left">
-                            <img src="/assets/images/All your songs. Always re.svg" alt="All your songs. Always ready." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Searchable song library</li>
-                                <li>Folders, tags & smart filters</li>
-                                <li>Setlists for gigs & rehearsals</li>
-                                <li>Quick access to everything</li>
-                            </ul>
-                            <p class="showcase-tagline">Find any song in seconds.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--cluster">
-                            <figure class="phone phone--lg phone--tilt-left">
-                                <img src="/assets/images/Songlist-lg.png"
-                                     srcset="/assets/images/Songlist-sm.png 480w, /assets/images/Songlist-md.png 640w, /assets/images/Songlist-lg.png 800w, /assets/images/Songlist-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Song library" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--md phone--tilt-right phone--overlap">
-                                <img src="/assets/images/Setlist-md.png"
-                                     srcset="/assets/images/Setlist-sm.png 480w, /assets/images/Setlist-md.png 640w, /assets/images/Setlist-lg.png 800w, /assets/images/Setlist-xl.png 960w"
-                                     sizes="(max-width: 768px) 280px, 400px"
-                                     alt="Setlist builder" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: Built for live performance (Autoscroll only) -->
-                    <div class="showcase-row showcase-row--reverse">
-                        <div class="showcase-text showcase-text--right">
-                            <img src="/assets/images/Built for live performanc.svg" alt="Built for live performance." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Fullscreen lyrics with auto-scroll</li>
-                                <li>Hands-free with tap or MIDI</li>
-                                <li>Large, readable text on any screen</li>
-                                <li>Stay focused on the music</li>
-                            </ul>
-                            <p class="showcase-tagline">Perform without distractions.</p>
-                        </div>
-                        <div class="showcase-phones">
-                            <figure class="phone phone--xl">
-                                <img src="/assets/images/Autoscroll-xl.png"
-                                     srcset="/assets/images/Autoscroll-sm.png 480w, /assets/images/Autoscroll-md.png 640w, /assets/images/Autoscroll-lg.png 800w, /assets/images/Autoscroll-xl.png 960w"
-                                     sizes="(max-width: 768px) 440px, 640px"
-                                     alt="Performance mode" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 3: Capture ideas -->
-                    <div class="showcase-row">
-                        <div class="showcase-text showcase-text--left">
-                            <img src="/assets/images/Capture ideas instantly..svg" alt="Capture ideas instantly." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Built-in multi-take recorder</li>
-                                <li>Waveform view with trim & playback</li>
-                                <li>Record without leaving your song</li>
-                                <li>Keep takes with the music they belong to</li>
-                            </ul>
-                            <p class="showcase-tagline">Never lose a song again.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--stack">
-                            <figure class="phone phone--lg phone--tilt-left">
-                                <img src="/assets/images/Record-lg.png"
-                                     srcset="/assets/images/Record-sm.png 480w, /assets/images/Record-md.png 640w, /assets/images/Record-lg.png 800w, /assets/images/Record-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Audio recording" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--md phone--offset">
-                                <img src="/assets/images/Studio-md.png"
-                                     srcset="/assets/images/Studio-sm.png 480w, /assets/images/Studio-md.png 640w, /assets/images/Studio-lg.png 800w, /assets/images/Studio-xl.png 960w"
-                                     sizes="(max-width: 768px) 280px, 400px"
-                                     alt="Recording studio" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 4: Chords (Guitar + Piano only) -->
-                    <div class="showcase-row showcase-row--reverse">
-                        <div class="showcase-text showcase-text--right">
-                            <img src="/assets/images/Chords for every instrume.svg" alt="Chords for every instrument." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Voicings, inversions & variations</li>
-                                <li>Slash chords & extensions</li>
-                                <li>Guitar, bass, ukulele & more</li>
-                                <li>Designed for real instruments</li>
-                            </ul>
-                            <p class="showcase-tagline">Chords that feel right when you play them.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--pair">
-                            <figure class="phone phone--lg phone--tilt-left">
-                                <img src="/assets/images/Guitar-lg.png"
-                                     srcset="/assets/images/Guitar-sm.png 480w, /assets/images/Guitar-md.png 640w, /assets/images/Guitar-lg.png 800w, /assets/images/Guitar-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Guitar chords" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--lg phone--tilt-right">
-                                <img src="/assets/images/Piano-lg.png"
-                                     srcset="/assets/images/Piano-sm.png 480w, /assets/images/Piano-md.png 640w, /assets/images/Piano-lg.png 800w, /assets/images/Piano-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Piano chords" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 5: Practice with confidence (Harmony, Tuner, Tempo) -->
-                    <div class="showcase-row">
-                        <div class="showcase-text showcase-text--left">
-                            <img src="/assets/images/Practice with confidence..svg" alt="Practice with confidence." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Chromatic tuner</li>
-                                <li>Metronome with tap tempo</li>
-                                <li>Simple tools that stay out of the way</li>
-                            </ul>
-                            <p class="showcase-tagline">Focus on the music, not the setup.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--triple">
-                            <figure class="phone phone--md phone--tilt-left phone--back">
-                                <img src="/assets/images/Harmony-md.png"
-                                     srcset="/assets/images/Harmony-sm.png 480w, /assets/images/Harmony-md.png 640w, /assets/images/Harmony-lg.png 800w, /assets/images/Harmony-xl.png 960w"
-                                     sizes="(max-width: 768px) 280px, 400px"
-                                     alt="Harmony helper" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--lg phone--front">
-                                <img src="/assets/images/Tuner-lg.png"
-                                     srcset="/assets/images/Tuner-sm.png 480w, /assets/images/Tuner-md.png 640w, /assets/images/Tuner-lg.png 800w, /assets/images/Tuner-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Chromatic tuner" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--md phone--tilt-right phone--back">
-                                <img src="/assets/images/Tempo-md.png"
-                                     srcset="/assets/images/Tempo-sm.png 480w, /assets/images/Tempo-md.png 640w, /assets/images/Tempo-lg.png 800w, /assets/images/Tempo-xl.png 960w"
-                                     sizes="(max-width: 768px) 280px, 400px"
-                                     alt="Tap tempo" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 6: Import/Export (PDF + Export Settings) -->
-                    <div class="showcase-row showcase-row--reverse">
-                        <div class="showcase-text showcase-text--right">
-                            <img src="/assets/images/Import anything.¶Export e.svg" alt="Import anything. Export everything." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>Import ChordPro, text, tabs & PDFs</li>
-                                <li>Optional OCR for scanned pages</li>
-                                <li>Export to PDF, ChordPro & plain text</li>
-                                <li>Layouts for rehearsal, sharing or print</li>
-                            </ul>
-                            <p class="showcase-tagline">Your songs, your formats.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--pair">
-                            <figure class="phone phone--lg phone--tilt-left">
-                                <img src="/assets/images/export-pdf-lg.png"
-                                     srcset="/assets/images/export-pdf-sm.png 480w, /assets/images/export-pdf-md.png 640w, /assets/images/export-pdf-lg.png 800w, /assets/images/export-pdf-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="PDF export" loading="lazy">
-                            </figure>
-                            <figure class="phone phone--lg phone--tilt-right">
-                                <img src="/assets/images/export-settings-lg.png"
-                                     srcset="/assets/images/export-settings-sm.png 480w, /assets/images/export-settings-md.png 640w, /assets/images/export-settings-lg.png 800w, /assets/images/export-settings-xl.png 960w"
-                                     sizes="(max-width: 768px) 360px, 520px"
-                                     alt="Export options" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 7: Full backup (Cloud only) -->
-                    <div class="showcase-row">
-                        <div class="showcase-text showcase-text--left">
-                            <img src="/assets/images/Full backup to any cloud..svg" alt="Full backup to any cloud." class="showcase-svg">
-                            <ul class="showcase-caption">
-                                <li>No account required</li>
-                                <li>Songs live on your device</li>
-                                <li>Optional iCloud or WebDAV backup</li>
-                                <li>Full control over your music</li>
-                            </ul>
-                            <p class="showcase-tagline">Local-first, musician-first.</p>
-                        </div>
-                        <div class="showcase-phones">
-                            <figure class="phone phone--xl">
-                                <img src="/assets/images/Cloud-xl.png"
-                                     srcset="/assets/images/Cloud-sm.png 480w, /assets/images/Cloud-md.png 640w, /assets/images/Cloud-lg.png 800w, /assets/images/Cloud-xl.png 960w"
-                                     sizes="(max-width: 768px) 440px, 640px"
-                                     alt="Cloud sync" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <!-- Row 8: For musicians, by musicians -->
-                    <div class="showcase-row showcase-row--overlap">
-                        <div class="showcase-text showcase-text--overlap">
-                            <img src="/assets/images/For¶musicians. ¶By ¶music.svg" alt="For musicians. By musicians." class="showcase-svg showcase-svg--overlap">
-                            <p class="showcase-caption showcase-caption--simple">
-                                Built by musicians who write, practice, and perform.
-                            </p>
-                            <p class="showcase-tagline">No forced subscriptions. No clutter.<br>Just the tools your songs need.</p>
-                        </div>
-                        <div class="showcase-phones showcase-phones--hero">
-                            <figure class="phone phone--2xl">
-                                <img src="/assets/images/lazy-iphone-2xl.png"
-                                     srcset="/assets/images/lazy-iphone-sm.png 480w, /assets/images/lazy-iphone-md.png 640w, /assets/images/lazy-iphone-lg.png 800w, /assets/images/lazy-iphone-xl.png 960w"
-                                     sizes="(max-width: 768px) 560px, 960px"
-                                     alt="SongScribe app" loading="lazy">
-                            </figure>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Section -->
-        <section id="newsletter" class="newsletter">
-            <div class="container">
-                <div class="newsletter-content">
-                    <h2 class="newsletter-title">Get notified when things ship</h2>
-                    <p class="newsletter-subtitle">
-                        New features, release notes, and the occasional songwriting thing. Infrequent. Unsubscribe any time.
-                    </p>
-                    <form class="newsletter-form"
-                        action="https://songscribe.us9.list-manage.com/subscribe/post?u=19d3e54634d518c188143ca16&amp;id=d568f75b10&amp;f_id=0081c2e1f0"
-                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_self"
-                        novalidate>
-                        <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required
-                            aria-label="Email address" class="newsletter-input email">
-                        <button type="submit" name="subscribe" class="btn btn-primary">Subscribe</button>
-                        <!-- Honeypot field for bot protection -->
-                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                            <input type="text" name="b_19d3e54634d518c188143ca16_d568f75b10" tabindex="-1" value="">
-                        </div>
-                    </form>
-                    <p class="newsletter-help">No spam. Unsubscribe any time.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final CTA Section -->
-        <section id="download" class="final-cta">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Free to download. One-time upgrade.</h2>
-                    <p class="section-subtitle">
-                        Works without WiFi. No account required. Your songs stay on your device.
-                    </p>
-                </div>
-                <div class="cta-actions">
-                    <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-                        Download for iOS
-                    </a>
-                    <span class="btn btn-secondary btn-large btn-disabled">
-                        Android Coming Soon
-                    </span>
-                </div>
-            </div>
+          </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="footer-logo">
-                        <img src="/assets/images/SongScribe-header-logo.svg" alt="SongScribe">
-                    </a>
-                    <p class="footer-tagline">Your songs live on your device. Always.</p>
-                    <div class="social-links">
-                        <a href="https://twitter.com/songscribeapp" class="social-link" aria-label="Twitter" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/songscribe" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Product</h4>
-                    <a href="#features">Features</a>
-                    <a href="#download">Download</a>
-                    <a href="/changelog">Changelog</a>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Support</h4>
-                    <a href="mailto:support@songscribe.io">Contact Us</a>
-                    <a href="#newsletter">Stay Updated</a>
-                    <a href="/about">About</a>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Legal</h4>
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 SongScribe. All rights reserved.</p>
-                <div class="platform-icons">
-                    <!-- Apple -->
-                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on iOS and macOS">
-                        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
-                    </svg>
-                    <!-- Windows -->
-                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Windows">
-                        <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.649-1.6L24 0v11.4h-13.351V1.849zM0 12.45h9.75v9.451L0 20.55V12.45zm10.649 0H24v11.75l-13.351-1.849V12.45z"/>
-                    </svg>
-                    <!-- Android -->
-                    <svg class="platform-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Available on Android">
-                        <path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/>
-                    </svg>
-                </div>
-            </div>
+    <!-- Section 12: Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
     </footer>
 
     <!-- Screenshot Lightbox -->

@@ -1,89 +1,167 @@
 <!DOCTYPE html>
+<!--
+  Render recipe (from repo root, with `npm run dev` running on :5174):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless=new --hide-scrollbars --disable-gpu \
+      --force-device-scale-factor=2 --window-size=1200,717 \
+      --virtual-time-budget=10000 \
+      --screenshot=/tmp/og-raw.png \
+      "http://localhost:5174/assets/images/og-image-generator.html"
+    node -e "require('sharp')('/tmp/og-raw.png').extract({left:0,top:0,width:2400,height:1260}).resize(1200,630,{kernel:'lanczos3'}).png({compressionLevel:9,effort:10}).toFile('public/assets/images/og-image.png')"
+
+  Note: --window-size sets the whole Chrome window, NOT the viewport. On macOS the
+  chrome-UI overhead is ~87px, so 717 = 630 viewport + 87 chrome. Re-measure with
+  the debug HTML if you switch hosts / Chrome versions.
+-->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OG Image Generator - SongScribe</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            width: 1200px;
-            height: 630px;
-            background: linear-gradient(135deg, #FFFBF7 0%, #FFFBF7 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-container {
-            margin-bottom: 40px;
-        }
-        
-        .logo-container img {
-            max-height: 180px;
-            max-width: 600px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
-        
-        .headline {
-            font-size: 64px;
-            font-weight: 700;
-            color: #333333;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .tagline {
-            font-size: 32px;
-            font-weight: 400;
-            color: rgba(51, 51, 51, 0.7);
-            text-align: center;
-        }
-        
-        .accent {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-        }
-        
-        .accent-2 {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(95, 132, 132, 0.1) 0%, transparent 70%);
-            bottom: -150px;
-            left: -150px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>OG Image Generator — SongScribe 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --parchment: #F0EBE6;
+      --cream:     #F7F3EC;
+      --ink:       #2C1810;
+      --ink-soft:  #4A3420;
+      --warm:      #6B5E50;
+      --amber:     #D4A017;
+      --coral:     #F5A962;
+      --teal:      #2D9E9E;
+    }
+
+    html, body { width: 1200px; height: 630px; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 72px;
+    }
+
+    /* Watercolor washes (echoing hero plate vibe, subtle at OG scale) */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 720px; height: 720px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 169, 98, 0.35) 0%, rgba(245, 169, 98, 0.10) 45%, transparent 70%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: -180px; left: -180px;
+      width: 560px; height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 158, 158, 0.25) 0%, rgba(45, 158, 158, 0.08) 45%, transparent 70%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    /* Top row: brand */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand img { height: 44px; width: auto; display: block; }
+
+    /* Center: headline + tagline */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+    }
+    .eyebrow {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+    .headline {
+      font-family: 'Baskervville', Georgia, serif;
+      font-size: 92px;
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .tagline {
+      font-family: 'Baskervville', Georgia, serif;
+      font-style: italic;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--ink-soft);
+    }
+
+    /* Bottom: subtitle + url */
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+    .subtitle {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--warm);
+      max-width: 720px;
+      line-height: 1.5;
+    }
+    .url {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .url::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      margin-right: 10px;
+      transform: translateY(-3px);
+    }
+  </style>
 </head>
 <body>
-    <div class="accent"></div>
-    <div class="accent-2"></div>
-    
-    <div class="logo-container">
-        <img src="logo-full.webp" alt="SongScribe Logo" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
-        <div class="logo-fallback" style="display: none; font-size: 80px; font-weight: 700; color: #FBBF24;">SongScribe</div>
-    </div>
-    
-    <h1 class="headline">Something Beautiful<br>is Coming</h1>
-    <p class="tagline">Your Songbook. Your Tools. Offline.</p>
+  <div class="brand">
+    <img src="SongScribe-header-logo.svg" alt="SongScribe">
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">SongScribe 2.0 &middot; Out Now</div>
+    <h1 class="headline">Write songs the way you play.</h1>
+    <p class="tagline">Chord charts, setlists, and a recorder that work when your phone has no signal.</p>
+  </div>
+
+  <div class="footer-row">
+    <p class="subtitle">Built by a musician, for musicians. Offline-first. One price. Forever.</p>
+    <span class="url">songscribe.io</span>
+  </div>
 </body>
 </html>
-
