@@ -400,13 +400,13 @@
         (function() {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-image');
-            const phones = document.querySelectorAll('.phone');
+            const phones = document.querySelectorAll('.phone-frame');
 
             phones.forEach(phone => {
                 phone.addEventListener('click', function(e) {
-                    const img = this.querySelector('img');
+                    const img = this.querySelector('.phone-frame__screen');
                     if (img) {
-                        // Get the highest resolution image from srcset
+                        // Pick the highest-resolution entry from srcset; fall back to src
                         const srcset = img.getAttribute('srcset');
                         let highResSrc = img.src;
 
@@ -416,10 +416,7 @@
                             highResSrc = lastSource.split(' ')[0];
                         }
 
-                        // Also try to get the original full-res image
-                        const baseSrc = highResSrc.replace(/-(?:sm|md|lg|xl|2xl)\.png/, '.png');
-
-                        lightboxImg.src = baseSrc;
+                        lightboxImg.src = highResSrc;
                         lightboxImg.alt = img.alt;
                         lightbox.classList.add('active');
                         document.body.style.overflow = 'hidden';
