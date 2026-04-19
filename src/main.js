@@ -9,8 +9,6 @@ if (document.readyState === 'loading') {
   bindTheme();
 }
 
-import './style-glass.css'
-
 initMobileNav()
 initSmoothScroll()
 

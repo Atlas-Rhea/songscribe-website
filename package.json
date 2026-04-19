@@ -13,8 +13,5 @@
   "devDependencies": {
     "sharp": "^0.34.5",
     "vite": "^5.0.0"
-  },
-  "dependencies": {
-    "three": "^0.160.0"
   }
 }
