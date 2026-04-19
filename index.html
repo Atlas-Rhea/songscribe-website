@@ -42,11 +42,29 @@
 
     <!-- Stylesheets -->
     <script>
-      (function(){try{
-        var s=localStorage.getItem('ss-theme');
-        var t=(s==='light'||s==='dark')?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-        document.documentElement.setAttribute('data-theme',t);
-      }catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+      /* Theme bootstrap — runs before CSS paints so there's no light flash.
+         Priority: localStorage override > system prefers-color-scheme > light.
+         Also listens live: when the user hasn't toggled, follow the OS. */
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
     </script>
     <!-- Preload LCP hero image so the browser fetches it alongside the HTML.
          imagesrcset/imagesizes mirror the <img> so mobile picks the sm variant. -->

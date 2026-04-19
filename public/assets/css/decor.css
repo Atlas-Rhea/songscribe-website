@@ -43,11 +43,16 @@
   /* Section tier backgrounds (light theme defaults) */
   --section-bg-light: var(--parchment);
   --section-bg-dark:  var(--ink);
+
+  /* Tell the UA which color schemes we support so form controls,
+     scrollbars, and other browser chrome match the active theme. */
+  color-scheme: light;
 }
 
 /* Auto dark when user prefers it, but only if the page hasn't set a theme */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --paper-bg:           var(--ink);
     --paper-grain:        rgba(250, 246, 240, 0.08);  /* cream grain on chocolate */
     --paper-grain-coarse: rgba(250, 246, 240, 0.04);
@@ -71,6 +76,7 @@
 
 /* Explicit dark-theme override (wins over media query) */
 :root[data-theme="dark"] {
+  color-scheme: dark;
   --paper-bg:           var(--ink);
   --paper-grain:        rgba(250, 246, 240, 0.08);
   --paper-grain-coarse: rgba(250, 246, 240, 0.04);
@@ -91,6 +97,7 @@
 
 /* Explicit light-theme override (wins when user toggles off dark even if system prefers dark) */
 :root[data-theme="light"] {
+  color-scheme: light;
   --section-bg-light: var(--parchment);
   --section-bg-dark:  var(--ink);
 }

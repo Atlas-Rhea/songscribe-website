@@ -20,6 +20,31 @@
     <meta name="twitter:title" content="Privacy Policy - SongScribe">
     <meta name="twitter:description" content="Privacy Policy for SongScribe - Learn how we collect, use, and protect your information.">
 
+    <!-- Theme bootstrap — mirrors the block in index.html. Runs before
+         CSS paints so dark mode doesn't flash light, and follows live
+         system preference changes when the user hasn't toggled. -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="/assets/css/decor.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
