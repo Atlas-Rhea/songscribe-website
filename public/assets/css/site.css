@@ -483,19 +483,21 @@
 }
 
 /* Cream tier variant — Feature 2 sits on cream ground in light mode
-   and on pure ink in dark mode for max tier contrast. */
+   and on the darker-than-ink variant in dark mode so it reads as a
+   distinct tier from adjacent .section--light blocks (which resolve
+   to --ink in dark). Using --ink here would collapse the tier rhythm. */
 .section--cream {
   background: var(--cream);
   color: var(--text-primary);
 }
 
 :root[data-theme="dark"] .section--cream {
-  background: var(--ink);
+  background: var(--section-bg-dark);
   color: var(--cream-warm);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .section--cream {
-    background: var(--ink);
+    background: var(--section-bg-dark);
     color: var(--cream-warm);
   }
 }
