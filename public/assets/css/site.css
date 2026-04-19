@@ -560,3 +560,54 @@
   color: var(--amber-soft);
   font-weight: bold;
 }
+
+/* -------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--hairline-color);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand img {
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+
+.footer-tagline {
+  margin: 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.footer-nav a:hover {
+  color: var(--amber);
+  text-decoration: underline;
+}
+
+.footer-legal {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
