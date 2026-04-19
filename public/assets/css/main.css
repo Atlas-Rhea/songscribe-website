@@ -621,8 +621,6 @@ a:hover {
     var(--color-surface-1) 60%,
     var(--color-teal-light) 100%
   );
-  background-size: 200% 200%;
-  animation: watercolorShift 20s ease infinite;
 }
 
 .coming-soon-content {
@@ -876,10 +874,5 @@ a:hover {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .hero,
-  .coming-soon-container {
-    animation: none;
   }
 }
