@@ -516,7 +516,10 @@
   text-align: center;
 }
 
-.pricing-price {
+/* Specificity bump (.pricing .pricing-price) to beat
+   .section--dark p which would otherwise dim the amber price
+   to warm-gray-soft on the dark tier. */
+.pricing .pricing-price {
   font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
   font-size: clamp(4rem, 10vw, 8rem);
   line-height: 1;
