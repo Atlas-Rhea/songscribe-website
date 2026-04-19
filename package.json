@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/minify-public-css.mjs",
     "preview": "vite preview",
     "shots": "node scripts/process-screenshots.mjs",
     "washes": "npm --prefix scripts/washes run generate --"
   },
   "devDependencies": {
+    "cssnano": "^7.1.5",
+    "postcss": "^8.5.10",
     "sharp": "^0.34.5",
     "vite": "^5.0.0"
   }

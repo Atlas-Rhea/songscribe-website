@@ -16,7 +16,7 @@
   --ink:            #2C1810;
   --ink-soft:       #4A3420;
   --warm-gray:      #6B5E50;
-  --warm-gray-soft: #8A7D6F;
+  --warm-gray-soft: #9D9082;  /* bumped from #8A7D6F to hit WCAG AA on --ink (5.5:1) */
 
   /* Accents */
   --amber:          #D4A017;

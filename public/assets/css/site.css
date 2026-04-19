@@ -293,7 +293,8 @@
 
 .hero.section {
   background-color: var(--section-bg-light);
-  background-image: url('/assets/decor/washes/hero-plate-light.webp');
+  /* Mobile-first: use the 960px variant (~20KB). Desktop swaps to the 2048px plate. */
+  background-image: url('/assets/decor/washes/hero-plate-light-sm.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
@@ -308,13 +309,30 @@
   content: none;
 }
 
+@media (min-width: 769px) {
+  .hero.section {
+    background-image: url('/assets/decor/washes/hero-plate-light.webp');
+  }
+}
+
 :root[data-theme="dark"] .hero.section {
-  background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+  background-image: url('/assets/decor/washes/hero-plate-dark-sm.webp');
+}
+
+@media (min-width: 769px) {
+  :root[data-theme="dark"] .hero.section {
+    background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .hero.section {
-    background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+    background-image: url('/assets/decor/washes/hero-plate-dark-sm.webp');
+  }
+  @media (min-width: 769px) {
+    :root:not([data-theme="light"]) .hero.section {
+      background-image: url('/assets/decor/washes/hero-plate-dark.webp');
+    }
   }
 }
 
@@ -340,7 +358,7 @@
 
 /* In dark mode the hero's chocolate plate has large orange-pigment
    regions that sit directly behind the subtitle copy. The default
-   --text-secondary (warm-gray-soft #8A7D6F) reads as warm-on-warm
+   --text-secondary (warm-gray-soft #9D9082) reads as warm-on-warm
    and vanishes. Override with cream-warm at 85% so the subtitle
    stays distinct from the headline (which is full cream-warm) but
    remains clearly legible against the busy plate. */
