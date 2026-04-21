@@ -111,7 +111,7 @@
     </script>
 </head>
 
-<body class="decor-paper">
+<body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Section 1: Announcement strip (dark tier) -->
     <section class="strip section section--dark" data-section="strip">
@@ -159,7 +159,14 @@
     <main id="main-content">
         <!-- Section 3: Hero (light tier, baked orange plate + teal BL overlay) -->
         <section class="hero section section--light" data-section="hero">
-          <div class="wash wash--teal wash--hero-teal-bl" aria-hidden="true"></div>
+          <div class="wash-group" aria-hidden="true">
+            <div class="wash wash--teal wash--hero-teal-bl"></div>
+          </div>
+          <img class="decor-note n-1" src="/assets/images/decor/note-01.svg" alt="" style="top:8%; left:4%; width:48px;">
+          <img class="decor-note n-3" src="/assets/images/decor/note-03.svg" alt="" style="top:14%; left:10%; width:40px;">
+          <img class="decor-note n-5" src="/assets/images/decor/note-05.svg" alt="" style="top:20%; left:2%; width:56px;">
+          <img class="decor-quill" src="/assets/images/decor/quill-01.webp" alt="" style="top:3%; left:4%; width:clamp(160px,15vw,220px); scale:-1 1; rotate:64deg;">
+          <img class="decor-note n-logo" src="/assets/images/decor/note-02.svg" alt="" style="top:2%; left:clamp(130px,14vw,180px); width:clamp(70px,8vw,100px); opacity:0.9;">
           <div class="section-inner hero-inner">
             <div class="hero-copy">
               <h1 class="section-headline hero-headline">Write songs the way you play.</h1>
@@ -191,7 +198,13 @@
         </section>
 
         <!-- Section 4: Feature 1 — Chord-on-lyric editor (anchor for nav "Features" link) -->
-        <section id="features" class="feature section section--light" data-section="feature-1">
+        <section id="features" class="feature section section--light decor-section--bleed-top decor-section--bleed-bottom" data-section="feature-1">
+          <div class="seam-line" aria-hidden="true"></div>
+          <div class="wash-seam wash-seam--bottom" aria-hidden="true">
+            <div class="wash wash--edge-bottom-left"></div>
+          </div>
+          <img class="decor-note n-2" src="/assets/images/decor/note-02.svg" alt="" style="top:12%; left:6%; width:44px;">
+          <img class="decor-note n-4" src="/assets/images/decor/note-04.svg" alt="" style="top:24%; left:14%; width:52px;">
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">Write songs the way you play.</h2>
@@ -216,7 +229,10 @@
         </section>
 
         <!-- Section 5: Feature 2 — Offline / no account (cream tier) -->
-        <section class="feature feature--reverse section section--cream" data-section="feature-2">
+        <section class="feature feature--reverse section section--cream decor-section--bleed-top" data-section="feature-2">
+          <div class="wash-seam wash-seam--top" aria-hidden="true">
+            <div class="wash wash--edge-top-right"></div>
+          </div>
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">No WiFi. No account. No problem.</h2>
@@ -268,6 +284,12 @@
 
         <!-- Section 7: Feature 4 — Performance mode (DARK TIER) -->
         <section class="feature feature--reverse section section--dark" data-section="feature-4">
+          <div class="wash-group" aria-hidden="true">
+            <div class="wash wash--teal wash--br wash--f4-main"></div>
+            <div class="wash wash--teal wash--f4-drift" style="bottom:10%; right:-15%; width:60%; aspect-ratio:1;"></div>
+          </div>
+          <img class="decor-note n-3" src="/assets/images/decor/note-03.svg" alt="" style="top:20%; right:8%; width:40px;">
+          <img class="decor-note n-6" src="/assets/images/decor/note-06.svg" alt="" style="top:32%; right:16%; width:48px;">
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">Built for the stage.</h2>
@@ -292,7 +314,13 @@
         </section>
 
         <!-- Section 8: Feature 5 — Recording -->
-        <section class="feature section section--light" data-section="feature-5">
+        <section class="feature section section--light decor-section--bleed-bottom" data-section="feature-5">
+          <div class="wash-seam wash-seam--bottom" aria-hidden="true">
+            <div class="wash wash--edge-bottom-right wash--edge-huge"></div>
+          </div>
+          <img class="decor-note n-1" src="/assets/images/decor/note-01.svg" alt="" style="top:10%; left:5%; width:40px;">
+          <img class="decor-note n-2" src="/assets/images/decor/note-02.svg" alt="" style="top:18%; left:12%; width:48px;">
+          <img class="decor-note n-5" src="/assets/images/decor/note-05.svg" alt="" style="top:26%; left:3%; width:52px;">
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">A studio in your pocket.</h2>
@@ -343,6 +371,7 @@
 
         <!-- Section 10: Feature 7 — Export -->
         <section class="feature section section--light" data-section="feature-7">
+          <img class="decor-quill q-2" src="/assets/images/decor/quill-02.webp" alt="" style="top:55%; left:2%; width:clamp(140px,14vw,190px); transform:rotate(14deg);">
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">Export to PDF, ChordPro, and more.</h2>
@@ -366,8 +395,143 @@
           </div>
         </section>
 
-        <!-- Section 11: Pricing (DARK TIER) -->
+        <!-- Section 11: Features list — textured paper accordion -->
+        <section id="features-all" class="features-all section section--light decor-paper" data-section="features-all">
+          <div class="section-inner">
+            <header class="features-all__header">
+              <h2 class="section-headline">Every detail, on one page.</h2>
+              <p class="section-subtitle">Tap any row to expand.</p>
+            </header>
+            <div class="features-all__list">
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-1">
+                  <span class="features-all-item__label">Workspace</span>
+                  <span class="features-all-item__title">Clean, quiet, and out of your way</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-1" role="region">
+                  <div class="features-all-item__body-inner">A writing space designed to disappear. Simple layout, no upsell popups, no accounts pestering you to log in. When inspiration hits, you open the app and you write.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-2">
+                  <span class="features-all-item__label">Editor</span>
+                  <span class="features-all-item__title">Chord-aware lyrics that stay lined up</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-2" role="region">
+                  <div class="features-all-item__body-inner">Type the lyric, drop a chord above the right syllable, and it stays there — even when you edit the line, transpose the song, or resize the window. No more hand-aligning chord charts.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-3">
+                  <span class="features-all-item__label">Tuner</span>
+                  <span class="features-all-item__title">Accurate even with background noise</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-3" role="region">
+                  <div class="features-all-item__body-inner">Cent-level accuracy for guitar, bass, ukulele, mandolin, banjo, and violin. Adjustable reference pitch. Locks on fast, stays put, and works through the hum of a noisy room.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-4">
+                  <span class="features-all-item__label">Chord Builder</span>
+                  <span class="features-all-item__title">Voicings for guitar, bass, and piano</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-4" role="region">
+                  <div class="features-all-item__body-inner">Build any chord you can imagine. Enharmonic spelling, alternate voicings, slash chords, extended harmony — every chord gets a clean diagram for the instrument you're holding.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-5">
+                  <span class="features-all-item__label">Recording</span>
+                  <span class="features-all-item__title">Capture ideas before they're gone</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-5" role="region">
+                  <div class="features-all-item__body-inner">Tap record the moment the melody shows up. Smart silence trimming cleans the top and tail so your clips are ready to share, loop against, or drop into a setlist — no editor required.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-6">
+                  <span class="features-all-item__label">Setlists</span>
+                  <span class="features-all-item__title">Organize rehearsals and shows</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-6" role="region">
+                  <div class="features-all-item__body-inner">Drag songs into a setlist, reorder with a swipe, and carry the whole night on stage in your pocket. Keep multiple lists — one for the coffeehouse gig, one for the full band, one for the recording date.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-7">
+                  <span class="features-all-item__label">Pro Mode</span>
+                  <span class="features-all-item__title">Fullscreen lyrics, hands-free control</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-7" role="region">
+                  <div class="features-all-item__body-inner">Auto-scroll at your tempo so both hands stay on the instrument. MIDI footswitch support turns page-turns into pedal-taps, and the display stays legible from across the stage.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-8">
+                  <span class="features-all-item__label">Export</span>
+                  <span class="features-all-item__title">PDF, ChordPro, or plain text</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-8" role="region">
+                  <div class="features-all-item__body-inner">Three styles of PDF lead sheets, plus ChordPro and plain text for the nerds. Print them, email them, or pull them up on a tablet — every layout is designed to be read at a glance.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-9">
+                  <span class="features-all-item__label">Offline</span>
+                  <span class="features-all-item__title">No Wi-Fi, no account, no problem</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-9" role="region">
+                  <div class="features-all-item__body-inner">Everything runs on your device. No login walls, no sync errors, no third-party servers reading your lyrics. Your songs stay yours — even on a plane, even off the grid.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-10">
+                  <span class="features-all-item__label">Themes</span>
+                  <span class="features-all-item__title">Eighteen looks, or your own photo</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-10" role="region">
+                  <div class="features-all-item__body-inner">Eighteen hand-tuned themes plus the option to drop in any photo as your background. Make the app feel like your guitar — and switch the whole vibe in a second when the mood turns.</div>
+                </div>
+              </div>
+
+              <div class="features-all-item">
+                <button class="features-all-item__trigger" aria-expanded="false" aria-controls="fa-item-11">
+                  <span class="features-all-item__label">Cross-Platform</span>
+                  <span class="features-all-item__title">Fast on desktop, tablet, and phone</span>
+                  <svg class="features-all-item__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 8,10 12,6"/></svg>
+                </button>
+                <div class="features-all-item__body" id="fa-item-11" role="region">
+                  <div class="features-all-item__body-inner">The same SongScribe, snappy everywhere — iPhone, iPad, and any modern desktop browser. Install it to the home screen and it behaves like a native app, complete with offline support.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 12: Pricing (DARK TIER) -->
         <section id="pricing" class="pricing section section--dark" data-section="pricing">
+          <div class="wash wash--teal wash--pricing-tl" aria-hidden="true" style="width:800px; height:800px; top:-220px; left:-220px;"></div>
           <div class="section-inner">
             <h2 class="section-headline">One price. Everything. Forever.</h2>
             <p class="pricing-price">

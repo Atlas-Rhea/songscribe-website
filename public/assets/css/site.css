@@ -5,6 +5,19 @@
    ============================================================= */
 
 /* -------------------------------------------------------------
+   Body paper ground (solid). The grain texture (.decor-paper)
+   is reserved for specific sections that want the tactile paper
+   feel — applying it page-wide made the whole site feel busy.
+
+   `html body` selector wins over main.css's later `body { ... }`
+   declaration so the theme-aware --paper-bg token sticks through
+   dark-mode swaps instead of being overwritten by --color-surface-0
+   (which is locked to parchment in both themes). */
+html body {
+  background-color: var(--paper-bg);
+}
+
+/* -------------------------------------------------------------
    Skip-to-content link — visually hidden until keyboard-focused,
    then pops into the top-left corner. Keyboard-only users can
    jump past the nav/strip to <main>.
@@ -34,13 +47,49 @@
    Section tiers
    Every <section> gets .section--light or .section--dark
    ------------------------------------------------------------- */
+/* overflow-x: clip + overflow-y: visible lets phone drop-shadows escape
+   vertically into the neighbour section (preventing the hard tone-line
+   at every section seam where a phone sits near the bottom edge) while
+   still containing washes horizontally so they can't cause a horizontal
+   scrollbar. overflow: clip replaces overflow: hidden — it doesn't
+   create a containing block and can be mixed per-axis. */
 .section {
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
+/* Descending z-index on every section inside <main> so each phone's
+   drop-shadow paints on top of the following section's background.
+   Default sibling paint order (DOM order, z-index:auto) lets the next
+   section's solid background overpaint any shadow that extended past
+   the current section's boundary, making the phones look hard-cut at
+   the tier change. Lifting each section one step above the next fixes
+   the paint order without touching section isolation (which washes
+   still need). Values count down so every neighbor pair is correctly
+   ordered regardless of which tier combination meets at the boundary. */
+main#main-content > .section:nth-of-type(1)  { z-index: 10; }
+main#main-content > .section:nth-of-type(2)  { z-index:  9; }
+main#main-content > .section:nth-of-type(3)  { z-index:  8; }
+main#main-content > .section:nth-of-type(4)  { z-index:  7; }
+main#main-content > .section:nth-of-type(5)  { z-index:  6; }
+main#main-content > .section:nth-of-type(6)  { z-index:  5; }
+main#main-content > .section:nth-of-type(7)  { z-index:  4; }
+main#main-content > .section:nth-of-type(8)  { z-index:  3; }
+main#main-content > .section:nth-of-type(9)  { z-index:  2; }
+main#main-content > .section:nth-of-type(10) { z-index:  1; }
+
+/* Light tier: transparent ground — reveals body's paper so consecutive
+   light/cream sections read as one continuous parchment slab with no
+   tier seam. Only .section--dark paints an opaque ground, so the only
+   visible section boundaries are high-contrast light→dark edges.
+
+   Uses `background-color` (not the `background:` shorthand) so that a
+   section can opt into .decor-paper's grain texture — the shorthand
+   would reset background-image and wipe the texture. */
 .section--light {
-  background: var(--section-bg-light);
+  background-color: transparent;
   color: var(--text-primary);
 }
 
@@ -87,6 +136,8 @@
 }
 
 .section-inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--site-max-width);
   margin: 0 auto;
   padding-block: var(--section-pad-y);
@@ -241,20 +292,19 @@
    ------------------------------------------------------------- */
 .phone-frame {
   position: relative;
+  z-index: 3;
   width: 100%;
   max-width: 420px;
   aspect-ratio: 1350 / 2760;
   margin: 0 auto;
   /* Layered drop-shadow: close contact shadow (short, firmer) anchors
-     the device to the plate; ambient shadow (longer, softer) gives
-     depth. Near-black at meaningful opacity so the shadow reads even
-     on the dark-mode chocolate plate (where a warm-brown tint
-     matching the plate would vanish). Blur radius scales with
-     expected visual weight of the phone — a 420px device wants ~60px
-     of soft spread to look naturally lifted. */
+     the device to the plate; ambient shadow (shorter, softer) gives
+     depth without spreading into the next section. Tightened from the
+     earlier cross-boundary version now that light/cream sections share
+     one continuous paper ground (no hard seam to bleed past). */
   filter:
-    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.22))
-    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.35));
+    drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 22px 36px rgba(0, 0, 0, 0.22));
 }
 
 /* Dark plate needs a stronger shadow because it's already dark — the
@@ -262,14 +312,14 @@
    the opacity up. */
 :root[data-theme="dark"] .phone-frame {
   filter:
-    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.65));
+    drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 22px 36px rgba(0, 0, 0, 0.50));
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .phone-frame {
     filter:
-      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 40px 80px rgba(0, 0, 0, 0.65));
+      drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 22px 36px rgba(0, 0, 0, 0.50));
   }
 }
 
@@ -314,7 +364,10 @@
    `background:` shorthand (which resets background-image to none).
    ------------------------------------------------------------- */
 .hero {
-  overflow: hidden;
+  /* overflow-x: clip keeps the 900px teal wash from widening narrow
+     viewports; overflow-y stays visible so the phone's drop-shadow
+     can render past the hero's bottom into the first feature tier. */
+  overflow-x: clip;
 }
 
 .hero.section {
@@ -462,7 +515,7 @@
 }
 
 .hero .hero-cta .btn + .btn::before {
-  content: '·';
+  content: '\00B7';
   margin-right: 1.25rem;
   color: currentColor;
   opacity: 0.45;
@@ -533,23 +586,144 @@
   .feature-subtitle { margin-inline: auto; }
 }
 
-/* Cream tier variant — Feature 2 sits on cream ground in light mode
-   and on the darker-than-ink variant in dark mode so it reads as a
-   distinct tier from adjacent .section--light blocks (which resolve
-   to --ink in dark). Using --ink here would collapse the tier rhythm. */
+/* Cream tier — collapsed into the paper ground. Retains the class for
+   semantic grouping / future per-section styling, but no longer paints
+   a distinct background so consecutive light+cream sections look like
+   one continuous parchment slab (no visible tier seam between them). */
 .section--cream {
-  background: var(--cream);
+  background-color: transparent;
   color: var(--text-primary);
 }
 
-:root[data-theme="dark"] .section--cream {
-  background: var(--section-bg-dark);
-  color: var(--cream-warm);
+/* -------------------------------------------------------------
+   Features list — full accordion. One row per feature. Tap the
+   row to expand a paragraph of detail. Reserved visual treatment:
+   this is the ONE section that wears the paper grain texture, so
+   it reads as a distinct "reference page" inside the otherwise
+   solid parchment/ink body.
+   ------------------------------------------------------------- */
+.features-all .section-inner {
+  max-width: 760px;
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.features-all__header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.features-all__header .section-subtitle {
+  margin-inline: auto;
+  max-width: 34rem;
+}
+
+.features-all__list {
+  border-top: 1px solid var(--hairline-color);
+}
+
+.features-all-item {
+  border-bottom: 1px solid var(--hairline-color);
+}
+
+.features-all-item__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.features-all-item__trigger:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.features-all-item__label {
+  flex: 0 0 140px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.features-all-item__title {
+  flex: 1;
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.features-all-item__chevron {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--text-secondary);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.features-all-item.is-open .features-all-item__chevron {
+  transform: rotate(180deg);
+  color: var(--amber);
+}
+
+.features-all-item.is-open .features-all-item__title {
+  color: var(--amber);
+}
+
+.features-all-item__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.features-all-item__body-inner {
+  padding: 0 0 1.5rem 156px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 54rem;
+}
+
+@media (max-width: 600px) {
+  .features-all-item__trigger {
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+  }
+  .features-all-item__label {
+    flex: 0 0 auto;
+    font-size: 0.7rem;
+  }
+  .features-all-item__title {
+    flex: 1 0 calc(100% - 34px);
+    order: 3;
+  }
+  .features-all-item__chevron {
+    margin-left: auto;
+  }
+  .features-all-item__body-inner {
+    padding-left: 0;
+  }
+}
+
+/* Dark theme: soften the section against the darker body so the
+   grain reads as a subtle panel rather than a loud overlay. */
+:root[data-theme="dark"] .features-all {
+  --hairline-color: var(--ink-soft);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .section--cream {
-    background: var(--section-bg-dark);
-    color: var(--cream-warm);
+  :root:not([data-theme="light"]) .features-all {
+    --hairline-color: var(--ink-soft);
   }
 }
 

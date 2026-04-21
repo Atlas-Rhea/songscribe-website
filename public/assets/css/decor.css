@@ -237,6 +237,208 @@ body.decor-paper,
 .wash--bl { bottom: -200px; left: -200px;  width: 720px; height: 720px; transform: scaleY(-1); }
 .wash--br { bottom: -200px; right: -200px; width: 720px; height: 720px; transform: scale(-1, -1); }
 
+/* -------------------------------------------------------------
+   Edge-bleed washes — hang past the section edge so the pigment
+   visually crosses the seam into the neighboring section.
+   Pairs with .decor-section--bleed-top / --bleed-bottom which
+   lift the overflow clip AND the isolation on that section so
+   mix-blend-mode can reach the neighbor's paper.
+   ------------------------------------------------------------- */
+.section.decor-section--bleed-bottom,
+.section.decor-section--bleed-top,
+.decor-section--bleed-bottom,
+.decor-section--bleed-top {
+  overflow: visible;
+  isolation: auto;
+}
+
+/* Edge-bleed washes — smaller, anchored to one side so pigment
+   spills in from a corner-ish area rather than the center. No
+   explicit z-index: natural DOM order puts them behind later
+   siblings (phone-frames, copy) in the same section AND in the
+   neighbor section the bleed spills into. */
+/* Each edge wash uses a distinct pigment source so no blob
+   appears twice across the page:
+     - .wash--edge-bottom-left  → drift   (F1)
+     - .wash--edge-top-right    → mood-b  (F2)
+     - .wash--edge-bottom-right → mood-a  (F5, paired with --edge-huge)
+
+   HARD INVARIANT — do NOT raise any of the `bottom:` / `top:` edge
+   offsets past --wash-bleed-max. Section z-indexes descend
+   (Hero=10 → pricing=1), so a wash bleeding from F_n paints ABOVE
+   F_{n+1} and can cover neighbour phones/copy if it reaches them.
+   All feature sections have exactly 112px clearance from section
+   edge to phone-frame, so 80px keeps a 32px safety band. The
+   .wash-seam wrapper provides a structural cap via overflow:hidden
+   even if a future offset edit breaks the convention. */
+:root { --wash-bleed-max: 80px; }
+
+/* Light mode uses the flat-cream-keyed .a.webp. Source assets are
+   painted on a perfectly flat cream background (#F0E4C8, enforced in
+   the Hedra prompt); rembg strips the cream cleanly, leaving fully
+   transparent margins with no dark RGB fringe. Under `multiply`,
+   transparent pixels leave the parchment untouched (identity) and
+   pigment pixels darken it into a warm watercolor wash — no visible
+   rectangle. Dark-mode overrides below swap to -dark.a.webp + `screen`. */
+.wash--edge-bottom-left {
+  left: -160px;
+  bottom: calc(-1 * var(--wash-bleed-max));
+  width: 720px;
+  height: 720px;
+  background-image: url('/assets/decor/washes/blob-cloud-orange-drift.a.webp');
+  background-size: cover;
+  background-position: center;
+}
+.wash--edge-bottom-right {
+  right: -160px;
+  bottom: calc(-1 * var(--wash-bleed-max));
+  width: 720px;
+  height: 720px;
+  background-image: url('/assets/decor/washes/blob-cloud-orange-mood-a.a.webp');
+  background-size: cover;
+  background-position: center;
+}
+.wash--edge-top-right {
+  right: -160px;
+  top: calc(-1 * var(--wash-bleed-max));
+  width: 720px;
+  height: 720px;
+  transform: scale(-1, -1);
+  background-image: url('/assets/decor/washes/blob-cloud-orange-mood-b.a.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.wash--edge-bottom-left,
+.wash--edge-bottom-right,
+.wash--edge-top-right {
+  --wash-blend: multiply;
+  --wash-opacity: 0.8;
+}
+:root[data-theme="dark"] .wash--edge-bottom-left,
+:root[data-theme="dark"] .wash--edge-bottom-right,
+:root[data-theme="dark"] .wash--edge-top-right {
+  --wash-blend: screen;
+  --wash-opacity: 0.55;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wash--edge-bottom-left,
+  :root:not([data-theme="light"]) .wash--edge-bottom-right,
+  :root:not([data-theme="light"]) .wash--edge-top-right {
+    --wash-blend: screen;
+    --wash-opacity: 0.55;
+  }
+}
+
+/* Dramatic oversized variant — half the wash hangs off the RIGHT
+   edge (horizontal drama), but vertical spill stays capped at
+   --wash-bleed-max so it can't cover the neighbour's phone or copy.
+   The "bigness" reads horizontally; vertically it stays disciplined. */
+.wash--edge-huge.wash--edge-bottom-right {
+  right: -650px;
+  bottom: calc(-1 * var(--wash-bleed-max));
+  width: 1300px;
+  height: 1300px;
+}
+
+/* Safety net — a .wash-seam wrapper structurally clips the wash to
+   a rectangle that extends from the section's top to exactly
+   --wash-bleed-max past its bottom (or mirror for top-bleed). Any
+   wash placed inside .wash-seam gets physically clipped — no
+   amount of wrong positioning can paint over the neighbour's
+   phone or copy. */
+/* Keep wash-seam at z:0 so the wash img's mix-blend-mode:multiply still
+   has the body's cream paper to blend against. A negative z-index would
+   push the seam outside F5's stacking context where the multiply has
+   nothing to blend with → wash renders invisible. Instead, we layer
+   .section-inner above the wash via a separate rule so phones and copy
+   still paint over the wash without breaking the blend. */
+.wash-seam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.wash-seam--bottom {
+  top: 0;
+  bottom: calc(-1 * var(--wash-bleed-max));
+}
+.wash-seam--top {
+  top: calc(-1 * var(--wash-bleed-max));
+  bottom: 0;
+}
+/* Washes inside a seam wrapper are positioned relative to the
+   wrapper, not the section. Their offsets then refer to the
+   wrapper's box (= section + bleed-max). */
+.wash-seam > .wash { position: absolute; }
+
+:root[data-theme="dark"] .wash--edge-bottom-left {
+  background-image: url('/assets/decor/washes/blob-cloud-orange-drift-dark.a.webp');
+}
+:root[data-theme="dark"] .wash--edge-bottom-right {
+  background-image: url('/assets/decor/washes/blob-cloud-orange-mood-a-dark.a.webp');
+}
+:root[data-theme="dark"] .wash--edge-top-right {
+  background-image: url('/assets/decor/washes/blob-cloud-orange-mood-b-dark.a.webp');
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wash--edge-bottom-left {
+    background-image: url('/assets/decor/washes/blob-cloud-orange-drift-dark.a.webp');
+  }
+  :root:not([data-theme="light"]) .wash--edge-bottom-right {
+    background-image: url('/assets/decor/washes/blob-cloud-orange-mood-a-dark.a.webp');
+  }
+  :root:not([data-theme="light"]) .wash--edge-top-right {
+    background-image: url('/assets/decor/washes/blob-cloud-orange-mood-b-dark.a.webp');
+  }
+}
+
+/* Shrink further on narrower viewports. Bottom/top offsets still
+   use --wash-bleed-max so the invariant holds at every breakpoint.
+   Existing rules at <=768px (opacity 0.35) and <=480px (display
+   none) still apply. */
+@media (max-width: 1024px) {
+  :root { --wash-bleed-max: 60px; }
+  .wash--edge-bottom-left,
+  .wash--edge-bottom-right { width: 520px; height: 520px; }
+  .wash--edge-top-right    { width: 520px; height: 520px; }
+  .wash--edge-bottom-left  { left: -120px; }
+  .wash--edge-bottom-right,
+  .wash--edge-top-right { right: -120px; }
+  .wash--edge-huge.wash--edge-bottom-right {
+    right: -480px;
+    width: 1000px;
+    height: 1000px;
+  }
+}
+
+/* -------------------------------------------------------------
+   Seam line — a thin amber rule marking the boundary between
+   two identical-tier sections, so the seam reads as intentional
+   (a chapter break) rather than an accidental joint. Soft glow
+   evokes candlelight on parchment. Positioned on the section
+   whose TOP is the seam, at top:-1px so the 2px line straddles
+   the pixel boundary. Requires the host section to carry
+   .decor-section--bleed-top so the glow isn't clipped.
+   ------------------------------------------------------------- */
+.seam-line {
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  transform: translateX(-50%);
+  width: min(900px, 75vw);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  box-shadow: 0 0 10px 1px rgba(212, 160, 23, 0.45);
+  pointer-events: none;
+  z-index: 2;
+}
+@media (max-width: 480px) {
+  .seam-line { width: 80vw; }
+}
+
 
 /* -------------------------------------------------------------
    4. Decor SVGs — music notes and quills
@@ -293,4 +495,54 @@ body.decor-paper,
   position: relative;
   overflow: hidden;
   isolation: isolate; /* new stacking context — blend modes stay local */
+}
+
+
+/* -------------------------------------------------------------
+   6. Per-section wash asset overrides
+      Dark-tier sections are always on ink (regardless of theme),
+      so they use alpha-keyed dark assets always. These rules sit
+      after .wash--teal/.wash--orange so they win on equal
+      specificity.
+   ------------------------------------------------------------- */
+.wash--f4-main     { background-image: url('/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp'); }
+.wash--f4-drift    { background-image: url('/assets/decor/washes/blob-cloud-teal-drift-dark.a.webp'); }
+.wash--pricing-tl  { background-image: url('/assets/decor/washes/blob-cloud-teal-mood-b-dark.a.webp'); }
+
+/* Dark-tier sections: force screen blend always (paper is ink in both themes). */
+.section--dark .wash-group,
+.section--dark > .wash {
+  mix-blend-mode: screen;
+}
+.section--dark .wash-group .wash {
+  mix-blend-mode: screen;
+}
+
+/* Cream-tier sections: orange wash on cream ground gets muddy at 0.55, dial back. */
+.section--cream {
+  --wash-opacity: 0.45;
+}
+
+
+/* -------------------------------------------------------------
+   7. Responsive decor
+      ≤768px: reduce wash intensity, hide quills, thin note clusters.
+      ≤480px: hide all washes and notes entirely. Paper grain stays.
+   ------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root { --wash-opacity: 0.35; }
+  .wash--hero-orange-tl,
+  .wash--hero-teal-tr { width: 70%; max-width: 720px; }
+  .decor-quill { display: none; }
+  /* Keep one note per cluster by hiding higher-numbered stagger classes */
+  .decor-note.n-4,
+  .decor-note.n-5,
+  .decor-note.n-6 { display: none; }
+}
+
+@media (max-width: 480px) {
+  .wash,
+  .wash-group,
+  .decor-note { display: none; }
+  /* Paper grain on .features-all stays */
 }
