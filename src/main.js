@@ -21,17 +21,20 @@ function initMobileNav() {
 
   if (!toggle || !navLinks) return
 
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active')
-    navLinks.classList.toggle('active')
-  })
+  const setOpen = (open) => {
+    toggle.classList.toggle('active', open)
+    navLinks.classList.toggle('active', open)
+    toggle.setAttribute('aria-expanded', String(open))
+  }
 
-  const links = navLinks.querySelectorAll('.nav-link')
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('active')
-      navLinks.classList.remove('active')
-    })
+  toggle.addEventListener('click', () => setOpen(!navLinks.classList.contains('active')))
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setOpen(false))
+  })
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !navLinks.classList.contains('active')) return
+    setOpen(false)
+    toggle.focus()
   })
 }
 
