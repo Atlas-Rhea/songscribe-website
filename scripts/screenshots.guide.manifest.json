@@ -1,0 +1,430 @@
+{
+  "sourceRoot": "/Users/Atlas/Projects/songscribe-offline-muse/docs/website-guide",
+  "outputDir": "public/assets/images/shots/guide",
+  "widths": [
+    480,
+    720,
+    1080
+  ],
+  "quality": 85,
+  "squircle": {
+    "enabled": true,
+    "cornerRadiusXPct": 0.16,
+    "cornerRadiusYPct": 0.152,
+    "comment": "Elliptical corner mask (SVG rect rx/ry) matches the bezel SVG's measured arc. Canvas alpha scan of iphone-17-pro-bezel.svg (1350×2760 canvas) shows the corner arc extends ~210px horizontally and ~200px vertically from the rim inset. Image occupies 89.17%w × 94.96%h of frame, so in image-pixel terms: rx = 210/(1350×0.8917) = 17.4% of image width; ry = 200/(2760×0.9496) = 7.63% of image height. Both expressed as % of WIDTH (consistent normalization): ry_of_width = 7.63% × (image_h/image_w) = 7.63% × 2.178 = 16.6%. Rounded-rect/elliptical corner (not Apple squircle) because the bezel itself is drawn with simple cubic beziers approximating an ellipse — the mask matches the bezel, not the physical device."
+  },
+  "shots": [
+    {
+      "slug": "chd-01-chords-tab",
+      "source": "media/shots/chd-01-chords-tab.png"
+    },
+    {
+      "slug": "chd-02-edit-chord",
+      "source": "media/shots/chd-02-edit-chord.png"
+    },
+    {
+      "slug": "chd-03-build-chord",
+      "source": "media/shots/chd-03-build-chord.png"
+    },
+    {
+      "slug": "chd-04-greyed-options",
+      "source": "media/shots/chd-04-greyed-options.png"
+    },
+    {
+      "slug": "chd-05-voicings",
+      "source": "media/shots/chd-05-voicings.png"
+    },
+    {
+      "slug": "chd-06-piano",
+      "source": "media/shots/chd-06-piano.png"
+    },
+    {
+      "slug": "chd-07-slash-chord",
+      "source": "media/shots/chd-07-slash-chord.png"
+    },
+    {
+      "slug": "chd-08-fullscreen-neck",
+      "source": "media/shots/chd-08-fullscreen-neck.png"
+    },
+    {
+      "slug": "chd-09-detect-mode",
+      "source": "media/shots/chd-09-detect-mode.png"
+    },
+    {
+      "slug": "chd-10-detect-matches",
+      "source": "media/shots/chd-10-detect-matches.png"
+    },
+    {
+      "slug": "chd-11-fullscreen-piano",
+      "source": "media/shots/chd-11-fullscreen-piano.png"
+    },
+    {
+      "slug": "chd-12-capo-on-diagram",
+      "source": "media/shots/chd-12-capo-on-diagram.png"
+    },
+    {
+      "slug": "chd-13-left-handed",
+      "source": "media/shots/chd-13-left-handed.png"
+    },
+    {
+      "slug": "dark-01-chords",
+      "source": "media/shots/dark-01-chords.png"
+    },
+    {
+      "slug": "dark-02-recording-detail",
+      "source": "media/shots/dark-02-recording-detail.png"
+    },
+    {
+      "slug": "dark-03-harmony",
+      "source": "media/shots/dark-03-harmony.png"
+    },
+    {
+      "slug": "dark-04-song-list",
+      "source": "media/shots/dark-04-song-list.png"
+    },
+    {
+      "slug": "exp-01-export-sheet",
+      "source": "media/shots/exp-01-export-sheet.png"
+    },
+    {
+      "slug": "exp-02-formats",
+      "source": "media/shots/exp-02-formats.png"
+    },
+    {
+      "slug": "exp-03-pdf-musician",
+      "source": "media/shots/exp-03-pdf-musician.png"
+    },
+    {
+      "slug": "exp-04-pdf-options",
+      "source": "media/shots/exp-04-pdf-options.png"
+    },
+    {
+      "slug": "exp-07-share-sheet",
+      "source": "media/shots/exp-07-share-sheet.png"
+    },
+    {
+      "slug": "har-01-constellation",
+      "source": "media/shots/har-01-constellation.png"
+    },
+    {
+      "slug": "har-02-chord-tapped",
+      "source": "media/shots/har-02-chord-tapped.png"
+    },
+    {
+      "slug": "har-03-sevenths",
+      "source": "media/shots/har-03-sevenths.png"
+    },
+    {
+      "slug": "har-04-add-to-song",
+      "source": "media/shots/har-04-add-to-song.png"
+    },
+    {
+      "slug": "har-05-added-chord-in-song",
+      "source": "media/shots/har-05-added-chord-in-song.png"
+    },
+    {
+      "slug": "imp-01-paste-lyrics",
+      "source": "media/shots/imp-01-paste-lyrics.png"
+    },
+    {
+      "slug": "imp-02-file-picker",
+      "source": "media/shots/imp-02-file-picker.png"
+    },
+    {
+      "slug": "imp-03-pasted-song",
+      "source": "media/shots/imp-03-pasted-song.png"
+    },
+    {
+      "slug": "key-01-song-settings",
+      "source": "media/shots/key-01-song-settings.png"
+    },
+    {
+      "slug": "key-02-detect-key",
+      "source": "media/shots/key-02-detect-key.png"
+    },
+    {
+      "slug": "key-03-transpose-confirm",
+      "source": "media/shots/key-03-transpose-confirm.png"
+    },
+    {
+      "slug": "key-04-capo",
+      "source": "media/shots/key-04-capo.png"
+    },
+    {
+      "slug": "key-05-tuning",
+      "source": "media/shots/key-05-tuning.png"
+    },
+    {
+      "slug": "key-06-instrument-ukulele",
+      "source": "media/shots/key-06-instrument-ukulele.png"
+    },
+    {
+      "slug": "lay-01-headphone-warning",
+      "source": "media/shots/lay-01-headphone-warning.png"
+    },
+    {
+      "slug": "lay-02-layer-recording",
+      "source": "media/shots/lay-02-layer-recording.png"
+    },
+    {
+      "slug": "lay-03-two-tracks",
+      "source": "media/shots/lay-03-two-tracks.png"
+    },
+    {
+      "slug": "lay-04-downmix",
+      "source": "media/shots/lay-04-downmix.png"
+    },
+    {
+      "slug": "lib-00-first-sidebar",
+      "source": "media/shots/lib-00-first-sidebar.png"
+    },
+    {
+      "slug": "lib-01-song-list",
+      "source": "media/shots/lib-01-song-list.png"
+    },
+    {
+      "slug": "lib-02-new-song-alert",
+      "source": "media/shots/lib-02-new-song-alert.png"
+    },
+    {
+      "slug": "lib-03-sidebar-menu",
+      "source": "media/shots/lib-03-sidebar-menu.png"
+    },
+    {
+      "slug": "lib-04-swipe-actions",
+      "source": "media/shots/lib-04-swipe-actions.png"
+    },
+    {
+      "slug": "lib-05-move-to-folder",
+      "source": "media/shots/lib-05-move-to-folder.png"
+    },
+    {
+      "slug": "lib-06-select-songs",
+      "source": "media/shots/lib-06-select-songs.png"
+    },
+    {
+      "slug": "lib-07-search",
+      "source": "media/shots/lib-07-search.png"
+    },
+    {
+      "slug": "lib-08-delete-confirm",
+      "source": "media/shots/lib-08-delete-confirm.png"
+    },
+    {
+      "slug": "lyr-01-lyrics-tab",
+      "source": "media/shots/lyr-01-lyrics-tab.png"
+    },
+    {
+      "slug": "lyr-02-keyboard-bar",
+      "source": "media/shots/lyr-02-keyboard-bar.png"
+    },
+    {
+      "slug": "lyr-03-format-menu",
+      "source": "media/shots/lyr-03-format-menu.png"
+    },
+    {
+      "slug": "lyr-04-insert-section",
+      "source": "media/shots/lyr-04-insert-section.png"
+    },
+    {
+      "slug": "lyr-05-section-menu",
+      "source": "media/shots/lyr-05-section-menu.png"
+    },
+    {
+      "slug": "lyr-06-rename-section",
+      "source": "media/shots/lyr-06-rename-section.png"
+    },
+    {
+      "slug": "lyr-07-editor-menu",
+      "source": "media/shots/lyr-07-editor-menu.png"
+    },
+    {
+      "slug": "lyr-08-notes",
+      "source": "media/shots/lyr-08-notes.png"
+    },
+    {
+      "slug": "met-01-metronome",
+      "source": "media/shots/met-01-metronome.png"
+    },
+    {
+      "slug": "met-02-time-signature",
+      "source": "media/shots/met-02-time-signature.png"
+    },
+    {
+      "slug": "met-03-sounds",
+      "source": "media/shots/met-03-sounds.png"
+    },
+    {
+      "slug": "pay-01-sidebar-banner",
+      "source": "media/shots/pay-01-sidebar-banner.png"
+    },
+    {
+      "slug": "pay-02-upgrade-screen",
+      "source": "media/shots/pay-02-upgrade-screen.png"
+    },
+    {
+      "slug": "pay-03-export-locked",
+      "source": "media/shots/pay-03-export-locked.png"
+    },
+    {
+      "slug": "pay-07-settings-free",
+      "source": "media/shots/pay-07-settings-free.png"
+    },
+    {
+      "slug": "pay-08-trial-countdown-sidebar",
+      "source": "media/shots/pay-08-trial-countdown-sidebar.png"
+    },
+    {
+      "slug": "pay-09-trial-countdown-settings",
+      "source": "media/shots/pay-09-trial-countdown-settings.png"
+    },
+    {
+      "slug": "perf-01-performance",
+      "source": "media/shots/perf-01-performance.png"
+    },
+    {
+      "slug": "perf-03-speed-rail",
+      "source": "media/shots/perf-03-speed-rail.png"
+    },
+    {
+      "slug": "perf-04-next-song",
+      "source": "media/shots/perf-04-next-song.png"
+    },
+    {
+      "slug": "perf-05-header-over-scrolled-lyrics",
+      "source": "media/shots/perf-05-header-over-scrolled-lyrics.png"
+    },
+    {
+      "slug": "qs-01-new-song-lyrics",
+      "source": "media/shots/qs-01-new-song-lyrics.png"
+    },
+    {
+      "slug": "qs-02-chord-picker",
+      "source": "media/shots/qs-02-chord-picker.png"
+    },
+    {
+      "slug": "qs-03-chord-inserted",
+      "source": "media/shots/qs-03-chord-inserted.png"
+    },
+    {
+      "slug": "rec-01-empty",
+      "source": "media/shots/rec-01-empty.png"
+    },
+    {
+      "slug": "rec-02-recording",
+      "source": "media/shots/rec-02-recording.png"
+    },
+    {
+      "slug": "rec-03-recording-pill",
+      "source": "media/shots/rec-03-recording-pill.png"
+    },
+    {
+      "slug": "rec-04-take-list",
+      "source": "media/shots/rec-04-take-list.png"
+    },
+    {
+      "slug": "rec-05-detail",
+      "source": "media/shots/rec-05-detail.png"
+    },
+    {
+      "slug": "rec-06-speed",
+      "source": "media/shots/rec-06-speed.png"
+    },
+    {
+      "slug": "rec-07-markers",
+      "source": "media/shots/rec-07-markers.png"
+    },
+    {
+      "slug": "rec-08-marker-menu",
+      "source": "media/shots/rec-08-marker-menu.png"
+    },
+    {
+      "slug": "rec-09-marker-note",
+      "source": "media/shots/rec-09-marker-note.png"
+    },
+    {
+      "slug": "rec-10-loop",
+      "source": "media/shots/rec-10-loop.png"
+    },
+    {
+      "slug": "rec-11-trim",
+      "source": "media/shots/rec-11-trim.png"
+    },
+    {
+      "slug": "rec-12-crop-confirm",
+      "source": "media/shots/rec-12-crop-confirm.png"
+    },
+    {
+      "slug": "rec-14-more-menu",
+      "source": "media/shots/rec-14-more-menu.png"
+    },
+    {
+      "slug": "rec-15-metronome-warning",
+      "source": "media/shots/rec-15-metronome-warning.png"
+    },
+    {
+      "slug": "rec-16-swipe-delete",
+      "source": "media/shots/rec-16-swipe-delete.png"
+    },
+    {
+      "slug": "set-01-setlist-builder",
+      "source": "media/shots/set-01-setlist-builder.png"
+    },
+    {
+      "slug": "set-02-setlist-menu",
+      "source": "media/shots/set-02-setlist-menu.png"
+    },
+    {
+      "slug": "set-03-save-setlist",
+      "source": "media/shots/set-03-save-setlist.png"
+    },
+    {
+      "slug": "set-04-load-setlist",
+      "source": "media/shots/set-04-load-setlist.png"
+    },
+    {
+      "slug": "stg-01-settings-top",
+      "source": "media/shots/stg-01-settings-top.png"
+    },
+    {
+      "slug": "stg-02-editor-audio",
+      "source": "media/shots/stg-02-editor-audio.png"
+    },
+    {
+      "slug": "stg-03-footswitch",
+      "source": "media/shots/stg-03-footswitch.png"
+    },
+    {
+      "slug": "stg-04-footswitch-config",
+      "source": "media/shots/stg-04-footswitch-config.png"
+    },
+    {
+      "slug": "thm-01-theme-grid",
+      "source": "media/shots/thm-01-theme-grid.png"
+    },
+    {
+      "slug": "thm-02-fonts",
+      "source": "media/shots/thm-02-fonts.png"
+    },
+    {
+      "slug": "thm-05-large-text",
+      "source": "media/shots/thm-05-large-text.png"
+    },
+    {
+      "slug": "tun-01-tuner-idle",
+      "source": "media/shots/tun-01-tuner-idle.png"
+    },
+    {
+      "slug": "tun-02-tuner-flat",
+      "source": "media/shots/tun-02-tuner-flat.png"
+    },
+    {
+      "slug": "tun-03-tuner-in-tune",
+      "source": "media/shots/tun-03-tuner-in-tune.png"
+    },
+    {
+      "slug": "tun-04-instruments",
+      "source": "media/shots/tun-04-instruments.png"
+    }
+  ]
+}

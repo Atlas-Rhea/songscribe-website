@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Songs and folders — SongScribe Guide</title>
+    <meta name="title" content="Songs and folders — SongScribe Guide">
+    <meta name="description" content="Open the sidebar, create a song, sort your songs into folders, pin favorites and move or delete several at once.">
+    <link rel="canonical" href="https://songscribe.io/guide/songs-and-folders/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/songs-and-folders/">
+    <meta property="og:title" content="Songs and folders — SongScribe Guide">
+    <meta property="og:description" content="Open the sidebar, create a song, sort your songs into folders, pin favorites and move or delete several at once.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/songs-and-folders/">
+    <meta name="twitter:title" content="Songs and folders — SongScribe Guide">
+    <meta name="twitter:description" content="Open the sidebar, create a song, sort your songs into folders, pin favorites and move or delete several at once.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Songs and folders", "item": "https://songscribe.io/guide/songs-and-folders/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/" aria-current="page">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Songs</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Songs and folders</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Songs and folders</h1>
+              
+            </div>
+
+            <p class="guide-lede">Keep all your songs in one place: start new ones, group them in folders, and keep the ones you play most at the top.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#open-the-sidebar">Open the sidebar</a></li><li><a href="#create-a-song">Create a song</a></li><li><a href="#find-a-song">Find a song</a></li><li><a href="#make-a-folder">Make a folder</a></li><li><a href="#move-a-song-into-a-folder">Move a song into a folder</a></li><li><a href="#pin-a-song">Pin a song</a></li><li><a href="#move-or-delete-several-songs">Move or delete several songs</a></li><li><a href="#delete-one-song">Delete one song</a></li></ul></details></nav>
+
+            <h2 id="open-the-sidebar">Open the sidebar</h2>
+<ol>
+<li>Tap the hamburger button at the top left of the editor.</li>
+<li>Make sure the <strong>Songs</strong> segment is selected (the other one is <strong>Setlist</strong>).</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Sidebar listing tutorial songs under a free-trial banner"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-00-first-sidebar-md.webp" srcset="/assets/images/shots/guide/lib-00-first-sidebar-sm.webp 480w, /assets/images/shots/guide/lib-00-first-sidebar-md.webp 720w, /assets/images/shots/guide/lib-00-first-sidebar-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Sidebar listing tutorial songs under a free-trial banner" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The untouched sidebar titled Songs with the Songs/Setlist switch, a Try SongScribe free for 7 days card with Start Free Trial, and the tutorial songs below</figcaption></figure>
+
+<p>The six tutorial songs are already there. They do not count toward the free limit of 10 songs.</p>
+<h2 id="create-a-song">Create a song</h2>
+<ol>
+<li>In the sidebar, tap <strong>+</strong> in the bottom bar.</li>
+<li>Type a name in the <strong>Song name</strong> field. Leave it blank and the song is called <strong>Untitled Song</strong>.</li>
+<li>Tap <strong>Create</strong>.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: New Song alert with Morning Sketch typed and Create button"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-02-new-song-alert-md.webp" srcset="/assets/images/shots/guide/lib-02-new-song-alert-sm.webp 480w, /assets/images/shots/guide/lib-02-new-song-alert-md.webp 720w, /assets/images/shots/guide/lib-02-new-song-alert-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="New Song alert with Morning Sketch typed and Create button" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The New Song alert, Enter a name for your song, with Morning Sketch typed in the field and Cancel and Create buttons</figcaption></figure>
+
+<h2 id="find-a-song">Find a song</h2>
+<ol>
+<li>In the sidebar, tap <strong>Search songs</strong> at the top of the list.</li>
+<li>Type part of a title or an artist name.</li>
+<li>Tap the x in the field to clear it and see every song again.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Sidebar search field with the word tide typed and only the song Low Tide listed"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-07-search-md.webp" srcset="/assets/images/shots/guide/lib-07-search-sm.webp 480w, /assets/images/shots/guide/lib-07-search-md.webp 720w, /assets/images/shots/guide/lib-07-search-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Sidebar search field with the word tide typed and only the song Low Tide listed" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Sidebar Songs list with &quot;tide&quot; typed in the Search songs field; only Low Tide remains under Friday Set, keyboard visible</figcaption></figure>
+
+<p>The field is also in the <strong>Setlist</strong> view.</p>
+<h2 id="make-a-folder">Make a folder</h2>
+<ol>
+<li>In the sidebar, tap <strong>⋯</strong>, then <strong>New Folder</strong>.</li>
+<li>Type a name in <strong>Folder name</strong> and tap <strong>Create</strong>.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Sidebar menu listing Select Songs, New Folder, Import from File, Paste Lyrics, Settings"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-03-sidebar-menu-md.webp" srcset="/assets/images/shots/guide/lib-03-sidebar-menu-sm.webp 480w, /assets/images/shots/guide/lib-03-sidebar-menu-md.webp 720w, /assets/images/shots/guide/lib-03-sidebar-menu-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Sidebar menu listing Select Songs, New Folder, Import from File, Paste Lyrics, Settings" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The sidebar ellipsis menu open with Select Songs, New Folder, Import from File, Paste Lyrics and Settings</figcaption></figure>
+
+<h2 id="move-a-song-into-a-folder">Move a song into a folder</h2>
+<ol>
+<li>Press and hold a song in the sidebar.</li>
+<li>Tap <strong>Move to Folder</strong>.</li>
+<li>Choose a folder, or <strong>Unfiled</strong> to take it out of its folder.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Long-press menu on a song listing Move to Folder with Friday Set and Unfiled"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-05-move-to-folder-md.webp" srcset="/assets/images/shots/guide/lib-05-move-to-folder-sm.webp 480w, /assets/images/shots/guide/lib-05-move-to-folder-md.webp 720w, /assets/images/shots/guide/lib-05-move-to-folder-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Long-press menu on a song listing Move to Folder with Friday Set and Unfiled" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Long-press menu on Slow Train Home expanded to Move to Folder, offering Friday Set and Unfiled</figcaption></figure>
+
+<h2 id="pin-a-song">Pin a song</h2>
+<ol>
+<li>Swipe a song to the right.</li>
+<li>Tap the orange <strong>Pin</strong> button.</li>
+</ol>
+<p>Pinned songs sit in their own <strong>Pinned</strong> section at the top of the list.</p>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Song row swiped right showing an orange Pin button"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-04-swipe-actions-md.webp" srcset="/assets/images/shots/guide/lib-04-swipe-actions-sm.webp 480w, /assets/images/shots/guide/lib-04-swipe-actions-md.webp 720w, /assets/images/shots/guide/lib-04-swipe-actions-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Song row swiped right showing an orange Pin button" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Paper Lanterns row swiped right to reveal an orange Pin button (swiping left instead reveals a red Delete button)</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Songs list with a search field, Paper Lanterns pinned and Friday Set folder expanded showing three songs"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-01-song-list-md.webp" srcset="/assets/images/shots/guide/lib-01-song-list-sm.webp 480w, /assets/images/shots/guide/lib-01-song-list-md.webp 720w, /assets/images/shots/guide/lib-01-song-list-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Songs list with a search field, Paper Lanterns pinned and Friday Set folder expanded showing three songs" loading="lazy" decoding="async"><img class="phone-frame__screen guide-shot__dark" src="/assets/images/shots/guide/dark-04-song-list-md.webp" srcset="/assets/images/shots/guide/dark-04-song-list-sm.webp 480w, /assets/images/shots/guide/dark-04-song-list-md.webp 720w, /assets/images/shots/guide/dark-04-song-list-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Song list in dark mode" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Sidebar Songs list with a Search songs field at the top, a Pinned section holding Paper Lanterns, the Friday Set folder expanded with Kitchen Radio, Low Tide and Slow Train Home (count 3), then the Songs section starting with Morning Sketch</figcaption></figure></div>
+
+<h2 id="move-or-delete-several-songs">Move or delete several songs</h2>
+<ol>
+<li>In the sidebar, tap <strong>⋯</strong>, then <strong>Select Songs</strong>.</li>
+<li>Tap each song you want.</li>
+<li>Use the buttons in the bottom bar: the folder button moves them, the trash button deletes them, and the close button leaves selection mode.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Select mode with two songs ticked and a bottom bar of close, folder and trash icons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-06-select-songs-md.webp" srcset="/assets/images/shots/guide/lib-06-select-songs-sm.webp 480w, /assets/images/shots/guide/lib-06-select-songs-md.webp 720w, /assets/images/shots/guide/lib-06-select-songs-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Select mode with two songs ticked and a bottom bar of close, folder and trash icons" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Select Songs mode with Paper Lanterns and Low Tide ticked, and a bottom bar with close, move-to-folder and delete buttons</figcaption></figure>
+
+<p>The trash button asks you to confirm before it deletes.</p>
+<h2 id="delete-one-song">Delete one song</h2>
+<ol>
+<li>Swipe the song to the left.</li>
+<li>Tap <strong>Delete</strong>.</li>
+<li>In the alert, tap <strong>Delete</strong> to confirm, or <strong>Cancel</strong> to keep the song. It asks <code>Delete “&lt;title&gt;”?</code> and says this can&#39;t be undone.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Delete confirmation alert asking Delete Delete Me with Cancel and a red Delete button"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lib-08-delete-confirm-md.webp" srcset="/assets/images/shots/guide/lib-08-delete-confirm-sm.webp 480w, /assets/images/shots/guide/lib-08-delete-confirm-md.webp 720w, /assets/images/shots/guide/lib-08-delete-confirm-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Delete confirmation alert asking Delete Delete Me with Cancel and a red Delete button" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Alert Delete “Delete Me”? / This can&#39;t be undone. with Cancel and Delete buttons over the dimmed sidebar, the Delete Me row still visible behind</figcaption></figure>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/quick-start/" rel="prev">Your first song in five minutes</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/import-songs/" rel="next">Import songs you already have</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/import-songs/">Import songs you already have</a></li>
+<li><a href="/guide/lyrics-and-sections/">Writing lyrics and sections</a></li>
+<li><a href="/guide/setlists-and-performance/">Setlists and performance</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

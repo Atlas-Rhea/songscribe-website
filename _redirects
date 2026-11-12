@@ -16,3 +16,7 @@
 # Legacy GitHub Pages redirect (if users have old links)
 # /index.html   /   301
 
+
+# Guide shortcuts
+/help     /guide/   301
+/support  /guide/   301

@@ -7,21 +7,21 @@
 
     <!-- Primary Meta Tags -->
     <title>Features in Depth - SongScribe</title>
-    <meta name="description" content="A detailed look at everything SongScribe can do: physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <meta name="description" content="A detailed look at everything SongScribe can do: physical string synthesis, a metronome built for songwriters, 19 tuning presets, CAGED system, footswitch support, and more.">
     <link rel="canonical" href="https://songscribe.io/features">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://songscribe.io/features">
     <meta property="og:title" content="Features in Depth - SongScribe">
-    <meta property="og:description" content="A detailed look at everything SongScribe can do: physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <meta property="og:description" content="A detailed look at everything SongScribe can do: physical string synthesis, a metronome built for songwriters, 19 tuning presets, CAGED system, footswitch support, and more.">
     <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://songscribe.io/features">
     <meta name="twitter:title" content="Features in Depth - SongScribe">
-    <meta name="twitter:description" content="A detailed look at everything SongScribe can do: physical string synthesis, humanized drum patterns, 25+ alternate tunings, CAGED system, MIDI footswitch support, and more.">
+    <meta name="twitter:description" content="A detailed look at everything SongScribe can do: physical string synthesis, a metronome built for songwriters, 19 tuning presets, CAGED system, footswitch support, and more.">
     <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
 
     <!-- iOS Smart App Banner -->
@@ -369,6 +369,7 @@
             </a>
             <div class="nav-links" id="nav-links">
                 <a href="/features" class="nav-link">Features</a>
+                <a href="/guide/" class="nav-link">Guide</a>
                 <a href="/about" class="nav-link">About</a>
                 <a href="/changelog" class="nav-link">Changelog</a>
                 <a href="https://tuner.songscribe.io" class="nav-link nav-link--tuner" target="_blank" rel="noopener">Tuner <span class="nav-badge">Free App</span></a>
@@ -435,56 +436,24 @@
                 </p>
             </div>
 
-            <!-- 2. Drum Machine -->
+            <!-- 2. Metronome -->
             <div class="feature-section">
                 <div class="feature-section-number">02</div>
-                <h2>The Drum Machine: Humanized, Not Programmed</h2>
+                <h2>Metronome: Steady Time</h2>
 
                 <p>
-                    Most app drum machines give you a grid and ask you to place hits. SongScribe does not.
-                    The patterns are crafted, not assembled.
+                    40 to 240 BPM. 48 time signatures. Five click sounds. Floats as a pill on the Lyrics tab
+                    so you can tap or step it between words without leaving the song.
                 </p>
-
-                <p>
-                    There are 13 patterns across rock, hip-hop and trap, breakbeat, ballad, reggae, and click.
-                    Each one was designed as a complete groove, not a series of individual hits. The humanization
-                    is baked directly into the pattern data.
-                </p>
-
-                <div class="detail-block">
-                    <p><strong>Per-instrument swing variation:</strong> Hi-hats push slightly ahead of the beat with
-                    1.2x timing variation. Kick stays locked with 0.3x variation. The snare sits in between.
-                    This replicates the way real drummers subdivide differently on different limbs.</p>
-                    <p><strong>Ghost notes:</strong> Ghost notes are explicitly coded at 0.25–0.3 velocity inside
-                    each pattern. They are not randomized. They are placed where a drummer would naturally play
-                    them, based on the feel of each groove.</p>
-                    <p><strong>4-bar fills:</strong> Every pattern has a fill baked into bar 4. The groove runs
-                    for three bars, then breaks on the fourth. It loops back into the downbeat of bar 1 cleanly.</p>
-                    <p><strong>Real-time micro-timing:</strong> At playback, each instrument gets ±6ms of timing
-                    humanization applied per hit. The offsets vary by instrument class and are recalculated on
-                    every pass. This prevents the mechanical snapping that makes programmed drums sound robotic.</p>
-                </div>
-
-                <p>
-                    The patterns are not user-programmable. That is a deliberate decision. A programmer's drum
-                    machine is a tool for producers. SongScribe's drum machine is for songwriters who need
-                    a rhythm section that sits in the background and feels right, so they can focus on the song.
-                </p>
-
-                <div class="detail-block--teal detail-block">
-                    <p><strong>On the roadmap:</strong> Custom MIDI loop import is planned. The goal is to
-                    let you bring your own grooves into SongScribe without losing the humanized playback
-                    infrastructure. No timeline for this yet.</p>
-                </div>
             </div>
 
-            <!-- 3. Alternate Tunings -->
+            <!-- 3. Tunings -->
             <div class="feature-section">
                 <div class="feature-section-number">03</div>
-                <h2>25+ Alternate Tunings: Full System Recalculation</h2>
+                <h2>19 Tuning Presets, Plus Your Own</h2>
 
                 <p>
-                    Alternate tunings in SongScribe are not a cosmetic feature. When you switch from standard
+                    Tunings in SongScribe are not a cosmetic feature. When you switch from standard
                     tuning to DADGAD, the entire app recalculates.
                 </p>
 
@@ -497,9 +466,9 @@
                 </ul>
 
                 <p>
-                    The library includes DADGAD, Open G, Open D, Open C, Open E, Drop D, Double Drop D,
-                    Nashville tuning, half-step down, whole-step down, and more than twenty additional
-                    configurations. Standard tuning for each instrument is always available as the baseline.
+                    The guitar presets are Standard, Drop D, DADGAD, Open G, Open D, Open E, Half Step Down,
+                    and Whole Step Down. Bass, ukulele, mandolin and banjo each come with their own preset
+                    list. Any tuning you dial in by hand can be saved as a custom tuning.
                 </p>
 
                 <p>
@@ -509,14 +478,15 @@
                 </p>
             </div>
 
-            <!-- 4. Six Instruments -->
+            <!-- 4. Five Instruments -->
             <div class="feature-section">
                 <div class="feature-section-number">04</div>
-                <h2>Six Instruments: Built from Their Actual Physics</h2>
+                <h2>Five Instruments, Plus a Piano Keyboard View</h2>
 
                 <p>
-                    Each instrument in SongScribe has its own physical model and its own set of constraints.
-                    They are not guitar with different tuning presets.
+                    Guitar, bass, ukulele, mandolin and banjo, with a piano keyboard view. Each instrument
+                    has its own physical model and its own set of constraints. They are not guitar with
+                    different tuning presets, and the audio is synthesised — there are no samples.
                 </p>
 
                 <div class="detail-block">
@@ -526,14 +496,14 @@
                     fourth higher than you would expect from pitch order, giving ukulele its characteristic
                     open jangle. The model accounts for this correctly.</p>
                     <p><strong>Banjo:</strong> The 5th string drone is part of the instrument. It rings
-                    through every pattern, as it does on a real banjo. Open G tuning is the default.</p>
+                    through every strum, as it does on a real banjo. Open G tuning is the default.</p>
                     <p><strong>Bass:</strong> Four-string, one octave below guitar. Low-frequency string
                     physics with appropriate decay.</p>
                     <p><strong>Mandolin:</strong> Eight strings in four pairs, tuned G-D-A-E. The doubled
                     strings create the mandolin's characteristic shimmer.</p>
-                    <p><strong>Piano:</strong> Steinway samples with proper velocity sensitivity and sustain
-                    response. The piano does not use the Karplus-Strong model. It uses sampled audio because
-                    piano acoustics are substantially more complex and sample playback is the right tool.</p>
+                    <p><strong>Piano keyboard view:</strong> A keyboard on screen for chord preview and
+                    voice-leading reference. It is a view onto the same synthesised engine, not a separate
+                    song instrument.</p>
                 </div>
 
                 <p>
@@ -569,33 +539,33 @@
                 </p>
             </div>
 
-            <!-- 6. MIDI Footswitch -->
+            <!-- 6. Footswitch -->
             <div class="feature-section">
                 <div class="feature-section-number">06</div>
-                <h2>MIDI Footswitch: Hands-Free Live Performance</h2>
+                <h2>Footswitch: Hands-Free Live Performance<span class="lifetime-tag">Lifetime</span></h2>
 
                 <p>
                     During a live performance, reaching for your phone to turn a page is conspicuous and
-                    interrupts the connection with the audience. MIDI footswitch support exists to solve
+                    interrupts the connection with the audience. Footswitch support exists to solve
                     exactly that problem.
                 </p>
 
                 <p>
-                    Any MIDI footswitch that communicates over Bluetooth MIDI or USB MIDI will work.
-                    Devices tested include the AirTurn BT500, PageFlip Cicada, and iRig BlueTurn, though
-                    any class-compliant MIDI controller sending standard note or CC messages is compatible.
-                    No special configuration is required for supported devices.
+                    Works with Bluetooth pedals that act as a keyboard, and MIDI pedals. You choose what
+                    each button does.
                 </p>
 
                 <ul class="spec-list">
-                    <li>Map footswitch buttons to page turn forward and backward</li>
-                    <li>Jump to a specific section within a song</li>
-                    <li>Navigate between songs in a setlist</li>
-                    <li>No need to touch the phone during a performance</li>
+                    <li>Start/Stop Scrolling</li>
+                    <li>Next Song</li>
+                    <li>Previous Song</li>
+                    <li>Scroll Faster</li>
+                    <li>Scroll Slower</li>
+                    <li>Exit</li>
                 </ul>
 
                 <p>
-                    The mapping is done once in settings. Once configured, the footswitch connects automatically
+                    The mapping is done once in settings. Once configured, the pedal connects automatically
                     when it is in range and the app is open.
                 </p>
             </div>
@@ -603,7 +573,7 @@
             <!-- 7. Multi-Track Recording -->
             <div class="feature-section">
                 <div class="feature-section-number">07</div>
-                <h2>Multi-Track Recording: Built Into the Song</h2>
+                <h2>Multi-Track Recording: Built Into the Song<span class="lifetime-tag">Lifetime</span></h2>
 
                 <p>
                     The recorder in SongScribe is not a separate tool you open and then have to correlate
@@ -612,17 +582,17 @@
                 </p>
 
                 <p>
-                    You can record directly while playing the SongScribe drum machine or metronome in the
-                    background, then layer overdubs on top of existing takes. Each take gets a waveform
-                    view. You can trim the start and end points and play back from any position.
+                    You can record with the metronome click running, then layer overdubs on top of existing
+                    takes. Each take gets a waveform view. You can trim the start and end points and play
+                    back from any position.
                 </p>
 
                 <div class="detail-block">
                     <p><strong>On privacy:</strong> The microphone is only active when you explicitly start
-                    a recording. Audio is stored only on your device, inside the app container, associated
-                    with the song. No audio is ever uploaded, processed on a server, or shared with any
-                    third party. The microphone permission is used for recording; it is not used for anything
-                    else.</p>
+                    a recording. Recordings live in iCloud Drive under your own account when iCloud is on,
+                    or stay local when it isn't. Nothing is stored on a SongScribe server, processed remotely,
+                    or shared with any third party. The microphone permission is used for recording; it is
+                    not used for anything else.</p>
                 </div>
 
                 <p>
@@ -657,28 +627,28 @@
                 </p>
             </div>
 
-            <!-- 9. Harmony Engine -->
+            <!-- 9. Harmony -->
             <div class="feature-section">
                 <div class="feature-section-number">09</div>
-                <h2>Harmony Engine and Key Detection</h2>
+                <h2>Harmony Card and Key Detection</h2>
 
                 <p>
-                    As you write a chord progression in SongScribe, the harmony engine reads it in real time
-                    and identifies the key. It then surfaces chord suggestions based on what it finds.
+                    The Harmony card shows the seven chords of the current key as a constellation. Tap any
+                    chord to hear it. Switch between triads and sevenths. Jump to the relative, parallel,
+                    IV or V key with one tap. Add any chord to your song from the card.
                 </p>
 
                 <p>
-                    The suggestions are organized by relationship to the key: diatonic chords (chords that
-                    naturally belong to the key), borrowed chords from parallel modes, and common passing
-                    chords. Scale degrees are shown beneath each chord so you can see its function in the
-                    progression: I, IV, V, ii, vi, and so on.
+                    Key detection is a button in Song Settings called "Detect from chords". It reads the
+                    chords you've written and reports its best guess with a confidence percentage —
+                    "Detected G (85% confidence)" — so you can decide whether to accept it. The Harmony
+                    card then recalculates around the key you set.
                 </p>
 
                 <p>
                     This is not AI-generated music. It is music theory applied to what you have already
-                    written. The suggestions are starting points, not prescriptions. The engine is most
-                    useful when you are stuck on a bridge, looking for a chord that resolves somewhere
-                    unexpected.
+                    written. The card is most useful when you are stuck on a bridge, looking for a chord
+                    that resolves somewhere unexpected.
                 </p>
             </div>
 
@@ -694,20 +664,20 @@
                 </p>
 
                 <div class="detail-block">
-                    <p><strong>Import:</strong> ChordPro files, plain text with bracket-style chord notation
-                    (e.g. [G] before each chord), PDF files, and direct paste-and-parse from the clipboard.
-                    PDF import includes optional OCR for scanned or image-based pages, useful for converting
-                    a physical sheet or a photographed chord chart.</p>
-                    <p><strong>Export:</strong> PDF in two layouts: a rehearsal layout with large font and
-                    wide margins, and a print layout designed for reading from paper. ChordPro export produces
-                    a file that any other ChordPro-compatible app can open. Plain text export produces a
-                    clean, readable file that anyone can open without special software.</p>
+                    <p><strong>Import:</strong> ChordPro files (<code>.cho</code>, <code>.chordpro</code>,
+                    <code>.chord</code>, <code>.crd</code>), plain text (<code>.txt</code>), pasted lyrics,
+                    and <code>.songscribe</code> files. ChordPro section markers come through as sections and
+                    the title, key and tempo come through where they are present.</p>
+                    <p><strong>Export:</strong><span class="lifetime-tag">Lifetime</span> PDF in three styles — Lyric, Busker and Musician — with
+                    one- or two-column options and auto-fit font sizing. ChordPro export produces a file
+                    that any other ChordPro-compatible app can open. Plain text export produces a clean,
+                    readable file that anyone can open without special software.</p>
                 </div>
 
                 <p>
-                    The export system is designed specifically for situations where you need to share a song
-                    with bandmates who do not use SongScribe. The PDF output is formatted to be immediately
-                    readable, not a raw data dump.
+                    The export system is designed for situations where you need to share a song with bandmates
+                    who do not use SongScribe. The PDF output is formatted to be readable on the stand,
+                    not a raw data dump.
                 </p>
             </div>
 
@@ -718,7 +688,7 @@
 
                 <p>
                     Performance mode removes everything except the song. No toolbar. No editing controls.
-                    No notifications. Just lyrics and chords in large, readable text against a clean background.
+                    No notifications. Only lyrics and chords in large, readable text against a clean background.
                 </p>
 
                 <p>
@@ -740,17 +710,17 @@
                 <h2>Offline-First and Privacy</h2>
 
                 <p>
-                    Everything in SongScribe lives on your device. Your songs, your recordings, your setlists,
-                    your chord edits. None of it requires a network connection to function.
+                    SongScribe works fully offline. Your songs, your recordings, your setlists and your chord
+                    edits do not need a network connection. Syncing between your own devices goes through your
+                    own iCloud account — nothing is stored on a SongScribe server.
                 </p>
 
                 <ul class="spec-list">
                     <li>No account required. No email address. No password.</li>
                     <li>The app functions fully on first launch with no sign-in step.</li>
-                    <li>iCloud backup is available and opt-in: not mandatory, not on by default.</li>
-                    <li>WebDAV backup is available for users who prefer self-hosted or non-Apple cloud storage.</li>
+                    <li>Songs, setlists and recordings sync through your own iCloud account when the device is signed in; the app has no iCloud switch of its own.</li>
                     <li>There is no analytics on your songwriting activity. The app does not track which songs you open, how long you spend editing, or what chords you use.</li>
-                    <li>Microphone audio is processed locally in real time during recording. It is never uploaded, never analyzed remotely, and never stored outside your device's local storage.</li>
+                    <li>Microphone audio is processed locally in real time during recording. It is never uploaded to a SongScribe server, never analyzed remotely, and only leaves your device through your own iCloud when iCloud is on.</li>
                 </ul>
 
                 <p>
@@ -769,14 +739,6 @@
                     not that it has been scheduled or committed to.
                 </p>
                 <div class="roadmap-items">
-                    <div class="roadmap-item">
-                        <div class="roadmap-item-title">Custom MIDI loop import for drum patterns</div>
-                        <div class="roadmap-item-desc">
-                            Bring your own grooves into SongScribe. The goal is to support standard MIDI
-                            files so you can use a loop from any source and still get the humanized
-                            playback that makes the built-in patterns feel alive.
-                        </div>
-                    </div>
                     <div class="roadmap-item">
                         <div class="roadmap-item-title">Android version</div>
                         <div class="roadmap-item-desc">
@@ -798,15 +760,6 @@
                         <div class="roadmap-item-desc">
                             Built into the lyric editor. Look up rhymes without leaving the song.
                             The goal is something fast and unobtrusive, not a separate screen.
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-item-title">Swift native rewrite</div>
-                        <div class="roadmap-item-desc">
-                            SongScribe is currently a Capacitor app — a web app wrapped for iOS. A full
-                            Swift rewrite would unlock deeper platform integration, better performance,
-                            and features that are difficult or impossible in a web wrapper. This is the
-                            most significant engineering investment on the list.
                         </div>
                     </div>
                     <div class="roadmap-item">
@@ -846,6 +799,7 @@
                 <div class="features-footer-links">
                     <a href="/">Home</a>
                     <a href="/about">About</a>
+                    <a href="/guide/">Guide</a>
                     <a href="/changelog">Changelog</a>
                     <a href="/privacy">Privacy</a>
                     <a href="/terms">Terms</a>

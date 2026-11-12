@@ -1,0 +1,943 @@
+/* =============================================================
+   SongScribe 2.0 — Guide Section
+   Scoped under .guide-page (per-page) and .guide-index (landing).
+   Depends on decor.css for theme tokens; no new palette.
+   ============================================================= */
+
+/* Bright --amber is ~2:1 on parchment, so small amber text uses a
+   deeper amber in light mode; on ink, --amber itself passes AA. */
+:root {
+  --guide-accent-ink: #7A5100;
+}
+:root[data-theme="dark"] {
+  --guide-accent-ink: var(--amber);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --guide-accent-ink: var(--amber);
+  }
+}
+
+
+/* -------------------------------------------------------------
+   1. Layout — sidenav + content + optional anchor rail
+   ------------------------------------------------------------- */
+.guide-page .guide-layout {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 68ch);
+  justify-content: start;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.guide-page .guide-layout[data-has-anchor-rail] {
+  grid-template-columns: 256px minmax(0, 68ch) 180px;
+}
+
+.guide-content {
+  min-width: 0;
+  max-width: 68ch;
+}
+
+@media (max-width: 960px) {
+  .guide-page .guide-layout,
+  .guide-page .guide-layout[data-has-anchor-rail] {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   2. Sidenav
+   Sticky on desktop; collapses to <details> disclosure on narrow.
+   ------------------------------------------------------------- */
+.guide-sidenav {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.guide-sidenav details > summary {
+  display: none;
+}
+
+.guide-sidenav-group + .guide-sidenav-group {
+  margin-top: 1.5rem;
+}
+
+.guide-sidenav-group__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--guide-accent-ink);
+  margin: 0 0 0.5rem;
+}
+
+.guide-sidenav-group__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.guide-sidenav-group__list li {
+  margin: 0;
+}
+
+.guide-sidenav-group__list a {
+  display: block;
+  padding: 0.3rem 0 0.3rem 0.75rem;
+  border-left: 3px solid transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.guide-sidenav-group__list a:hover {
+  color: var(--guide-accent-ink);
+}
+
+.guide-sidenav-group__list a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.guide-sidenav-group__list a[aria-current="page"] {
+  border-left-color: var(--amber);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .guide-sidenav {
+    position: static;
+    border: 1px solid var(--hairline-color);
+    border-radius: 10px;
+    padding: 0;
+    background: transparent;
+  }
+  .guide-sidenav details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-primary);
+    list-style: none;
+  }
+  .guide-sidenav details > summary::-webkit-details-marker { display: none; }
+  .guide-sidenav details > summary::after {
+    content: '';
+    width: 10px; height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 200ms ease;
+  }
+  .guide-sidenav details[open] > summary::after {
+    transform: rotate(-135deg);
+  }
+  .guide-sidenav details > summary:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  .guide-sidenav-groups {
+    padding: 0.5rem 1rem 1rem;
+    border-top: 1px solid var(--hairline-color);
+  }
+}
+
+
+/* -------------------------------------------------------------
+   3. Breadcrumb, headings, lede
+   ------------------------------------------------------------- */
+.guide-breadcrumb {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.guide-breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-breadcrumb a:hover {
+  color: var(--guide-accent-ink);
+  text-decoration: underline;
+}
+
+.guide-breadcrumb a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.guide-breadcrumb .sep {
+  margin: 0 0.4rem;
+  opacity: 0.6;
+}
+
+.guide-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.guide-page h1 {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.guide-lede {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.2em;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 60ch;
+  margin: 0 0 2rem;
+}
+
+.guide-content > p,
+.guide-content > ul,
+.guide-content > ol {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.guide-content a {
+  color: var(--text-primary);
+  text-decoration-color: var(--amber);
+  text-underline-offset: 3px;
+}
+
+.guide-content a:hover {
+  color: var(--guide-accent-ink);
+}
+
+.guide-content a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.guide-page h2 {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 2.75rem 0 0.75rem;
+  scroll-margin-top: 1rem;
+}
+
+.guide-page h3 {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin: 1.75rem 0 0.5rem;
+}
+
+
+/* -------------------------------------------------------------
+   4. Lifetime badge (icon + text — never color-only)
+   ------------------------------------------------------------- */
+.guide-lifetime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--amber);
+  border-radius: 999px;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.guide-lifetime-badge svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  fill: currentColor;
+}
+
+.guide-lifetime-badge--mixed {
+  background: transparent;
+  color: var(--guide-accent-ink);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+
+/* -------------------------------------------------------------
+   5. Table of contents (On this page)
+   ------------------------------------------------------------- */
+.guide-toc {
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--hairline-color);
+  border-radius: 10px;
+  background: transparent;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.guide-toc > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guide-toc > summary::-webkit-details-marker { display: none; }
+
+.guide-toc > summary::after {
+  content: '';
+  width: 10px; height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+}
+
+.guide-toc[open] > summary::after {
+  transform: rotate(-135deg);
+}
+
+.guide-toc > summary:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.guide-toc__list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.guide-toc__list a {
+  display: block;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 0.75rem;
+}
+
+.guide-toc__list a:hover {
+  color: var(--guide-accent-ink);
+  border-left-color: var(--amber);
+}
+
+.guide-toc__list a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (min-width: 720px) {
+  .guide-toc > summary {
+    cursor: default;
+    pointer-events: none;
+  }
+  .guide-toc > summary::after {
+    display: none;
+  }
+  .guide-toc {
+    padding: 1rem 1.25rem;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   6. Numbered steps — every <ol> in the content column.
+   build-guide.mjs turns <ol start="N"> into an inline
+   counter-reset so split lists keep counting.
+   ------------------------------------------------------------- */
+.guide-content ol {
+  list-style: none;
+  counter-reset: substep;
+  margin: 1rem 0 1.5rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.guide-content ol > li {
+  counter-increment: substep;
+  position: relative;
+  padding-left: 3rem;
+  min-height: 2.25rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.guide-content ol > li::before {
+  content: counter(substep);
+  position: absolute;
+  left: 0;
+  top: -0.15em;
+  width: 2.25rem;
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: 2em;
+  line-height: 1;
+  color: var(--guide-accent-ink);
+  text-align: left;
+}
+
+
+/* -------------------------------------------------------------
+   7. Callouts — tip, heads-up, lifetime
+   Icon + label, never color-alone (a11y).
+   ------------------------------------------------------------- */
+.guide-callout {
+  --callout-accent: var(--amber);
+  --callout-tint: rgba(212, 160, 23, 0.07);
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--callout-accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--callout-tint);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+.guide-callout__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  color: var(--callout-ink, var(--callout-accent));
+}
+
+.guide-callout__head svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.guide-callout p {
+  margin: 0 0 0.5rem;
+}
+
+.guide-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-callout--tip,
+.guide-callout--lifetime {
+  --callout-ink: var(--guide-accent-ink);
+}
+
+.guide-callout--tip {
+  --callout-accent: var(--amber);
+  --callout-tint: rgba(212, 160, 23, 0.07);
+}
+
+.guide-callout--heads-up {
+  --callout-accent: var(--teal-deep);
+  --callout-tint: rgba(31, 107, 107, 0.07);
+}
+
+.guide-callout--lifetime {
+  --callout-accent: var(--amber);
+  --callout-tint: rgba(44, 24, 16, 0.06);
+  border-left-color: var(--amber);
+}
+
+.guide-callout--lifetime .guide-callout__dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--amber);
+  margin-right: 0.1rem;
+}
+
+:root[data-theme="dark"] .guide-callout--tip {
+  --callout-tint: rgba(212, 160, 23, 0.12);
+}
+:root[data-theme="dark"] .guide-callout--heads-up {
+  --callout-accent: var(--teal);
+  --callout-tint: rgba(45, 158, 158, 0.12);
+}
+:root[data-theme="dark"] .guide-callout--lifetime {
+  --callout-tint: rgba(250, 246, 240, 0.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .guide-callout--tip {
+    --callout-tint: rgba(212, 160, 23, 0.12);
+  }
+  :root:not([data-theme="light"]) .guide-callout--heads-up {
+    --callout-accent: var(--teal);
+    --callout-tint: rgba(45, 158, 158, 0.12);
+  }
+  :root:not([data-theme="light"]) .guide-callout--lifetime {
+    --callout-tint: rgba(250, 246, 240, 0.05);
+  }
+}
+
+
+/* -------------------------------------------------------------
+   8. Screenshots and clips — site phone-frame (site.css) at
+   guide size. Consecutive shots sit side by side on wide
+   screens and wrap to a stack on phones.
+   ------------------------------------------------------------- */
+.guide-shot,
+.guide-clip {
+  margin: 1.75rem auto;
+  width: min(300px, 70vw);
+}
+
+.guide-shot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 2rem;
+  margin: 1.75rem 0;
+}
+
+.guide-shot-row > .guide-shot {
+  margin: 0;
+}
+
+.guide-content .phone-frame {
+  max-width: none;
+}
+
+button.phone-frame {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: zoom-in;
+}
+
+button.phone-frame:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 6px;
+  border-radius: 14% / 6.5%;
+}
+
+.guide-shot__dark {
+  display: none;
+}
+:root[data-theme="dark"] .guide-shot__light:has(+ .guide-shot__dark) {
+  display: none;
+}
+:root[data-theme="dark"] .guide-shot__dark {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .guide-shot__light:has(+ .guide-shot__dark) {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .guide-shot__dark {
+    display: block;
+  }
+}
+
+/* Clips are raw screen recordings with square corners; round them
+   to the same arc the screenshot pipeline bakes into the webps
+   (16% x 15.2% of width, i.e. ~7% of a 0.46-aspect height). */
+.guide-clip video.phone-frame__screen {
+  border-radius: 16% / 7%;
+  background: var(--ink);
+}
+
+.guide-shot figcaption,
+.guide-clip figcaption {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.guide-clip__toggle {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: 2px solid var(--cream-warm);
+  background: rgba(44, 24, 16, 0.6);
+  color: var(--cream-warm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.guide-clip__toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.guide-clip__toggle .icon-pause,
+.guide-clip.is-playing .guide-clip__toggle .icon-play {
+  display: none;
+}
+
+.guide-clip.is-playing .guide-clip__toggle .icon-pause {
+  display: block;
+}
+
+.guide-clip__toggle:hover {
+  background: rgba(44, 24, 16, 0.8);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.guide-clip__toggle:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.guide-clip.is-playing .guide-clip__toggle {
+  opacity: 0;
+}
+
+.guide-clip.is-playing:hover .guide-clip__toggle,
+.guide-clip.is-playing .guide-clip__toggle:focus-visible {
+  opacity: 1;
+}
+
+
+/* -------------------------------------------------------------
+   9. Related, prev/next, support footer
+   ------------------------------------------------------------- */
+.guide-related {
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--hairline-color);
+}
+
+.guide-related h2 {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 0 0 0.75rem;
+  color: var(--text-primary);
+}
+
+.guide-related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.guide-related a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.guide-related a:hover {
+  color: var(--guide-accent-ink);
+  border-bottom-color: var(--amber);
+}
+
+.guide-related a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.guide-prevnext {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline-color);
+}
+
+.guide-prevnext__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.guide-prevnext__cell--next {
+  text-align: right;
+}
+
+.guide-prevnext__label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.guide-prevnext__cell a {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.guide-prevnext__cell a:hover {
+  color: var(--guide-accent-ink);
+}
+
+.guide-prevnext__cell a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+  .guide-prevnext {
+    grid-template-columns: 1fr;
+  }
+  .guide-prevnext__cell--next {
+    text-align: left;
+  }
+}
+
+.guide-page__support-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline-color);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.guide-page__support-footer a {
+  color: var(--text-primary);
+  text-decoration-color: var(--amber);
+  text-underline-offset: 3px;
+}
+
+.guide-page__support-footer a:hover {
+  color: var(--guide-accent-ink);
+}
+
+
+/* -------------------------------------------------------------
+   10. Guide index (landing)
+   ------------------------------------------------------------- */
+.guide-index-hero {
+  text-align: center;
+  padding: clamp(3rem, 7vw, 5rem) 1rem clamp(2rem, 5vw, 3rem);
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.guide-index-hero h1 {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+}
+
+.guide-index-hero p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 auto;
+  max-width: 42rem;
+}
+
+.guide-index-feature {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--amber);
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: rgba(212, 160, 23, 0.06);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.guide-index-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(44, 24, 16, 0.08);
+}
+
+.guide-index-feature:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+}
+
+.guide-index-feature__eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--guide-accent-ink);
+}
+
+.guide-index-feature__title {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.guide-index-feature p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.guide-index-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 720px) {
+  .guide-index-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1080px) {
+  .guide-index-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.guide-index-card {
+  padding: 1.5rem 1.5rem 1.25rem;
+  border: 1px solid var(--hairline-color);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.guide-index-card__title {
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.guide-index-card__list {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.guide-index-card__list a {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.guide-index-card__list a:hover {
+  color: var(--guide-accent-ink);
+  border-bottom-color: var(--amber);
+}
+
+.guide-index-card__list a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.guide-index-card__list p {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.guide-index-card__list .guide-lifetime-badge {
+  margin-left: 0.4rem;
+  font-size: 0.62rem;
+  padding: 0.2rem 0.5rem;
+}
+
+
+/* -------------------------------------------------------------
+   11. Reduced motion
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .guide-index-feature,
+  .guide-index-feature:hover,
+  .guide-clip__toggle,
+  .guide-clip__toggle:hover {
+    transform: none;
+    transition: none;
+  }
+}

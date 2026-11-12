@@ -230,6 +230,12 @@ main#main-content > .section:nth-of-type(10) { z-index:  1; }
   display: flex;
   gap: 2rem;
   font-size: 0.95rem;
+  /* main.css turns .nav-links into an absolute dropdown below 768px. */
+  position: static;
+  flex-direction: row;
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 
 .nav-section .nav-links a {

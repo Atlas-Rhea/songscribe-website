@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>SongScribe Guide</title>
+    <meta name="title" content="SongScribe Guide">
+    <meta name="description" content="How to use SongScribe on iPhone and iPad: songs, chords, recording, tools, setlists and export, step by step.">
+    <link rel="canonical" href="https://songscribe.io/guide/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://songscribe.io/guide/">
+    <meta property="og:title" content="SongScribe Guide">
+    <meta property="og:description" content="How to use SongScribe on iPhone and iPad: songs, chords, recording, tools, setlists and export, step by step.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/">
+    <meta name="twitter:title" content="SongScribe Guide">
+    <meta name="twitter:description" content="How to use SongScribe on iPhone and iPad: songs, chords, recording, tools, setlists and export, step by step.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" }
+      ]
+    }
+    </script>
+</head>
+
+<body class="guide-index">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light" data-section="guide-index">
+        <div class="section-inner">
+
+          <header class="guide-index-hero">
+            <h1>SongScribe Guide</h1>
+            <p>Short how-tos for every part of the app, starting with your first song.</p>
+          </header>
+
+          <a class="guide-index-feature" href="/guide/quick-start/"><span class="guide-index-feature__eyebrow">Start here</span><h2 class="guide-index-feature__title">Your first song in five minutes</h2><p>Create a song, type two lines, place a chord, record a take and play it back, all in your first five minutes with SongScribe.</p></a>
+
+          <div class="guide-index-grid">
+            <section class="guide-index-card"><h2 class="guide-index-card__title">Songs</h2><ul class="guide-index-card__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a><p>Open the sidebar, create a song, sort your songs into folders, pin favorites and move or delete several at once.</p></li><li><a href="/guide/import-songs/">Import songs you already have</a><p>Bring in song files or pasted lyrics, with chords, sections, title, key and tempo carried over.</p></li></ul></section><section class="guide-index-card"><h2 class="guide-index-card__title">Writing</h2><ul class="guide-index-card__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a><p>Write lyrics, format them, divide a song into Verse and Chorus sections, rearrange them, and keep notes with each song.</p></li><li><a href="/guide/add-chords/">Adding and moving chords</a><p>Put chords above the exact word they belong to, change or remove them, and drag them to a new spot.</p></li><li><a href="/guide/chord-shapes/">Chord shapes</a><p>Build any chord in the picker, browse its guitar or piano shapes, hear it, and find a chord by tapping out the frets.</p></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a><p>Set a song&#39;s instrument, find or change its key, move every chord up or down, add a capo and choose a tuning.</p></li></ul></section><section class="guide-index-card"><h2 class="guide-index-card__title">Recording</h2><ul class="guide-index-card__list"><li><a href="/guide/record-a-take/">Recording a take</a><p>Capture an idea in one tap, keep writing while it records, and rename or delete takes. Free songs hold five takes.</p></li><li><a href="/guide/listen-back/">Listening back and markers</a><p>Play a take, scrub, slow it down without changing pitch, loop a passage and drop markers on the spots you want to remember.</p></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a><p>Cut the silence from the ends of a take with two handles, and see what happens to your markers before anything is changed.</p></li><li><a href="/guide/layers/">Layers</a><span class="guide-lifetime-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</span><p>Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.</p></li></ul></section><section class="guide-index-card"><h2 class="guide-index-card__title">Tools</h2><ul class="guide-index-card__list"><li><a href="/guide/metronome/">Metronome and tempo</a><p>Set a tempo from 40 to 240 BPM, tap it in, pick a time signature and a click sound, and keep the beat going while you read your lyrics.</p></li><li><a href="/guide/harmony/">Harmony</a><p>See the seven chords of your song&#39;s key, hear each one, switch to 7ths, jump to related keys and send a chord into your song.</p></li><li><a href="/guide/tuner/">Tuner</a><p>Tune any instrument or your voice with a live note name, cents readout and a droplet that settles in the middle when you are in tune.</p></li></ul></section><section class="guide-index-card"><h2 class="guide-index-card__title">Playing live</h2><ul class="guide-index-card__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a><span class="guide-lifetime-badge guide-lifetime-badge--mixed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Some steps need Lifetime</span><p>Line up songs for a gig, save the set, then perform it full screen with auto-scroll and a speed control.</p></li></ul></section><section class="guide-index-card"><h2 class="guide-index-card__title">Sharing and setup</h2><ul class="guide-index-card__list"><li><a href="/guide/export/">Export and share</a><span class="guide-lifetime-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</span><p>Turn a song into a PDF, ChordPro, ASCII or plain text file, or a SongScribe Project, and send it with AirDrop, Mail or Files.</p></li><li><a href="/guide/themes-and-settings/">Themes and settings</a><span class="guide-lifetime-badge guide-lifetime-badge--mixed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Some steps need Lifetime</span><p>Pick a theme and font, set your defaults, and find the audio, footswitch and reset controls in Settings.</p></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a><p>What SongScribe gives you for free, what Lifetime adds for a one-time $19.95, and how the 7-day trial works.</p></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a><p>How SongScribe works offline, what iCloud carries between devices, and quick answers to common questions.</p></li></ul></section>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

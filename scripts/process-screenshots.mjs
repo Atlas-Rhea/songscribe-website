@@ -2,8 +2,13 @@
 // Process raw PNG screenshots into webp derivatives at multiple widths.
 // Optionally bakes Apple-style squircle corners (transparent alpha) so the
 // image tucks perfectly inside a bezel cutout without relying on CSS
-// border-radius, which only produces elliptical — not squircular — corners.
+// border-radius, which only produces elliptical - not squircular - corners.
 // Idempotent: skips slugs whose outputs already exist (use --force to rebuild).
+//
+// CLI flags:
+//   --manifest <path>   Manifest JSON to read (default: ./screenshots.manifest.json)
+//   --out-dir <path>    Override manifest's outputDir (resolved from repo root)
+//   --force             Rebuild even if outputs exist
 
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
@@ -12,21 +17,37 @@ import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
-const manifestPath = resolve(__dirname, 'screenshots.manifest.json');
-const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 
-const outputDir = resolve(repoRoot, manifest.outputDir);
-if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true });
+function getFlag(name) {
+  const i = process.argv.indexOf(name);
+  return i >= 0 && i + 1 < process.argv.length ? process.argv[i + 1] : null;
+}
 
 const force = process.argv.includes('--force');
+const manifestArg = getFlag('--manifest');
+const outDirArg = getFlag('--out-dir');
+
+const manifestPath = manifestArg
+  ? resolve(process.cwd(), manifestArg)
+  : resolve(__dirname, 'screenshots.manifest.json');
+
+if (!existsSync(manifestPath)) {
+  console.error(`[error] manifest not found: ${manifestPath}`);
+  process.exit(1);
+}
+
+const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+
+const outputDir = outDirArg
+  ? resolve(repoRoot, outDirArg)
+  : resolve(repoRoot, manifest.outputDir);
+if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true });
+
 const squircle = manifest.squircle?.enabled ? manifest.squircle : null;
 
 // The bezel SVG's corner arc is slightly elliptical in display pixels
-// (measured ~65 × 62 at 420px phone width), so we need rx ≠ ry. Both
-// radii are expressed as fractions of image WIDTH for consistency;
-// cornerRadiusYPct being applied as ry means the arc's vertical extent
-// equals cornerRadiusYPct × width pixels (NOT × height), matching how
-// the bezel's arc is a fixed pixel extent regardless of image aspect.
+// (measured ~65 x 62 at 420px phone width), so we need rx != ry. Both
+// radii are expressed as fractions of image WIDTH for consistency.
 function buildRoundedRectMask(width, height) {
   const rx = Math.round(width * squircle.cornerRadiusXPct);
   const ry = Math.round(width * squircle.cornerRadiusYPct);
@@ -55,8 +76,6 @@ for (const shot of manifest.shots) {
     const resized = sharp(src).resize({ width, withoutEnlargement: true });
 
     if (squircle) {
-      // Resolve actual pixel height after resize so the squircle mask matches
-      // the final image exactly (source aspect is preserved by resize).
       const { width: w, height: h } = await resized
         .clone()
         .toBuffer({ resolveWithObject: true })

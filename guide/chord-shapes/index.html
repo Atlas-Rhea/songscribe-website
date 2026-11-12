@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Chord shapes — SongScribe Guide</title>
+    <meta name="title" content="Chord shapes — SongScribe Guide">
+    <meta name="description" content="Build any chord in the picker, browse its guitar or piano shapes, hear it, and find a chord by tapping out the frets.">
+    <link rel="canonical" href="https://songscribe.io/guide/chord-shapes/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/chord-shapes/">
+    <meta property="og:title" content="Chord shapes — SongScribe Guide">
+    <meta property="og:description" content="Build any chord in the picker, browse its guitar or piano shapes, hear it, and find a chord by tapping out the frets.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/chord-shapes/">
+    <meta name="twitter:title" content="Chord shapes — SongScribe Guide">
+    <meta name="twitter:description" content="Build any chord in the picker, browse its guitar or piano shapes, hear it, and find a chord by tapping out the frets.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Chord shapes", "item": "https://songscribe.io/guide/chord-shapes/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/" aria-current="page">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Writing</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Chord shapes</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Chord shapes</h1>
+              
+            </div>
+
+            <p class="guide-lede">The chord picker shows how a chord is played. Build the chord you want, flip through its shapes and listen before you insert it.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#build-a-chord">Build a chord</a></li><li><a href="#add-a-bass-note-slash-chord">Add a bass note (slash chord)</a></li><li><a href="#browse-shapes-and-hear-them">Browse shapes and hear them</a></li><li><a href="#switch-between-guitar-and-piano">Switch between guitar and piano</a></li><li><a href="#go-full-screen">Go full screen</a></li><li><a href="#find-a-chord-by-tapping-frets">Find a chord by tapping frets</a></li><li><a href="#left-handed-players">Left-handed players</a></li></ul></details></nav>
+
+            <h2 id="build-a-chord">Build a chord</h2>
+<ol>
+<li>On the <strong>Chords</strong> tab, tap a word (or tap an existing chord pill) to open the picker.</li>
+<li>Choose a <strong>Root</strong>, then an accidental, <strong>Quality</strong>, <strong>Modifier</strong> and <strong>Extension</strong>.</li>
+</ol>
+<p>The big name at the top updates as you choose, and the diagram redraws.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker showing Am7 built from Root A, Minor and extension 7"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-03-build-chord-md.webp" srcset="/assets/images/shots/guide/chd-03-build-chord-sm.webp 480w, /assets/images/shots/guide/chd-03-build-chord-md.webp 720w, /assets/images/shots/guide/chd-03-build-chord-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker showing Am7 built from Root A, Minor and extension 7" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The picker with Root A, Quality Minor and Extension 7 chosen: big name &#39;Am7&#39;, its guitar diagram, and the Root/Accidental/Quality/Modifier/Extension rows with sus2, sus4, 11 and 13 greyed.</figcaption></figure>
+
+<p>Options that do not make musical sense are greyed out. A power chord such as A5 takes no extension or sus.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker on A5 with the modifier and extension options greyed out"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-04-greyed-options-md.webp" srcset="/assets/images/shots/guide/chd-04-greyed-options-sm.webp 480w, /assets/images/shots/guide/chd-04-greyed-options-md.webp 720w, /assets/images/shots/guide/chd-04-greyed-options-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker on A5 with the modifier and extension options greyed out" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The picker on A5 (power chord): Modifier options sus2, sus4, add9 and Extension options 6, 7, Maj7, 9, 11, 13 are greyed out.</figcaption></figure>
+
+<h2 id="add-a-bass-note-slash-chord">Add a bass note (slash chord)</h2>
+<ol>
+<li>In the picker, open the <strong>Bass</strong> menu below the option rows.</li>
+<li>Choose the bass note.</li>
+</ol>
+<p>A C chord with G in the bass reads <strong>C/G</strong>.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker showing the slash chord C/G on the piano view with Bass: G"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-07-slash-chord-md.webp" srcset="/assets/images/shots/guide/chd-07-slash-chord-sm.webp 480w, /assets/images/shots/guide/chd-07-slash-chord-md.webp 720w, /assets/images/shots/guide/chd-07-slash-chord-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker showing the slash chord C/G on the piano view with Bass: G" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The picker on Piano view with Root C, Major and &#39;Bass: G&#39;: the title reads C/G and the C, E and G keys are highlighted.</figcaption></figure>
+
+<h2 id="browse-shapes-and-hear-them">Browse shapes and hear them</h2>
+<p>The counter under the diagram, such as <strong>3 of 6</strong>, shows which shape you are looking at. Step through the others with the arrows beside it.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Em chord picker on voicing 3 of 6 showing a barre chord higher up the neck"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-05-voicings-md.webp" srcset="/assets/images/shots/guide/chd-05-voicings-sm.webp 480w, /assets/images/shots/guide/chd-05-voicings-md.webp 720w, /assets/images/shots/guide/chd-05-voicings-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Em chord picker on voicing 3 of 6 showing a barre chord higher up the neck" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The picker on Em with the voicing counter reading &#39;3 of 6&#39; and a barre shape at fret 7 on the diagram.</figcaption></figure>
+
+<h2 id="switch-between-guitar-and-piano">Switch between guitar and piano</h2>
+<p>Tap <strong>Piano</strong> at the top of the picker to see the chord as lit-up keys, and <strong>Guitar</strong> to go back.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker on the Piano view with E, G and B keys highlighted for Em"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-06-piano-md.webp" srcset="/assets/images/shots/guide/chd-06-piano-sm.webp 480w, /assets/images/shots/guide/chd-06-piano-md.webp 720w, /assets/images/shots/guide/chd-06-piano-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker on the Piano view with E, G and B keys highlighted for Em" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The picker with Piano selected: Em shown as highlighted E, G and B keys on a keyboard, with a Bass: None menu below the option rows.</figcaption></figure>
+
+<h2 id="go-full-screen">Go full screen</h2>
+<ol>
+<li>Tap the expand button (two diagonal arrows) beside the shape counter.</li>
+<li>Step through shapes with the arrows, or tap the speaker button on the piano to hear it.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Full-screen guitar neck showing the C/G shape with voicing arrows and a mode switch"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-08-fullscreen-neck-md.webp" srcset="/assets/images/shots/guide/chd-08-fullscreen-neck-sm.webp 480w, /assets/images/shots/guide/chd-08-fullscreen-neck-md.webp 720w, /assets/images/shots/guide/chd-08-fullscreen-neck-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Full-screen guitar neck showing the C/G shape with voicing arrows and a mode switch" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The full-screen fretboard for C/G, upright, with fingers 1 to 4 on the first frets, &#39;1/3&#39; voicing arrows, an eye and a hand-tap segment and a close button.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Full-screen piano with the C, E and G keys highlighted and the chord name C/G"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-11-fullscreen-piano-md.webp" srcset="/assets/images/shots/guide/chd-11-fullscreen-piano-sm.webp 480w, /assets/images/shots/guide/chd-11-fullscreen-piano-md.webp 720w, /assets/images/shots/guide/chd-11-fullscreen-piano-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Full-screen piano with the C, E and G keys highlighted and the chord name C/G" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Full-screen piano for C/G: keys run top to bottom with note letters at the left, C, E and G highlighted, name &#39;C/G&#39; and a speaker button below.</figcaption></figure></div>
+
+<h2 id="find-a-chord-by-tapping-frets">Find a chord by tapping frets</h2>
+<ol>
+<li>Open the full-screen neck and switch to the hand-tap (Detect) mode, the last segment beside the eye.</li>
+<li>Tap the frets you are holding down.</li>
+<li>Tap one of the chord chips that appears, then tap the check mark.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Detect mode on the full-screen neck with four tapped notes and three chord match chips"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-09-detect-mode-md.webp" srcset="/assets/images/shots/guide/chd-09-detect-mode-sm.webp 480w, /assets/images/shots/guide/chd-09-detect-mode-md.webp 720w, /assets/images/shots/guide/chd-09-detect-mode-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Detect mode on the full-screen neck with four tapped notes and three chord match chips" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Full-screen neck in Detect (hand-tap) mode with notes placed on D, G and B strings at fret 2 and high E at fret 4; three match chips read Amaj7/E, A/E and C#m/E.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Detect mode with one chord chip selected and the close button changed to a check mark"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-10-detect-matches-md.webp" srcset="/assets/images/shots/guide/chd-10-detect-matches-sm.webp 480w, /assets/images/shots/guide/chd-10-detect-matches-md.webp 720w, /assets/images/shots/guide/chd-10-detect-matches-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Detect mode with one chord chip selected and the close button changed to a check mark" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Same Detect screen with the Amaj7/E chip selected (filled yellow) and the close button turned into a yellow check mark.</figcaption></figure></div>
+
+<div class="guide-callout guide-callout--heads-up" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>Heads-up</p><p>You can only tap fret 1 and above, and strings you leave untapped count as silent. Open strings cannot be marked, so open shapes like G or Em will not be recognized. Shapes made of fretted notes work best.</p></div>
+
+<h2 id="left-handed-players">Left-handed players</h2>
+<p>Turn on <strong>Left-handed fretboard</strong> in Settings, under <strong>Editor</strong>. Every diagram mirrors, with the nut on the right.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Mirrored chord diagram for G with the nut on the right side for left-handed players"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-13-left-handed-md.webp" srcset="/assets/images/shots/guide/chd-13-left-handed-sm.webp 480w, /assets/images/shots/guide/chd-13-left-handed-md.webp 720w, /assets/images/shots/guide/chd-13-left-handed-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Mirrored chord diagram for G with the nut on the right side for left-handed players" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Chord picker for G with Left-handed fretboard on: the nut and open-string circles sit on the right and fret numbers run 5 4 3 2 1 from left to right.</figcaption></figure>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/add-chords/" rel="prev">Adding and moving chords</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/key-capo-tuning/" rel="next">Key, capo and tuning</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/add-chords/">Adding and moving chords</a></li>
+<li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li>
+<li><a href="/guide/themes-and-settings/">Themes and settings</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

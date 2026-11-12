@@ -602,3 +602,28 @@ a:hover {
   background-color: var(--color-surface-1);
   border-color: var(--color-text-secondary);
 }
+
+/* Marks features that require the Lifetime unlock */
+.lifetime-tag {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.15em 0.55em;
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.18);
+  color: #92400E; /* 5.6:1 on parchment-tinted amber */
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+:root[data-theme="dark"] .lifetime-tag {
+  color: #FBBF24; /* 6.7:1 on ink-tinted amber */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .lifetime-tag {
+    color: #FBBF24;
+  }
+}

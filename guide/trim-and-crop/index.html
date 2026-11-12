@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Trim and crop a take — SongScribe Guide</title>
+    <meta name="title" content="Trim and crop a take — SongScribe Guide">
+    <meta name="description" content="Cut the silence from the ends of a take with two handles, and see what happens to your markers before anything is changed.">
+    <link rel="canonical" href="https://songscribe.io/guide/trim-and-crop/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/trim-and-crop/">
+    <meta property="og:title" content="Trim and crop a take — SongScribe Guide">
+    <meta property="og:description" content="Cut the silence from the ends of a take with two handles, and see what happens to your markers before anything is changed.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/trim-and-crop/">
+    <meta name="twitter:title" content="Trim and crop a take — SongScribe Guide">
+    <meta name="twitter:description" content="Cut the silence from the ends of a take with two handles, and see what happens to your markers before anything is changed.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Trim and crop a take", "item": "https://songscribe.io/guide/trim-and-crop/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/" aria-current="page">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Recording</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Trim and crop a take</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Trim and crop a take</h1>
+              
+            </div>
+
+            <p class="guide-lede">Keep only the good part of a take. Cropping is permanent, so SongScribe tells you what it will do to your markers first.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#trim-a-take">Trim a take</a></li><li><a href="#check-your-markers">Check your markers</a></li></ul></details></nav>
+
+            <h2 id="trim-a-take">Trim a take</h2>
+<ol>
+<li>Open a take and tap <strong>Trim</strong>.</li>
+<li>Drag the two yellow handles so they surround the part you want to keep. Everything outside them dims.</li>
+<li>Tap <strong>Crop</strong> to cut the take down to that part, or <strong>Cancel</strong> to leave it as it was.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Trim handles with dimmed outside area and Cancel and Crop buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-11-trim-md.webp" srcset="/assets/images/shots/guide/rec-11-trim-sm.webp 480w, /assets/images/shots/guide/rec-11-trim-md.webp 720w, /assets/images/shots/guide/rec-11-trim-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Trim handles with dimmed outside area and Cancel and Crop buttons" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Trim mode on Take 1: both ends of the waveform dimmed grey outside two yellow handles (left handle moved past the 0:04 marker, right handle moved in slightly), with &quot;Cancel&quot; and a red &quot;Crop&quot; button under the 0:18 readout.</figcaption></figure>
+
+<div class="guide-callout guide-callout--heads-up" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>Heads-up</p><p>Crop replaces the recording for good. There is no way to bring back the parts you cut.</p></div>
+
+<h2 id="check-your-markers">Check your markers</h2>
+<p>If a crop would move or remove markers, you see <strong>Crop recording?</strong> with a count, for example &quot;2 markers will move. 1 marker will be deleted.&quot;</p>
+<ol>
+<li>Tap <strong>Crop</strong> to go ahead, or <strong>Cancel</strong> to go back to the handles.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Crop recording alert saying 2 markers will move and 1 marker will be deleted"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-12-crop-confirm-md.webp" srcset="/assets/images/shots/guide/rec-12-crop-confirm-sm.webp 480w, /assets/images/shots/guide/rec-12-crop-confirm-md.webp 720w, /assets/images/shots/guide/rec-12-crop-confirm-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Crop recording alert saying 2 markers will move and 1 marker will be deleted" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>&quot;Crop recording?&quot; alert reading &quot;2 markers will move. 1 marker will be deleted.&quot; with Cancel and a red Crop button.</figcaption></figure>
+
+<p>Markers inside the part you keep slide to their new time. Markers outside it are deleted.</p>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/listen-back/" rel="prev">Listening back and markers</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/layers/" rel="next">Layers</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/listen-back/">Listening back and markers</a></li>
+<li><a href="/guide/record-a-take/">Recording a take</a></li>
+<li><a href="/guide/layers/">Layers</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

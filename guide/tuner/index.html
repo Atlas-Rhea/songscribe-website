@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Tuner — SongScribe Guide</title>
+    <meta name="title" content="Tuner — SongScribe Guide">
+    <meta name="description" content="Tune any instrument or your voice with a live note name, cents readout and a droplet that settles in the middle when you are in tune.">
+    <link rel="canonical" href="https://songscribe.io/guide/tuner/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/tuner/">
+    <meta property="og:title" content="Tuner — SongScribe Guide">
+    <meta property="og:description" content="Tune any instrument or your voice with a live note name, cents readout and a droplet that settles in the middle when you are in tune.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/tuner/">
+    <meta name="twitter:title" content="Tuner — SongScribe Guide">
+    <meta name="twitter:description" content="Tune any instrument or your voice with a live note name, cents readout and a droplet that settles in the middle when you are in tune.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Tuner", "item": "https://songscribe.io/guide/tuner/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/" aria-current="page">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Tools</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Tuner</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Tuner</h1>
+              
+            </div>
+
+            <p class="guide-lede">Play a note and see how far it is from perfect pitch. Tune until the droplet rests in the center.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#open-the-tuner">Open the tuner</a></li><li><a href="#tune-a-string">Tune a string</a></li><li><a href="#choose-your-instrument">Choose your instrument</a></li><li><a href="#the-tuner-only-listens-when-it-is-open">The tuner only listens when it is open</a></li></ul></details></nav>
+
+            <h2 id="open-the-tuner">Open the tuner</h2>
+<ol>
+<li>Open the <strong>Tools</strong> tab and tap the <strong>Tuner</strong> card.</li>
+<li>If your device asks to use the microphone, tap Allow.</li>
+</ol>
+<p>The card says <strong>Listening...</strong> until it hears a note.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Tuner card idle showing Listening, a cents gauge and the All and NS Off buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/tun-01-tuner-idle-md.webp" srcset="/assets/images/shots/guide/tun-01-tuner-idle-sm.webp 480w, /assets/images/shots/guide/tun-01-tuner-idle-md.webp 720w, /assets/images/shots/guide/tun-01-tuner-idle-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Tuner card idle showing Listening, a cents gauge and the All and NS Off buttons" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Tuner card open and idle: &#39;Listening...&#39; above a cents gauge from -50 to +50 with the marker at 0, an &#39;All&#39; instrument menu at left and an &#39;NS Off&#39; button at right.</figcaption></figure>
+
+<h2 id="tune-a-string">Tune a string</h2>
+<ol>
+<li>Play one note and let it ring.</li>
+<li>Read the card. It shows the note name, how many cents you are off, and the frequency in Hz.</li>
+<li>A droplet on the gauge shows the direction. Left of center means flat, so tune up. Right of center means sharp, so tune down.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Tuner showing A2, minus 24 cents and 108.5 hertz with the marker left of centre"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/tun-02-tuner-flat-md.webp" srcset="/assets/images/shots/guide/tun-02-tuner-flat-sm.webp 480w, /assets/images/shots/guide/tun-02-tuner-flat-md.webp 720w, /assets/images/shots/guide/tun-02-tuner-flat-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Tuner showing A2, minus 24 cents and 108.5 hertz with the marker left of centre" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Tuner card reading A2, -24 cents and 108.5 Hz with the gauge droplet sitting at the flat side near -25; the card header shows A2.</figcaption></figure>
+
+<p>When you are within 3 cents, the droplet slides to the center and the readout turns green.</p>
+<figure class="guide-clip"><div class="phone-frame"><video class="phone-frame__screen" muted loop playsinline preload="none" poster="/assets/video/guide/tun-droplet.jpg" aria-label="Tuner droplet sliding from the flat side to the centre and turning green"><source src="/assets/video/guide/tun-droplet.mp4" type="video/mp4"></video><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""><button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button></div><figcaption>The Tuner droplet sitting at the flat side (A2, about -24 cents) then sliding to the centre and turning green when an in-tune A is played.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Tuner in tune showing A2, plus 1 cent in green and a green droplet at centre"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/tun-03-tuner-in-tune-md.webp" srcset="/assets/images/shots/guide/tun-03-tuner-in-tune-sm.webp 480w, /assets/images/shots/guide/tun-03-tuner-in-tune-md.webp 720w, /assets/images/shots/guide/tun-03-tuner-in-tune-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Tuner in tune showing A2, plus 1 cent in green and a green droplet at centre" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Tuner card in tune: A2 with +1 cents in green, 110.1 Hz, and a green droplet at the centre of the gauge.</figcaption></figure>
+
+<h2 id="choose-your-instrument">Choose your instrument</h2>
+<ol>
+<li>Tap the instrument button at the left of the card. It reads <strong>All</strong> until you choose.</li>
+<li>Pick <strong>Chromatic</strong>, <strong>Guitar</strong>, <strong>Bass</strong>, <strong>Vocal</strong> or <strong>Violin</strong>.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Tuner instrument menu listing Chromatic, Guitar, Bass, Vocal and Violin"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/tun-04-instruments-md.webp" srcset="/assets/images/shots/guide/tun-04-instruments-sm.webp 480w, /assets/images/shots/guide/tun-04-instruments-md.webp 720w, /assets/images/shots/guide/tun-04-instruments-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Tuner instrument menu listing Chromatic, Guitar, Bass, Vocal and Violin" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Tuner instrument menu open listing Chromatic (checked), Guitar, Bass, Vocal and Violin, opened from the button labelled &#39;All&#39;.</figcaption></figure>
+
+<p><strong>Chromatic</strong> listens for any note. The other choices listen only in that instrument&#39;s range, which helps it ignore stray sounds.</p>
+<div class="guide-callout guide-callout--tip" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Tip</p><p>In a noisy room, try the <strong>NS</strong> button beside the instrument button. It switches noise suppression on and off.</p></div>
+
+<div class="guide-callout guide-callout--heads-up" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>Heads-up</p><p>As a note fades away, the reading can swing to a neighboring note. Judge the pitch while the note is still ringing.</p></div>
+
+<h2 id="the-tuner-only-listens-when-it-is-open">The tuner only listens when it is open</h2>
+<p>The microphone is on while the Tuner card is open. It stops when you close the card, leave the Tools tab or move SongScribe to the background.</p>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/harmony/" rel="prev">Harmony</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/setlists-and-performance/" rel="next">Setlists and Performance mode</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li>
+<li><a href="/guide/metronome/">Metronome and tempo</a></li>
+<li><a href="/guide/harmony/">Harmony</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

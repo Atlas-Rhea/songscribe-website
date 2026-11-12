@@ -1,4 +1,5 @@
 import { initTheme, bindToggleButton } from './theme-toggle.js';
+import { initLightbox } from './lightbox.js';
 initTheme();
 function bindTheme() {
   bindToggleButton(document.getElementById('themeToggle'));
@@ -12,6 +13,7 @@ if (document.readyState === 'loading') {
 initMobileNav()
 initSmoothScroll()
 initFeaturesAccordion()
+initLightbox()
 
 function initMobileNav() {
   const toggle = document.getElementById('mobile-menu-toggle')

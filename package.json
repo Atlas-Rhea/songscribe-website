@@ -8,10 +8,16 @@
     "build": "vite build && node scripts/minify-public-css.mjs",
     "preview": "vite preview",
     "shots": "node scripts/process-screenshots.mjs",
-    "washes": "npm --prefix scripts/washes run generate --"
+    "washes": "npm --prefix scripts/washes run generate --",
+    "build:shots": "node scripts/process-screenshots.mjs",
+    "build:guide": "node scripts/build-guide.mjs",
+    "build:guide:shots": "node scripts/generate-guide-shots-manifest.mjs && node scripts/process-screenshots.mjs --manifest scripts/screenshots.guide.manifest.json --out-dir public/assets/images/shots/guide",
+    "build:guide:media": "node scripts/copy-guide-media.mjs",
+    "build:guide:all": "npm run build:guide:shots && npm run build:guide:media && npm run build:guide"
   },
   "devDependencies": {
     "cssnano": "^7.1.5",
+    "marked": "^14.1.4",
     "postcss": "^8.5.10",
     "sharp": "^0.34.5",
     "vite": "^5.0.0"

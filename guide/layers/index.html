@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Layers — SongScribe Guide</title>
+    <meta name="title" content="Layers — SongScribe Guide">
+    <meta name="description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <link rel="canonical" href="https://songscribe.io/guide/layers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/layers/">
+    <meta property="og:title" content="Layers — SongScribe Guide">
+    <meta property="og:description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/layers/">
+    <meta name="twitter:title" content="Layers — SongScribe Guide">
+    <meta name="twitter:description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Layers", "item": "https://songscribe.io/guide/layers/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/" aria-current="page">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Recording</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Layers</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Layers</h1>
+              <span class="guide-lifetime-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</span>
+            </div>
+
+            <p class="guide-lede">Sing a harmony or play a second part while you hear the first, then balance the parts and mix them into one take.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#record-a-layer">Record a layer</a></li><li><a href="#balance-the-layers">Balance the layers</a></li><li><a href="#mix-down-to-one-take">Mix down to one take</a></li></ul></details></nav>
+
+            <div class="guide-callout guide-callout--lifetime" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</p><p>Layers need SongScribe Lifetime or the free trial. Without either, the <strong>Layer</strong> button is locked and opens the upgrade screen.</p></div>
+
+<h2 id="record-a-layer">Record a layer</h2>
+<ol>
+<li>Open a take and tap <strong>Layer</strong>.</li>
+<li>If you are not wearing headphones, <strong>No Headphones Connected</strong> warns that the take will play through the speaker and may leak into your new layer. Tap <strong>Record Anyway</strong> or <strong>Cancel</strong>.</li>
+<li>Play or sing along. The play button becomes a stop square while you record.</li>
+<li>Tap the stop square to finish.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: No Headphones Connected alert with Record Anyway and Cancel buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-01-headphone-warning-md.webp" srcset="/assets/images/shots/guide/lay-01-headphone-warning-sm.webp 480w, /assets/images/shots/guide/lay-01-headphone-warning-md.webp 720w, /assets/images/shots/guide/lay-01-headphone-warning-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="No Headphones Connected alert with Record Anyway and Cancel buttons" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>&quot;No Headphones Connected&quot; alert: the existing take will play through the speaker and may bleed into your new layer; buttons Record Anyway and Cancel.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Detail screen mid layer recording with a stop square in the transport row"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-02-layer-recording-md.webp" srcset="/assets/images/shots/guide/lay-02-layer-recording-sm.webp 480w, /assets/images/shots/guide/lay-02-layer-recording-md.webp 720w, /assets/images/shots/guide/lay-02-layer-recording-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Detail screen mid layer recording with a stop square in the transport row" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 detail while a layer is recording: the play button has become a grey stop square, the readout counts 0:05 and the playhead moves over the waveform; no extra recording label is shown.</figcaption></figure></div>
+
+<p>A take can hold up to 4 layers.</p>
+<h2 id="balance-the-layers">Balance the layers</h2>
+<p>The base take and each layer appear as stacked waveforms, <strong>Base</strong> and <strong>Layer 1</strong>, each with its own volume slider. One master slider sets the overall volume.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Base and Layer 1 waveforms with per-track volume sliders, Downmix button and master slider"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-03-two-tracks-md.webp" srcset="/assets/images/shots/guide/lay-03-two-tracks-sm.webp 480w, /assets/images/shots/guide/lay-03-two-tracks-md.webp 720w, /assets/images/shots/guide/lay-03-two-tracks-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Base and Layer 1 waveforms with per-track volume sliders, Downmix button and master slider" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Detail screen with two stacked tracks, &quot;Base&quot; and &quot;Layer 1&quot;, each with its own loop icon and volume slider, the marker chips, a &quot;Downmix&quot; button, a master volume slider, and the transport row at 0:00.</figcaption></figure>
+
+<h2 id="mix-down-to-one-take">Mix down to one take</h2>
+<ol>
+<li>Tap <strong>Downmix</strong>.</li>
+<li>Choose <strong>Keep</strong> to hold on to the original layers, or <strong>Discard</strong> to remove them.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Keep Original Layers alert with Keep and Discard buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-04-downmix-md.webp" srcset="/assets/images/shots/guide/lay-04-downmix-sm.webp 480w, /assets/images/shots/guide/lay-04-downmix-md.webp 720w, /assets/images/shots/guide/lay-04-downmix-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Keep Original Layers alert with Keep and Discard buttons" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>&quot;Keep Original Layers?&quot; alert shown after tapping Downmix: &quot;The mix has been saved. Would you like to keep the original layers?&quot; with Keep and a red Discard.</figcaption></figure>
+
+<p>The mix is saved before you answer. With <strong>Keep</strong>, a new take such as <strong>Take 1 (Mix)</strong> appears in your list beside the layered one.</p>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/trim-and-crop/" rel="prev">Trim and crop a take</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/metronome/" rel="next">Metronome and tempo</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/record-a-take/">Recording a take</a></li>
+<li><a href="/guide/listen-back/">Listening back and markers</a></li>
+<li><a href="/guide/free-trial-lifetime/">Free trial and Lifetime</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Listening back and markers — SongScribe Guide</title>
+    <meta name="title" content="Listening back and markers — SongScribe Guide">
+    <meta name="description" content="Play a take, scrub, slow it down without changing pitch, loop a passage and drop markers on the spots you want to remember.">
+    <link rel="canonical" href="https://songscribe.io/guide/listen-back/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/listen-back/">
+    <meta property="og:title" content="Listening back and markers — SongScribe Guide">
+    <meta property="og:description" content="Play a take, scrub, slow it down without changing pitch, loop a passage and drop markers on the spots you want to remember.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/listen-back/">
+    <meta name="twitter:title" content="Listening back and markers — SongScribe Guide">
+    <meta name="twitter:description" content="Play a take, scrub, slow it down without changing pitch, loop a passage and drop markers on the spots you want to remember.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Listening back and markers", "item": "https://songscribe.io/guide/listen-back/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/" aria-current="page">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Recording</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Listening back and markers</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Listening back and markers</h1>
+              
+            </div>
+
+            <p class="guide-lede">Open a take to hear it, move around in it, practice it slowly and flag the moments that matter.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#play-a-take">Play a take</a></li><li><a href="#scrub">Scrub</a></li><li><a href="#change-the-speed">Change the speed</a></li><li><a href="#loop-a-passage">Loop a passage</a></li><li><a href="#drop-markers">Drop markers</a></li><li><a href="#jump-to-a-marker-or-add-a-note">Jump to a marker or add a note</a></li></ul></details></nav>
+
+            <h2 id="play-a-take">Play a take</h2>
+<ol>
+<li>On the <strong>Record</strong> tab, tap a take.</li>
+<li>Tap the play button. Tap it again to pause.</li>
+<li>Use the back and forward buttons beside it to skip 15 seconds.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Recording detail with waveform, transport controls and Layer, Trim, Loop, Marker buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-05-detail-md.webp" srcset="/assets/images/shots/guide/rec-05-detail-sm.webp 480w, /assets/images/shots/guide/rec-05-detail-md.webp 720w, /assets/images/shots/guide/rec-05-detail-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Recording detail with waveform, transport controls and Layer, Trim, Loop, Marker buttons" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 detail: back and ⋯ buttons, full waveform with the playhead line at the left edge, 0:00 readout, turtle, back-15, play, forward-15 and hare controls, and the action row Layer, Trim, Loop, Marker.</figcaption></figure>
+
+<h2 id="scrub">Scrub</h2>
+<ol>
+<li>Press the playhead line on the waveform and drag it.</li>
+</ol>
+<figure class="guide-clip"><div class="phone-frame"><video class="phone-frame__screen" muted loop playsinline preload="none" poster="/assets/video/guide/rec-scrub.jpg" aria-label="Playhead dragged along the waveform and back, time readout following"><source src="/assets/video/guide/rec-scrub.mp4" type="video/mp4"></video><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""><button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button></div><figcaption>Dragging the playhead line from the left of the Take 1 waveform to about 0:28 and back to 0:02 while the large time readout follows.</figcaption></figure>
+
+<p>The line lifts slightly while you hold it, so you can see you have it.</p>
+<h2 id="change-the-speed">Change the speed</h2>
+<ol>
+<li>Tap the turtle to slow down or the hare to speed up. Each tap moves one step, anywhere from 0.25× to 2×.</li>
+<li>Tap the speed label under the controls to return to normal.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Recording detail with a 0.5× speed label under the play controls"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-06-speed-md.webp" srcset="/assets/images/shots/guide/rec-06-speed-sm.webp 480w, /assets/images/shots/guide/rec-06-speed-md.webp 720w, /assets/images/shots/guide/rec-06-speed-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Recording detail with a 0.5× speed label under the play controls" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 detail after two turtle taps: a small &quot;0.5×&quot; label sits under the transport row.</figcaption></figure>
+
+<p>Pitch stays the same at every speed.</p>
+<h2 id="loop-a-passage">Loop a passage</h2>
+<ol>
+<li>Tap <strong>Loop</strong>. The take starts playing, with handles at both ends.</li>
+<li>Drag the handles to the part you want to repeat.</li>
+<li>Tap <strong>Done</strong> to leave loop mode.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Loop region highlighted in yellow with handles at both ends and a Done button"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-10-loop-md.webp" srcset="/assets/images/shots/guide/rec-10-loop-sm.webp 480w, /assets/images/shots/guide/rec-10-loop-md.webp 720w, /assets/images/shots/guide/rec-10-loop-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Loop region highlighted in yellow with handles at both ends and a Done button" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Loop mode on Take 1: the whole waveform is highlighted yellow between two grey drag handles at the left and right ends, the transport row is replaced by a &quot;Done&quot; pill, the Loop button is active and Marker is greyed out.</figcaption></figure>
+
+<h2 id="drop-markers">Drop markers</h2>
+<ol>
+<li>Play the take.</li>
+<li>Tap <strong>Marker</strong> at the moment you want to flag. Playback keeps going.</li>
+</ol>
+<figure class="guide-clip"><div class="phone-frame"><video class="phone-frame__screen" muted loop playsinline preload="none" poster="/assets/video/guide/rec-marker-drop.jpg" aria-label="Tapping Marker three times during playback adds marker chips under the waveform"><source src="/assets/video/guide/rec-marker-drop.mp4" type="video/mp4"></video><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""><button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button></div><figcaption>Take 1 playing while the Marker button is tapped three times; hairlines appear on the waveform and chips 0:04, 0:07, 0:09 appear under it, then playback is paused.</figcaption></figure>
+
+<p>Each marker appears as a line on the waveform and a time chip beneath it.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Waveform with three marker hairlines and chips 0:04, 0:07 and 0:09 below"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-07-markers-md.webp" srcset="/assets/images/shots/guide/rec-07-markers-sm.webp 480w, /assets/images/shots/guide/rec-07-markers-md.webp 720w, /assets/images/shots/guide/rec-07-markers-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Waveform with three marker hairlines and chips 0:04, 0:07 and 0:09 below" loading="lazy" decoding="async"><img class="phone-frame__screen guide-shot__dark" src="/assets/images/shots/guide/dark-02-recording-detail-md.webp" srcset="/assets/images/shots/guide/dark-02-recording-detail-sm.webp 480w, /assets/images/shots/guide/dark-02-recording-detail-md.webp 720w, /assets/images/shots/guide/dark-02-recording-detail-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Recording detail in dark mode" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 paused at 0:08 with three yellow marker hairlines on the waveform and a chip row beneath it reading 0:04, 0:07, 0:09.</figcaption></figure>
+
+<h2 id="jump-to-a-marker-or-add-a-note">Jump to a marker or add a note</h2>
+<ol>
+<li>Tap a chip, or its line, to jump there.</li>
+<li>Press and hold a chip to open a menu, then choose <strong>Add Note</strong> or <strong>Delete</strong>.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Marker chip long-press menu offering Add Note and Delete"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-08-marker-menu-md.webp" srcset="/assets/images/shots/guide/rec-08-marker-menu-sm.webp 480w, /assets/images/shots/guide/rec-08-marker-menu-md.webp 720w, /assets/images/shots/guide/rec-08-marker-menu-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Marker chip long-press menu offering Add Note and Delete" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Long-press on the 0:04 marker chip opens a small menu with &quot;Add Note&quot; and a red &quot;Delete&quot;; it is a pop-up menu covering the other chips, not a sheet.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Marker chip row with the 0:07 chip showing the note Good chorus idea"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/rec-09-marker-note-md.webp" srcset="/assets/images/shots/guide/rec-09-marker-note-sm.webp 480w, /assets/images/shots/guide/rec-09-marker-note-md.webp 720w, /assets/images/shots/guide/rec-09-marker-note-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Marker chip row with the 0:07 chip showing the note Good chorus idea" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 detail with the second marker chip now reading &quot;0:07 · Good chorus idea&quot;; all chips have widened and the 0:09 chip is cut off at the right edge (note autocapitalised to Good).</figcaption></figure></div>
+
+<div class="guide-callout guide-callout--tip" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Tip</p><p>Swipe the row of chips sideways when there are more than fit on screen.</p></div>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/record-a-take/" rel="prev">Recording a take</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/trim-and-crop/" rel="next">Trim and crop a take</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/record-a-take/">Recording a take</a></li>
+<li><a href="/guide/trim-and-crop/">Trim and crop</a></li>
+<li><a href="/guide/layers/">Layers</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

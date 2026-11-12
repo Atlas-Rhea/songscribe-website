@@ -1,6 +1,13 @@
 import { defineConfig } from 'vite'
-import { copyFileSync, mkdirSync } from 'node:fs'
+import { copyFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+
+// Every generated guide page (guide/index.html, guide/<slug>/index.html).
+const guideInputs = Object.fromEntries(
+    readdirSync(resolve(__dirname, 'guide'), { withFileTypes: true })
+        .filter((d) => d.isDirectory() && existsSync(resolve(__dirname, 'guide', d.name, 'index.html')))
+        .map((d) => [`guide-${d.name}`, resolve(__dirname, 'guide', d.name, 'index.html')])
+)
 
 export default defineConfig({
     server: {
@@ -21,6 +28,8 @@ export default defineConfig({
                 tunerTerms: resolve(__dirname, 'tuner/terms.html'),
                 tunerSupport: resolve(__dirname, 'tuner/support.html'),
                 go: resolve(__dirname, 'go/index.html'),
+                guide: resolve(__dirname, 'guide/index.html'),
+                ...guideInputs,
             },
             output: {
                 // Ensure consistent asset paths

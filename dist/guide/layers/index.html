@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Layers — SongScribe Guide</title>
+    <meta name="title" content="Layers — SongScribe Guide">
+    <meta name="description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <link rel="canonical" href="https://songscribe.io/guide/layers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/layers/">
+    <meta property="og:title" content="Layers — SongScribe Guide">
+    <meta property="og:description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/layers/">
+    <meta name="twitter:title" content="Layers — SongScribe Guide">
+    <meta name="twitter:description" content="Record a second part over a take, balance each layer with its own volume slider, and mix them down into one take.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <style data-inlined-from="decor.css">:root{--parchment:#f0ebe6;--cream:#f7f3ec;--cream-warm:#faf6f0;--hairline:#e0d8ce;--ink:#2c1810;--ink-soft:#4a3420;--warm-gray:#6b5e50;--warm-gray-soft:#9d9082;--amber:#d4a017;--amber-soft:#e5b84a;--coral:#f5a962;--teal:#2d9e9e;--teal-deep:#1f6b6b;--paper-bg:var(--parchment);--paper-grain:rgba(74,52,32,.4);--paper-grain-coarse:rgba(74,52,32,.12);--text-primary:var(--ink);--text-secondary:var(--warm-gray);--hairline-color:var(--hairline);--wash-blend:multiply;--wash-opacity:0.55;--note-blend:multiply;--note-opacity:0.85;--quill-blend:multiply;--quill-opacity:0.70;--section-bg-light:var(--parchment);--section-bg-dark:var(--ink);color-scheme:light}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--paper-bg:var(--ink);--paper-grain:hsla(36,50%,96%,.08);--paper-grain-coarse:hsla(36,50%,96%,.04);--text-primary:var(--cream-warm);--text-secondary:var(--warm-gray-soft);--hairline-color:var(--ink-soft);--wash-blend:screen;--wash-opacity:0.40;--note-blend:screen;--note-opacity:0.75;--quill-blend:screen;--quill-opacity:0.55;--section-bg-light:var(--ink);--section-bg-dark:#0c0604}}:root[data-theme=dark]{color-scheme:dark;--paper-bg:var(--ink);--paper-grain:hsla(36,50%,96%,.08);--paper-grain-coarse:hsla(36,50%,96%,.04);--text-primary:var(--cream-warm);--text-secondary:var(--warm-gray-soft);--hairline-color:var(--ink-soft);--wash-blend:screen;--wash-opacity:0.40;--note-blend:screen;--note-opacity:0.75;--quill-blend:screen;--quill-opacity:0.55;--section-bg-light:var(--ink);--section-bg-dark:#0c0604}:root[data-theme=light]{color-scheme:light;--section-bg-light:var(--parchment);--section-bg-dark:var(--ink)}.decor-paper,body.decor-paper{background-blend-mode:multiply,multiply;background-color:var(--paper-bg);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.29  0 0 0 0 0.20  0 0 0 0 0.12  0 0 0 0.55 -0.25'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>"),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='680' height='680'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.29  0 0 0 0 0.20  0 0 0 0 0.12  0 0 0 0.15 -0.06'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");background-position:0 0,0 0;background-repeat:repeat,repeat;background-size:420px 420px,680px 680px}:root[data-theme=dark] .decor-paper,:root[data-theme=dark] body.decor-paper{background-blend-mode:screen,screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.98  0 0 0 0 0.97  0 0 0 0 0.94  0 0 0 0.08 -0.02'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>"),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='680' height='680'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.98  0 0 0 0 0.97  0 0 0 0 0.94  0 0 0 0.04 -0.01'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>")}.wash-group{inset:0;isolation:isolate}.wash,.wash-group{mix-blend-mode:var(--wash-blend);opacity:var(--wash-opacity);pointer-events:none;position:absolute;z-index:0}.wash{background-position:50%;background-repeat:no-repeat;background-size:contain;will-change:opacity}.wash-group .wash{mix-blend-mode:multiply;opacity:1}:root[data-theme=dark] .wash-group .wash{mix-blend-mode:screen}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash-group .wash{mix-blend-mode:screen}}.wash--orange{background-image:url(/assets/images/decor/wash-orange.webp)}.wash--teal{background-image:url(/assets/images/decor/wash-teal.webp)}.wash--hero-orange-tl{height:1100px;left:-340px;top:-380px;width:1100px}.wash--hero-teal-tr{height:1100px;right:-340px;top:-220px;transform:scaleX(-1);width:1100px}.wash--hero-teal-bl{bottom:0;height:900px;left:0;opacity:.85;transform:scaleX(-1);width:900px}:root[data-theme=dark] .wash--hero-teal-bl{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp);background-position:100% 0;background-size:200% 200%;opacity:1;transform:none}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash--hero-teal-bl{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp);background-position:100% 0;background-size:200% 200%;opacity:1;transform:none}}.wash--tl{left:-200px}.wash--tl,.wash--tr{height:720px;top:-200px;width:720px}.wash--tr{right:-200px;transform:scaleX(-1)}.wash--bl{left:-200px;transform:scaleY(-1)}.wash--bl,.wash--br{bottom:-200px;height:720px;width:720px}.wash--br{right:-200px;transform:scale(-1)}.decor-section--bleed-bottom,.decor-section--bleed-top,.section.decor-section--bleed-bottom,.section.decor-section--bleed-top{isolation:auto;overflow:visible}:root{--wash-bleed-max:80px}.wash--edge-bottom-left{background-image:url(/assets/decor/washes/blob-cloud-orange-drift.a.webp);left:-160px}.wash--edge-bottom-left,.wash--edge-bottom-right{background-position:50%;background-size:cover;bottom:calc(var(--wash-bleed-max)*-1);height:720px;width:720px}.wash--edge-bottom-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-a.a.webp);right:-160px}.wash--edge-top-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-b.a.webp);background-position:50%;background-size:cover;height:720px;right:-160px;top:calc(var(--wash-bleed-max)*-1);transform:scale(-1);width:720px}.wash--edge-bottom-left,.wash--edge-bottom-right,.wash--edge-top-right{--wash-blend:multiply;--wash-opacity:0.8}:root[data-theme=dark] .wash--edge-bottom-left,:root[data-theme=dark] .wash--edge-bottom-right,:root[data-theme=dark] .wash--edge-top-right{--wash-blend:screen;--wash-opacity:0.55}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash--edge-bottom-left,:root:not([data-theme=light]) .wash--edge-bottom-right,:root:not([data-theme=light]) .wash--edge-top-right{--wash-blend:screen;--wash-opacity:0.55}}.wash--edge-huge.wash--edge-bottom-right{bottom:calc(var(--wash-bleed-max)*-1);height:1300px;right:-650px;width:1300px}.wash-seam{left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;z-index:0}.wash-seam--bottom{bottom:calc(var(--wash-bleed-max)*-1);top:0}.wash-seam--top{bottom:0;top:calc(var(--wash-bleed-max)*-1)}.wash-seam>.wash{position:absolute}:root[data-theme=dark] .wash--edge-bottom-left{background-image:url(/assets/decor/washes/blob-cloud-orange-drift-dark.a.webp)}:root[data-theme=dark] .wash--edge-bottom-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-a-dark.a.webp)}:root[data-theme=dark] .wash--edge-top-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-b-dark.a.webp)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .wash--edge-bottom-left{background-image:url(/assets/decor/washes/blob-cloud-orange-drift-dark.a.webp)}:root:not([data-theme=light]) .wash--edge-bottom-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-a-dark.a.webp)}:root:not([data-theme=light]) .wash--edge-top-right{background-image:url(/assets/decor/washes/blob-cloud-orange-mood-b-dark.a.webp)}}@media (max-width:1024px){:root{--wash-bleed-max:60px}.wash--edge-bottom-left,.wash--edge-bottom-right,.wash--edge-top-right{height:520px;width:520px}.wash--edge-bottom-left{left:-120px}.wash--edge-bottom-right,.wash--edge-top-right{right:-120px}.wash--edge-huge.wash--edge-bottom-right{height:1000px;right:-480px;width:1000px}}.seam-line{background:linear-gradient(90deg,transparent,var(--amber),transparent);box-shadow:0 0 10px 1px rgba(212,160,23,.45);height:2px;left:50%;pointer-events:none;position:absolute;top:-1px;transform:translateX(-50%);width:min(900px,75vw);z-index:2}@media (max-width:480px){.seam-line{width:80vw}}.decor-note,.decor-quill{mix-blend-mode:var(--note-blend);pointer-events:none;position:absolute;user-select:none;will-change:transform;z-index:1}.decor-note{height:auto;opacity:var(--note-opacity);width:48px}.decor-quill{height:auto;mix-blend-mode:var(--quill-blend);opacity:var(--quill-opacity);width:180px}@keyframes note-float{0%,to{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}.decor-note{animation:note-float 6.5s ease-in-out infinite}.decor-note.n-2{animation-delay:-1.8s;animation-duration:7.2s}.decor-note.n-3{animation-delay:-3.1s;animation-duration:5.8s}.decor-note.n-4{animation-delay:-4.4s;animation-duration:8s}.decor-note.n-5{animation-delay:-2.5s;animation-duration:6s}.decor-note.n-6{animation-delay:-.9s;animation-duration:7.6s}@keyframes quill-sway{0%,to{transform:rotate(-1.8deg) translateY(0)}50%{transform:rotate(1.8deg) translateY(-4px)}}.decor-quill{animation:quill-sway 11s ease-in-out infinite;transform-origin:50% 95%}.decor-quill.q-2{animation-delay:-3.5s;animation-duration:13s}@media (prefers-reduced-motion:reduce){.decor-note,.decor-quill{animation:none}}.decor-section{isolation:isolate;overflow:hidden;position:relative}.wash--f4-main{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-a-dark.a.webp)}.wash--f4-drift{background-image:url(/assets/decor/washes/blob-cloud-teal-drift-dark.a.webp)}.wash--pricing-tl{background-image:url(/assets/decor/washes/blob-cloud-teal-mood-b-dark.a.webp)}.section--dark .wash-group,.section--dark .wash-group .wash,.section--dark>.wash{mix-blend-mode:screen}.section--cream{--wash-opacity:0.45}@media (max-width:768px){:root{--wash-opacity:0.35}.wash--hero-orange-tl,.wash--hero-teal-tr{max-width:720px;width:70%}.decor-note.n-4,.decor-note.n-5,.decor-note.n-6,.decor-quill{display:none}}@media (max-width:480px){.decor-note,.wash,.wash-group{display:none}}</style>
+    <style data-inlined-from="site.css">html body{background-color:var(--paper-bg)}.skip-link{background:var(--ink);border-radius:4px;color:var(--cream-warm);font-family:Inter,system-ui,sans-serif;font-size:.875rem;font-weight:600;left:8px;padding:8px 16px;position:absolute;text-decoration:none;top:-40px;transition:top .15s ease-out;z-index:1000}.skip-link:focus{outline:2px solid var(--amber);outline-offset:2px;top:8px}.section{isolation:isolate;overflow-x:clip;overflow-y:visible;position:relative}main#main-content>.section:first-of-type{z-index:10}main#main-content>.section:nth-of-type(2){z-index:9}main#main-content>.section:nth-of-type(3){z-index:8}main#main-content>.section:nth-of-type(4){z-index:7}main#main-content>.section:nth-of-type(5){z-index:6}main#main-content>.section:nth-of-type(6){z-index:5}main#main-content>.section:nth-of-type(7){z-index:4}main#main-content>.section:nth-of-type(8){z-index:3}main#main-content>.section:nth-of-type(9){z-index:2}main#main-content>.section:nth-of-type(10){z-index:1}.section--light{background-color:transparent;color:var(--text-primary)}.section--dark{background:var(--section-bg-dark)}.section--dark,.section--dark .section-headline{color:var(--cream-warm)}.section--dark .section-subtitle,.section--dark p{color:var(--warm-gray-soft)}.section-headline{color:var(--text-primary);font-family:Baskervville,Georgia,Times New Roman,serif;font-weight:400;line-height:1.1;margin:0 0 .5em}.section-subtitle{color:var(--text-secondary);font-family:Inter,system-ui,sans-serif;font-weight:400;line-height:1.5;margin:0}:root{--site-max-width:1200px;--side-pad:clamp(1.25rem,4vw,2.5rem);--section-pad-y:clamp(3rem,8vw,7rem)}.section-inner{margin:0 auto;max-width:var(--site-max-width);padding-block:var(--section-pad-y);padding-inline:max(var(--side-pad),env(safe-area-inset-left));padding-inline-end:max(var(--side-pad),env(safe-area-inset-right));position:relative;z-index:1}.section:first-of-type .section-inner{padding-top:max(var(--section-pad-y),env(safe-area-inset-top))}.section:last-of-type .section-inner{padding-bottom:max(var(--section-pad-y),env(safe-area-inset-bottom))}.strip.section .section-inner{padding-bottom:max(.75rem,env(safe-area-inset-bottom));padding-top:max(.75rem,env(safe-area-inset-top))}.strip-inner{align-items:center;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}.strip .strip-text{color:var(--cream-warm);font-size:.9rem;margin:0}.strip-link{color:var(--amber-soft);font-size:.9rem;font-weight:600;text-decoration:none;white-space:nowrap}.strip-link:hover{text-decoration:underline}@media (max-width:480px){.strip-text{font-size:.8rem}.strip-inner{gap:.75rem}}.nav-section{border-bottom:1px solid var(--hairline-color)}.nav-section.section .section-inner{padding-block:1rem}.nav-section .nav-inner{align-items:center;display:flex;gap:2rem;justify-content:space-between}.nav-section .nav-logo img{display:block;height:32px;width:auto}.nav-section .nav-links{background:none;border:0;box-shadow:none;display:flex;flex-direction:row;font-size:.95rem;gap:2rem;list-style:none;margin:0;padding:0;position:static}.nav-section .nav-links a{color:var(--text-primary);font-weight:500;text-decoration:none}.nav-section .nav-links a:hover{color:var(--amber)}.nav-section .nav-actions{align-items:center;display:flex;gap:1rem}.nav-section .theme-toggle{align-items:center;background:transparent;border:1px solid var(--hairline-color);border-radius:999px;cursor:pointer;display:inline-flex;font-size:1rem;height:40px;justify-content:center;transition:border-color .16s ease;width:40px}.nav-section .theme-toggle:hover{border-color:var(--amber)}.nav-section .theme-toggle:focus-visible{outline:2px solid var(--amber);outline-offset:2px}@media (max-width:640px){.nav-section .nav-actions .btn,.nav-section .nav-links{display:none}}.phone-frame{aspect-ratio:1350/2760;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18)) drop-shadow(0 22px 36px rgba(0,0,0,.22));margin:0 auto;max-width:420px;position:relative;width:100%;z-index:3}:root[data-theme=dark] .phone-frame{filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 22px 36px rgba(0,0,0,.5))}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .phone-frame{filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 22px 36px rgba(0,0,0,.5))}}.phone-frame__screen{height:95%;left:5.333%;object-fit:fill;position:absolute;top:2.5%;width:89.333%}.phone-frame__bezel{height:100%;inset:0;pointer-events:none;position:absolute;width:100%}@media (max-width:768px){.phone-frame{max-width:min(320px,70vw)}}.hero{overflow-x:clip}.hero.section{animation:none;background-color:var(--section-bg-light);background-image:url(/assets/decor/washes/hero-plate-light-sm.webp);background-position:100% 0;background-repeat:no-repeat;background-size:cover;display:block;min-height:auto}.hero.section:before{content:none}@media (min-width:769px){.hero.section{background-image:url(/assets/decor/washes/hero-plate-light.webp)}}:root[data-theme=dark] .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark-sm.webp)}@media (min-width:769px){:root[data-theme=dark] .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark.webp)}}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark-sm.webp)}@media (min-width:769px){:root:not([data-theme=light]) .hero.section{background-image:url(/assets/decor/washes/hero-plate-dark.webp)}}}.hero-inner{align-items:center;display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr minmax(280px,420px);position:relative;z-index:1}.hero-headline{font-size:clamp(2.5rem,6vw,4.5rem);max-width:14ch}.hero-subtitle{font-size:clamp(1rem,1.5vw,1.25rem);margin-top:1rem;max-width:42ch}:root[data-theme=dark] .hero .hero-subtitle{color:hsla(36,50%,96%,.88)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .hero .hero-subtitle{color:hsla(36,50%,96%,.88)}}.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}@media (max-width:768px){.hero-inner{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero-headline,.hero-subtitle{margin-inline:auto}}.hero .hero-cta .btn{background:transparent;border:0;border-radius:0;box-shadow:none;color:var(--text-primary);font-family:Baskervville,Georgia,Times New Roman,serif;font-size:clamp(1.15rem,1.6vw,1.35rem);font-weight:400;letter-spacing:0;line-height:1.3;padding:0;text-decoration:none;transform:none;transition:color .16s ease}.hero .hero-cta .btn.btn-primary,.hero .hero-cta .btn.btn-secondary{background:transparent;border:0;color:var(--text-primary)}.hero .hero-cta .btn:focus-visible,.hero .hero-cta .btn:hover{background:transparent;box-shadow:none;color:var(--amber);transform:none}.hero .hero-cta .btn:focus-visible{border-radius:2px;outline:2px solid var(--amber);outline-offset:4px}.hero .hero-cta .btn+.btn:before{color:currentColor;content:"\00B7";margin-right:1.25rem;opacity:.45}@media (max-width:640px){.hero .hero-cta{flex-direction:column;gap:.75rem}.hero .hero-cta .btn+.btn:before{display:none}}.feature{position:relative}.feature .section-inner{align-items:center;display:grid;gap:clamp(2rem,5vw,5rem);grid-template-columns:1fr minmax(280px,380px)}.feature--reverse .section-inner{grid-template-columns:minmax(280px,380px) 1fr}.feature--reverse .feature-copy{order:2}.feature--reverse .feature-phone{order:1}.feature-headline{font-size:clamp(2rem,4vw,3rem);max-width:16ch}.feature-subtitle{font-size:clamp(1rem,1.25vw,1.125rem);margin-top:1rem;max-width:44ch}@media (max-width:768px){.feature .section-inner,.feature--reverse .section-inner{grid-template-columns:1fr;text-align:center}.feature--reverse .feature-copy,.feature--reverse .feature-phone,.feature-copy,.feature-phone{order:unset}.feature-headline,.feature-subtitle{margin-inline:auto}}.section--cream{background-color:transparent;color:var(--text-primary)}.features-all .section-inner{max-width:760px;padding-bottom:clamp(4rem,8vw,7rem);padding-top:clamp(4rem,8vw,7rem)}.features-all__header{margin-bottom:clamp(2rem,4vw,3.5rem);text-align:center}.features-all__header .section-subtitle{margin-inline:auto;max-width:34rem}.features-all__list{border-top:1px solid var(--hairline-color)}.features-all-item{border-bottom:1px solid var(--hairline-color)}.features-all-item__trigger{align-items:center;background:none;border:none;color:var(--text-primary);cursor:pointer;display:flex;font-family:Inter,system-ui,sans-serif;gap:1rem;padding:1.25rem 0;text-align:left;width:100%}.features-all-item__trigger:focus-visible{border-radius:4px;outline:2px solid var(--amber);outline-offset:4px}.features-all-item__label{color:var(--amber);flex:0 0 140px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.features-all-item__title{color:var(--text-primary);flex:1;font-family:Baskervville,Georgia,Times New Roman,serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:400;line-height:1.3}.features-all-item__chevron{color:var(--text-secondary);flex:0 0 18px;height:18px;transition:transform .28s cubic-bezier(.16,1,.3,1);width:18px}.features-all-item.is-open .features-all-item__chevron{color:var(--amber);transform:rotate(180deg)}.features-all-item.is-open .features-all-item__title{color:var(--amber)}.features-all-item__body{max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.16,1,.3,1)}.features-all-item__body-inner{color:var(--text-secondary);font-size:1rem;line-height:1.7;max-width:54rem;padding:0 0 1.5rem 156px}@media (max-width:600px){.features-all-item__trigger{flex-wrap:wrap;gap:.35rem .75rem}.features-all-item__label{flex:0 0 auto;font-size:.7rem}.features-all-item__title{flex:1 0 calc(100% - 34px);order:3}.features-all-item__chevron{margin-left:auto}.features-all-item__body-inner{padding-left:0}}:root[data-theme=dark] .features-all{--hairline-color:var(--ink-soft)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .features-all{--hairline-color:var(--ink-soft)}}.pricing .section-inner{text-align:center}.pricing .pricing-price{color:var(--amber-soft);font-family:Baskervville,Georgia,Times New Roman,serif;font-size:clamp(4rem,10vw,8rem);line-height:1;margin:1rem 0 .5rem}.pricing-currency{font-size:.45em;margin-right:.1em;vertical-align:top}.pricing-unit{color:var(--warm-gray-soft);display:block;font-family:Inter,system-ui,sans-serif;font-size:clamp(.9rem,1vw,1rem);font-weight:500;letter-spacing:.08em;margin-bottom:2rem;text-transform:uppercase}.pricing-points{color:var(--cream-warm);display:grid;gap:.75rem;list-style:none;margin:0 auto 2.5rem;max-width:24rem;padding:0;text-align:left}.pricing-points li:before{color:var(--amber-soft);content:"\2713\00a0\00a0";font-weight:700}.footer{border-top:1px solid var(--hairline-color)}.footer-inner{align-items:center;display:flex;flex-direction:column;gap:1.5rem;text-align:center}.footer-brand img{display:block;margin:0 auto .5rem}.footer-tagline{color:var(--text-secondary);font-style:italic;margin:0}.footer-nav{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}.footer-nav a{color:var(--text-primary);font-size:.95rem;font-weight:500;text-decoration:none}.footer-nav a:hover{color:var(--amber);text-decoration:underline}.footer-legal{color:var(--text-secondary);font-size:.85rem;margin:0}</style>
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Layers", "item": "https://songscribe.io/guide/layers/" }
+      ]
+    }
+    </script>
+    
+  <script type="module" crossorigin src="/assets/main-orUZtwmw.js"></script>
+  <script type="module" crossorigin src="/assets/guide-BKR5xBhz.js"></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/" aria-current="page">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Recording</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Layers</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Layers</h1>
+              <span class="guide-lifetime-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</span>
+            </div>
+
+            <p class="guide-lede">Sing a harmony or play a second part while you hear the first, then balance the parts and mix them into one take.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#record-a-layer">Record a layer</a></li><li><a href="#balance-the-layers">Balance the layers</a></li><li><a href="#mix-down-to-one-take">Mix down to one take</a></li></ul></details></nav>
+
+            <div class="guide-callout guide-callout--lifetime" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Lifetime</p><p>Layers need SongScribe Lifetime or the free trial. Without either, the <strong>Layer</strong> button is locked and opens the upgrade screen.</p></div>
+
+<h2 id="record-a-layer">Record a layer</h2>
+<ol>
+<li>Open a take and tap <strong>Layer</strong>.</li>
+<li>If you are not wearing headphones, <strong>No Headphones Connected</strong> warns that the take will play through the speaker and may leak into your new layer. Tap <strong>Record Anyway</strong> or <strong>Cancel</strong>.</li>
+<li>Play or sing along. The play button becomes a stop square while you record.</li>
+<li>Tap the stop square to finish.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: No Headphones Connected alert with Record Anyway and Cancel buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-01-headphone-warning-md.webp" srcset="/assets/images/shots/guide/lay-01-headphone-warning-sm.webp 480w, /assets/images/shots/guide/lay-01-headphone-warning-md.webp 720w, /assets/images/shots/guide/lay-01-headphone-warning-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="No Headphones Connected alert with Record Anyway and Cancel buttons" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>&quot;No Headphones Connected&quot; alert: the existing take will play through the speaker and may bleed into your new layer; buttons Record Anyway and Cancel.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Detail screen mid layer recording with a stop square in the transport row"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-02-layer-recording-md.webp" srcset="/assets/images/shots/guide/lay-02-layer-recording-sm.webp 480w, /assets/images/shots/guide/lay-02-layer-recording-md.webp 720w, /assets/images/shots/guide/lay-02-layer-recording-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Detail screen mid layer recording with a stop square in the transport row" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Take 1 detail while a layer is recording: the play button has become a grey stop square, the readout counts 0:05 and the playhead moves over the waveform; no extra recording label is shown.</figcaption></figure></div>
+
+<p>A take can hold up to 4 layers.</p>
+<h2 id="balance-the-layers">Balance the layers</h2>
+<p>The base take and each layer appear as stacked waveforms, <strong>Base</strong> and <strong>Layer 1</strong>, each with its own volume slider. One master slider sets the overall volume.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Base and Layer 1 waveforms with per-track volume sliders, Downmix button and master slider"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-03-two-tracks-md.webp" srcset="/assets/images/shots/guide/lay-03-two-tracks-sm.webp 480w, /assets/images/shots/guide/lay-03-two-tracks-md.webp 720w, /assets/images/shots/guide/lay-03-two-tracks-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Base and Layer 1 waveforms with per-track volume sliders, Downmix button and master slider" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Detail screen with two stacked tracks, &quot;Base&quot; and &quot;Layer 1&quot;, each with its own loop icon and volume slider, the marker chips, a &quot;Downmix&quot; button, a master volume slider, and the transport row at 0:00.</figcaption></figure>
+
+<h2 id="mix-down-to-one-take">Mix down to one take</h2>
+<ol>
+<li>Tap <strong>Downmix</strong>.</li>
+<li>Choose <strong>Keep</strong> to hold on to the original layers, or <strong>Discard</strong> to remove them.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Keep Original Layers alert with Keep and Discard buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/lay-04-downmix-md.webp" srcset="/assets/images/shots/guide/lay-04-downmix-sm.webp 480w, /assets/images/shots/guide/lay-04-downmix-md.webp 720w, /assets/images/shots/guide/lay-04-downmix-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Keep Original Layers alert with Keep and Discard buttons" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>&quot;Keep Original Layers?&quot; alert shown after tapping Downmix: &quot;The mix has been saved. Would you like to keep the original layers?&quot; with Keep and a red Discard.</figcaption></figure>
+
+<p>The mix is saved before you answer. With <strong>Keep</strong>, a new take such as <strong>Take 1 (Mix)</strong> appears in your list beside the layered one.</p>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/trim-and-crop/" rel="prev">Trim and crop a take</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/metronome/" rel="next">Metronome and tempo</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/record-a-take/">Recording a take</a></li>
+<li><a href="/guide/listen-back/">Listening back and markers</a></li>
+<li><a href="/guide/free-trial-lifetime/">Free trial and Lifetime</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

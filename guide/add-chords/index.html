@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Adding and moving chords — SongScribe Guide</title>
+    <meta name="title" content="Adding and moving chords — SongScribe Guide">
+    <meta name="description" content="Put chords above the exact word they belong to, change or remove them, and drag them to a new spot.">
+    <link rel="canonical" href="https://songscribe.io/guide/add-chords/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://songscribe.io/guide/add-chords/">
+    <meta property="og:title" content="Adding and moving chords — SongScribe Guide">
+    <meta property="og:description" content="Put chords above the exact word they belong to, change or remove them, and drag them to a new spot.">
+    <meta property="og:image" content="https://songscribe.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://songscribe.io/guide/add-chords/">
+    <meta name="twitter:title" content="Adding and moving chords — SongScribe Guide">
+    <meta name="twitter:description" content="Put chords above the exact word they belong to, change or remove them, and drag them to a new spot.">
+    <meta name="twitter:image" content="https://songscribe.io/assets/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FBBF24">
+
+    <!-- iOS Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6756506993">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Stylesheets -->
+    <script>
+      (function(){
+        var KEY='ss-theme';
+        function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+        function apply(t){document.documentElement.setAttribute('data-theme',t);}
+        var mq; try{mq=matchMedia('(prefers-color-scheme: dark)');}catch(e){}
+        function preferred(){
+          var s=stored();
+          if(s==='light'||s==='dark')return s;
+          return (mq&&mq.matches)?'dark':'light';
+        }
+        apply(preferred());
+        if(mq){
+          var onChange=function(e){
+            var s=stored();
+            if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light');
+          };
+          if(mq.addEventListener)mq.addEventListener('change',onChange);
+          else if(mq.addListener)mq.addListener(onChange);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/decor.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/guide.css">
+    <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
+    <style>
+      @font-face{font-family:'Baskervville';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/baskervville-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/inter.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://songscribe.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://songscribe.io/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "Adding and moving chords", "item": "https://songscribe.io/guide/add-chords/" }
+      ]
+    }
+    </script>
+    
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Section 1: Announcement strip (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe — out now for iPhone and iPad.</p>
+        <a class="strip-link" href="/#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
+                <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Navigation (light tier) -->
+    <section class="nav-section section section--light" data-section="nav">
+      <nav class="section-inner nav-inner" aria-label="Primary">
+        <a class="nav-logo" href="/" aria-label="SongScribe home">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="180" height="43" fetchpriority="high">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/guide/" aria-current="page">Guide</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle"
+                  aria-label="Toggle dark mode"
+                  aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="/#pricing">Get SongScribe</a>
+        </div>
+      </nav>
+    </section>
+
+    <main id="main-content">
+      <section class="section section--light guide-page" data-section="guide-page">
+        <div class="section-inner guide-layout">
+
+          <nav class="guide-sidenav" aria-label="Guide">
+            <details open>
+              <summary>Guide contents</summary>
+              <div class="guide-sidenav-groups">
+                <div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Start here</p><ul class="guide-sidenav-group__list"><li><a href="/guide/quick-start/">Your first song in five minutes</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Songs</p><ul class="guide-sidenav-group__list"><li><a href="/guide/songs-and-folders/">Songs and folders</a></li><li><a href="/guide/import-songs/">Import songs you already have</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Writing</p><ul class="guide-sidenav-group__list"><li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li><li><a href="/guide/add-chords/" aria-current="page">Adding and moving chords</a></li><li><a href="/guide/chord-shapes/">Chord shapes</a></li><li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Recording</p><ul class="guide-sidenav-group__list"><li><a href="/guide/record-a-take/">Recording a take</a></li><li><a href="/guide/listen-back/">Listening back and markers</a></li><li><a href="/guide/trim-and-crop/">Trim and crop a take</a></li><li><a href="/guide/layers/">Layers</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Tools</p><ul class="guide-sidenav-group__list"><li><a href="/guide/metronome/">Metronome and tempo</a></li><li><a href="/guide/harmony/">Harmony</a></li><li><a href="/guide/tuner/">Tuner</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Playing live</p><ul class="guide-sidenav-group__list"><li><a href="/guide/setlists-and-performance/">Setlists and Performance mode</a></li></ul></div><div class="guide-sidenav-group"><p class="guide-sidenav-group__label">Sharing and setup</p><ul class="guide-sidenav-group__list"><li><a href="/guide/export/">Export and share</a></li><li><a href="/guide/themes-and-settings/">Themes and settings</a></li><li><a href="/guide/free-trial-lifetime/">Free, trial and Lifetime</a></li><li><a href="/guide/sync-and-faq/">Sync and FAQ</a></li></ul></div>
+              </div>
+            </details>
+          </nav>
+
+          <article class="guide-content">
+            <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+              <a href="/guide/">Guide</a><span class="sep" aria-hidden="true">›</span><span>Writing</span><span class="sep" aria-hidden="true">›</span><span aria-current="page">Adding and moving chords</span>
+            </nav>
+
+            <div class="guide-title">
+              <h1>Adding and moving chords</h1>
+              
+            </div>
+
+            <p class="guide-lede">Place a chord over the exact word where you change chords, then fix or move it later.</p>
+
+            <nav aria-label="On this page"><details class="guide-toc" open><summary>On this page</summary><ul class="guide-toc__list"><li><a href="#add-a-chord">Add a chord</a></li><li><a href="#change-or-remove-a-chord">Change or remove a chord</a></li><li><a href="#move-a-chord">Move a chord</a></li><li><a href="#switch-between-lyrics-and-chords">Switch between lyrics and chords</a></li><li><a href="#undo-a-mistake">Undo a mistake</a></li></ul></details></nav>
+
+            <h2 id="add-a-chord">Add a chord</h2>
+<ol>
+<li>Open the <strong>Chords</strong> tab.</li>
+<li>Tap the word where the chord changes.</li>
+<li>Choose the root and quality of the chord in the picker.</li>
+<li>Tap <strong>Insert</strong>.</li>
+</ol>
+<div class="guide-shot-row"><figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker sheet showing a G chord with a guitar diagram, option rows and an Insert button"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/qs-02-chord-picker-md.webp" srcset="/assets/images/shots/guide/qs-02-chord-picker-sm.webp 480w, /assets/images/shots/guide/qs-02-chord-picker-md.webp 720w, /assets/images/shots/guide/qs-02-chord-picker-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker sheet showing a G chord with a guitar diagram, option rows and an Insert button" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The chord picker sheet with G selected: big G title, Guitar/Piano toggle, guitar diagram marked &#39;1 of 6&#39;, Root row with G highlighted, Quality, Modifier, Extension rows and Cancel / Insert buttons.</figcaption></figure>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chords tab with a G chord pill above the word morning and a C pill above melody"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/qs-03-chord-inserted-md.webp" srcset="/assets/images/shots/guide/qs-03-chord-inserted-sm.webp 480w, /assets/images/shots/guide/qs-03-chord-inserted-md.webp 720w, /assets/images/shots/guide/qs-03-chord-inserted-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chords tab with a G chord pill above the word morning and a C pill above melody" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Morning Sketch on the Chords tab with a G pill above &#39;morning&#39; on the first line and a C pill above &#39;melody&#39; on the second line.</figcaption></figure></div>
+
+<p>On the Chords tab the keyboard stays hidden and typing is switched off, so the page is just for placing chords.</p>
+<div class="guide-callout guide-callout--tip" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Tip</p><p>The picker lets you build any chord and see its shape. See <a href="/guide/chord-shapes/">Chord shapes</a>.</p></div>
+
+<h2 id="change-or-remove-a-chord">Change or remove a chord</h2>
+<ol>
+<li>Tap a chord pill.</li>
+<li>To change it, pick something else and tap <strong>Update</strong>.</li>
+<li>To remove it, tap the trash button.</li>
+</ol>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chord picker in edit mode showing Em with trash, Cancel and Update buttons"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-02-edit-chord-md.webp" srcset="/assets/images/shots/guide/chd-02-edit-chord-sm.webp 480w, /assets/images/shots/guide/chd-02-edit-chord-md.webp 720w, /assets/images/shots/guide/chd-02-edit-chord-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chord picker in edit mode showing Em with trash, Cancel and Update buttons" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>The chord picker reopened on the Em pill: Em title, Guitar/Piano toggle, diagram &#39;1 of 6&#39;, Root E and Quality Minor selected, a trash button, Cancel and Update.</figcaption></figure>
+
+<p>The picker opens already set to that chord, including the shape you chose.</p>
+<h2 id="move-a-chord">Move a chord</h2>
+<ol>
+<li>Press and hold a chord pill until it lifts off the line.</li>
+<li>Drag it to the word it should sit above. A blinking caret shows where it will land.</li>
+<li>Lift your finger.</li>
+</ol>
+<figure class="guide-clip"><div class="phone-frame"><video class="phone-frame__screen" muted loop playsinline preload="none" poster="/assets/video/guide/qs-chord-drag.jpg" aria-label="A chord pill lifts, slides along the first line to the word light and settles there."><source src="/assets/video/guide/qs-chord-drag.mp4" type="video/mp4"></video><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""><button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button></div><figcaption>On the Chords tab of Morning Sketch the G pill above the first line is held until it lifts, dragged slowly to the end of the line (above the word light) and dropped, where it settles.</figcaption></figure>
+
+<div class="guide-callout guide-callout--heads-up" role="note"><p class="guide-callout__head"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>Heads-up</p><p>Drop the chord on a word. If you let go in empty space below the lyrics, it stays there and is not attached to any word.</p></div>
+
+<h2 id="switch-between-lyrics-and-chords">Switch between lyrics and chords</h2>
+<p>The <strong>Lyrics</strong> and <strong>Chords</strong> tabs show the same song. Chords are hidden on the Lyrics tab so you can read the words on their own.</p>
+<figure class="guide-shot"><button type="button" class="phone-frame" aria-label="Enlarge screenshot: Chords tab of Paper Lanterns with chord pills sitting above each lyric line"><img class="phone-frame__screen guide-shot__light" src="/assets/images/shots/guide/chd-01-chords-tab-md.webp" srcset="/assets/images/shots/guide/chd-01-chords-tab-sm.webp 480w, /assets/images/shots/guide/chd-01-chords-tab-md.webp 720w, /assets/images/shots/guide/chd-01-chords-tab-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chords tab of Paper Lanterns with chord pills sitting above each lyric line" loading="lazy" decoding="async"><img class="phone-frame__screen guide-shot__dark" src="/assets/images/shots/guide/dark-01-chords-md.webp" srcset="/assets/images/shots/guide/dark-01-chords-sm.webp 480w, /assets/images/shots/guide/dark-01-chords-md.webp 720w, /assets/images/shots/guide/dark-01-chords-lg.webp 1080w" sizes="(max-width: 430px) 63vw, 268px" width="720" height="1565" alt="Chords tab in dark mode" loading="lazy" decoding="async"><img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt=""></button><figcaption>Paper Lanterns on the Chords tab, scrolled to the top: Verse 1 badge, chord pills G, Em, C, D above the lyric lines, and the Chorus badge with C, G, D, Em pills.</figcaption></figure>
+
+<h2 id="undo-a-mistake">Undo a mistake</h2>
+<p>The undo and redo buttons are in the bar above the keyboard on the <strong>Lyrics</strong> tab. Switch to <strong>Lyrics</strong>, tap into the text, and tap undo. One undo reverses a whole chord drag.</p>
+
+
+            <nav class="guide-prevnext" aria-label="Previous and next pages"><div class="guide-prevnext__cell"><span class="guide-prevnext__label">Previous</span><a href="/guide/lyrics-and-sections/" rel="prev">Lyrics and sections</a></div><div class="guide-prevnext__cell guide-prevnext__cell--next"><span class="guide-prevnext__label">Next</span><a href="/guide/chord-shapes/" rel="next">Chord shapes</a></div></nav>
+
+            <section class="guide-related" aria-labelledby="related-h"><h2 id="related-h">Related</h2><ul>
+<li><a href="/guide/chord-shapes/">Chord shapes</a></li>
+<li><a href="/guide/lyrics-and-sections/">Lyrics and sections</a></li>
+<li><a href="/guide/key-capo-tuning/">Key, capo and tuning</a></li>
+</ul>
+</section>
+
+            <p class="guide-page__support-footer">
+              Something missing or wrong? Email <a href="mailto:support@songscribe.io">support@songscribe.io</a>
+            </p>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (light tier) -->
+    <footer class="footer section section--light" data-section="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/images/SongScribe-header-logo.webp" alt="SongScribe" width="133" height="32" loading="lazy">
+          <p class="footer-tagline">Built by a musician. For musicians.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+        <p class="footer-legal">© 2026 SongScribe</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/guide.js"></script>
+
+    <script>
+        (function () {
+            const consent = localStorage.getItem('cookie-consent');
+            const banner = document.getElementById('cookie-consent');
+
+            function loadGTM() {
+                const gtmId = 'GTM-M7G6MZ8K';
+                if (gtmId && gtmId !== 'GTM-XXXXXXX') {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', gtmId);
+
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+            }
+
+            if (consent === 'accepted') { loadGTM(); }
+
+            if (!consent && banner) {
+                banner.style.display = 'block';
+                setTimeout(function () { banner.classList.add('show'); }, 10);
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'accepted');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                    loadGTM();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('cookie-consent', 'declined');
+                    banner.classList.remove('show');
+                    setTimeout(function () { banner.style.display = 'none'; }, 300);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
