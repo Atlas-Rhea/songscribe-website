@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Copies guide clip videos and their JPG posters from the docs source into
-// public/assets/video/guide/. Idempotent: skips files that already match in
-// size. Honors do_not_publish on the docs manifest.
+// public/assets/video/guide/. Idempotent: skips files whose bytes already
+// match (a size check alone misses retakes of the same length). Honors
+// do_not_publish on the docs manifest.
 //
 // GUIDE_SRC env var overrides the default docs path.
 
@@ -10,7 +11,6 @@ import {
   existsSync,
   mkdirSync,
   copyFileSync,
-  statSync,
 } from 'node:fs';
 import { resolve, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -39,7 +39,7 @@ function copyIfChanged(src, dest) {
     missing++;
     return;
   }
-  if (existsSync(dest) && statSync(src).size === statSync(dest).size) {
+  if (existsSync(dest) && readFileSync(src).equals(readFileSync(dest))) {
     skipped++;
     return;
   }
