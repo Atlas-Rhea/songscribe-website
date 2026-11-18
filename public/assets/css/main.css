@@ -525,8 +525,8 @@ a:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--color-surface-0);
-  border-top: 1px solid var(--color-border-subtle);
+  background-color: var(--paper-bg);
+  border-top: 1px solid var(--hairline-color);
   padding: var(--space-lg);
   padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
   padding-left: max(var(--space-lg), env(safe-area-inset-left));
@@ -574,7 +574,7 @@ a:hover {
   font-size: var(--text-sm);
   font-weight: 600;
   font-family: var(--font-family);
-  border: 2px solid var(--color-border-subtle);
+  border: 2px solid var(--hairline-color);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -583,7 +583,8 @@ a:hover {
 
 .cookie-accept {
   background-color: var(--color-primary);
-  color: var(--color-text-primary);
+  /* Ink in both themes: the theme's text colour turns cream in dark mode, which washes out on amber */
+  color: var(--ink);
   border-color: var(--color-primary);
 }
 
@@ -599,7 +600,7 @@ a:hover {
 }
 
 .cookie-decline:hover {
-  background-color: var(--color-surface-1);
+  background-color: var(--hairline-color);
   border-color: var(--color-text-secondary);
 }
 
