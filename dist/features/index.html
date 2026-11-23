@@ -334,6 +334,40 @@
             color: var(--color-primary);
         }
 
+        /* Dark theme: main.css locks the surface and border tokens to light values,
+           so re-point them here using decor.css dark tokens. */
+        :root[data-theme="dark"] .features-page {
+            background-color: var(--paper-bg);
+        }
+
+        :root[data-theme="dark"] .header {
+            background-color: var(--ink);
+            border-bottom-color: var(--hairline-color);
+        }
+
+        :root[data-theme="dark"] .feature-section {
+            border-bottom-color: var(--hairline-color);
+        }
+
+        :root[data-theme="dark"] .roadmap-section {
+            background-color: var(--section-bg-dark);
+            border-color: var(--ink-soft);
+        }
+
+        :root[data-theme="dark"] .btn-primary,
+        :root[data-theme="dark"] .nav-badge {
+            color: var(--ink);
+        }
+
+        :root[data-theme="dark"] .features-footer {
+            background-color: var(--section-bg-dark);
+            border-top-color: var(--hairline-color);
+        }
+
+        :root[data-theme="dark"] .tuner-crosslink {
+            color: var(--teal);
+        }
+
         @media (max-width: 600px) {
             .features-masthead,
             .features-body {
