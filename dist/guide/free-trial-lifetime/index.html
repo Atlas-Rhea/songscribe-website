@@ -314,8 +314,18 @@
             if (consent === 'accepted') { loadGTM(); }
 
             if (!consent && banner) {
-                banner.style.display = 'block';
-                setTimeout(function () { banner.classList.add('show'); }, 10);
+                function revealBanner() {
+                    banner.style.display = 'block';
+                    setTimeout(function () { banner.classList.add('show'); }, 10);
+                }
+                // The banner's styles live in main.css, which loads deferred; wait for it.
+                var deferredCss = document.querySelector('link[href$="main.css"][media="print"]');
+                if (deferredCss) {
+                    deferredCss.addEventListener('load', revealBanner);
+                    deferredCss.addEventListener('error', revealBanner);
+                } else {
+                    revealBanner();
+                }
 
                 document.getElementById('cookie-accept').addEventListener('click', function () {
                     localStorage.setItem('cookie-consent', 'accepted');

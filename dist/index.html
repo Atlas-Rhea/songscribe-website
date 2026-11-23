@@ -338,7 +338,7 @@
         <section class="feature feature--reverse section section--cream" data-section="feature-6">
           <div class="section-inner">
             <div class="feature-copy">
-              <h2 class="section-headline feature-headline">Tune up. See how it fits.</h2>
+              <h2 class="section-headline feature-headline">Tune up and find chords that fit.</h2>
               <p class="section-subtitle feature-subtitle">
                 Tune with Chromatic, Guitar, Bass, Vocal or Violin modes. A = 440.
                 Tap any chord in the key to hear how it sounds against the others.
@@ -588,10 +588,18 @@
             }
 
             if (!consent && banner) {
-                banner.style.display = 'block';
-                setTimeout(function () {
-                    banner.classList.add('show');
-                }, 10);
+                function revealBanner() {
+                    banner.style.display = 'block';
+                    setTimeout(function () { banner.classList.add('show'); }, 10);
+                }
+                // The banner's styles live in main.css, which loads deferred; wait for it.
+                var deferredCss = document.querySelector('link[href$="main.css"][media="print"]');
+                if (deferredCss) {
+                    deferredCss.addEventListener('load', revealBanner);
+                    deferredCss.addEventListener('error', revealBanner);
+                } else {
+                    revealBanner();
+                }
 
                 document.getElementById('cookie-accept').addEventListener('click', function () {
                     localStorage.setItem('cookie-consent', 'accepted');
