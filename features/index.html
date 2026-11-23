@@ -27,10 +27,6 @@
     <!-- iOS Smart App Banner -->
     <meta name="apple-itunes-app" content="app-id=6756506993">
 
-    <!-- Preconnects -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
@@ -61,9 +57,11 @@
     </script>
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baskervville-400-normal.woff2" crossorigin>
     <link rel="stylesheet" href="/assets/css/decor.css">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
 
     <style>
         /* -----------------------------------------------
@@ -94,9 +92,9 @@
         }
 
         .features-masthead h1 {
-            font-family: 'Libre Baskerville', Georgia, serif;
+            font-family: 'Baskervville', Georgia, serif;
             font-size: clamp(2.25rem, 5vw, 3.5rem);
-            font-weight: 700;
+            font-weight: 400;
             line-height: 1.15;
             color: var(--color-text-primary);
             margin-bottom: var(--space-lg);
@@ -137,9 +135,9 @@
         }
 
         .feature-section h2 {
-            font-family: 'Libre Baskerville', Georgia, serif;
+            font-family: 'Baskervville', Georgia, serif;
             font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-            font-weight: 700;
+            font-weight: 400;
             color: var(--color-text-primary);
             margin-bottom: var(--space-xl);
             line-height: 1.2;
@@ -230,9 +228,9 @@
         }
 
         .roadmap-section h2 {
-            font-family: 'Libre Baskerville', Georgia, serif;
+            font-family: 'Baskervville', Georgia, serif;
             font-size: clamp(1.25rem, 3vw, 1.875rem);
-            font-weight: 700;
+            font-weight: 400;
             color: var(--color-text-primary);
             margin-bottom: var(--space-md);
         }
@@ -387,7 +385,7 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
         <div class="cookie-consent-content">
-            <p>We use cookies to analyze site traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+            <p>We use analytics cookies to see how the site is used. They only load if you accept.</p>
             <div class="cookie-consent-buttons">
                 <button id="cookie-accept" class="cookie-button cookie-accept">Accept</button>
                 <button id="cookie-decline" class="cookie-button cookie-decline">Decline</button>
@@ -442,14 +440,14 @@
 
                 <p>
                     The guitar sound in SongScribe is not a sample. There is no recording of a guitar string that
-                    gets triggered when you tap a chord. Instead, the sound is generated in real time from a physical
-                    model of how a string actually behaves when plucked.
+                    gets triggered when you tap a chord. The sound is generated in real time from a physical
+                    model of how a string behaves when plucked.
                 </p>
 
                 <p>
                     The synthesis method is called Karplus-Strong, named for the researchers who formalized it. The
                     core idea is that a plucked string can be modeled as a burst of noise that represents the pick
-                    attack, circulating through a short delay line with a carefully tuned feedback loop.
+                    attack, circulating through a short delay line with a tuned feedback loop.
                     The delay length determines pitch. The feedback shaping determines timbre and decay.
                 </p>
 
@@ -507,8 +505,7 @@
 
                 <p>
                     For slide players, open tunings, and anyone who writes in a non-standard configuration,
-                    this means the app is actually useful rather than requiring you to mentally transpose
-                    everything.
+                    this means you can write in your own tuning without transposing in your head.
                 </p>
             </div>
 
@@ -520,7 +517,7 @@
                 <p>
                     Guitar, bass, ukulele, mandolin and banjo, with a piano keyboard view. Each instrument
                     has its own physical model and its own set of constraints. They are not guitar with
-                    different tuning presets, and the audio is synthesised — there are no samples.
+                    different tuning presets, and the audio is synthesised (there are no samples).
                 </p>
 
                 <div class="detail-block">
@@ -536,8 +533,7 @@
                     <p><strong>Mandolin:</strong> Eight strings in four pairs, tuned G-D-A-E. The doubled
                     strings create the mandolin's characteristic shimmer.</p>
                     <p><strong>Piano keyboard view:</strong> A keyboard on screen for chord preview and
-                    voice-leading reference. It is a view onto the same synthesised engine, not a separate
-                    song instrument.</p>
+                    voice-leading reference. It is a view onto the same synthesised engine.</p>
                 </div>
 
                 <p>
@@ -568,8 +564,7 @@
                 <p>
                     This is particularly useful for worship musicians and gigging guitarists who need to
                     lock in with a capo position, or for anyone working through the neck systematically.
-                    The piano view shows the equivalent voicing across the keyboard rather than fretboard
-                    positions.
+                    The piano view shows the same voicing on a keyboard.
                 </p>
             </div>
 
@@ -624,15 +619,13 @@
                 <div class="detail-block">
                     <p><strong>On privacy:</strong> The microphone is only active when you explicitly start
                     a recording. Recordings live in iCloud Drive under your own account when iCloud is on,
-                    or stay local when it isn't. Nothing is stored on a SongScribe server, processed remotely,
-                    or shared with any third party. The microphone permission is used for recording; it is
-                    not used for anything else.</p>
+                    or stay local when iCloud is off. Nothing is stored on a SongScribe server, processed remotely,
+                    or shared with any third party. The microphone permission is used only for recording.</p>
                 </div>
 
                 <p>
                     The goal is to capture ideas before they disappear, in the context where they belong.
-                    A rough demo of the verse melody stays attached to the verse of that song, not in a
-                    separate folder somewhere you will not find it again.
+                    A rough demo of the verse melody stays attached to the verse of that song.
                 </p>
             </div>
 
@@ -674,8 +667,8 @@
 
                 <p>
                     Key detection is a button in Song Settings called "Detect from chords". It reads the
-                    chords you've written and reports its best guess with a confidence percentage —
-                    "Detected G (85% confidence)" — so you can decide whether to accept it. The Harmony
+                    chords you've written and reports its best guess with a confidence percentage
+                    ("Detected G (85% confidence)") so you can decide whether to accept it. The Harmony
                     card then recalculates around the key you set.
                 </p>
 
@@ -702,7 +695,7 @@
                     <code>.chord</code>, <code>.crd</code>), plain text (<code>.txt</code>), pasted lyrics,
                     and <code>.songscribe</code> files. ChordPro section markers come through as sections and
                     the title, key and tempo come through where they are present.</p>
-                    <p><strong>Export:</strong><span class="lifetime-tag">Lifetime</span> PDF in three styles — Lyric, Busker and Musician — with
+                    <p><strong>Export:</strong><span class="lifetime-tag">Lifetime</span> PDF in three styles (Lyric, Busker and Musician) with
                     one- or two-column options and auto-fit font sizing. ChordPro export produces a file
                     that any other ChordPro-compatible app can open. Plain text export produces a clean,
                     readable file that anyone can open without special software.</p>
@@ -710,8 +703,7 @@
 
                 <p>
                     The export system is designed for situations where you need to share a song with bandmates
-                    who do not use SongScribe. The PDF output is formatted to be readable on the stand,
-                    not a raw data dump.
+                    who do not use SongScribe. The PDF output is formatted to be readable on the stand.
                 </p>
             </div>
 
@@ -721,8 +713,7 @@
                 <h2>Performance Mode</h2>
 
                 <p>
-                    Performance mode removes everything except the song. No toolbar. No editing controls.
-                    No notifications. Only lyrics and chords in large, readable text against a clean background.
+                    Performance mode removes everything except the song. There is no toolbar, no editing controls and no notifications. Only lyrics and chords in large, readable text against a clean background.
                 </p>
 
                 <p>
@@ -746,11 +737,11 @@
                 <p>
                     SongScribe works fully offline. Your songs, your recordings, your setlists and your chord
                     edits do not need a network connection. Syncing between your own devices goes through your
-                    own iCloud account — nothing is stored on a SongScribe server.
+                    own iCloud account, and nothing is stored on a SongScribe server.
                 </p>
 
                 <ul class="spec-list">
-                    <li>No account required. No email address. No password.</li>
+                    <li>No account, email address or password is needed.</li>
                     <li>The app functions fully on first launch with no sign-in step.</li>
                     <li>Songs, setlists and recordings sync through your own iCloud account when the device is signed in; the app has no iCloud switch of its own.</li>
                     <li>There is no analytics on your songwriting activity. The app does not track which songs you open, how long you spend editing, or what chords you use.</li>
@@ -758,9 +749,9 @@
                 </ul>
 
                 <p>
-                    The offline-first architecture is not a marketing position. It started as a practical
+                    The offline-first design started as a practical
                     necessity: the app was built by a busker who lost his set because of a cellular dead zone.
-                    It stayed offline-first because it is the right design for an instrument.
+                    It stayed offline-first because that suits an instrument.
                 </p>
             </div>
 
@@ -768,9 +759,8 @@
             <div class="roadmap-section">
                 <h2>On the Roadmap</h2>
                 <p class="roadmap-caveat">
-                    These are things we are genuinely thinking about building. No dates. No promises.
-                    "On the roadmap" means it has been seriously considered and is likely to happen,
-                    not that it has been scheduled or committed to.
+                    These are things we are thinking about building. No dates, no promises.
+                    "On the roadmap" means it has been seriously considered and is likely to happen, but it has not been scheduled.
                 </p>
                 <div class="roadmap-items">
                     <div class="roadmap-item">
@@ -793,7 +783,7 @@
                         <div class="roadmap-item-title">Rhyming dictionary</div>
                         <div class="roadmap-item-desc">
                             Built into the lyric editor. Look up rhymes without leaving the song.
-                            The goal is something fast and unobtrusive, not a separate screen.
+                            The goal is something fast and unobtrusive.
                         </div>
                     </div>
                     <div class="roadmap-item">
@@ -817,7 +807,7 @@
 
             <!-- Download CTA -->
             <div class="features-cta">
-                <p>SongScribe is free to download. Unlock all features with a one-time purchase.</p>
+                <p>SongScribe is free to download. The free version holds 10 songs with 5 recordings each. A one-time Lifetime purchase ($19.95 in the US) removes those limits and adds Export, overdub layers, lossless recording and footswitch control. Setlists and Performance mode stay free.</p>
                 <a href="https://apps.apple.com/app/id6756506993" class="btn btn-primary btn-large" target="_blank" rel="noopener">
                     Download for iOS
                 </a>
