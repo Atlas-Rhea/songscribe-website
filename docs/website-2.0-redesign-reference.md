@@ -56,15 +56,19 @@ Add to the Google Fonts import:
 
 ---
 
-## 2. Approved Copy
+## 2. Copy Direction
 
 ### Source File
 `session/app-store-copy-2.0.md`
 
-The website copy should draw from the same well as the App Store listing. Use the description body as the basis for feature section text.
+The website copy draws from the same well as the App Store listing. The description body is a good starting point for feature section text, not a script.
 
-### Section Headers (locked to carousel)
-These 10 headlines are the canonical section names. Use them as-is on the website:
+### What's fixed and what's free
+- **Fixed:** product facts (`../songscribe-offline-muse/docs/website-guide/facts.md`, including its "Must not say" list), the Free vs Lifetime split, and the brand voice rules below.
+- **Free:** headlines, subtitles and body copy can be rewritten, merged or replaced when a different line reads better on the web, says more, or avoids repeating a pattern used elsewhere on the page. Keep the carousel's tone so the site and the App Store still feel like one product.
+
+### Section Headers (from the carousel)
+These 10 headlines are the carousel's section names. Use them as a starting point; reuse them where they work, rewrite them where something better fits:
 
 1. Write songs the way you play
 2. No WiFi. No account. No problem.
@@ -108,7 +112,7 @@ These are the original app captures before carousel compositing. Use these insid
 | `04-multi-track-recording.png` | Multi-track recording |
 | `05-performance-mode.png` | Performance mode |
 | `06-export-preview.png` | Export / PDF preview |
-| `07-theme-grid.png` | Theme grid (16 themes) |
+| `07-theme-grid.png` | Theme grid (17 themes) |
 | `08-metronome.png` | Metronome |
 | `09-tuner.png` | Tuner |
 | `10-fretboard-diagram.png` | Reverse chord search |
@@ -248,7 +252,7 @@ Work on `songscribe-dev` branch, not `main`. Deploy previews via Cloudflare Page
 
 ## 6. Carousel Headline & Subtitle Mapping
 
-Each slide has a locked headline and two subtitle candidates (A/B). Final subtitle selection is pending.
+Each slide has a carousel headline and two subtitle candidates (A/B). On the website these are reference copy, not fixed text (see section 2).
 
 | # | Headline | Subtitle A | Subtitle B | Screenshot |
 |---|----------|-----------|-----------|------------|
@@ -270,11 +274,11 @@ Each slide has a locked headline and two subtitle candidates (A/B). Final subtit
 For detailed feature specs and capability lists, see:
 `content/songscribe-2.0-feature-reference.md`
 
-Key facts for copy:
+Key facts for copy (`../songscribe-offline-muse/docs/website-guide/facts.md` wins wherever it differs):
 - 5 instruments: guitar, bass, ukulele, mandolin, banjo
-- 25+ tuning presets
-- Up to 4 overdub layers per song
-- 16 visual themes (light and dark)
+- 19 tuning presets plus your own
+- Up to 4 layers on a take
+- 17 visual themes (light and dark)
 - 5 fonts, 3 text sizes, 5 click sounds
 - Time signatures up to 12/16
 - Export: PDF (3 styles), ChordPro, ASCII, plain text
