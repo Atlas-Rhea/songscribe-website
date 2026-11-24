@@ -1340,6 +1340,35 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   font-weight: bold;
 }
 
+.app-store-badge {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 8px;
+}
+
+.app-store-badge img {
+  display: block;
+  height: 54px;
+  width: auto;
+}
+
+.app-store-badge:focus-visible {
+  outline: 2px solid var(--amber-soft);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .app-store-badge {
+    transition: translate 150ms ease-out;
+  }
+  .app-store-badge:hover {
+    translate: 0 -1px;
+  }
+  .app-store-badge:active {
+    translate: 0 1px;
+  }
+}
+
 /* -------------------------------------------------------------
    Footer
    ------------------------------------------------------------- */
