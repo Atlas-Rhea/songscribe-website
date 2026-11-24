@@ -11,6 +11,11 @@ function wireClip(clip) {
   const btn = clip.querySelector('.guide-clip__toggle');
   if (!video || !btn) return;
 
+  // Safari drops the poster the moment play() is called and shows the
+  // element's background until the first frame decodes; painting the poster
+  // there too hides that gap.
+  if (video.poster) video.style.background = `url("${video.poster}") center / cover`;
+
   const toggle = () => {
     if (video.paused) {
       delete clip.dataset.userPaused;
@@ -44,7 +49,24 @@ function wireAutoplay(clips) {
     }
   }, { threshold: 0.6 });
 
-  clips.forEach((clip) => io.observe(clip));
+  // Start downloading a screen ahead so the first frame is ready by the time
+  // the clip is far enough in view to play.
+  const prefetch = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      prefetch.unobserve(entry.target);
+      const video = entry.target.querySelector('video');
+      if (video && video.preload === 'none') {
+        video.preload = 'auto';
+        video.load();
+      }
+    }
+  }, { rootMargin: '100% 0px' });
+
+  clips.forEach((clip) => {
+    io.observe(clip);
+    prefetch.observe(clip);
+  });
 }
 
 export function initClips() {
