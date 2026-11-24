@@ -17,14 +17,21 @@ html body {
   background-color: var(--paper-bg);
 }
 
-/* Safari 26 ignores theme-color and tints its status bar from the
-   page background, so pages that open with the dark strip give <html>
-   the strip's colour (body keeps the paper). The v2 sections already
-   pad for safe areas themselves, so drop main.css's <html> padding,
-   which would otherwise show as dark bars beside the page in landscape. */
-html:has(> body > .strip) {
-  background-color: var(--section-bg-dark);
-  padding: 0;
+/* Safari 26 ignores theme-color and tints its status bar from the body
+   background, unless a fixed element touches the top edge, in which
+   case it samples that. This bar gives Safari the strip's colour while
+   the strip is on screen; src/status-tint.js hides it afterwards so the
+   status bar goes back to normal over the light page. On other
+   browsers it only ever sits over the strip itself, same colour. */
+.status-tint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  z-index: 10000;
+  background: var(--section-bg-dark);
+  pointer-events: none;
 }
 
 /* -------------------------------------------------------------
