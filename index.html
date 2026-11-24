@@ -30,8 +30,8 @@
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#2C1810" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0C0604" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F0EBE6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#2C1810" media="(prefers-color-scheme: dark)">
 
     <!-- iOS Smart App Banner -->
     <meta name="apple-itunes-app" content="app-id=6756506993">
@@ -121,16 +121,6 @@
 
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <!-- Section 1: Announcement strip (dark tier) -->
-    <div class="status-tint" aria-hidden="true" hidden></div>
-    <section class="strip section section--dark" data-section="strip">
-      <div class="section-inner strip-inner">
-        <p class="strip-text">SongScribe is out now for iPhone and iPad.</p>
-        <a class="strip-link" href="#pricing">
-          See pricing <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </section>
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-consent" style="display: none;">
@@ -143,7 +133,7 @@
         </div>
     </div>
 
-    <!-- Section 2: Navigation (light tier) -->
+    <!-- Navigation (light tier) -->
     <section class="nav-section section section--light" data-section="nav">
       <nav class="section-inner nav-inner" aria-label="Primary">
         <a class="nav-logo" href="/" aria-label="SongScribe home">
@@ -168,6 +158,16 @@
           <a class="btn btn-primary" href="#pricing">Get SongScribe</a>
         </div>
       </nav>
+    </section>
+
+    <!-- Announcement strip, under the nav so only light content sits under Safari's status bar (dark tier) -->
+    <section class="strip section section--dark" data-section="strip">
+      <div class="section-inner strip-inner">
+        <p class="strip-text">SongScribe is out now for iPhone and iPad.</p>
+        <a class="strip-link" href="#pricing">
+          See pricing <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </section>
 
     <main id="main-content">
@@ -290,7 +290,8 @@
         </section>
 
         <!-- Setlist — scroll moment 1 (src/setlist-drum.js): from 1024px wide and 640px tall the card
-             holds for one screen while the set rolls on a drum; otherwise a plain numbered list -->
+             holds for one screen while the set rolls on a drum; otherwise a numbered list whose highlight
+             follows the song crossing the middle of the screen -->
         <section class="section section--light setlist" data-section="setlist" data-scroll-moment="setlist-drum" aria-labelledby="setlist-h">
           <div class="section-inner setlist__grid">
             <div class="setlist__copy">

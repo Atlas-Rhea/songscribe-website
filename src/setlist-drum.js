@@ -6,6 +6,9 @@ const fits = () => wideQuery.matches && !reducedQuery.matches && innerHeight >= 
 
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v))
 
+// Live (big screens): the section pins and the set turns on a drum.
+// Otherwise (phones, short screens, reduced motion): a flat list whose
+// highlight follows the song crossing the middle of the screen.
 export function initSetlistDrum() {
   const root = document.querySelector('[data-scroll-moment="setlist-drum"]')
   if (!root) return
@@ -14,6 +17,10 @@ export function initSetlistDrum() {
   const count = root.querySelector('.setlist__count')
   if (!drum || songs.length < 2 || !count) return
   const last = songs.length - 1
+  // The drum's view stays one row in from each end so its window is
+  // always full; the highlight still reaches the first and last song.
+  const viewMin = Math.min(1, last / 2)
+  const viewMax = Math.max(last - 1, last / 2)
 
   let live = false, raf = 0, pos = -1, on = 0
 
@@ -33,24 +40,34 @@ export function initSetlistDrum() {
     const next = clamp((p - 0.1) / 0.8, 0, 1) * last
     if (next === pos) return
     pos = next
-    drum.style.setProperty('--pos', pos.toFixed(4))
+    drum.style.setProperty('--pos', clamp(pos, viewMin, viewMax).toFixed(4))
     select(Math.round(pos))
   }
   let near = true
-  const request = () => { if (near && !raf) raf = requestAnimationFrame(tick) }
+  const request = () => { if (live && near && !raf) raf = requestAnimationFrame(tick) }
   new IntersectionObserver(([entry]) => {
     near = entry.isIntersecting
     if (near) request()
   }, { rootMargin: '100px' }).observe(root)
 
+  const middleLine = new IntersectionObserver(entries => {
+    if (live) return
+    for (const entry of entries) {
+      if (entry.isIntersecting) select(songs.indexOf(entry.target))
+    }
+  }, { rootMargin: '-49% 0px -50% 0px' })
+  songs.forEach(song => middleLine.observe(song))
+
   const go = () => {
     if (live) { request(); return }
     live = true
+    root.classList.remove('is-follow')
     root.classList.add('is-live')
     addEventListener('scroll', request, { passive: true })
     request()
   }
   const rest = () => {
+    root.classList.add('is-follow')
     if (!live) return
     live = false
     removeEventListener('scroll', request)
@@ -59,7 +76,6 @@ export function initSetlistDrum() {
     pos = -1
     root.classList.remove('is-live')
     drum.style.removeProperty('--pos')
-    select(0)
   }
   const sync = () => (fits() ? go() : rest())
 

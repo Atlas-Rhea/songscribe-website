@@ -520,20 +520,21 @@ a:hover {
    Cookie Consent Banner
    ============================================================================= */
 
+/* A small floating card on every screen size; on phones it sits just
+   above the home indicator so Safari's floating address bar doesn't
+   stack on top of a full-width sheet. */
 .cookie-consent {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + var(--space-sm));
+  left: max(var(--space-sm), env(safe-area-inset-left));
+  right: max(var(--space-sm), env(safe-area-inset-right));
   background-color: var(--paper-bg);
-  border-top: 1px solid var(--hairline-color);
-  padding: var(--space-md);
-  padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
-  padding-left: max(var(--space-md), env(safe-area-inset-left));
-  padding-right: max(var(--space-md), env(safe-area-inset-right));
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--hairline-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm) var(--space-md);
+  box-shadow: var(--shadow-lg);
   z-index: var(--z-cookie);
-  transform: translateY(100%);
+  transform: translateY(calc(100% + var(--space-xxl)));
   transition: transform 0.3s ease-out;
 }
 
@@ -555,10 +556,6 @@ a:hover {
     width: calc(100% - 2 * var(--space-lg));
     max-width: 22rem;
     padding: var(--space-md);
-    border: 1px solid var(--hairline-color);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(calc(100% + var(--space-xxl)));
   }
 }
 
@@ -575,7 +572,7 @@ a:hover {
 
 .cookie-button {
   flex: 1;
-  min-height: 44px;
+  min-height: 40px;
   padding: var(--space-xs) var(--space-md);
   font-size: var(--text-sm);
   font-weight: 600;

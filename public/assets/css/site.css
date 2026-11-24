@@ -17,23 +17,6 @@ html body {
   background-color: var(--paper-bg);
 }
 
-/* Safari 26 ignores theme-color and tints its status bar from the body
-   background, unless a fixed element touches the top edge, in which
-   case it samples that. This bar gives Safari the strip's colour while
-   the strip is on screen; src/status-tint.js hides it afterwards so the
-   status bar goes back to normal over the light page. On other
-   browsers it only ever sits over the strip itself, same colour. */
-.status-tint {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 12px;
-  z-index: 10000;
-  background: var(--section-bg-dark);
-  pointer-events: none;
-}
-
 /* -------------------------------------------------------------
    Skip-to-content link — visually hidden until keyboard-focused,
    then pops into the top-left corner. Keyboard-only users can
@@ -178,8 +161,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
    ------------------------------------------------------------- */
 /* Specificity bump (.strip.section) to override :first-of-type / :last-of-type. */
 .strip.section .section-inner {
-  padding-top: max(0.75rem, env(safe-area-inset-top));
-  padding-bottom: 0.75rem;
+  padding-block: 0.75rem;
 }
 
 .strip-inner {
@@ -226,6 +208,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 /* Specificity bump (.nav-section.section) to override :first-of-type / :last-of-type. */
 .nav-section.section .section-inner {
   padding-block: 1rem;
+  padding-top: max(1rem, env(safe-area-inset-top));
 }
 
 .nav-section .nav-inner {
@@ -341,7 +324,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   .nav-section .nav-links { display: none; }
   /* Nav CTA overflows at 390px because logo + toggle + button won't
      fit. Users can still convert via the hero CTA or the pricing
-     link in the announcement strip above. */
+     link in the announcement strip below. */
   .nav-section .nav-actions .btn { display: none; }
   .nav-section .nav-menu-toggle { display: inline-flex; }
 
@@ -972,9 +955,11 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 /* -------------------------------------------------------------
    Setlist — scroll moment 1 (src/setlist-drum.js). The card copies
    the app's Setlist Order card (guide shot set-01): numbered amber
-   badges on a light card. At rest it is a flat numbered list; live
-   (.is-live) the section is two screens, the grid sticks for one
-   and the songs sit on a drum turned by --pos (0 to last index).
+   badges on a light card. Without JS it is a flat numbered list;
+   .is-follow (phones, reduced motion) keeps it flat and lights the
+   song crossing the middle of the screen; live (.is-live) the
+   section is two screens, the grid sticks for one and the songs sit
+   on a drum turned by --pos (held one row in from each end).
    Badge numbers are ink, not the app's white: white on amber is
    about 2:1.
    ------------------------------------------------------------- */
@@ -1075,6 +1060,44 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   color: var(--ink);
 }
 
+.setlist.is-follow .setlist__count {
+  display: inline;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .setlist.is-follow .setlist__song,
+  .setlist.is-follow .setlist__badge {
+    transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+  }
+}
+
+@media (min-width: 1024px) {
+  .setlist {
+    --setlist-row: 5rem;
+  }
+  .setlist__grid {
+    grid-template-columns: 1fr minmax(360px, 540px);
+  }
+  .setlist__card {
+    padding: 2.25rem 2.25rem 1rem;
+  }
+  .setlist__name {
+    font-size: 2.5rem;
+  }
+  .setlist__count {
+    font-size: 1.125rem;
+  }
+  .setlist__song {
+    font-size: 1.5rem;
+    gap: 1.25rem;
+  }
+  .setlist__badge {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 1023px) {
   .setlist__grid {
     grid-template-columns: 1fr;
@@ -1118,7 +1141,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   --pos: 0;
   --r: calc(var(--setlist-row) * 2.67);
   position: relative;
-  height: calc(var(--setlist-row) * 5);
+  height: calc(var(--setlist-row) * 4);
   perspective: 60rem;
   overflow: hidden;
 }
@@ -1133,6 +1156,12 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   backface-visibility: hidden;
   transform: translateZ(calc(var(--r) * -1)) rotateX(calc(var(--d) * -22deg)) translateZ(var(--r));
   opacity: clamp(0, calc(1 - max(var(--d), var(--d) * -1) * 0.4), 1);
+}
+
+/* The view holds one row in from the ends, so the first and last
+   song are lit off-centre; keep them fully visible. */
+.setlist.is-live .setlist__song.is-on {
+  opacity: 1;
 }
 
 /* -------------------------------------------------------------
