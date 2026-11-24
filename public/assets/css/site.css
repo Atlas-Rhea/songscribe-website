@@ -1361,16 +1361,22 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   background: var(--ink);
 }
 
+.guide-clip video {
+  cursor: pointer;
+}
+
+/* Sits just outside the phone's lower right edge: every corner of
+   the recorded screen holds app UI, so a control on the screen
+   reads as part of the app. */
 .guide-clip__toggle {
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 64px;
-  height: 64px;
+  left: calc(100% + 10px);
+  bottom: 2.5%;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
-  border: 2px solid var(--cream-warm);
+  border: 0;
   background: rgba(44, 24, 16, 0.6);
   color: var(--cream-warm);
   display: inline-flex;
@@ -1380,9 +1386,20 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
 }
 
+:root[data-theme="dark"] .guide-clip__toggle {
+  background: rgba(245, 235, 220, 0.16);
+  border: 1px solid rgba(245, 235, 220, 0.3);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .guide-clip__toggle {
+    background: rgba(245, 235, 220, 0.16);
+    border: 1px solid rgba(245, 235, 220, 0.3);
+  }
+}
+
 .guide-clip__toggle svg {
-  width: 26px;
-  height: 26px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
 }
 
@@ -1397,7 +1414,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 
 .guide-clip__toggle:hover {
   background: rgba(44, 24, 16, 0.8);
-  transform: translate(-50%, -50%) scale(1.04);
+  transform: scale(1.06);
 }
 
 .guide-clip__toggle:focus-visible {
@@ -1411,7 +1428,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 
 @media (hover: none) {
   .guide-clip.is-playing .guide-clip__toggle {
-    opacity: .7;
+    opacity: .6;
   }
 }
 
@@ -1423,7 +1440,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 @media (prefers-reduced-motion: reduce) {
   .guide-clip__toggle,
   .guide-clip__toggle:hover {
-    transform: translate(-50%, -50%);
+    transform: none;
     transition: none;
   }
 }

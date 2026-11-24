@@ -11,7 +11,7 @@ function wireClip(clip) {
   const btn = clip.querySelector('.guide-clip__toggle');
   if (!video || !btn) return;
 
-  btn.addEventListener('click', () => {
+  const toggle = () => {
     if (video.paused) {
       delete clip.dataset.userPaused;
       video.play().catch(() => {});
@@ -19,7 +19,9 @@ function wireClip(clip) {
       clip.dataset.userPaused = '1';
       video.pause();
     }
-  });
+  };
+  btn.addEventListener('click', toggle);
+  video.addEventListener('click', toggle);
 
   video.addEventListener('play', () => setToggleState(clip, true));
   video.addEventListener('pause', () => setToggleState(clip, false));
