@@ -56,6 +56,9 @@
   position: sticky;
   top: 1rem;
   align-self: start;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100svh - 2rem);
+  overflow-y: auto;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -118,6 +121,8 @@
 @media (max-width: 960px) {
   .guide-sidenav {
     position: static;
+    max-height: none;
+    overflow-y: visible;
     border: 1px solid var(--hairline-color);
     border-radius: 10px;
     padding: 0;
@@ -587,14 +592,6 @@ button.phone-frame:focus-visible {
   }
 }
 
-/* Clips are raw screen recordings with square corners; round them
-   to the same arc the screenshot pipeline bakes into the webps
-   (16% x 15.2% of width, i.e. ~7% of a 0.46-aspect height). */
-.guide-clip video.phone-frame__screen {
-  border-radius: 16% / 7%;
-  background: var(--ink);
-}
-
 .guide-shot figcaption,
 .guide-clip figcaption {
   margin-top: 0.85rem;
@@ -604,60 +601,6 @@ button.phone-frame:focus-visible {
   line-height: 1.5;
   color: var(--text-secondary);
 }
-
-.guide-clip__toggle {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  border: 2px solid var(--cream-warm);
-  background: rgba(44, 24, 16, 0.6);
-  color: var(--cream-warm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
-}
-
-.guide-clip__toggle svg {
-  width: 26px;
-  height: 26px;
-  fill: currentColor;
-}
-
-.guide-clip__toggle .icon-pause,
-.guide-clip.is-playing .guide-clip__toggle .icon-play {
-  display: none;
-}
-
-.guide-clip.is-playing .guide-clip__toggle .icon-pause {
-  display: block;
-}
-
-.guide-clip__toggle:hover {
-  background: rgba(44, 24, 16, 0.8);
-  transform: translate(-50%, -50%) scale(1.04);
-}
-
-.guide-clip__toggle:focus-visible {
-  outline: 2px solid var(--amber);
-  outline-offset: 3px;
-}
-
-.guide-clip.is-playing .guide-clip__toggle {
-  opacity: 0;
-}
-
-.guide-clip.is-playing:hover .guide-clip__toggle,
-.guide-clip.is-playing .guide-clip__toggle:focus-visible {
-  opacity: 1;
-}
-
 
 /* -------------------------------------------------------------
    9. Related, prev/next, support footer
@@ -934,9 +877,7 @@ button.phone-frame:focus-visible {
    ------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .guide-index-feature,
-  .guide-index-feature:hover,
-  .guide-clip__toggle,
-  .guide-clip__toggle:hover {
+  .guide-index-feature:hover {
     transform: none;
     transition: none;
   }

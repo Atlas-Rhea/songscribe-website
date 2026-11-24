@@ -265,7 +265,7 @@ body.decor-paper,
 
    HARD INVARIANT — do NOT raise any of the `bottom:` / `top:` edge
    offsets past --wash-bleed-max. Section z-indexes descend
-   (Hero=10 → pricing=1), so a wash bleeding from F_n paints ABOVE
+   (Hero=12 → pricing=2), so a wash bleeding from F_n paints ABOVE
    F_{n+1} and can cover neighbour phones/copy if it reaches them.
    All feature sections have exactly 112px clearance from section
    edge to phone-frame, so 80px keeps a 32px safety band. The
@@ -442,7 +442,7 @@ body.decor-paper,
 
 /* -------------------------------------------------------------
    4. Decor SVGs — music notes and quills
-      Scattered absolute-positioned elements with gentle animation.
+      Scattered absolute-positioned elements, static.
    ------------------------------------------------------------- */
 .decor-note,
 .decor-quill {
@@ -451,39 +451,10 @@ body.decor-paper,
   user-select: none;
   z-index: 1;
   mix-blend-mode: var(--note-blend);
-  will-change: transform;
 }
 
 .decor-note  { opacity: var(--note-opacity);  width: 48px;  height: auto; }
 .decor-quill { opacity: var(--quill-opacity); width: 180px; height: auto; mix-blend-mode: var(--quill-blend); }
-
-/* Gentle float for notes — stagger via delay classes */
-@keyframes note-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-10px) rotate(3deg); }
-}
-.decor-note { animation: note-float 6.5s ease-in-out infinite; }
-.decor-note.n-2 { animation-duration: 7.2s; animation-delay: -1.8s; }
-.decor-note.n-3 { animation-duration: 5.8s; animation-delay: -3.1s; }
-.decor-note.n-4 { animation-duration: 8.0s; animation-delay: -4.4s; }
-.decor-note.n-5 { animation-duration: 6.0s; animation-delay: -2.5s; }
-.decor-note.n-6 { animation-duration: 7.6s; animation-delay: -0.9s; }
-
-/* Breath sway for quills — slower, wider, pivots from feather tip */
-@keyframes quill-sway {
-  0%, 100% { transform: rotate(-1.8deg) translateY(0); }
-  50%      { transform: rotate(1.8deg)  translateY(-4px); }
-}
-.decor-quill {
-  transform-origin: 50% 95%;
-  animation: quill-sway 11s ease-in-out infinite;
-}
-.decor-quill.q-2 { animation-duration: 13s; animation-delay: -3.5s; }
-
-/* Respect reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .decor-note, .decor-quill { animation: none; }
-}
 
 
 /* -------------------------------------------------------------

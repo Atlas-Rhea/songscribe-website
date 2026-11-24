@@ -69,16 +69,17 @@ html body {
    the paint order without touching section isolation (which washes
    still need). Values count down so every neighbor pair is correctly
    ordered regardless of which tier combination meets at the boundary. */
-main#main-content > .section:nth-of-type(1)  { z-index: 10; }
-main#main-content > .section:nth-of-type(2)  { z-index:  9; }
-main#main-content > .section:nth-of-type(3)  { z-index:  8; }
-main#main-content > .section:nth-of-type(4)  { z-index:  7; }
-main#main-content > .section:nth-of-type(5)  { z-index:  6; }
-main#main-content > .section:nth-of-type(6)  { z-index:  5; }
-main#main-content > .section:nth-of-type(7)  { z-index:  4; }
-main#main-content > .section:nth-of-type(8)  { z-index:  3; }
-main#main-content > .section:nth-of-type(9)  { z-index:  2; }
-main#main-content > .section:nth-of-type(10) { z-index:  1; }
+main#main-content > .section:nth-of-type(1)  { z-index: 12; }
+main#main-content > .section:nth-of-type(2)  { z-index: 11; }
+main#main-content > .section:nth-of-type(3)  { z-index: 10; }
+main#main-content > .section:nth-of-type(4)  { z-index:  9; }
+main#main-content > .section:nth-of-type(5)  { z-index:  8; }
+main#main-content > .section:nth-of-type(6)  { z-index:  7; }
+main#main-content > .section:nth-of-type(7)  { z-index:  6; }
+main#main-content > .section:nth-of-type(8)  { z-index:  5; }
+main#main-content > .section:nth-of-type(9)  { z-index:  4; }
+main#main-content > .section:nth-of-type(10) { z-index:  3; }
+main#main-content > .section:nth-of-type(11) { z-index:  2; }
 
 /* Light tier: transparent ground — reveals body's paper so consecutive
    light/cream sections read as one continuous parchment slab with no
@@ -612,6 +613,38 @@ main#main-content > .section:nth-of-type(10) { z-index:  1; }
   }
 }
 
+/* Hero entrance, once on load. Children only: .hero.section sets
+   animation:none above. The phone animates transform only so the LCP
+   image is never transparent. Fill-mode both holds the end state with no
+   script; html.m-enter is set by the inline bootstrap. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes hero-scrim {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes hero-phone-in {
+    from { transform: translateY(24px) scale(0.98); }
+    to   { transform: none; }
+  }
+  html.m-enter .hero[data-enter] .hero-headline,
+  html.m-enter .hero[data-enter] .hero-subtitle,
+  html.m-enter .hero[data-enter] .hero-cta {
+    animation: hero-rise 600ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+  html.m-enter .hero[data-enter] .hero-subtitle { animation-delay: 120ms; }
+  html.m-enter .hero[data-enter] .hero-cta { animation-delay: 220ms; }
+  html.m-enter .hero[data-enter] .hero-copy::before {
+    animation: hero-scrim 600ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+  html.m-enter .hero[data-enter] .hero-phone-frame {
+    animation: hero-phone-in 900ms cubic-bezier(.16, 1, .3, 1) 150ms both;
+  }
+}
+
 /* -------------------------------------------------------------
    Hero CTAs — ink serif text-links, arrow glyph, dot separator
    Specificity bump (.hero .hero-cta .btn) beats v1 main.css's
@@ -729,6 +762,83 @@ main#main-content > .section:nth-of-type(10) { z-index:  1; }
   .feature-subtitle { margin-inline: auto; }
 }
 
+/* Statement: type only, no phone. Fills one screen on desktop with the
+   copy centred; phones get natural height. */
+.feature--statement .section-inner {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.feature--statement .feature-headline {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1.02;
+  max-width: 13ch;
+  margin-inline: auto;
+}
+
+.feature--statement .feature-subtitle {
+  font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
+  max-width: 44ch;
+  margin-inline: auto;
+}
+
+@media (min-width: 769px) {
+  .feature--statement {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+  }
+  .feature--statement .section-inner {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature--statement {
+    padding-block: clamp(4rem, 16vw, 6rem);
+  }
+}
+
+/* Pair: copy centred above two phones, tops aligned. Stays side by side
+   on phones so the section does not double in height. */
+.feature--pair .section-inner {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.feature--pair .feature-headline,
+.feature--pair .feature-subtitle {
+  margin-inline: auto;
+}
+
+.feature-pair {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.feature-pair .phone-frame {
+  flex: 0 1 320px;
+  max-width: 320px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .feature-pair {
+    gap: 1rem;
+  }
+  .feature-pair .phone-frame {
+    flex: 0 1 42vw;
+    max-width: 220px;
+  }
+}
+
 /* Cream tier — collapsed into the paper ground. Retains the class for
    semantic grouping / future per-section styling, but no longer paints
    a distinct background so consecutive light+cream sections look like
@@ -736,6 +846,276 @@ main#main-content > .section:nth-of-type(10) { z-index:  1; }
 .section--cream {
   background-color: transparent;
   color: var(--text-primary);
+}
+
+/* -------------------------------------------------------------
+   Tools — the taste kit's pinned-chapters moment
+   (public/assets/moments/pinned-chapters/, never edited). These
+   rules map the kit's tokens onto this site and turn its 4:3
+   photo slots into phones. --ink is redefined because the kit
+   colours text with it, and here --ink is a fixed dark brown;
+   --text-primary/--text-secondary already flip per theme.
+   ------------------------------------------------------------- */
+[data-moment="pinned-chapters"] {
+  --ink: var(--text-primary);
+  --muted: var(--text-secondary);
+  --line: var(--hairline-color);
+  --accent: var(--amber);
+  --gutter: clamp(2rem, 5vw, 5rem);
+  --s-2: 0.5rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: clamp(2rem, 5vw, 5rem);
+  --r-md: 0;
+  --font-text: 'Inter', system-ui, sans-serif;
+  --t-lead: clamp(1.125rem, 1.4vw, 1.3125rem);
+  /* The site nav scrolls away, so the stuck stage needs only a little headroom. */
+  --nav: 2.5rem;
+}
+
+/* .feature-headline centres itself under 769px; these steps stay left-aligned. */
+[data-moment="pinned-chapters"] .feature-headline {
+  margin-inline: 0;
+}
+
+[data-moment="pinned-chapters"] .mo-pc__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-moment="pinned-chapters"] .mo-pc__step h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+[data-moment="pinned-chapters"] .mo-pc__step p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+[data-moment="pinned-chapters"] .mo-pc__visual.phone-frame {
+  border-radius: 0;
+  overflow: visible;
+}
+
+[data-moment="pinned-chapters"] .mo-pc__visual.phone-frame > img {
+  aspect-ratio: auto;
+  max-height: none;
+  object-fit: fill;
+}
+[data-moment="pinned-chapters"] .mo-pc__visual.phone-frame > img.phone-frame__screen {
+  width: 89.333%;
+  height: 95%;
+}
+[data-moment="pinned-chapters"] .mo-pc__visual.phone-frame > img.phone-frame__bezel {
+  width: 100%;
+  height: 100%;
+}
+
+/* At rest: a phone beside (or under) each step's text. */
+[data-moment="pinned-chapters"]:not(.is-live) .mo-pc__visual {
+  width: auto;
+  max-width: none;
+  height: 30vh;
+  height: 30svh;
+  margin: 0;
+  justify-self: center;
+}
+
+@media (max-width: 639px) {
+  [data-moment="pinned-chapters"]:not(.is-live) .mo-pc__visual {
+    height: 26vh;
+    height: 26svh;
+    margin-top: var(--s-4);
+  }
+}
+
+/* Live: one phone-shaped frame; the step phones stack inside it.
+   z-index 0 so the kit's .is-on (z-index 1) is the one that takes
+   the click, not a transparent phone above it. */
+[data-moment="pinned-chapters"].is-live .mo-pc__visuals {
+  width: auto;
+  height: min(calc(100vh - 10rem), 720px);
+  height: min(calc(100svh - 10rem), 720px);
+  max-height: none;
+  aspect-ratio: 1350 / 2760;
+  justify-self: center;
+}
+
+[data-moment="pinned-chapters"].is-live .mo-pc__visual {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  z-index: 0;
+}
+
+/* -------------------------------------------------------------
+   Setlist — scroll moment 1 (src/setlist-drum.js). The card copies
+   the app's Setlist Order card (guide shot set-01): numbered amber
+   badges on a light card. At rest it is a flat numbered list; live
+   (.is-live) the section is two screens, the grid sticks for one
+   and the songs sit on a drum turned by --pos (0 to last index).
+   Badge numbers are ink, not the app's white: white on amber is
+   about 2:1.
+   ------------------------------------------------------------- */
+.setlist {
+  --setlist-row: 4.25rem;
+  --setlist-card: var(--cream-warm);
+}
+
+:root[data-theme="dark"] .setlist {
+  --setlist-card: var(--section-bg-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .setlist {
+    --setlist-card: var(--section-bg-dark);
+  }
+}
+
+.setlist__grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 460px);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.setlist__card {
+  background: var(--setlist-card);
+  border: 1px solid var(--hairline-color);
+  border-radius: 1.75rem;
+  padding: 1.75rem 1.75rem 0.75rem;
+}
+
+.setlist__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.setlist__name {
+  margin: 0;
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.setlist__count {
+  display: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.setlist__drum {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.setlist__song {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: var(--setlist-row);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--hairline-color);
+}
+
+.setlist__song:first-child {
+  border-top: 0;
+}
+
+.setlist__badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--amber);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.setlist__song.is-on {
+  color: var(--text-primary);
+}
+
+.setlist__song.is-on .setlist__badge {
+  background: var(--amber-soft);
+  border-color: var(--amber-soft);
+  color: var(--ink);
+}
+
+@media (max-width: 1023px) {
+  .setlist__grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .setlist .feature-headline,
+  .setlist .feature-subtitle { margin-inline: auto; }
+  .setlist__card {
+    width: 100%;
+    max-width: 460px;
+    text-align: start;
+  }
+}
+
+/* Live: 200vh first for browsers without svh. */
+.setlist.is-live {
+  height: 200vh;
+  height: 200svh;
+}
+
+.setlist.is-live .setlist__grid {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  padding-block: 0;
+  align-content: center;
+}
+
+.setlist.is-live .setlist__count {
+  display: inline;
+}
+
+/* The drum: rows stacked at the centre, each turned by its distance
+   from --pos and pushed out by the radius. The leading translateZ
+   pulls the centre row back to the screen plane so it is not
+   magnified. Opacity falls to 0 at 2.5 rows away; max() stands in
+   for abs(), which Safari 16 lacks. */
+.setlist.is-live .setlist__drum {
+  --pos: 0;
+  --r: calc(var(--setlist-row) * 2.67);
+  position: relative;
+  height: calc(var(--setlist-row) * 5);
+  perspective: 60rem;
+  overflow: hidden;
+}
+
+.setlist.is-live .setlist__song {
+  --d: calc(var(--i) - var(--pos));
+  position: absolute;
+  inset-inline: 0;
+  top: calc(50% - var(--setlist-row) / 2);
+  height: var(--setlist-row);
+  border-top: 0;
+  backface-visibility: hidden;
+  transform: translateZ(calc(var(--r) * -1)) rotateX(calc(var(--d) * -22deg)) translateZ(var(--r));
+  opacity: clamp(0, calc(1 - max(var(--d), var(--d) * -1) * 0.4), 1);
 }
 
 /* -------------------------------------------------------------
@@ -971,4 +1351,180 @@ main#main-content > .section:nth-of-type(10) { z-index:  1; }
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.85rem;
+}
+
+/* Clips are raw screen recordings with square corners; round them
+   to the same arc the screenshot pipeline bakes into the webps
+   (16% x 15.2% of width, i.e. ~7% of a 0.46-aspect height). */
+.guide-clip video.phone-frame__screen {
+  border-radius: 16% / 7%;
+  background: var(--ink);
+}
+
+.guide-clip__toggle {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: 2px solid var(--cream-warm);
+  background: rgba(44, 24, 16, 0.6);
+  color: var(--cream-warm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.guide-clip__toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.guide-clip__toggle .icon-pause,
+.guide-clip.is-playing .guide-clip__toggle .icon-play {
+  display: none;
+}
+
+.guide-clip.is-playing .guide-clip__toggle .icon-pause {
+  display: block;
+}
+
+.guide-clip__toggle:hover {
+  background: rgba(44, 24, 16, 0.8);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.guide-clip__toggle:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.guide-clip.is-playing .guide-clip__toggle {
+  opacity: 0;
+}
+
+@media (hover: none) {
+  .guide-clip.is-playing .guide-clip__toggle {
+    opacity: .7;
+  }
+}
+
+.guide-clip.is-playing:hover .guide-clip__toggle,
+.guide-clip.is-playing .guide-clip__toggle:focus-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-clip__toggle,
+  .guide-clip__toggle:hover {
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------
+   Export — the printed lead sheet, flat on the page
+   ------------------------------------------------------------- */
+.feature--paper .section-inner {
+  grid-template-columns: 1.3fr 1fr;
+  align-items: end;
+}
+
+.paper-sheet {
+  margin: 0;
+  max-width: 600px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(60, 40, 10, 0.1), 0 14px 32px -8px rgba(60, 40, 10, 0.22);
+  line-height: 0;
+}
+
+.paper-sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.paper-formats {
+  margin-top: 1.25rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .paper-sheet {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .paper-sheet {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (max-width: 768px) {
+  .feature--paper .section-inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .paper-sheet {
+    width: 92vw;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
+/* -------------------------------------------------------------
+   Hover / press layer. Movement uses the individual `translate`
+   property so it never fights `transform` (the hero phone's entrance
+   holds its transform with fill-mode both). Reduced motion keeps the
+   existing colour changes and underlines, with no movement.
+   ------------------------------------------------------------- */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .phone-frame:has(img.phone-frame__screen) {
+    transition: translate 200ms ease-out;
+  }
+  .phone-frame:has(img.phone-frame__screen):hover {
+    translate: 0 -2px;
+  }
+  [data-moment="pinned-chapters"].is-live .phone-frame:hover {
+    translate: none;
+  }
+
+  .hero .hero-cta .btn {
+    transition: color 160ms ease, translate 150ms ease-out;
+  }
+  .btn-secondary:hover,
+  .hero .hero-cta .btn:hover {
+    translate: 0 -1px;
+  }
+  .btn:active,
+  .hero .hero-cta .btn:active {
+    translate: 0 1px;
+  }
+
+  .strip-link,
+  .footer-nav a {
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 200ms ease-out, color 160ms ease;
+  }
+  .strip-link:hover,
+  .footer-nav a:hover {
+    text-decoration: none;
+    background-size: 100% 1px;
+  }
+  .btn-primary:hover {
+    transform: none;
+    translate: 0 -2px;
+  }
 }

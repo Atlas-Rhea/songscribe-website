@@ -59,6 +59,17 @@ function close() {
   opener = null;
 }
 
+// The pinned Tools moment stacks every step's phone in one spot and shows one;
+// the hidden ones must not stay in the Tab order while it is live.
+function syncLiveFocus(frames) {
+  for (const frame of frames) {
+    const hidden = frame.closest('[data-moment].is-live') && !frame.classList.contains('is-on');
+    frame.tabIndex = hidden ? -1 : 0;
+    if (hidden) frame.setAttribute('aria-hidden', 'true');
+    else frame.removeAttribute('aria-hidden');
+  }
+}
+
 export function initLightbox() {
   const frames = [...document.querySelectorAll('.phone-frame')].filter((f) =>
     f.querySelector('img.phone-frame__screen')
@@ -74,4 +85,10 @@ export function initLightbox() {
       open(frame);
     });
   }
+  const moments = [...new Set(frames.map((f) => f.closest('[data-moment]')).filter(Boolean))];
+  const stacked = frames.filter((f) => f.tagName !== 'BUTTON' && f.closest('[data-moment]'));
+  if (!stacked.length) return;
+  const observer = new MutationObserver(() => syncLiveFocus(stacked));
+  for (const el of [...moments, ...stacked]) observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+  syncLiveFocus(stacked);
 }

@@ -56,6 +56,7 @@
           return (mq&&mq.matches)?'dark':'light';
         }
         apply(preferred());
+        document.documentElement.classList.add('m-enter');
         if(mq){
           var onChange=function(e){
             var s=stored();
@@ -75,7 +76,13 @@
                        /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
           imagesizes="(max-width: 768px) 70vw, 420px"
           fetchpriority="high">
+    <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+    <link rel="modulepreload" href="/assets/moments/moments.js">
+    <link rel="modulepreload" href="/assets/moments/lib.js">
+    <link rel="modulepreload" href="/assets/moments/pinned-chapters/moment.js">
     <link rel="stylesheet" href="/assets/css/decor.css">
+    <!-- Linked here, before site.css, so the page's overrides win; the loader sees it and does not link it again. -->
+    <link rel="stylesheet" href="/assets/moments/pinned-chapters/moment.css">
     <link rel="stylesheet" href="/assets/css/site.css">
     <!-- main.css (v1) holds legacy cookie-consent / nav / btn rules that aren't critical
          for above-the-fold render. Deferred via print-media trick so it doesn't block
@@ -163,7 +170,7 @@
 
     <main id="main-content">
         <!-- Section 3: Hero (light tier, baked orange plate + teal BL overlay) -->
-        <section class="hero section section--light" data-section="hero">
+        <section class="hero section section--light" data-section="hero" data-enter>
           <div class="wash-group" aria-hidden="true">
             <div class="wash wash--teal wash--hero-teal-bl"></div>
           </div>
@@ -217,23 +224,18 @@
                 where you put them, exactly as they need to be.
               </p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/01-editor-chords-on-lyrics-md.webp"
-                   srcset="/assets/images/shots/01-editor-chords-on-lyrics-sm.webp 480w,
-                           /assets/images/shots/01-editor-chords-on-lyrics-md.webp 720w,
-                           /assets/images/shots/01-editor-chords-on-lyrics-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="Editor with chords placed above lyric words"
-                   loading="lazy">
+            <figure class="feature-phone phone-frame guide-clip">
+              <video class="phone-frame__screen" muted loop playsinline preload="none"
+                     poster="/assets/video/guide/qs-chord-drag.jpg" width="720" height="1566"
+                     aria-label="A chord pill lifts, slides along the first line to the word light and settles there."><source src="/assets/video/guide/qs-chord-drag.mp4" type="video/mp4"></video>
               <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+              <button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
             </figure>
           </div>
         </section>
 
         <!-- Section 5: Feature 2 — Offline / no account (cream tier) -->
-        <section class="feature feature--reverse section section--cream decor-section--bleed-top" data-section="feature-2">
+        <section class="feature feature--statement section section--cream decor-section--bleed-top" data-section="feature-2">
           <div class="wash-seam wash-seam--top" aria-hidden="true">
             <div class="wash wash--edge-top-right"></div>
           </div>
@@ -244,23 +246,11 @@
                 Works fully offline. Songs sync through your own iCloud account, and nothing is stored on a SongScribe server.
               </p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/02-dark-mode-editor-md.webp"
-                   srcset="/assets/images/shots/02-dark-mode-editor-sm.webp 480w,
-                           /assets/images/shots/02-dark-mode-editor-md.webp 720w,
-                           /assets/images/shots/02-dark-mode-editor-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="SongScribe in dark mode, working offline"
-                   loading="lazy">
-              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
-            </figure>
           </div>
         </section>
 
         <!-- Section 6: Feature 3 — Chord tools -->
-        <section class="feature section section--light" data-section="feature-3">
+        <section class="feature feature--pair section section--light" data-section="feature-3">
           <div class="section-inner">
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">Every chord. Every voicing.</h2>
@@ -268,18 +258,55 @@
                 Guitar, bass, ukulele, mandolin and banjo, with a piano keyboard view. From open shapes to jazz voicings. Don't know a chord's name? Tap the strings and SongScribe finds it.
               </p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
+            <div class="feature-pair">
+              <figure class="feature-phone phone-frame">
+                <img class="phone-frame__screen"
                    src="/assets/images/shots/03-chord-picker-md.webp"
                    srcset="/assets/images/shots/03-chord-picker-sm.webp 480w,
                            /assets/images/shots/03-chord-picker-md.webp 720w,
                            /assets/images/shots/03-chord-picker-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
+                   sizes="(max-width: 768px) 42vw, 340px"
                    width="720" height="1565"
                    alt="Chord picker showing the third of six guitar voicings for Em"
                    loading="lazy">
-              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
-            </figure>
+                <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+              </figure>
+              <figure class="feature-phone phone-frame">
+                <img class="phone-frame__screen"
+                   src="/assets/images/shots/10-fretboard-diagram-md.webp"
+                   srcset="/assets/images/shots/10-fretboard-diagram-sm.webp 480w,
+                           /assets/images/shots/10-fretboard-diagram-md.webp 720w,
+                           /assets/images/shots/10-fretboard-diagram-lg.webp 1080w"
+                   sizes="(max-width: 768px) 42vw, 340px"
+                   width="720" height="1565"
+                   alt="Fretboard diagram with three notes placed and suggested chords Fsus4, Bbsus2/F and F7sus4 below"
+                   loading="lazy">
+                <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Setlist — scroll moment 1 (src/setlist-drum.js): from 1024px wide and 640px tall the card
+             holds for one screen while the set rolls on a drum; otherwise a plain numbered list -->
+        <section class="section section--light setlist" data-section="setlist" data-scroll-moment="setlist-drum" aria-labelledby="setlist-h">
+          <div class="section-inner setlist__grid">
+            <div class="setlist__copy">
+              <h2 id="setlist-h" class="section-headline feature-headline">Line up the whole night.</h2>
+              <p class="section-subtitle feature-subtitle">Tap songs into a setlist, hold and drag to reorder, then press play. Setlists and Performance mode are free.</p>
+            </div>
+            <div class="setlist__card">
+              <div class="setlist__head">
+                <p class="setlist__name">Friday Night</p>
+                <span class="setlist__count" aria-hidden="true">1 of 4</span>
+              </div>
+              <ol class="setlist__drum">
+                <li class="setlist__song is-on" style="--i:0"><span class="setlist__badge">1</span> Paper Lanterns</li>
+                <li class="setlist__song" style="--i:1"><span class="setlist__badge">2</span> Slow Train Home</li>
+                <li class="setlist__song" style="--i:2"><span class="setlist__badge">3</span> Kitchen Radio</li>
+                <li class="setlist__song" style="--i:3"><span class="setlist__badge">4</span> Low Tide</li>
+              </ol>
+            </div>
           </div>
         </section>
 
@@ -299,17 +326,12 @@
                 eyes stay on the audience. Footswitch support<span class="lifetime-tag">Lifetime</span> if you want it.
               </p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/05-performance-mode-md.webp"
-                   srcset="/assets/images/shots/05-performance-mode-sm.webp 480w,
-                           /assets/images/shots/05-performance-mode-md.webp 720w,
-                           /assets/images/shots/05-performance-mode-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="Performance mode with chords above the lyrics and playback controls"
-                   loading="lazy">
+            <figure class="feature-phone phone-frame guide-clip">
+              <video class="phone-frame__screen" muted loop playsinline preload="none"
+                     poster="/assets/video/guide/perf-autoscroll.jpg" width="720" height="1566"
+                     aria-label="Performance mode auto-scrolling Paper Lanterns while the speed rail on the right is dragged up to 2.0x"><source src="/assets/video/guide/perf-autoscroll.mp4" type="video/mp4"></video>
               <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+              <button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
             </figure>
           </div>
         </section>
@@ -324,75 +346,104 @@
           <img class="decor-note n-5" src="/assets/images/decor/note-05.svg" alt="" style="top:26%; left:3%; width:52px;">
           <div class="section-inner">
             <div class="feature-copy">
-              <h2 class="section-headline feature-headline">A studio in your pocket.<span class="lifetime-tag">Lifetime</span></h2>
+              <h2 class="section-headline feature-headline">A studio in your pocket.</h2>
               <p class="section-subtitle feature-subtitle">
-                Add up to four layers to a take. Stack parts, catch ideas,
+                Add up to four layers to a take.<span class="lifetime-tag">Lifetime</span> Stack parts, catch ideas,
                 bounce to a single mix when you're ready to share.
               </p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/04-multi-track-recording-md.webp"
-                   srcset="/assets/images/shots/04-multi-track-recording-sm.webp 480w,
-                           /assets/images/shots/04-multi-track-recording-md.webp 720w,
-                           /assets/images/shots/04-multi-track-recording-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="Layered take with two waveforms, a volume slider for each and a Downmix button"
-                   loading="lazy">
+            <figure class="feature-phone phone-frame guide-clip">
+              <video class="phone-frame__screen" muted loop playsinline preload="none"
+                     poster="/assets/video/guide/rec-marker-drop.jpg" width="720" height="1566"
+                     aria-label="Tapping Marker three times during playback adds marker chips under the waveform"><source src="/assets/video/guide/rec-marker-drop.mp4" type="video/mp4"></video>
               <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+              <button class="guide-clip__toggle" type="button" aria-label="Play clip"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
             </figure>
           </div>
         </section>
 
-        <!-- Section 9: Feature 6 — Tuner & harmony (cream tier) -->
-        <section class="feature feature--reverse section section--cream" data-section="feature-6">
-          <div class="section-inner">
-            <div class="feature-copy">
-              <h2 class="section-headline feature-headline">Tune up and find chords that fit.</h2>
-              <p class="section-subtitle feature-subtitle">
-                Tune with Chromatic, Guitar, Bass, Vocal or Violin modes. A = 440.
-                Tap any chord in the key to hear how it sounds against the others.
-              </p>
+        <!-- Section 9: Tools — pinned-chapters moment (public/assets/moments/): live from 1024px wide
+             and 640px tall the stage holds for one screen while the steps open in turn; otherwise static rows -->
+        <section class="section section--cream" data-section="tools" data-moment="pinned-chapters" aria-labelledby="tools-h">
+          <div class="section-inner mo-pc__grid">
+            <div class="mo-pc__text">
+              <h2 id="tools-h" class="section-headline feature-headline">Tune up and find chords that fit.</h2>
+              <ol class="mo-pc__steps">
+                <li class="mo-pc__step">
+                  <h3>Tuner</h3>
+                  <p>Pick Chromatic, Guitar, Bass, Vocal or Violin. The droplet settles in the middle when you're in tune.</p>
+                  <figure class="mo-pc__visual phone-frame">
+                    <img class="phone-frame__screen"
+                         src="/assets/images/shots/guide/tun-03-tuner-in-tune-md.webp"
+                         srcset="/assets/images/shots/guide/tun-03-tuner-in-tune-sm.webp 480w,
+                                 /assets/images/shots/guide/tun-03-tuner-in-tune-md.webp 720w,
+                                 /assets/images/shots/guide/tun-03-tuner-in-tune-lg.webp 1080w"
+                         sizes="(max-width: 1023px) 160px, 360px"
+                         width="720" height="1565"
+                         alt="Tuner in tune showing A2, plus 1 cent in green and a green droplet at centre"
+                         loading="lazy">
+                    <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+                  </figure>
+                </li>
+                <li class="mo-pc__step">
+                  <h3>Metronome</h3>
+                  <p>Set 40 to 240 BPM or tap it in, then pick a time signature. Both are saved with the song.</p>
+                  <figure class="mo-pc__visual phone-frame">
+                    <img class="phone-frame__screen"
+                         src="/assets/images/shots/guide/met-01-metronome-md.webp"
+                         srcset="/assets/images/shots/guide/met-01-metronome-sm.webp 480w,
+                                 /assets/images/shots/guide/met-01-metronome-md.webp 720w,
+                                 /assets/images/shots/guide/met-01-metronome-lg.webp 1080w"
+                         sizes="(max-width: 1023px) 160px, 360px"
+                         width="720" height="1565"
+                         alt="Metronome &amp; Tempo card open at 92 BPM with tempo chips, Tap Tempo, play button and Time 4/4"
+                         loading="lazy">
+                    <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+                  </figure>
+                </li>
+                <li class="mo-pc__step">
+                  <h3>Harmony</h3>
+                  <p>See the seven chords in your song's key and tap one to hear it. Send the chords you pick into your song.</p>
+                  <figure class="mo-pc__visual phone-frame">
+                    <img class="phone-frame__screen"
+                         src="/assets/images/shots/guide/har-02-chord-tapped-md.webp"
+                         srcset="/assets/images/shots/guide/har-02-chord-tapped-sm.webp 480w,
+                                 /assets/images/shots/guide/har-02-chord-tapped-md.webp 720w,
+                                 /assets/images/shots/guide/har-02-chord-tapped-lg.webp 1080w"
+                         sizes="(max-width: 1023px) 160px, 360px"
+                         width="720" height="1565"
+                         alt="Harmony card with D tapped, rings on G and Em, notes D F# A, a one-chord tray and Add chord to song button"
+                         loading="lazy">
+                    <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
+                  </figure>
+                </li>
+              </ol>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/09-tuner-md.webp"
-                   srcset="/assets/images/shots/09-tuner-sm.webp 480w,
-                           /assets/images/shots/09-tuner-md.webp 720w,
-                           /assets/images/shots/09-tuner-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="Tuner reading A2, one cent sharp, with the droplet centred"
-                   loading="lazy">
-              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
-            </figure>
+            <div class="mo-pc__visuals"></div>
           </div>
         </section>
 
         <!-- Section 10: Feature 7 — Export -->
-        <section class="feature section section--light" data-section="feature-7">
+        <section class="feature feature--paper section section--light" data-section="feature-7">
           <img class="decor-quill q-2" src="/assets/images/decor/quill-02.webp" alt="" style="top:55%; left:2%; width:clamp(140px,14vw,190px); transform:rotate(14deg);">
           <div class="section-inner">
+            <figure class="paper-sheet">
+              <img src="/assets/images/shots/export-sheet-md.webp"
+                   srcset="/assets/images/shots/export-sheet-sm.webp 600w,
+                           /assets/images/shots/export-sheet-md.webp 900w,
+                           /assets/images/shots/export-sheet-lg.webp 1166w"
+                   sizes="(max-width: 768px) 92vw, 600px"
+                   width="1166" height="855"
+                   alt="Exported lead sheet for Paper Lanterns in G, with chord cards above the lyrics for Verse 1, Chorus and Verse 2"
+                   loading="lazy">
+            </figure>
             <div class="feature-copy">
               <h2 class="section-headline feature-headline">Export to PDF, ChordPro, and more.<span class="lifetime-tag">Lifetime</span></h2>
               <p class="section-subtitle feature-subtitle">
-                Print-ready lead sheets. Hand your bandmates a chart they can actually
-                read. Three PDF styles, plus ChordPro and plain text for the nerds.
+                Print lead sheets your bandmates can read, in three PDF styles, or send the song as a text file.
               </p>
+              <p class="paper-formats">PDF · ChordPro · ASCII · Plain text</p>
             </div>
-            <figure class="feature-phone phone-frame">
-              <img class="phone-frame__screen"
-                   src="/assets/images/shots/06-export-preview-md.webp"
-                   srcset="/assets/images/shots/06-export-preview-sm.webp 480w,
-                           /assets/images/shots/06-export-preview-md.webp 720w,
-                           /assets/images/shots/06-export-preview-lg.webp 1080w"
-                   sizes="(max-width: 768px) 70vw, 380px"
-                   width="720" height="1565"
-                   alt="Export preview showing a formatted lead sheet"
-                   loading="lazy">
-              <img class="phone-frame__bezel" src="/assets/images/decor/iphone-17-pro-bezel.svg" width="720" height="1565" alt="">
-            </figure>
           </div>
         </section>
 
@@ -572,6 +623,7 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/assets/moments/moments.js"></script>
 
     <script>
         // Cookie Consent Handler & Conditional GTM Loading

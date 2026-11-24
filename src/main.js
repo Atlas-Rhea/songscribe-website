@@ -1,5 +1,7 @@
 import { initTheme, bindToggleButton } from './theme-toggle.js';
 import { initLightbox } from './lightbox.js';
+import { initClips } from './clips.js';
+import { initSetlistDrum } from './setlist-drum.js';
 initTheme();
 function bindTheme() {
   bindToggleButton(document.getElementById('themeToggle'));
@@ -14,6 +16,8 @@ initMobileNav()
 initSmoothScroll()
 initFeaturesAccordion()
 initLightbox()
+initClips()
+initSetlistDrum()
 
 function initMobileNav() {
   const toggle = document.getElementById('mobile-menu-toggle')
