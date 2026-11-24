@@ -17,6 +17,16 @@ html body {
   background-color: var(--paper-bg);
 }
 
+/* Safari 26 ignores theme-color and tints its status bar from the
+   page background, so pages that open with the dark strip give <html>
+   the strip's colour (body keeps the paper). The v2 sections already
+   pad for safe areas themselves, so drop main.css's <html> padding,
+   which would otherwise show as dark bars beside the page in landscape. */
+html:has(> body > .strip) {
+  background-color: var(--section-bg-dark);
+  padding: 0;
+}
+
 /* -------------------------------------------------------------
    Skip-to-content link — visually hidden until keyboard-focused,
    then pops into the top-left corner. Keyboard-only users can
@@ -162,7 +172,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 /* Specificity bump (.strip.section) to override :first-of-type / :last-of-type. */
 .strip.section .section-inner {
   padding-top: max(0.75rem, env(safe-area-inset-top));
-  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  padding-bottom: 0.75rem;
 }
 
 .strip-inner {
