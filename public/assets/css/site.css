@@ -476,6 +476,17 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   }
 }
 
+/* The stacked phone hero is tall and narrow, so `cover` scales the
+   square plate to its height and only the dense top-right pigment
+   shows behind the copy. Slide toward the plate's paper side so the
+   copy sits on the feathered edge and the orange keeps the corner,
+   as on desktop. */
+@media (max-width: 768px) {
+  .hero.section {
+    background-position: 12% top;
+  }
+}
+
 :root[data-theme="dark"] .hero.section {
   background-image: url('/assets/decor/washes/hero-plate-dark-sm.webp');
 }

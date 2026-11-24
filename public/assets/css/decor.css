@@ -505,6 +505,10 @@ body.decor-paper,
   .wash--hero-orange-tl,
   .wash--hero-teal-tr { width: 70%; max-width: 720px; }
   .decor-quill { display: none; }
+  /* The hero's teal keeps the desktop pairing (orange corner, teal
+     round the phone), so it stays stronger than the other washes. */
+  .hero .wash-group { opacity: 0.8; }
+  .wash--hero-teal-bl { width: 560px; height: 560px; left: -120px; }
   /* Keep one note per cluster by hiding higher-numbered stagger classes */
   .decor-note.n-4,
   .decor-note.n-5,
@@ -515,5 +519,7 @@ body.decor-paper,
   .wash,
   .wash-group,
   .decor-note { display: none; }
-  /* Paper grain on .features-all stays */
+  /* Paper grain on .features-all stays; so does the hero's teal. */
+  .hero .wash-group,
+  .hero .wash--hero-teal-bl { display: block; }
 }
