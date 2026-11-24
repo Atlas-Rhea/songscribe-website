@@ -21,6 +21,7 @@
   /* Accents */
   --amber:          #D4A017;
   --amber-soft:     #E5B84A;
+  --amber-text:     #92400E;  /* small amber text on light grounds, 6:1 on parchment */
   --coral:          #F5A962;
   --teal:           #2D9E9E;
   --teal-deep:      #1F6B6B;
@@ -71,6 +72,7 @@
     /* Dark tier swap: light-tier sections become ink, dark-tier becomes darker */
     --section-bg-light: var(--ink);
     --section-bg-dark:  #0C0604;
+    --amber-text:         var(--amber);
   }
 }
 
@@ -93,6 +95,7 @@
   /* Dark tier swap: light-tier sections become ink, dark-tier becomes darker */
   --section-bg-light: var(--ink);
   --section-bg-dark:  #0C0604;
+  --amber-text:         var(--amber);
 }
 
 /* Explicit light-theme override (wins when user toggles off dark even if system prefers dark) */
