@@ -728,15 +728,19 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   position: relative;
 }
 
+/* The copy column is capped at the subtitle's measure and the pair is
+   centred as one unit, so wide screens add margin outside the pair
+   instead of a gulf between the text and the phone. */
 .feature .section-inner {
   display: grid;
-  grid-template-columns: 1fr minmax(280px, 380px);
+  grid-template-columns: minmax(0, 32rem) minmax(280px, 380px);
+  justify-content: center;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
 }
 
 .feature--reverse .section-inner {
-  grid-template-columns: minmax(280px, 380px) 1fr;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 32rem);
 }
 
 .feature--reverse .feature-copy {
