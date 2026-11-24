@@ -623,67 +623,67 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 }
 
 /* -------------------------------------------------------------
-   Hero CTAs — ink serif text-links, arrow glyph, dot separator
-   Specificity bump (.hero .hero-cta .btn) beats v1 main.css's
-   .btn.btn-primary (spec 0,2,0). Neutralizes the card-chip
-   look: no background, border, padding, or radius. Both CTAs
-   read as typographic peers inheriting --text-primary per theme.
+   Hero CTAs: filled amber primary + quiet serif text-link secondary.
+   The .hero .hero-cta .btn prefix outranks main.css's .btn and
+   .btn-primary (it loads after this file), so every property the
+   hero needs is set here. Ink text on amber in both themes: the
+   theme text colour turns cream in dark mode and washes out.
    ------------------------------------------------------------- */
+.hero .hero-cta {
+  align-items: center;
+}
+
 .hero .hero-cta .btn {
-  background: transparent;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.hero .hero-cta .btn.btn-primary {
+  padding: 0.75rem 1.75rem;
+  border: 2px solid var(--amber);
+  border-radius: var(--radius-md, 8px);
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-family, 'Inter', system-ui, sans-serif);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.hero .hero-cta .btn.btn-primary:hover,
+.hero .hero-cta .btn.btn-primary:focus-visible {
+  background: var(--amber-soft);
+  border-color: var(--amber-soft);
+  color: var(--ink);
+}
+
+.hero .hero-cta .btn.btn-secondary {
+  padding: 0.5rem 0.25rem;
   border: 0;
-  padding: 0;
-  border-radius: 0;
+  background: transparent;
+  color: var(--text-primary);
   font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: clamp(1.15rem, 1.6vw, 1.35rem);
-  letter-spacing: 0;
-  color: var(--text-primary);
-  text-decoration: none;
-  box-shadow: none;
-  transform: none;
   line-height: 1.3;
-  transition: color 160ms ease;
 }
 
-.hero .hero-cta .btn.btn-primary,
-.hero .hero-cta .btn.btn-secondary {
-  color: var(--text-primary);
-  background: transparent;
-  border: 0;
-}
-
-.hero .hero-cta .btn:hover,
-.hero .hero-cta .btn:focus-visible {
+.hero .hero-cta .btn.btn-secondary:hover,
+.hero .hero-cta .btn.btn-secondary:focus-visible {
   color: var(--amber);
-  background: transparent;
-  transform: none;
-  box-shadow: none;
 }
 
 .hero .hero-cta .btn:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 4px;
-  border-radius: 2px;
 }
 
-.hero .hero-cta .btn + .btn::before {
-  content: '\00B7';
-  margin-right: 1.25rem;
-  color: currentColor;
-  opacity: 0.45;
-}
-
-/* At mobile widths the hero-cta centers and the two peers sit far
-   apart, leaving the dot floating in empty space. Stack vertically
-   and hide the dot so each link reads cleanly on its own line. */
 @media (max-width: 640px) {
   .hero .hero-cta {
     flex-direction: column;
-    gap: 0.75rem;
-  }
-  .hero .hero-cta .btn + .btn::before {
-    display: none;
+    gap: 0.5rem;
   }
 }
 
@@ -1545,7 +1545,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   }
 
   .hero .hero-cta .btn {
-    transition: color 160ms ease, translate 150ms ease-out;
+    transition: color 160ms ease, background-color 160ms ease, translate 150ms ease-out;
   }
   .btn-secondary:hover,
   .hero .hero-cta .btn:hover {
