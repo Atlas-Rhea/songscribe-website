@@ -614,7 +614,7 @@ a:hover {
   padding: 0.15em 0.55em;
   border-radius: 999px;
   background: rgba(251, 191, 36, 0.18);
-  color: #92400E; /* 5.6:1 on parchment-tinted amber */
+  color: #78350F; /* 7:1 on parchment-tinted amber */
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -622,6 +622,7 @@ a:hover {
   vertical-align: middle;
 }
 
+.section--dark .lifetime-tag,
 :root[data-theme="dark"] .lifetime-tag {
   color: #FBBF24; /* 6.7:1 on ink-tinted amber */
 }

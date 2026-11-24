@@ -1202,7 +1202,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--amber-text);
 }
 
 .features-all-item__title {
