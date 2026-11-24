@@ -20,7 +20,7 @@ html body {
 /* -------------------------------------------------------------
    Skip-to-content link — visually hidden until keyboard-focused,
    then pops into the top-left corner. Keyboard-only users can
-   jump past the nav/strip to <main>.
+   jump past the nav to <main>.
    ------------------------------------------------------------- */
 .skip-link {
   position: absolute;
@@ -157,46 +157,6 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 }
 
 /* -------------------------------------------------------------
-   Announcement strip
-   ------------------------------------------------------------- */
-/* Specificity bump (.strip.section) to override :first-of-type / :last-of-type. */
-.strip.section .section-inner {
-  padding-block: 0.75rem;
-}
-
-.strip-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-/* Specificity bump (.strip .strip-text) so dark-tier p { warm-gray-soft } default doesn't dim the strip announcement. */
-.strip .strip-text {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--cream-warm);
-}
-
-.strip-link {
-  color: var(--amber-soft);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.strip-link:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-  .strip-text { font-size: 0.8rem; }
-  .strip-inner { gap: 0.75rem; }
-}
-
-/* -------------------------------------------------------------
    Navigation
    All v2 nav rules scoped under .nav-section to beat v1 main.css
    (loaded later) which defines conflicting .nav-links rules.
@@ -323,8 +283,7 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
 @media (max-width: 640px) {
   .nav-section .nav-links { display: none; }
   /* Nav CTA overflows at 390px because logo + toggle + button won't
-     fit. Users can still convert via the hero CTA or the pricing
-     link in the announcement strip below. */
+     fit. Users can still convert via the hero CTA. */
   .nav-section .nav-actions .btn { display: none; }
   .nav-section .nav-menu-toggle { display: inline-flex; }
 
@@ -598,6 +557,11 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   flex-wrap: wrap;
 }
 
+.hero-platform {
+  margin-top: 0.875rem;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .hero-inner {
     grid-template-columns: 1fr;
@@ -610,8 +574,8 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   .hero-subtitle { margin-inline: auto; }
 }
 
-/* Desktop: size the phone from the viewport height so strip + nav + hero
-   fit one screen. 126px = announcement strip (47) + nav (79); 5rem = hero
+/* Desktop: size the phone from the viewport height so nav + hero
+   fit one screen. 79px = nav; 5rem = hero
    vertical padding. 1350/2760 is the .phone-frame aspect. Floors at 260px
    (hero grows instead) and caps at 420px on tall screens. */
 @media (min-width: 769px) {
@@ -619,8 +583,8 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
     padding-block: 2.5rem;
   }
   .hero-phone-frame {
-    width: min(420px, max(260px, calc((100vh - 126px - 5rem) * 1350 / 2760)));
-    width: min(420px, max(260px, calc((100svh - 126px - 5rem) * 1350 / 2760)));
+    width: min(420px, max(260px, calc((100vh - 79px - 5rem) * 1350 / 2760)));
+    width: min(420px, max(260px, calc((100svh - 79px - 5rem) * 1350 / 2760)));
   }
 }
 
@@ -643,11 +607,13 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
   }
   html.m-enter .hero[data-enter] .hero-headline,
   html.m-enter .hero[data-enter] .hero-subtitle,
-  html.m-enter .hero[data-enter] .hero-cta {
+  html.m-enter .hero[data-enter] .hero-cta,
+  html.m-enter .hero[data-enter] .hero-platform {
     animation: hero-rise 600ms cubic-bezier(.16, 1, .3, 1) both;
   }
   html.m-enter .hero[data-enter] .hero-subtitle { animation-delay: 120ms; }
-  html.m-enter .hero[data-enter] .hero-cta { animation-delay: 220ms; }
+  html.m-enter .hero[data-enter] .hero-cta,
+  html.m-enter .hero[data-enter] .hero-platform { animation-delay: 220ms; }
   html.m-enter .hero[data-enter] .hero-copy::before {
     animation: hero-scrim 600ms cubic-bezier(.16, 1, .3, 1) both;
   }
@@ -1590,13 +1556,11 @@ main#main-content > .section:nth-of-type(11) { z-index:  2; }
     translate: 0 1px;
   }
 
-  .strip-link,
   .footer-nav a {
     text-decoration: none;
     background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
     transition: background-size 200ms ease-out, color 160ms ease;
   }
-  .strip-link:hover,
   .footer-nav a:hover {
     text-decoration: none;
     background-size: 100% 1px;
